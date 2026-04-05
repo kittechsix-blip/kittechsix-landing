@@ -1,0 +1,236 @@
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-text);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  color: var(--color-near-black);
+  background: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Typography Scale */
+.text-hero {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
+}
+
+.text-heading {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.10;
+  letter-spacing: -0.20px;
+}
+
+.text-subhead {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.17px;
+}
+
+.text-body {
+  font-family: var(--font-text);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+
+.text-caption {
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: -0.12px;
+}
+
+/* Section Base Classes */
+.section {
+  width: 100%;
+  padding: var(--space-16) var(--space-3);
+}
+
+.section-dark {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.section-light {
+  background: var(--color-light-gray);
+  color: var(--color-near-black);
+}
+
+.section-content {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CTA Buttons */
+.cta-primary {
+  display: inline-block;
+  background: var(--color-apple-blue);
+  color: var(--color-white);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: background var(--transition-default);
+}
+
+.cta-primary:hover {
+  background: #0077ed;
+}
+
+.cta-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-link-blue);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  padding: 12px 24px;
+  border: 1px solid var(--color-link-blue);
+  border-radius: 980px;
+  transition: background var(--transition-default), color var(--transition-default);
+}
+
+.cta-secondary:hover {
+  background: var(--color-link-blue);
+  color: var(--color-white);
+}
+
+.cta-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-white);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 980px;
+  transition: background var(--transition-default), border-color var(--transition-default);
+}
+
+.cta-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-apple-blue);
+  outline-offset: 2px;
+}
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-apple-blue);
+  color: var(--color-white);
+  padding: 8px 16px;
+  z-index: 200;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .section-content {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 834px) {
+  .text-hero {
+    font-size: 40px;
+  }
+
+  .text-heading {
+    font-size: 32px;
+  }
+
+  .text-subhead {
+    font-size: 24px;
+  }
+
+  .section {
+    padding: var(--space-10) var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .text-hero {
+    font-size: 28px;
+  }
+
+  .text-heading {
+    font-size: 28px;
+  }
+
+  .text-subhead {
+    font-size: 21px;
+  }
+
+  .section {
+    padding: var(--space-8) var(--space-2);
+  }
+}

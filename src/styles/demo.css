@@ -1,0 +1,272 @@
+/* Demo Styles — Phase 3 */
+.demo-section {
+  padding: var(--space-16) var(--space-3);
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: var(--space-2);
+}
+
+.demo-disclaimer {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: -0.12px;
+  margin-bottom: var(--space-5);
+}
+
+/* Mode Toggle */
+.demo-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+}
+
+.demo-toggle-container {
+  display: inline-flex;
+  background: #272729;
+  border-radius: 980px;
+  padding: 3px;
+}
+
+.demo-toggle-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  border-radius: 980px;
+  transition: all var(--transition-default);
+  letter-spacing: -0.17px;
+}
+
+.demo-toggle-btn.active {
+  background: var(--color-apple-blue);
+  color: var(--color-white);
+}
+
+/* Demo Cards */
+.demo-cards {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.demo-card {
+  background: #272729;
+  border-radius: 12px;
+  padding: var(--space-4);
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.demo-card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: var(--space-1);
+}
+
+.demo-card-body {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin-bottom: var(--space-2);
+  white-space: pre-line;
+}
+
+.demo-card-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.demo-option-btn {
+  background: #3a3a3c;
+  color: var(--color-white);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  transition: background var(--transition-default);
+  letter-spacing: -0.17px;
+}
+
+.demo-option-btn:hover {
+  background: #48484a;
+}
+
+.demo-option-btn.selected {
+  background: var(--color-apple-blue);
+}
+
+.demo-option-btn.preselected {
+  background: var(--color-apple-blue);
+  opacity: 0.9;
+}
+
+/* Annotation */
+.demo-annotation {
+  background: rgba(0, 113, 227, 0.1);
+  border-left: 3px solid var(--color-apple-blue);
+  padding: 12px 16px;
+  margin-top: var(--space-2);
+  border-radius: 0 8px 8px 0;
+}
+
+.demo-annotation-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+.demo-patient-context {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-bright-blue);
+  margin-top: var(--space-1);
+  letter-spacing: -0.12px;
+}
+
+/* Result Card */
+.demo-card.result {
+  border-left: 3px solid #30d158;
+}
+
+/* Navigation */
+.demo-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
+.demo-next-btn {
+  background: var(--color-apple-blue);
+  color: var(--color-white);
+  padding: 12px 32px;
+  border-radius: 980px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background var(--transition-default);
+}
+
+.demo-next-btn:hover {
+  background: #0077ed;
+}
+
+.demo-restart-btn {
+  background: transparent;
+  color: var(--color-bright-blue);
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Trip Builder */
+.trip-step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.trip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3a3a3c;
+  transition: background var(--transition-default);
+}
+
+.trip-dot.active {
+  background: var(--color-apple-blue);
+}
+
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-2);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.trip-card {
+  background: #272729;
+  border-radius: 12px;
+  padding: var(--space-3);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-default);
+  border: 2px solid transparent;
+}
+
+.trip-card:hover {
+  background: #323234;
+}
+
+.trip-card.selected {
+  border-color: var(--color-apple-blue);
+  background: rgba(0, 113, 227, 0.15);
+}
+
+.trip-card-icon {
+  font-size: 36px;
+  margin-bottom: var(--space-1);
+}
+
+.trip-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-white);
+  letter-spacing: -0.17px;
+}
+
+.trip-card-region {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: -0.12px;
+}
+
+/* Kit Results */
+.kit-results {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.kit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fadeInUp 0.3s ease forwards;
+  opacity: 0;
+}
+
+.kit-item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.kit-item-purpose {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.kit-item-notes {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 2px;
+}
+
+.trip-back-btn {
+  background: transparent;
+  color: var(--color-bright-blue);
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+}

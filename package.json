@@ -1,0 +1,9 @@
+{
+  "name": "kittechsix-landing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "bunx tsc && cp index.html dist/ && cp manifest.json dist/ && cp -r src/styles dist/ && cp -r assets dist/",
+    "dev": "bunx tsc --watch"
+  }
+}
