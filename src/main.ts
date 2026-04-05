@@ -3,6 +3,12 @@
 import { router } from './utils/router.js';
 import { renderNav } from './components/nav.js';
 import { renderHero } from './components/hero.js';
+import { renderMyMedKitt, renderMyTravelMedKitt, renderMyToolKitt } from './components/product-showcase.js';
+import { renderAfibDemo } from './components/demo-afib.js';
+import { renderTripDemo } from './components/demo-trip.js';
+import { renderFeedbackBoard } from './components/feedback-board.js';
+import { renderAbout } from './components/about.js';
+import { renderDisclaimer } from './components/disclaimer.js';
 import { renderFooter } from './components/footer.js';
 import { setupScrollAnimations } from './utils/intersection.js';
 
@@ -13,9 +19,14 @@ function renderLandingPage(): void {
 
   renderNav(app);
   renderHero(app);
-  // Phase 2: product showcases
-  // Phase 3: demos
-  // Phase 4: feedback board
+  renderMyMedKitt(app);
+  renderAfibDemo(app);
+  renderMyTravelMedKitt(app);
+  renderTripDemo(app);
+  renderMyToolKitt(app);
+  renderAbout(app);
+  renderFeedbackBoard(app);
+  renderDisclaimer(app);
   renderFooter(app);
 
   // Scroll animations after DOM is populated
