@@ -17,6 +17,7 @@ export function renderNav(parent: HTMLElement): void {
       <a class="nav-logo" href="#/">kittechsix</a>
       <div class="nav-links" id="nav-links">
         <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
+        <a href="#myvertigoapp" data-section="myvertigoapp">my-vertigo-app</a>
         <a href="#mytravelmedkitt" data-section="mytravelmedkitt">MyTravelMedKitt</a>
         <a href="#mytoolkitt" data-section="mytoolkitt">MyToolKitt</a>
         <a href="#feedback" data-section="feedback">Feedback</a>
@@ -40,6 +41,7 @@ export function renderNav(parent: HTMLElement): void {
   overlay.id = 'nav-overlay';
   overlay.innerHTML = `
     <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
+    <a href="#myvertigoapp" data-section="myvertigoapp">my-vertigo-app</a>
     <a href="#mytravelmedkitt" data-section="mytravelmedkitt">MyTravelMedKitt</a>
     <a href="#mytoolkitt" data-section="mytoolkitt">MyToolKitt</a>
     <a href="#feedback" data-section="feedback">Feedback</a>

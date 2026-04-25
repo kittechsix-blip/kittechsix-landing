@@ -6,7 +6,7 @@ interface ProductShowcaseConfig {
   description: string;
   iconSrc: string;
   features: { icon: string; text: string }[];
-  status: 'In Development' | 'Coming Soon';
+  status: 'In Development' | 'Coming Soon' | 'Live';
   ctaPrimary: { label: string; action: () => void };
   ctaSecondary?: { label: string; action: () => void };
 }
@@ -75,6 +75,24 @@ export function renderMyMedKitt(parent: HTMLElement): void {
     ],
     status: 'In Development',
     ctaPrimary: { label: 'Try the Demo', action: () => scrollTo('demo-mymedkitt') },
+    ctaSecondary: { label: 'Learn More', action: () => {} },
+  });
+}
+
+export function renderMyVertigoApp(parent: HTMLElement): void {
+  renderProductShowcase(parent, {
+    id: 'myvertigoapp',
+    name: 'my-vertigo-app',
+    description: 'Bedside decision support for the dizzy patient. Walk the HINTS exam, run Dix-Hallpike, and guide Epley or Semont maneuvers — then build a shareable discharge plan in seconds.',
+    iconSrc: 'assets/icons/myvertigoapp.png',
+    features: [
+      { icon: '🌀', text: 'HINTS exam guide with stroke triage' },
+      { icon: '🎯', text: 'Epley & Semont maneuver walkthroughs' },
+      { icon: '📋', text: 'Disposition builder with QR sharing' },
+      { icon: '📱', text: 'Web PWA + native iOS/Android' },
+    ],
+    status: 'Live',
+    ctaPrimary: { label: 'Open the App', action: () => window.open('https://my-vertigo-app.vercel.app', '_blank', 'noopener') },
     ctaSecondary: { label: 'Learn More', action: () => {} },
   });
 }

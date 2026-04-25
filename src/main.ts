@@ -3,7 +3,7 @@
 import { router } from './utils/router.js';
 import { renderNav } from './components/nav.js';
 import { renderHero } from './components/hero.js';
-import { renderMyMedKitt, renderMyTravelMedKitt, renderMyToolKitt } from './components/product-showcase.js';
+import { renderMyMedKitt, renderMyVertigoApp, renderMyTravelMedKitt, renderMyToolKitt } from './components/product-showcase.js';
 import { renderAfibDemo } from './components/demo-afib.js';
 import { renderTripDemo } from './components/demo-trip.js';
 import { renderFeedbackBoard } from './components/feedback-board.js';
@@ -21,6 +21,7 @@ function renderLandingPage(): void {
   renderHero(app);
   renderMyMedKitt(app);
   renderAfibDemo(app);
+  renderMyVertigoApp(app);
   renderMyTravelMedKitt(app);
   renderTripDemo(app);
   renderMyToolKitt(app);
