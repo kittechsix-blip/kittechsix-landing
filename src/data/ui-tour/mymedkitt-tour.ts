@@ -1,0 +1,270 @@
+import type { UITourConfig } from '../../components/ui-tour.js';
+import {
+  renderMKDashboard,
+  renderMKSpecialty,
+  renderMKConsult,
+  renderMKPharmacy,
+} from '../../components/ui-tour-clones/mymedkitt-clone.js';
+
+export const myMedKittTour: UITourConfig = {
+  appId: 'mymedkitt',
+  appName: 'myMedKitt',
+  eyebrow: 'Tour the UI',
+  subtitle:
+    'Click any pulsing dot to learn what every button, tab, and search bar does — Explore freely, or take the Guided Tour for a numbered walkthrough.',
+  accentColor: '#3CB371',
+  initialScreen: 'dashboard',
+  screens: [
+    {
+      id: 'dashboard',
+      title: 'Dashboard',
+      renderClone: renderMKDashboard,
+      hotspots: [
+        {
+          id: 'logo',
+          anchorSelector: '[data-mk="logo"]',
+          title: 'App logo',
+          description: 'The 3D metallic medical bag — your anchor home in the app. Tap from anywhere to return to the dashboard.',
+          guidedOrder: 1,
+        },
+        {
+          id: 'search',
+          anchorSelector: '[data-mk="search"]',
+          title: 'Universal search',
+          description: 'One search bar for everything: type a drug, consult name, or calculator (e.g. "diltiazem", "stroke", "PESI") and jump straight to it. Searches across all 28 consults, 119 drugs, and 28+ calculators.',
+          guidedOrder: 2,
+        },
+        {
+          id: 'recents',
+          anchorSelector: '[data-mk="recent-1"]',
+          title: 'Recent consults',
+          description: 'Horizontal carousel of consults you opened last — one tap re-opens them. The colored ring matches each specialty\'s gradient.',
+          guidedOrder: 3,
+        },
+        {
+          id: 'cat-cardiology',
+          anchorSelector: '[data-mk="cat-cardiology"]',
+          title: 'Specialty card',
+          description: 'Each card is one of 20 specialties. Background gradient is unique per specialty. Tap to drill into the consult list. The badge shows how many consults live inside.',
+          navigateTo: 'specialty',
+          guidedOrder: 4,
+        },
+        {
+          id: 'cat-em',
+          anchorSelector: '[data-mk="cat-em"]',
+          title: 'Cross-listed specialties',
+          description: 'Many consults appear in multiple specialties — a stroke shows up in both Neurology and Emergency Medicine — so you find it from whichever way you think.',
+        },
+        {
+          id: 'tab-home',
+          anchorSelector: '[data-mk="tab-home"]',
+          title: 'Home tab',
+          description: 'Returns to the specialty grid you\'re looking at now. Always visible on the dashboard.',
+        },
+        {
+          id: 'tab-pharmacy',
+          anchorSelector: '[data-mk="tab-pharmacy"]',
+          title: 'Pharmacy tab',
+          description: 'Direct entry to the drug index — 119+ medications with weight-based dosing, mixing instructions, and contraindications.',
+        },
+        {
+          id: 'tab-medcalc',
+          anchorSelector: '[data-mk="tab-medcalc"]',
+          title: 'Med-Calc tab',
+          description: 'Standalone calculators: NIHSS, PESI, CHA₂DS₂-VASc, TIMI, parkland burns, Free Water Deficit, and 22 more — all offline.',
+        },
+      ],
+    },
+
+    {
+      id: 'specialty',
+      title: 'Specialty View — Cardiology',
+      renderClone: renderMKSpecialty,
+      hotspots: [
+        {
+          id: 'back',
+          anchorSelector: '[data-mk="back"]',
+          title: 'Back button',
+          description: 'Returns to the dashboard. The header is sticky and gradient-colored to match the specialty so you always know where you are.',
+          guidedOrder: 5,
+        },
+        {
+          id: 'search',
+          anchorSelector: '[data-mk="search"]',
+          title: 'Scoped search',
+          description: 'Search restricted to consults inside this specialty — useful when you know it\'s a cardiology problem but can\'t remember the exact name.',
+        },
+        {
+          id: 'home',
+          anchorSelector: '[data-mk="home"]',
+          title: 'Quick home',
+          description: 'Skip past the back button straight to the dashboard. Saved taps when you\'re three levels deep.',
+        },
+        {
+          id: 'consult-afib',
+          anchorSelector: '[data-mk="consult-afib"]',
+          title: '3D consult button',
+          description: 'Each consult is a metallic 3D button — pure CSS gradients, no images. Tap to walk the decision tree.',
+          navigateTo: 'consult',
+          guidedOrder: 6,
+        },
+      ],
+    },
+
+    {
+      id: 'consult',
+      title: 'Consult — A-Fib RVR',
+      renderClone: renderMKConsult,
+      hotspots: [
+        {
+          id: 'c-back',
+          anchorSelector: '[data-mk="c-back"]',
+          title: 'Scroll back one card',
+          description: 'Walks back one step in the decision tree. Your previous answers stay visible as compact pills above so you can see the full path.',
+          guidedOrder: 7,
+        },
+        {
+          id: 'c-reset',
+          anchorSelector: '[data-mk="c-reset"]',
+          title: 'Reset to start',
+          description: 'Wipes all answers and returns to the consult\'s first node. Useful when you want to walk the same patient through a different branch.',
+        },
+        {
+          id: 'c-progress',
+          anchorSelector: '[data-mk="c-progress"]',
+          title: 'Progress badge',
+          description: 'Shows your position through the tree — e.g. "2/12" means you\'re on the second node out of twelve possible.',
+        },
+        {
+          id: 'c-search',
+          anchorSelector: '[data-mk="c-search"]',
+          title: 'Search this consult',
+          description: 'Search across only this consult\'s nodes — handy in long branches when you remember a phrase but not which node it\'s in.',
+        },
+        {
+          id: 'c-home',
+          anchorSelector: '[data-mk="c-home"]',
+          title: 'Home shortcut',
+          description: 'Returns to the dashboard. Your in-progress consult is preserved in the Recent row so you can resume.',
+        },
+        {
+          id: 'c-answered',
+          anchorSelector: '[data-mk="c-answered"]',
+          title: 'Answered-question pill',
+          description: 'Each answered card collapses into a pill. Tap to re-expand and see the original options + the citations you read.',
+        },
+        {
+          id: 'c-card',
+          anchorSelector: '[data-mk="c-card"]',
+          title: 'Active decision card',
+          description: 'The current question. Pearl-white card with a soft drop shadow. Body text supports markdown bold, citations, and inline drug links.',
+          guidedOrder: 8,
+        },
+        {
+          id: 'c-cite',
+          anchorSelector: '[data-mk="c-cite"]',
+          title: 'Inline citation',
+          description: 'Tap [1] to jump into the citation list. Every clinical claim is sourced — no opinions disguised as evidence.',
+        },
+        {
+          id: 'c-expand',
+          anchorSelector: '[data-mk="c-expand"]',
+          title: 'Expandable section',
+          description: 'In-card collapsibles let you show optional detail (tables, dose tips, exam tricks) without bloating the main flow.',
+        },
+        {
+          id: 'c-option-stable',
+          anchorSelector: '[data-mk="c-option-stable"]',
+          title: 'Charcoal option',
+          description: 'Default 3D button. Tapping turns it green and advances to the next decision node. The grey "no urgency" tone signals routine paths.',
+          guidedOrder: 9,
+        },
+        {
+          id: 'c-option-unstable',
+          anchorSelector: '[data-mk="c-option-unstable"]',
+          title: 'Critical option',
+          description: 'Red gradient = urgency. The button color tells you which branch is the time-critical one before you read the words.',
+        },
+        {
+          id: 'c-tool-diltiazem',
+          anchorSelector: '[data-mk="c-tool-diltiazem"]',
+          title: 'Contextual drug tool',
+          description: 'Each consult shows the drugs you\'re likely to need at the bottom — not the global pharmacy. One tap opens the dosing card scrolled to the right indication.',
+          navigateTo: 'pharmacy',
+          guidedOrder: 10,
+        },
+        {
+          id: 'c-tool-home',
+          anchorSelector: '[data-mk="c-tool-home"]',
+          title: 'Always-home',
+          description: 'Repeated home button at the bottom for thumb reach — you never have to stretch to the top of the screen.',
+        },
+        {
+          id: 'c-tool-more',
+          anchorSelector: '[data-mk="c-tool-more"]',
+          title: 'Decision Map (•••)',
+          description: 'Opens a full-screen table of contents of the consult — every module + every node — so you can jump to any branch point.',
+        },
+      ],
+    },
+
+    {
+      id: 'pharmacy',
+      title: 'Pharmacy Modal',
+      renderClone: renderMKPharmacy,
+      hotspots: [
+        {
+          id: 'p-close',
+          anchorSelector: '[data-mk="p-close"]',
+          title: 'Dismiss modal',
+          description: 'Closes the drug card and returns to your in-progress consult. Modal opens scrolled to the indication that matches the consult\'s context.',
+          guidedOrder: 11,
+        },
+        {
+          id: 'p-route',
+          anchorSelector: '[data-mk="p-route"]',
+          title: 'Route badge',
+          description: 'Shows the active route — IV, PO, IM. Drugs with multiple routes get one card per route to keep dosing unambiguous.',
+        },
+        {
+          id: 'p-card',
+          anchorSelector: '[data-mk="p-card"]',
+          title: 'Indication card',
+          description: 'Each indication gets its own card. The green outline highlights the indication the consult linked you to so you know where to look.',
+        },
+        {
+          id: 'p-tab-weight',
+          anchorSelector: '[data-mk="p-tab-weight"]',
+          title: 'Enter weight',
+          description: 'Type the patient\'s weight in kg — the calculator instantly outputs the dose, capped at the max if applicable.',
+          guidedOrder: 12,
+        },
+        {
+          id: 'p-tab-broselow',
+          anchorSelector: '[data-mk="p-tab-broselow"]',
+          title: 'Broselow Tape',
+          description: 'Tap a Broselow color zone to use the midpoint weight. 9 zones from Grey (3-5kg) through Green (30-36kg). Includes "Know their length?" toggle to enter cm directly.',
+        },
+        {
+          id: 'p-tab-age',
+          anchorSelector: '[data-mk="p-tab-age"]',
+          title: 'Estimate by age',
+          description: 'No scale, no tape, no parent? Pediatric weight formulas: <1yr = (months × 0.5) + 3.5kg, 1-10yr = (years × 2) + 10kg.',
+        },
+        {
+          id: 'p-input',
+          anchorSelector: '[data-mk="p-input"]',
+          title: 'Weight input',
+          description: 'Editable in the real app. Updates the output card live as you type.',
+        },
+        {
+          id: 'p-output',
+          anchorSelector: '[data-mk="p-output"]',
+          title: 'Calculated dose',
+          description: 'Forest-green output box. Shows the calculated dose, max-dose cap if applicable, and total volume for IV preparations.',
+          guidedOrder: 13,
+        },
+      ],
+    },
+  ],
+};
