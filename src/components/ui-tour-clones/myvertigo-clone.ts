@@ -98,39 +98,67 @@ export function renderVTManeuver(): HTMLElement {
   const el = document.createElement('div');
   el.className = 'vt-screen';
   el.innerHTML = `
-    <div class="vt-pills">${modulePills(2)}</div>
+    <div class="vt-pills">${modulePills(3)}</div>
 
     <article class="vt-card" data-vt="mv-card">
-      <h2 class="vt-card__title">Epley Maneuver — Right Posterior Canal</h2>
-      <p class="vt-card__body">5-position canalith repositioning. Hold each position 30–60 seconds or until nystagmus resolves.</p>
+      <h2 class="vt-card__title" data-vt="mv-title">HINTS Exam — Lateralize</h2>
+      <p class="vt-card__body">
+        For acute vestibular syndrome with continuous nystagmus. The <strong>Lateralize tool</strong>
+        identifies which ear is affected and tells you whether the cause is peripheral or central.
+      </p>
 
-      <a class="vt-video-link" data-vt="mv-video">▶ Watch reference video</a>
+      <div class="vt-hints-tabs" data-vt="mv-tabs">
+        <div class="vt-hints-tab vt-hints-tab--active" data-vt="mv-tab-hi">Head Impulse</div>
+        <div class="vt-hints-tab">Nystagmus</div>
+        <div class="vt-hints-tab">Skew</div>
+      </div>
 
-      <div style="margin-top:8px;">
-        <div class="vt-maneuver-step">
-          <div class="vt-maneuver-step__num">1</div>
-          <div class="vt-maneuver-step__text">Sit upright. Turn head 45° to the right.</div>
+      <a class="vt-video-link" data-vt="mv-video">▶ Watch lateralize technique</a>
+
+      <div class="vt-lateralize" data-vt="mv-lateralize">
+        <div class="vt-lateralize__label">LATERALIZE — pick the suspected affected ear</div>
+        <div class="vt-lateralize__row">
+          <button class="vt-lateralize__btn vt-lateralize__btn--active" data-vt="mv-side-left">
+            <span class="vt-lateralize__ear">←</span>
+            <span>Left ear</span>
+          </button>
+          <button class="vt-lateralize__btn" data-vt="mv-side-right">
+            <span>Right ear</span>
+            <span class="vt-lateralize__ear">→</span>
+          </button>
         </div>
-        <div class="vt-maneuver-step">
-          <div class="vt-maneuver-step__num">2</div>
-          <div class="vt-maneuver-step__text">Quickly lay supine, head extended 20° beyond the bed edge.</div>
+        <div class="vt-lateralize__cue" data-vt="mv-technique">
+          Patient looks at your nose. Rapidly turn head ~15° <strong>toward the affected ear</strong>.
+          Watch the eyes for a corrective saccade back to your nose.
         </div>
-        <div class="vt-maneuver-step" data-vt="mv-step-3">
-          <div class="vt-maneuver-step__num">3</div>
-          <div class="vt-maneuver-step__text">Turn head 90° to the left (still extended).</div>
+      </div>
+
+      <div class="vt-interp">
+        <div class="vt-interp__row vt-interp__row--safe" data-vt="mv-interp-saccade">
+          <div class="vt-interp__icon">✓</div>
+          <div>
+            <div class="vt-interp__title">Catch-up saccade present</div>
+            <div class="vt-interp__sub">
+              Eyes lag behind, then snap back. Vestibulo-ocular reflex is broken on that side =
+              <strong>peripheral</strong> cause (vestibular neuritis, labyrinthitis). Reassuring.
+            </div>
+          </div>
         </div>
-        <div class="vt-maneuver-step">
-          <div class="vt-maneuver-step__num">4</div>
-          <div class="vt-maneuver-step__text">Roll body onto left side; head turns to face floor.</div>
-        </div>
-        <div class="vt-maneuver-step">
-          <div class="vt-maneuver-step__num">5</div>
-          <div class="vt-maneuver-step__text">Sit up slowly with chin tucked.</div>
+        <div class="vt-interp__row vt-interp__row--danger" data-vt="mv-interp-no-saccade">
+          <div class="vt-interp__icon">✕</div>
+          <div>
+            <div class="vt-interp__title">No catch-up saccade</div>
+            <div class="vt-interp__sub">
+              Eyes track smoothly with the head turn. VOR is intact — but in a patient with new
+              continuous vertigo, an <strong>intact VOR is dangerous</strong>: think central
+              (posterior circulation stroke until proven otherwise).
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="vt-options" style="margin-top:14px;">
-        <button class="vt-btn3d vt-btn3d--primary" data-vt="mv-done">Maneuver complete</button>
+        <button class="vt-btn3d vt-btn3d--primary" data-vt="mv-done">Record findings</button>
       </div>
     </article>
   `;

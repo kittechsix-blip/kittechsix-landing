@@ -777,6 +777,42 @@
 .mk-context-toolbar__icon { font-size: 18px; }
 .mk-context-toolbar__label { font-size: 9px; font-weight: 600; }
 
+.mk-context-toolbar__item--critical {
+  background: linear-gradient(180deg, #ef5350 0%, #c62828 100%);
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin: 0 2px;
+  box-shadow: 0 2px 6px rgba(198, 40, 40, 0.35),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.mk-context-toolbar__item--critical .mk-context-toolbar__label {
+  color: #FFFFFF;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.mk-context-toolbar__item--stop {
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin: 0 2px;
+  border: 1.5px solid #c62828;
+  box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4),
+              0 2px 6px rgba(0, 0, 0, 0.35);
+  animation: mk-stop-pulse 2.4s ease-in-out infinite;
+}
+
+.mk-context-toolbar__item--stop .mk-context-toolbar__label {
+  color: #FFFFFF;
+}
+
+@keyframes mk-stop-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4), 0 2px 6px rgba(0, 0, 0, 0.35); }
+  50% { box-shadow: 0 0 0 4px rgba(198, 40, 40, 0), 0 2px 6px rgba(0, 0, 0, 0.35); }
+}
+
 /* Pharmacy modal */
 .mk-modal {
   background: #FFFFFF;
@@ -1293,6 +1329,144 @@
   font-size: 16px;
   font-weight: 700;
   color: var(--vt-text);
+}
+
+/* HINTS exam — Lateralize tool */
+.vt-hints-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.vt-hints-tab {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 4px;
+  border-radius: 8px;
+  color: var(--vt-text-2);
+}
+
+.vt-hints-tab--active {
+  background: #FFFFFF;
+  color: var(--vt-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.vt-lateralize {
+  background: linear-gradient(135deg, rgba(191, 87, 0, 0.08), rgba(191, 87, 0, 0.04));
+  border: 1.5px solid rgba(191, 87, 0, 0.25);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.vt-lateralize__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--vt-primary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.vt-lateralize__row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.vt-lateralize__btn {
+  flex: 1;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vt-text);
+}
+
+.vt-lateralize__btn--active {
+  background: linear-gradient(180deg, #E87511 0%, #BF5700 100%);
+  color: #FFFFFF;
+  border-color: var(--vt-primary);
+  box-shadow: 0 2px 8px rgba(191, 87, 0, 0.3);
+}
+
+.vt-lateralize__ear {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.vt-lateralize__cue {
+  font-size: 11px;
+  color: var(--vt-text);
+  line-height: 1.4;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.vt-interp {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vt-interp__row {
+  display: flex;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  align-items: flex-start;
+}
+
+.vt-interp__row--safe {
+  background: rgba(34, 139, 34, 0.08);
+  border: 1px solid rgba(34, 139, 34, 0.25);
+}
+
+.vt-interp__row--danger {
+  background: rgba(178, 34, 34, 0.08);
+  border: 1px solid rgba(178, 34, 34, 0.25);
+}
+
+.vt-interp__icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.vt-interp__row--safe .vt-interp__icon { background: var(--vt-safe); }
+.vt-interp__row--danger .vt-interp__icon { background: var(--vt-danger); }
+
+.vt-interp__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--vt-text);
+  margin-bottom: 2px;
+}
+
+.vt-interp__sub {
+  font-size: 11px;
+  color: var(--vt-text-2);
+  line-height: 1.45;
 }
 
 /* ──────────────────────────────────────────────────────────────────

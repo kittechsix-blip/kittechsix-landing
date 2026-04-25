@@ -145,17 +145,21 @@ export function renderMKConsult(): HTMLElement {
     </div>
 
     <nav class="mk-context-toolbar" data-mk="c-toolbar">
+      <div class="mk-context-toolbar__item mk-context-toolbar__item--critical" data-mk="c-tool-critical">
+        <span class="mk-context-toolbar__icon">⚠️</span>
+        <span class="mk-context-toolbar__label">Critical</span>
+      </div>
       <div class="mk-context-toolbar__item" data-mk="c-tool-diltiazem">
         <span class="mk-context-toolbar__icon">💊</span>
         <span class="mk-context-toolbar__label">Diltiazem</span>
       </div>
-      <div class="mk-context-toolbar__item">
-        <span class="mk-context-toolbar__icon">🧮</span>
-        <span class="mk-context-toolbar__label">CHA₂DS₂</span>
-      </div>
       <div class="mk-context-toolbar__item" data-mk="c-tool-home">
         <span class="mk-context-toolbar__icon">🏠</span>
         <span class="mk-context-toolbar__label">Home</span>
+      </div>
+      <div class="mk-context-toolbar__item mk-context-toolbar__item--stop" data-mk="c-tool-stop">
+        <span class="mk-context-toolbar__icon">🛑</span>
+        <span class="mk-context-toolbar__label">Stop</span>
       </div>
       <div class="mk-context-toolbar__item" data-mk="c-tool-more">
         <span class="mk-context-toolbar__icon">•••</span>
