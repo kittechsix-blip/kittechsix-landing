@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v1';
+const CACHE_NAME = 'kittechsix-v3';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -14,6 +14,7 @@ const ASSETS_TO_CACHE = [
   '/styles/demo.css',
   '/styles/feedback.css',
   '/styles/footer.css',
+  '/styles/ui-tour.css',
   '/main.js',
   '/components/about.js',
   '/components/demo-afib.js',
@@ -25,8 +26,17 @@ const ASSETS_TO_CACHE = [
   '/components/hero.js',
   '/components/nav.js',
   '/components/product-showcase.js',
+  '/components/ui-tour.js',
+  '/components/ui-tour-clones/mymedkitt-clone.js',
+  '/components/ui-tour-clones/myvertigo-clone.js',
+  '/components/ui-tour-clones/mytravelmedkitt-clone.js',
+  '/components/ui-tour-clones/mytoolkitt-clone.js',
   '/data/afib-rvr-tree.js',
   '/data/trip-builder-data.js',
+  '/data/ui-tour/mymedkitt-tour.js',
+  '/data/ui-tour/myvertigoapp-tour.js',
+  '/data/ui-tour/mytravelmedkitt-tour.js',
+  '/data/ui-tour/mytoolkitt-tour.js',
   '/utils/intersection.js',
   '/utils/router.js',
   '/utils/storage.js',
@@ -35,6 +45,7 @@ const ASSETS_TO_CACHE = [
   '/assets/icons/mymedkitt.png',
   '/assets/icons/mytoolkitt.png',
   '/assets/icons/mytravelmedkitt.png',
+  '/assets/icons/myvertigoapp.png',
 ];
 
 // Use 'any' to work around ServiceWorkerGlobalScope typing

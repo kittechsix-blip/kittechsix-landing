@@ -65,10 +65,16 @@ function setupNavHighlighting(): void {
   sections.forEach(section => observer.observe(section));
 }
 
-// Register service worker
+// Register service worker; auto-reload when a new SW takes over so deploys land instantly.
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {
     // SW registration failed — page works fine without it
+  });
+  let reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (reloading) return;
+    reloading = true;
+    window.location.reload();
   });
 }
 
