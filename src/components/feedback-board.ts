@@ -13,9 +13,9 @@ interface Suggestion {
 }
 
 type SortMode = 'votes' | 'newest';
-type CategoryFilter = 'All' | 'myMedKitt' | 'MedKitt Learn' | 'my-vertigo-app' | 'MyTravelMedKitt' | 'FCK Cancer' | 'MyToolKitt' | 'Infographic Pipeline' | 'AI for the Non-Dev' | 'Prompt Architect' | 'ClaudeClaw/CodexClaw' | 'General';
+type CategoryFilter = 'All' | 'myMedKitt' | 'MedKitt Learn' | 'my-vertigo-app' | 'MyTravelMedKitt' | 'FCK Cancer' | 'MyToolKitt' | 'Infographic Pipeline' | 'AI for the Non-Dev' | 'Prompt Architect' | 'Community Roadmap' | 'General';
 
-const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MedKitt Learn', 'my-vertigo-app', 'MyTravelMedKitt', 'FCK Cancer', 'MyToolKitt', 'Infographic Pipeline', 'AI for the Non-Dev', 'Prompt Architect', 'ClaudeClaw/CodexClaw', 'General'];
+const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MedKitt Learn', 'my-vertigo-app', 'MyTravelMedKitt', 'FCK Cancer', 'MyToolKitt', 'Infographic Pipeline', 'AI for the Non-Dev', 'Prompt Architect', 'Community Roadmap', 'General'];
 
 export function renderFeedbackBoard(parent: HTMLElement): void {
   const section = document.createElement('section');
@@ -46,7 +46,7 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
           <option value="Infographic Pipeline">Infographic Pipeline</option>
           <option value="AI for the Non-Dev">AI for the Non-Dev</option>
           <option value="Prompt Architect">Prompt Architect</option>
-          <option value="ClaudeClaw/CodexClaw">ClaudeClaw/CodexClaw</option>
+          <option value="Community Roadmap">Community Roadmap</option>
           <option value="General">General</option>
         </select>
         <button type="submit" class="cta-primary feedback-submit">Submit Suggestion</button>

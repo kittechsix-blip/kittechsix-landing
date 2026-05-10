@@ -1,6 +1,6 @@
 // Ecosystem Map — interactive project directory and community roadmap entry point
 
-type Audience = 'All' | 'Clinicians' | 'Students' | 'Patients' | 'Travelers' | 'Builders' | 'Educators';
+type Audience = 'All' | 'Clinicians' | 'Students' | 'Patients' | 'Travelers' | 'Builders' | 'Educators' | 'Community';
 
 interface EcosystemProject {
   id: string;
@@ -16,7 +16,7 @@ interface EcosystemProject {
   feedbackCategory: string;
 }
 
-const AUDIENCES: Audience[] = ['All', 'Clinicians', 'Students', 'Patients', 'Travelers', 'Builders', 'Educators'];
+const AUDIENCES: Audience[] = ['All', 'Clinicians', 'Students', 'Patients', 'Travelers', 'Builders', 'Educators', 'Community'];
 
 const PROJECTS: EcosystemProject[] = [
   {
@@ -131,16 +131,16 @@ const PROJECTS: EcosystemProject[] = [
     feedbackCategory: 'Prompt Architect',
   },
   {
-    id: 'claudeclaw',
-    name: 'ClaudeClaw / CodexClaw',
-    audience: 'Builders',
-    stage: 'Internal ops',
-    statusTone: 'internal',
-    summary: 'Telegram-controlled local AI assistant system for persistent coding and operations workflows.',
-    proof: 'Node, TypeScript, grammy, SQLite, launchd, and scheduled task infrastructure.',
-    communityAsk: 'Request agent workflows that should become reusable public patterns.',
+    id: 'community-roadmap',
+    name: 'Community Roadmap',
+    audience: 'Community',
+    stage: 'Open for votes',
+    statusTone: 'live',
+    summary: 'A public place to vote on features, request new tools, and help prioritize the Kittechsix build queue.',
+    proof: 'The landing page already supports suggestions, project categories, voting, and per-project feedback.',
+    communityAsk: 'Tell us what should be built, what is confusing, and which projects deserve the next sprint.',
     sectionId: 'feedback',
-    feedbackCategory: 'ClaudeClaw/CodexClaw',
+    feedbackCategory: 'Community Roadmap',
   },
 ];
 
@@ -157,7 +157,7 @@ export function renderEcosystemMap(parent: HTMLElement): void {
       <div class="ecosystem-header">
         <p class="ecosystem-eyebrow">Project ecosystem</p>
         <h2 class="text-heading" style="color: var(--color-white)">Pick a project. Shape what it becomes.</h2>
-        <p class="ecosystem-subtitle">A living map of Kittechsix apps, experiments, and tools. Every project has a clear audience, status, and community ask.</p>
+        <p class="ecosystem-subtitle">A living map of Kittechsix apps, experiments, and the public roadmap. Every project has a clear audience, status, and community ask.</p>
       </div>
       <div class="ecosystem-filters" id="ecosystem-filters"></div>
       <div class="ecosystem-layout">
