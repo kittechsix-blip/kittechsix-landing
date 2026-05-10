@@ -13,9 +13,9 @@ interface Suggestion {
 }
 
 type SortMode = 'votes' | 'newest';
-type CategoryFilter = 'All' | 'myMedKitt' | 'my-vertigo-app' | 'MyTravelMedKitt' | 'FCK Cancer' | 'MyToolKitt' | 'General';
+type CategoryFilter = 'All' | 'myMedKitt' | 'MedKitt Learn' | 'my-vertigo-app' | 'MyTravelMedKitt' | 'FCK Cancer' | 'MyToolKitt' | 'Infographic Pipeline' | 'AI for the Non-Dev' | 'Prompt Architect' | 'ClaudeClaw/CodexClaw' | 'General';
 
-const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'my-vertigo-app', 'MyTravelMedKitt', 'FCK Cancer', 'MyToolKitt', 'General'];
+const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MedKitt Learn', 'my-vertigo-app', 'MyTravelMedKitt', 'FCK Cancer', 'MyToolKitt', 'Infographic Pipeline', 'AI for the Non-Dev', 'Prompt Architect', 'ClaudeClaw/CodexClaw', 'General'];
 
 export function renderFeedbackBoard(parent: HTMLElement): void {
   const section = document.createElement('section');
@@ -38,10 +38,15 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
         <textarea class="feedback-textarea" placeholder="What problem would this solve? Who would use it?" maxlength="500" aria-label="Description"></textarea>
         <select class="feedback-select" aria-label="Category">
           <option value="myMedKitt">myMedKitt</option>
+          <option value="MedKitt Learn">MedKitt Learn</option>
           <option value="my-vertigo-app">my-vertigo-app</option>
           <option value="MyTravelMedKitt">MyTravelMedKitt</option>
           <option value="FCK Cancer">FCK Cancer</option>
           <option value="MyToolKitt">MyToolKitt</option>
+          <option value="Infographic Pipeline">Infographic Pipeline</option>
+          <option value="AI for the Non-Dev">AI for the Non-Dev</option>
+          <option value="Prompt Architect">Prompt Architect</option>
+          <option value="ClaudeClaw/CodexClaw">ClaudeClaw/CodexClaw</option>
           <option value="General">General</option>
         </select>
         <button type="submit" class="cta-primary feedback-submit">Submit Suggestion</button>

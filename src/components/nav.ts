@@ -16,11 +16,11 @@ export function renderNav(parent: HTMLElement): void {
     <div class="nav-content">
       <a class="nav-logo" href="#/">kittechsix</a>
       <div class="nav-links" id="nav-links">
+        <a href="#ecosystem" data-section="ecosystem">Ecosystem</a>
         <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
-        <a href="#myvertigoapp" data-section="myvertigoapp">my-vertigo-app</a>
-        <a href="#mytravelmedkitt" data-section="mytravelmedkitt">MyTravelMedKitt</a>
+        <a href="#myvertigoapp" data-section="myvertigoapp">Vertigo</a>
+        <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
         <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
-        <a href="#mytoolkitt" data-section="mytoolkitt">MyToolKitt</a>
         <a href="#feedback" data-section="feedback">Feedback</a>
       </div>
       <div class="nav-social">
@@ -41,11 +41,11 @@ export function renderNav(parent: HTMLElement): void {
   overlay.className = 'nav-overlay';
   overlay.id = 'nav-overlay';
   overlay.innerHTML = `
+    <a href="#ecosystem" data-section="ecosystem">Ecosystem</a>
     <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
-    <a href="#myvertigoapp" data-section="myvertigoapp">my-vertigo-app</a>
-    <a href="#mytravelmedkitt" data-section="mytravelmedkitt">MyTravelMedKitt</a>
+    <a href="#myvertigoapp" data-section="myvertigoapp">Vertigo</a>
+    <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
     <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
-    <a href="#mytoolkitt" data-section="mytoolkitt">MyToolKitt</a>
     <a href="#feedback" data-section="feedback">Feedback</a>
   `;
   parent.appendChild(overlay);
