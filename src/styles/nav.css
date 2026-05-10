@@ -129,7 +129,7 @@
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 760px) {
   .nav-links,
   .nav-social {
     display: none;

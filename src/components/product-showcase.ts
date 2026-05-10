@@ -115,6 +115,24 @@ export function renderMyTravelMedKitt(parent: HTMLElement): void {
   });
 }
 
+export function renderFckCancer(parent: HTMLElement): void {
+  renderProductShowcase(parent, {
+    id: 'fckcancer',
+    name: 'FCK Cancer',
+    description: 'A daily prevention and longevity companion for turning evidence-backed choices into habits, shopping lists, body-system protocols, fitness logs, and health screening reminders.',
+    iconSrc: 'assets/icons/fck-cancer.png',
+    features: [
+      { icon: '✅', text: 'Daily anti-cancer habit scoring' },
+      { icon: '💪', text: 'Fitness logging with habit integration' },
+      { icon: '🧴', text: 'My Body protocols for skin, heart, brain, gut, and more' },
+      { icon: '🩺', text: 'Cancer screening checklist and reminders' },
+    ],
+    status: 'Live',
+    ctaPrimary: { label: 'Open the App', action: () => window.open('https://fck-cancer.vercel.app', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Suggest Improvements', action: () => scrollTo('feedback') },
+  });
+}
+
 export function renderMyToolKitt(parent: HTMLElement): void {
   renderProductShowcase(parent, {
     id: 'mytoolkitt',

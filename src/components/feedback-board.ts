@@ -13,9 +13,9 @@ interface Suggestion {
 }
 
 type SortMode = 'votes' | 'newest';
-type CategoryFilter = 'All' | 'myMedKitt' | 'MyTravelMedKitt' | 'MyToolKitt' | 'General';
+type CategoryFilter = 'All' | 'myMedKitt' | 'my-vertigo-app' | 'MyTravelMedKitt' | 'FCK Cancer' | 'MyToolKitt' | 'General';
 
-const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MyTravelMedKitt', 'MyToolKitt', 'General'];
+const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'my-vertigo-app', 'MyTravelMedKitt', 'FCK Cancer', 'MyToolKitt', 'General'];
 
 export function renderFeedbackBoard(parent: HTMLElement): void {
   const section = document.createElement('section');
@@ -30,15 +30,17 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content">
       <div class="feedback-intro">
-        <h2 class="text-heading" style="color: var(--color-white)">Help Us Build What You Need</h2>
-        <p>Vote on features, suggest new consults, and shape the future of kittechsix.</p>
+        <h2 class="text-heading" style="color: var(--color-white)">Shape the Roadmap</h2>
+        <p>Vote on features, suggest new consults, request app ideas, and help decide what Kittechsix improves next.</p>
       </div>
       <form class="feedback-form" id="feedback-form">
-        <input class="feedback-input" type="text" placeholder="Feature title" required maxlength="100" aria-label="Feature title">
-        <textarea class="feedback-textarea" placeholder="Description (optional)" maxlength="500" aria-label="Description"></textarea>
+        <input class="feedback-input" type="text" placeholder="What should we build or improve?" required maxlength="100" aria-label="Feature title">
+        <textarea class="feedback-textarea" placeholder="What problem would this solve? Who would use it?" maxlength="500" aria-label="Description"></textarea>
         <select class="feedback-select" aria-label="Category">
           <option value="myMedKitt">myMedKitt</option>
+          <option value="my-vertigo-app">my-vertigo-app</option>
           <option value="MyTravelMedKitt">MyTravelMedKitt</option>
+          <option value="FCK Cancer">FCK Cancer</option>
           <option value="MyToolKitt">MyToolKitt</option>
           <option value="General">General</option>
         </select>

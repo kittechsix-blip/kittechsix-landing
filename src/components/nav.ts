@@ -19,6 +19,7 @@ export function renderNav(parent: HTMLElement): void {
         <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
         <a href="#myvertigoapp" data-section="myvertigoapp">my-vertigo-app</a>
         <a href="#mytravelmedkitt" data-section="mytravelmedkitt">MyTravelMedKitt</a>
+        <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
         <a href="#mytoolkitt" data-section="mytoolkitt">MyToolKitt</a>
         <a href="#feedback" data-section="feedback">Feedback</a>
       </div>
@@ -43,6 +44,7 @@ export function renderNav(parent: HTMLElement): void {
     <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
     <a href="#myvertigoapp" data-section="myvertigoapp">my-vertigo-app</a>
     <a href="#mytravelmedkitt" data-section="mytravelmedkitt">MyTravelMedKitt</a>
+    <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
     <a href="#mytoolkitt" data-section="mytoolkitt">MyToolKitt</a>
     <a href="#feedback" data-section="feedback">Feedback</a>
   `;

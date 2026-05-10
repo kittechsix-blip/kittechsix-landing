@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v3';
+const CACHE_NAME = 'kittechsix-v4';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -46,6 +46,8 @@ const ASSETS_TO_CACHE = [
   '/assets/icons/mytoolkitt.png',
   '/assets/icons/mytravelmedkitt.png',
   '/assets/icons/myvertigoapp.png',
+  '/assets/icons/fck-cancer.png',
+  '/assets/kittechsix-logo.png',
 ];
 
 // Use 'any' to work around ServiceWorkerGlobalScope typing
