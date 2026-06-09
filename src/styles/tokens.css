@@ -1,38 +1,91 @@
 :root {
-  /* Apple Color Palette */
-  --color-black: #000000;
-  --color-light-gray: #f5f5f7;
-  --color-near-black: #1d1d1f;
-  --color-white: #ffffff;
-  --color-apple-blue: #0071e3;
-  --color-link-blue: #0066cc;
-  --color-bright-blue: #2997ff;
-  --color-text-light: rgba(255, 255, 255, 0.8);
-  --color-text-dark: rgba(0, 0, 0, 0.8);
+  /* ===== BACKGROUNDS ===== */
+  --bg-white:        #FFFFFF;   /* dominant section bg */
+  --bg-cream:        #F7F3EE;   /* primary alternating warm band */
+  --bg-cream-deep:   #F1EAE0;   /* deeper cream for nested cards / founder plate */
+  --bg-ink:          #1A1714;   /* warm near-black band (footer, founder mission) */
 
-  /* Typography */
-  --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --font-text: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  /* ===== CHARCOAL TEXT SCALE (warm-tinted, not blue-black) ===== */
+  --ink-900: #1D1A17;   /* headlines */
+  --ink-800: #2A2521;   /* strong body / headline on cream */
+  --ink-700: #423B34;   /* body default */
+  --ink-600: #54504A;   /* secondary body */
+  --ink-500: #6B6157;   /* muted body / captions */
+  --ink-400: #938A7F;   /* disabled / fine print */
+  --ink-on-dark:     #FBF8F4;   /* text on ink surfaces */
+  --ink-on-dark-mut: rgba(251,248,244,0.72);
 
-  /* Spacing (8px base unit) */
-  --space-1: 8px;
-  --space-2: 16px;
-  --space-3: 24px;
-  --space-4: 32px;
-  --space-5: 40px;
-  --space-6: 48px;
-  --space-8: 64px;
-  --space-10: 80px;
-  --space-12: 96px;
-  --space-16: 128px;
+  /* ===== COPPER SCALE (PRIMARY accent + CTA + brand) ===== */
+  --copper-50:  #FBF1E8;   /* tint wash / tag bg / hover wash */
+  --copper-100: #F3DCC7;
+  --copper-300: #D89B6A;   /* light highlight */
+  --copper-500: #B87333;   /* CORE brand copper + CTA fill */
+  --copper-600: #A4641F;   /* CTA hover (darken) */
+  --copper-700: #8A5524;   /* deep / pressed / text-on-tint */
+  --copper-900: #5E3A16;   /* metallic shadow stop */
 
-  /* Layout */
-  --content-max: 980px;
-  --nav-height: 48px;
+  /* ===== FOREST GREEN SCALE (SECONDARY accent = clinical trust) ===== */
+  --green-50:  #E9F1EB;   /* clinical-tag bg */
+  --green-300: #3CB371;   /* bright myMedKitt emerald / Live dot */
+  --green-500: #2E6B3E;   /* CORE secondary — clinical eyebrows, ticks */
+  --green-700: #235430;   /* deep / text-on-tint green */
+  --green-900: #163A20;
 
-  /* Shadows */
-  --shadow-soft: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
+  /* ===== BORDERS & LINES ===== */
+  --border-soft:   #ECE4DA;   /* hairline on white */
+  --border-cream:  #E3D8C9;   /* hairline on cream */
+  --border-strong: #D8CCBC;   /* card outlines / eyebrow rule */
 
-  /* Transitions */
-  --transition-default: 0.3s ease;
+  /* ===== SHADOWS (warm-tinted, soft, premium) ===== */
+  --shadow-xs:    0 1px 2px rgba(40,28,16,0.04);
+  --shadow-sm:    0 2px 8px rgba(40,28,16,0.06);
+  --shadow-card:  0 1px 2px rgba(60,42,24,0.04), 0 8px 24px rgba(60,42,24,0.07);
+  --shadow-lift:  0 4px 10px rgba(60,42,24,0.07), 0 18px 44px rgba(60,42,24,0.13);
+  --shadow-copper:0 8px 24px rgba(184,115,51,0.24);
+  --shadow-nav:   0 1px 0 rgba(40,28,16,0.06);
+  --shadow-inset-copper: inset 0 1px 0 rgba(255,255,255,0.32);
+
+  /* ===== METALLIC COPPER GRADIENTS (signature, echoes the brain logo) ===== */
+  --metal-copper:      linear-gradient(135deg, #D89B6A 0%, #B87333 42%, #8A5524 78%, #B87333 100%);
+  --metal-copper-text: linear-gradient(180deg, #D89B6A 0%, #B87333 55%, #8A5524 100%);
+  --sheen-line:        linear-gradient(90deg, transparent, var(--copper-300), transparent);
+
+  /* ===== TYPOGRAPHY FAMILIES ===== */
+  --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-text:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-accent:  'Fraunces', Georgia, 'Times New Roman', serif; /* founder + pull-quotes ONLY */
+
+  /* ===== SPACING (8px base — unchanged so existing rules hold) ===== */
+  --space-1: 8px;  --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-5: 40px; --space-6: 48px; --space-8: 64px; --space-10: 80px;
+  --space-12: 96px; --space-16: 128px;
+  --section-pad: 104px;       /* desktop section vertical rhythm */
+  --section-pad-sm: 72px;     /* tablet */
+  --section-pad-xs: 56px;     /* mobile */
+
+  /* ===== LAYOUT ===== */
+  --content-max: 1120px;      /* widened from 980 for editorial breadth */
+  --content-narrow: 720px;    /* prose / founder column */
+  --nav-height: 64px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* ===== MOTION ===== */
+  --transition-default: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:    0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===== LEGACY ALIASES (keep existing components working during migration) ===== */
+  --color-white:      var(--bg-white);
+  --color-near-black: var(--ink-900);
+  --color-black:      var(--bg-white);          /* neutralizes old dark hero/body bg */
+  --color-light-gray: var(--bg-cream);          /* old .section-light becomes cream */
+  --color-text-dark:  var(--ink-600);
+  --color-text-light: var(--ink-400);
+  --color-apple-blue: var(--copper-500);        /* repaints old blue CTAs copper */
+  --color-link-blue:  var(--copper-600);
+  --color-bright-blue:var(--copper-500);
+  --shadow-soft:      var(--shadow-card);
 }

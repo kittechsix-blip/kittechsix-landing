@@ -32,7 +32,7 @@ export function renderAfibDemo(parent: HTMLElement): void {
 
   section.innerHTML = `
     <div class="section-content">
-      <h2 class="text-heading demo-header" style="color: var(--color-white)">myMedKitt Demo</h2>
+      <h2 class="text-heading demo-header" style="color: var(--ink-900)">myMedKitt Demo</h2>
       <p class="demo-disclaimer">For educational purposes only. Not a substitute for clinical judgment.</p>
       <div class="demo-toggle">
         <div class="demo-toggle-container">

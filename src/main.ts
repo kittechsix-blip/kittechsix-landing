@@ -3,6 +3,8 @@
 import { router } from './utils/router.js';
 import { renderNav } from './components/nav.js';
 import { renderHero } from './components/hero.js';
+import { renderTicker } from './components/ticker.js';
+import { renderFeaturedRow } from './components/featured-row.js';
 import { renderEcosystemMap } from './components/ecosystem-map.js';
 import { renderFckCancer, renderMyMedKitt, renderMyToolKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
 import { renderAfibDemo } from './components/demo-afib.js';
@@ -25,6 +27,8 @@ function renderLandingPage(): void {
 
   renderNav(app);
   renderHero(app);
+  renderTicker(app);
+  renderFeaturedRow(app);
   renderEcosystemMap(app);
   renderMyMedKitt(app);
   renderUITour(app, myMedKittTour);
@@ -46,7 +50,19 @@ function renderLandingPage(): void {
   requestAnimationFrame(() => {
     setupScrollAnimations();
     setupNavHighlighting();
+    setupNavSolidOnScroll();
   });
+}
+
+// Nav goes from translucent to solid white once the user scrolls past the hero.
+function setupNavSolidOnScroll(): void {
+  const nav = document.getElementById('main-nav');
+  if (!nav) return;
+  const onScroll = () => {
+    nav.classList.toggle('glass-nav--solid', window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 function setupNavHighlighting(): void {

@@ -24,7 +24,7 @@ export function renderTripDemo(parent: HTMLElement): void {
 
   section.innerHTML = `
     <div class="section-content">
-      <h2 class="text-heading demo-header" style="color: var(--color-white)">MyTravelMedKitt Demo</h2>
+      <h2 class="text-heading demo-header" style="color: var(--ink-900)">MyTravelMedKitt Demo</h2>
       <p class="demo-disclaimer">For educational purposes only. Consult a travel medicine specialist before your trip.</p>
       <div class="trip-step-indicator" id="trip-dots"></div>
       <div id="trip-content"></div>
@@ -56,7 +56,7 @@ export function renderTripDemo(parent: HTMLElement): void {
 
   function renderStep1(): void {
     contentContainer.innerHTML = `
-      <h3 class="text-subhead" style="text-align: center; color: var(--color-white); margin-bottom: var(--space-4)">Where are you going?</h3>
+      <h3 class="text-subhead" style="text-align: center; color: var(--ink-900); margin-bottom: var(--space-4)">Where are you going?</h3>
       <div class="trip-grid" id="trip-dest-grid"></div>
     `;
 
@@ -83,7 +83,7 @@ export function renderTripDemo(parent: HTMLElement): void {
 
     contentContainer.innerHTML = `
       <button class="trip-back-btn" id="trip-back-2">\u2190 Back</button>
-      <h3 class="text-subhead" style="text-align: center; color: var(--color-white); margin-bottom: var(--space-1)">What kind of trip?</h3>
+      <h3 class="text-subhead" style="text-align: center; color: var(--ink-900); margin-bottom: var(--space-1)">What kind of trip?</h3>
       <p style="text-align: center; color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: var(--space-4);">${dest ? `${dest.icon} ${dest.name}` : ''}</p>
       <div class="trip-grid" id="trip-type-grid"></div>
     `;
@@ -117,11 +117,11 @@ export function renderTripDemo(parent: HTMLElement): void {
 
     contentContainer.innerHTML = `
       <button class="trip-back-btn" id="trip-back-3">\u2190 Back</button>
-      <h3 class="text-subhead" style="text-align: center; color: var(--color-white); margin-bottom: var(--space-1)">Your Travel Kit</h3>
+      <h3 class="text-subhead" style="text-align: center; color: var(--ink-900); margin-bottom: var(--space-1)">Your Travel Kit</h3>
       <p style="text-align: center; color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: var(--space-4);">${dest ? `${dest.icon} ${dest.name}` : ''} \u2022 ${tt ? tt.name : ''}</p>
       <div class="kit-results" id="kit-results"></div>
       <div style="text-align: center; margin-top: var(--space-5);">
-        <p style="color: var(--color-text-light); font-size: 15px; margin-bottom: var(--space-2);">Want the full experience?</p>
+        <p style="color: var(--ink-500); font-size: 15px; margin-bottom: var(--space-2);">Want the full experience?</p>
         <p style="color: var(--color-bright-blue); font-size: 17px; font-weight: 500;">MyTravelMedKitt is coming soon.</p>
       </div>
     `;

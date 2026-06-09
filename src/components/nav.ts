@@ -14,7 +14,11 @@ export function renderNav(parent: HTMLElement): void {
 
   nav.innerHTML = `
     <div class="nav-content">
-      <a class="nav-logo" href="#/">kittechsix</a>
+      <a class="nav-logo" href="#/" aria-label="Kittech-Six by Dr. Andy Kitlowski — home">
+        <img class="nav-logo-glyph" src="assets/icons/kittech-brain.png" alt="" aria-hidden="true" />
+        <span class="nav-logo-mark">Kittech-Six</span>
+        <span class="nav-logo-by">by Dr. Andy Kitlowski</span>
+      </a>
       <div class="nav-links" id="nav-links">
         <a href="#ecosystem" data-section="ecosystem">Ecosystem</a>
         <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>

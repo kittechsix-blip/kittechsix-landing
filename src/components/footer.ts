@@ -13,17 +13,50 @@ export function renderFooter(parent: HTMLElement): void {
 
   footer.innerHTML = `
     <div class="footer-content">
-      <div class="footer-social">
-        <a href="https://facebook.com/kittechsix" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
-        <a href="https://instagram.com/kittechsix" target="_blank" rel="noopener" aria-label="Instagram">${SOCIAL_ICONS.instagram}</a>
-        <a href="https://tiktok.com/@kittechsix" target="_blank" rel="noopener" aria-label="TikTok">${SOCIAL_ICONS.tiktok}</a>
+      <div class="footer-cols">
+        <div class="footer-col footer-brand">
+          <div class="footer-brand-mark">
+            <img class="footer-logo" src="assets/icons/favicon.png" alt="Kittech-Six brain logo" width="28" height="28" />
+            <span class="footer-wordmark">Kittech-Six</span>
+          </div>
+          <p class="footer-mission">A community-shaped medical software lab. Built in public by an ER physician.</p>
+          <div class="footer-social">
+            <a href="https://facebook.com/kittechsix" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
+            <a href="https://instagram.com/kittechsix" target="_blank" rel="noopener" aria-label="Instagram">${SOCIAL_ICONS.instagram}</a>
+            <a href="https://tiktok.com/@kittechsix" target="_blank" rel="noopener" aria-label="TikTok">${SOCIAL_ICONS.tiktok}</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-head">Apps</h3>
+          <div class="footer-links">
+            <a href="#mymedkitt">myMedKitt</a>
+            <a href="#myvertigoapp">my-vertigo-app</a>
+            <a href="#mytravelmedkitt">MyTravelMedKitt</a>
+            <a href="#fckcancer">FCK Cancer</a>
+            <a href="#mytoolkitt">MyToolKitt</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-head">The Lab</h3>
+          <div class="footer-links">
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#about">About</a>
+            <a href="#feedback">Roadmap</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-head">Legal</h3>
+          <div class="footer-links">
+            <a href="#disclaimer">Medical Disclaimer</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact</a>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Kittech-Six by Dr. Andy Kitlowski. All rights reserved.</p>
+        <p class="footer-fineprint">For education only &mdash; not a substitute for professional medical advice. In an emergency, call 911.</p>
       </div>
-      <p class="footer-copyright">&copy; 2026 kittechsix inc. All rights reserved.</p>
     </div>
   `;
 

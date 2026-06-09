@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v6';
+const CACHE_NAME = 'kittechsix-v7';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -10,9 +10,11 @@ const ASSETS_TO_CACHE = [
   '/styles/global.css',
   '/styles/nav.css',
   '/styles/hero.css',
+  '/styles/featured.css',
   '/styles/ecosystem.css',
   '/styles/showcase.css',
   '/styles/demo.css',
+  '/styles/about.css',
   '/styles/feedback.css',
   '/styles/footer.css',
   '/styles/ui-tour.css',
@@ -25,6 +27,8 @@ const ASSETS_TO_CACHE = [
   '/components/feedback-board.js',
   '/components/footer.js',
   '/components/hero.js',
+  '/components/ticker.js',
+  '/components/featured-row.js',
   '/components/ecosystem-map.js',
   '/components/nav.js',
   '/components/product-showcase.js',
@@ -43,13 +47,14 @@ const ASSETS_TO_CACHE = [
   '/utils/router.js',
   '/utils/storage.js',
   '/utils/supabase.js',
-  '/assets/icons/favicon.png',
+  '/assets/icons/kittech-brain.png',
   '/assets/icons/mymedkitt.png',
   '/assets/icons/mytoolkitt.png',
   '/assets/icons/mytravelmedkitt.png',
   '/assets/icons/myvertigoapp.png',
   '/assets/icons/fck-cancer.png',
   '/assets/kittechsix-logo.png',
+  '/assets/hero-symbols.jpg',
 ];
 
 // Use 'any' to work around ServiceWorkerGlobalScope typing

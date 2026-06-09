@@ -3,3 +3,6 @@ dist/
 .env
 .vercel/
 .vercel
+.shots/
+.claude/
+.playwright-mcp/

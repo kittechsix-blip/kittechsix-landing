@@ -1,7 +1,7 @@
 /* UI Tour — Interactive phone-frame snapshot of each app */
 
 .ui-tour-section {
-  background: #1A1A1F;
+  background: var(--bg-white);
   padding: var(--space-7) var(--space-4);
 }
 
@@ -20,19 +20,19 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-umber, #B87333);
+  color: var(--copper-700);
   margin-bottom: var(--space-2);
 }
 
 .ui-tour-title {
   font-size: 28px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--ink-900);
   margin-bottom: var(--space-2);
 }
 
 .ui-tour-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--ink-600);
   max-width: 560px;
   margin: 0 auto;
   line-height: 1.5;
@@ -50,16 +50,16 @@
 
 .ui-tour-mode-toggle {
   display: inline-flex;
-  background: #2A2A2F;
+  background: var(--bg-cream-deep);
   border-radius: 999px;
   padding: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-cream);
 }
 
 .ui-tour-mode-toggle button {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--ink-600);
   font-size: 13px;
   font-weight: 600;
   padding: 8px 16px;
@@ -69,36 +69,38 @@
 }
 
 .ui-tour-mode-toggle button.active {
-  background: var(--ui-tour-accent, #3CB371);
+  background: var(--copper-500);
   color: #FFFFFF;
 }
 
 .ui-tour-restart {
-  background: rgba(255, 255, 255, 0.08);
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--copper-700);
+  border: 1px solid var(--copper-300);
   padding: 8px 16px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .ui-tour-restart:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--copper-50);
+  border-color: var(--copper-500);
 }
 
 /* Breadcrumb */
 .ui-tour-breadcrumb {
   text-align: center;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-500);
   margin-bottom: var(--space-3);
   letter-spacing: 0.04em;
 }
 
 .ui-tour-breadcrumb strong {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--ink-800);
   font-weight: 600;
 }
 
@@ -239,14 +241,14 @@
 .ui-tour-popover-title {
   font-size: 15px;
   font-weight: 700;
-  color: #1A1A1A;
+  color: var(--ink-900);
   margin-bottom: 6px;
   line-height: 1.3;
 }
 
 .ui-tour-popover-body {
   font-size: 13px;
-  color: #4A4A4A;
+  color: var(--ink-600);
   line-height: 1.5;
   margin-bottom: 12px;
 }
@@ -260,13 +262,13 @@
 
 .ui-tour-popover-step {
   font-size: 11px;
-  color: #8A8A8A;
+  color: var(--ink-500);
   font-weight: 600;
   letter-spacing: 0.04em;
 }
 
 .ui-tour-popover-next {
-  background: var(--ui-tour-accent, #3CB371);
+  background: var(--copper-500);
   color: #FFFFFF;
   border: none;
   font-size: 13px;
@@ -274,12 +276,17 @@
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.ui-tour-popover-next:hover {
+  background: var(--copper-600);
 }
 
 .ui-tour-popover-close {
   background: none;
   border: none;
-  color: #8A8A8A;
+  color: var(--ink-400);
   font-size: 18px;
   cursor: pointer;
   padding: 0;
@@ -290,16 +297,16 @@
 .ui-tour-summary {
   width: 280px;
   flex-shrink: 0;
-  background: #2A2A2F;
+  background: var(--bg-cream-deep);
   border-radius: 12px;
   padding: var(--space-4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-cream);
 }
 
 .ui-tour-summary h4 {
   font-size: 13px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--ink-500);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -313,8 +320,8 @@
 
 .ui-tour-summary li {
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid var(--border-cream);
+  color: var(--ink-800);
   font-size: 13px;
   line-height: 1.4;
 }
@@ -322,7 +329,7 @@
 .ui-tour-summary li:last-child { border-bottom: none; }
 
 .ui-tour-summary li strong {
-  color: var(--ui-tour-accent, #3CB371);
+  color: var(--copper-700);
   display: block;
   font-size: 11px;
   letter-spacing: 0.04em;

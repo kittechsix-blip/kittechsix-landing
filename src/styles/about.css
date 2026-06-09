@@ -1,0 +1,131 @@
+.about-section {
+  background: var(--bg-ink);
+  color: var(--ink-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  height: 3px;
+  width: 100%;
+  background: var(--sheen-line);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+/* Portrait plate */
+.about-portrait {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--bg-cream-deep);
+  padding: clamp(28px, 4vw, 48px);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+}
+
+.about-portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--metal-copper);
+}
+
+.about-portrait-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+/* Body column */
+.about-body {
+  position: relative;
+}
+
+.about-quote-mark {
+  position: absolute;
+  top: -18px;
+  left: -8px;
+  width: 64px;
+  height: 64px;
+  fill: rgba(184, 115, 51, 0.18);
+  pointer-events: none;
+}
+
+.about-eyebrow {
+  color: var(--copper-300);
+}
+.about-eyebrow::before {
+  background: var(--copper-300);
+}
+
+.about-headline {
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.18;
+  color: #FFFFFF;
+  margin-bottom: var(--space-4);
+}
+
+.about-text {
+  color: var(--ink-on-dark-mut);
+  margin-bottom: var(--space-3);
+}
+
+.about-pullquote {
+  font-size: clamp(20px, 2.6vw, 26px);
+  line-height: 1.4;
+  color: var(--copper-300);
+  border-left: 2px solid var(--copper-500);
+  padding-left: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.about-signature {
+  font-family: var(--font-text);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-on-dark-mut);
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* On the dark band, lift the clinical tag contrast slightly */
+.about-tags .tag--clinical {
+  background: rgba(60, 179, 113, 0.16);
+  color: #8FD8A8;
+}
+.about-tags .tag--clinical::before {
+  background: var(--green-300);
+}
+
+@media (max-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .about-portrait {
+    max-width: 360px;
+  }
+}

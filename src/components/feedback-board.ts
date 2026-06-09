@@ -21,6 +21,7 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
   const section = document.createElement('section');
   section.id = 'feedback';
   section.className = 'section section-dark';
+  section.style.background = 'var(--bg-cream)';
 
   let suggestions: Suggestion[] = [];
   let sortMode: SortMode = 'votes';
@@ -30,7 +31,8 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content">
       <div class="feedback-intro">
-        <h2 class="text-heading" style="color: var(--color-white)">Shape the Roadmap</h2>
+        <span class="eyebrow eyebrow--green">Shape the roadmap</span>
+        <h2 class="text-heading" style="color: var(--ink-900)">Shape the Roadmap</h2>
         <p>Vote on features, suggest new consults, request app ideas, and help decide what Kittechsix improves next.</p>
       </div>
       <form class="feedback-form" id="feedback-form">
@@ -152,7 +154,7 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
     }
 
     if (filtered.length === 0) {
-      gridContainer.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.4); grid-column: 1 / -1;">No suggestions yet. Be the first!</p>';
+      gridContainer.innerHTML = '<p style="text-align: center; color: var(--ink-500); grid-column: 1 / -1;">No suggestions yet. Be the first!</p>';
       return;
     }
 

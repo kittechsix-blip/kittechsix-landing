@@ -155,8 +155,8 @@ export function renderEcosystemMap(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content ecosystem-content">
       <div class="ecosystem-header">
-        <p class="ecosystem-eyebrow">Project ecosystem</p>
-        <h2 class="text-heading" style="color: var(--color-white)">Pick a project. Shape what it becomes.</h2>
+        <p class="eyebrow ecosystem-eyebrow">Project ecosystem</p>
+        <h2 class="text-heading" style="color: var(--ink-900)">Pick a project. Shape what it becomes.</h2>
         <p class="ecosystem-subtitle">A living map of Kittechsix apps, experiments, and the public roadmap. Every project has a clear audience, status, and community ask.</p>
       </div>
       <div class="ecosystem-filters" id="ecosystem-filters"></div>

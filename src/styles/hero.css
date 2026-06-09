@@ -1,55 +1,147 @@
 .hero {
-  min-height: 100vh;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--space-16) var(--space-3);
-  background: var(--color-black);
+  padding: calc(var(--section-pad) - 8px) var(--space-3) var(--section-pad);
+  background: var(--bg-white);
+  overflow: hidden;
+}
+
+/* faint copper wash, top-right */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(58% 44% at 85% 4%, rgba(184, 115, 51, 0.06), transparent 70%);
+  pointer-events: none;
 }
 
 .hero-content {
-  max-width: 700px;
+  position: relative;
+  max-width: 1280px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.hero-logo {
-  width: 490px;
-  max-width: 85vw;
-  height: auto;
-  margin-bottom: var(--space-4);
-  animation: fadeInUp 0.8s ease forwards;
-  opacity: 0;
-  filter: drop-shadow(0 4px 24px rgba(184, 115, 51, 0.3));
-}
-
 .hero-eyebrow {
-  color: var(--color-bright-blue);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  margin-bottom: var(--space-2);
-  animation: fadeInUp 0.8s ease 0.08s forwards;
+  margin-bottom: var(--space-3);
+  animation: fadeInUp 0.8s ease 0.05s forwards;
   opacity: 0;
 }
 
-.hero-subtitle {
-  color: var(--color-white);
-  margin-bottom: var(--space-2);
-  animation: fadeInUp 0.8s ease 0.15s forwards;
+/* the single large title */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(46px, 10.5vw, 124px);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: var(--ink-900);
+  margin-bottom: var(--space-1);
+  animation: fadeInUp 0.8s ease 0.12s forwards;
   opacity: 0;
+}
+
+.hero-by {
+  font-family: var(--font-text);
+  font-size: clamp(15px, 2.1vw, 20px);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--copper-700);
+  margin-bottom: var(--space-6);
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+}
+
+/* the big, in-your-face glass triptych */
+.hero-art {
+  position: relative;
+  width: min(1240px, 96vw);
+  margin: 0 auto var(--space-6);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 2px 8px rgba(20, 16, 12, 0.10),
+    0 28px 70px rgba(20, 16, 12, 0.32);
+  animation: fadeInScale 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.26s forwards;
+  opacity: 0;
+}
+
+/* ambient color glow bleeding out behind the art to blend it into the white page */
+.hero-art::before {
+  content: "";
+  position: absolute;
+  inset: -14% -6% -22% -6%;
+  z-index: -1;
+  background:
+    radial-gradient(40% 60% at 16% 55%, rgba(80, 196, 214, 0.22), transparent 70%),
+    radial-gradient(42% 60% at 84% 58%, rgba(214, 155, 106, 0.22), transparent 70%);
+  filter: blur(46px);
+  pointer-events: none;
+}
+
+/* glass gloss highlight + copper rim, glossed over the top edge */
+.hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.hero-art-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* role captions, aligned under each of the three symbols */
+.hero-roles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(1240px, 96vw);
+  margin: 0 auto var(--space-6);
+  gap: var(--space-2);
+  animation: fadeInUp 0.8s ease 0.36s forwards;
+  opacity: 0;
+}
+
+.hero-role {
+  position: relative;
+  padding-top: 18px;
+  font-family: var(--font-text);
+  font-size: clamp(11px, 1.45vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+  text-align: center;
+}
+
+.hero-role::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 2px;
+  background: var(--metal-copper);
+  border-radius: 2px;
 }
 
 .hero-description {
-  color: var(--color-text-light);
-  margin-bottom: var(--space-5);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeInUp 0.8s ease 0.3s forwards;
+  color: var(--ink-600);
+  max-width: 620px;
+  margin: 0 auto var(--space-5);
+  animation: fadeInUp 0.8s ease 0.4s forwards;
   opacity: 0;
 }
 
@@ -58,25 +150,26 @@
   justify-content: center;
   gap: var(--space-2);
   flex-wrap: wrap;
-  animation: fadeInUp 0.8s ease 0.45s forwards;
+  animation: fadeInUp 0.8s ease 0.5s forwards;
   opacity: 0;
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-logo,
   .hero-eyebrow,
-  .hero-subtitle,
+  .hero-title,
+  .hero-by,
+  .hero-art,
+  .hero-roles,
   .hero-description,
   .hero-cta {
     opacity: 1;
@@ -84,12 +177,12 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .hero {
-    min-height: 92vh;
+    padding-top: var(--section-pad-sm);
   }
-
-  .hero-logo {
-    width: 340px;
+  .hero-art {
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-5);
   }
 }

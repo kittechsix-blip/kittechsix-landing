@@ -7,12 +7,20 @@ export function renderHero(parent: HTMLElement): void {
 
   section.innerHTML = `
     <div class="hero-content">
-      <img src="assets/kittechsix-logo.png" alt="Kittechsix" class="hero-logo" />
-      <p class="hero-eyebrow">Community-shaped medical software lab</p>
-      <p class="text-subhead hero-subtitle">Clinical tools. Consumer health apps. Built in public with the people who use them.</p>
-      <p class="text-body hero-description">Explore the Kittechsix project ecosystem, try live demos, and vote on what should be improved next.</p>
+      <p class="eyebrow hero-eyebrow">Community-shaped medical software lab</p>
+      <h1 class="hero-title">KITTECH-SIX</h1>
+      <p class="hero-by">by Dr. Andy Kitlowski</p>
+      <div class="hero-art">
+        <img src="assets/hero-symbols.jpg" alt="Kittech-Six — three glass emblems for builder, physician, and AI apps & teaching" class="hero-art-img" />
+      </div>
+      <div class="hero-roles">
+        <span class="hero-role">Builder Innovator</span>
+        <span class="hero-role">Physician Builder</span>
+        <span class="hero-role">AI Apps &amp; Teaching</span>
+      </div>
+      <p class="text-subhead hero-description">Clinical tools and consumer health apps, built in public.</p>
       <div class="hero-cta">
-        <button class="cta-primary" id="hero-explore-btn">Explore Projects</button>
+        <button class="cta-primary" id="hero-explore-btn">Explore the Apps</button>
         <button class="cta-ghost" id="hero-feedback-btn">Shape the Roadmap</button>
       </div>
     </div>
