@@ -16,7 +16,7 @@ const TICKER_KEYWORDS = [
   'Stroke Triage',
   'EM Simulation',
   'Patient-Ready Handouts',
-  '15+ Years at the Bedside',
+  '20+ Years at the Bedside',
   'Open Roadmap',
   'Austin, Texas',
 ];

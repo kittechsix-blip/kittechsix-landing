@@ -15,7 +15,7 @@ export function renderAbout(parent: HTMLElement): void {
           <path d="M20 8C12 12 7 20 7 30c0 6 4 10 9 10s9-4 9-9-4-9-9-9c-1 0-2 0-3 .4C14 17 17 13 22 11l-2-3Zm21 0c-8 4-13 12-13 22 0 6 4 10 9 10s9-4 9-9-4-9-9-9c-1 0-2 0-3 .4 1-4.4 4-8.4 9-10.4l-2-3Z"/>
         </svg>
         <p class="eyebrow about-eyebrow">What drives us</p>
-        <h2 class="text-accent about-headline">Fifteen years at the bedside, now in your pocket.</h2>
+        <h2 class="text-accent about-headline">Twenty years at the bedside, now in your pocket.</h2>
         <p class="text-body about-text">Founded by a practicing Emergency Medicine physician who got tired of clunky clinical tools designed by people who've never stood at a bedside. Every feature in our apps comes from real shifts, real patients, and real frustration with what's available.</p>
         <p class="text-body about-text">We're building software that solves real problems encountered on shift — fast, offline-first tools for the phone in your scrub pocket. No login walls. No subscription paywalls for basic clinical references. Just the information you need, when you need it.</p>
         <p class="text-accent about-pullquote">"Good health information shouldn't require a medical degree to find."</p>
