@@ -10,6 +10,7 @@ interface FeaturedApp {
 const FEATURED_APPS: FeaturedApp[] = [
   { id: 'mymedkitt', icon: 'mymedkitt.png', label: 'myMedKitt' },
   { id: 'myvertigoapp', icon: 'myvertigoapp.png', label: 'my-vertigo-app' },
+  { id: 'acidbase', icon: 'acidbase.png', label: 'AcidBase' },
   { id: 'mytravelmedkitt', icon: 'mytravelmedkitt.png', label: 'MyTravelMedKitt' },
   { id: 'fckcancer', icon: 'fck-cancer.png', label: 'FCK Cancer' },
   { id: 'mytoolkitt', icon: 'mytoolkitt.png', label: 'MyToolKitt' },
@@ -32,7 +33,7 @@ export function renderFeaturedRow(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content featured-content">
       <p class="eyebrow eyebrow--green">The Kittech-Six ecosystem</p>
-      <p class="text-subhead featured-lede">Five focused apps from one bedside-tested lab — for clinicians, students, travelers, and families.</p>
+      <p class="text-subhead featured-lede">Six focused apps from one bedside-tested lab — for clinicians, students, travelers, and families.</p>
       <div class="featured-apps">
         ${logos}
       </div>

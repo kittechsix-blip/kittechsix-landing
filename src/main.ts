@@ -6,7 +6,7 @@ import { renderHero } from './components/hero.js';
 import { renderTicker } from './components/ticker.js';
 import { renderFeaturedRow } from './components/featured-row.js';
 import { renderEcosystemMap } from './components/ecosystem-map.js';
-import { renderFckCancer, renderMyMedKitt, renderMyToolKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
+import { renderAcidBase, renderFckCancer, renderMyMedKitt, renderMyToolKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
 import { renderAfibDemo } from './components/demo-afib.js';
 import { renderTripDemo } from './components/demo-trip.js';
 import { renderUITour } from './components/ui-tour.js';
@@ -41,6 +41,7 @@ function renderLandingPage(): void {
   renderFckCancer(app);
   renderMyToolKitt(app);
   renderUITour(app, myToolKittTour);
+  renderAcidBase(app);
   renderAbout(app);
   renderFeedbackBoard(app);
   renderDisclaimer(app);

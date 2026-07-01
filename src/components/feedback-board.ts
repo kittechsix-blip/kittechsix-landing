@@ -13,9 +13,9 @@ interface Suggestion {
 }
 
 type SortMode = 'votes' | 'newest';
-type CategoryFilter = 'All' | 'myMedKitt' | 'MedKitt Learn' | 'my-vertigo-app' | 'MyTravelMedKitt' | 'FCK Cancer' | 'MyToolKitt' | 'Infographic Pipeline' | 'AI for the Non-Dev' | 'Prompt Architect' | 'Community Roadmap' | 'General';
+type CategoryFilter = 'All' | 'myMedKitt' | 'MedKitt Learn' | 'my-vertigo-app' | 'AcidBase' | 'MyTravelMedKitt' | 'FCK Cancer' | 'MyToolKitt' | 'Infographic Pipeline' | 'AI for the Non-Dev' | 'Prompt Architect' | 'Community Roadmap' | 'General';
 
-const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MedKitt Learn', 'my-vertigo-app', 'MyTravelMedKitt', 'FCK Cancer', 'MyToolKitt', 'Infographic Pipeline', 'AI for the Non-Dev', 'Prompt Architect', 'Community Roadmap', 'General'];
+const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MedKitt Learn', 'my-vertigo-app', 'AcidBase', 'MyTravelMedKitt', 'FCK Cancer', 'MyToolKitt', 'Infographic Pipeline', 'AI for the Non-Dev', 'Prompt Architect', 'Community Roadmap', 'General'];
 
 export function renderFeedbackBoard(parent: HTMLElement): void {
   const section = document.createElement('section');
@@ -42,6 +42,7 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
           <option value="myMedKitt">myMedKitt</option>
           <option value="MedKitt Learn">MedKitt Learn</option>
           <option value="my-vertigo-app">my-vertigo-app</option>
+          <option value="AcidBase">AcidBase</option>
           <option value="MyTravelMedKitt">MyTravelMedKitt</option>
           <option value="FCK Cancer">FCK Cancer</option>
           <option value="MyToolKitt">MyToolKitt</option>

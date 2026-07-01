@@ -23,6 +23,7 @@ export function renderNav(parent: HTMLElement): void {
         <a href="#ecosystem" data-section="ecosystem">Ecosystem</a>
         <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
         <a href="#myvertigoapp" data-section="myvertigoapp">Vertigo</a>
+        <a href="#acidbase" data-section="acidbase">AcidBase</a>
         <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
         <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
         <a href="#feedback" data-section="feedback">Feedback</a>
@@ -48,6 +49,7 @@ export function renderNav(parent: HTMLElement): void {
     <a href="#ecosystem" data-section="ecosystem">Ecosystem</a>
     <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
     <a href="#myvertigoapp" data-section="myvertigoapp">Vertigo</a>
+    <a href="#acidbase" data-section="acidbase">AcidBase</a>
     <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
     <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
     <a href="#feedback" data-section="feedback">Feedback</a>

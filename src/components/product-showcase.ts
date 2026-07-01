@@ -161,6 +161,27 @@ export function renderFckCancer(parent: HTMLElement): void {
   });
 }
 
+export function renderAcidBase(parent: HTMLElement): void {
+  renderProductShowcase(parent, {
+    id: 'acidbase',
+    name: 'AcidBase',
+    eyebrow: 'Bedside clinical support',
+    domain: 'clinical',
+    reverse: true,
+    description: 'The complete acid-base analyzer. Enter an ABG and chemistry — AcidBase names the disorder, explains why, detects mixed disorders, then gives you the differential, the workup to narrow it, and evidence-based treatment with doses.',
+    iconSrc: 'assets/icons/acidbase.png',
+    features: [
+      { icon: '🧮', text: 'Anion gap (albumin-corrected), delta ratio & osmolar gap' },
+      { icon: '🔀', text: 'Mixed-disorder detection via compensation formulas' },
+      { icon: '💊', text: 'Differential, workup & EBM treatment with doses' },
+      { icon: '📴', text: 'Runs entirely on-device — no patient data leaves your phone' },
+    ],
+    status: 'Live',
+    ctaPrimary: { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Learn More', action: () => {} },
+  });
+}
+
 export function renderMyToolKitt(parent: HTMLElement): void {
   renderProductShowcase(parent, {
     id: 'mytoolkitt',
