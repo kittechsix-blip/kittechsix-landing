@@ -76,12 +76,14 @@
 .footer-social a {
   display: flex;
   align-items: center;
+  padding: 10px;
+  margin: -10px;
   color: var(--ink-on-dark-mut);
   transition: color var(--transition-default), transform var(--transition-default);
 }
 
 .footer-social a:hover {
-  color: #FFFFFF;
+  color: var(--ink-on-dark);
   transform: translateY(-2px);
 }
 
@@ -118,7 +120,7 @@
 }
 
 .footer-links a:hover {
-  color: #FFFFFF;
+  color: var(--ink-on-dark);
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -143,7 +145,7 @@
   margin: 0;
   font-size: 11px;
   line-height: 1.5;
-  color: var(--ink-400);
+  color: var(--ink-on-dark-mut);
   letter-spacing: -0.1px;
   text-align: right;
 }

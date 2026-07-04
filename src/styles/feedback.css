@@ -97,6 +97,18 @@
   color: var(--bg-white);
 }
 
+.feedback-controls-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-strong);
+  align-self: center;
+}
+
+.feedback-filter-btn--cat.active {
+  background: var(--green-500);
+  border-color: var(--green-500);
+}
+
 /* Suggestion Cards */
 .feedback-grid {
   display: grid;
@@ -174,9 +186,13 @@
 }
 
 .suggestion-vote-btn:hover {
-  background: var(--copper-500);
-  border-color: var(--copper-500);
-  color: var(--bg-white);
+  background: var(--copper-100);
+  border-color: var(--copper-300);
+  color: var(--copper-700);
+}
+
+.suggestion-vote-btn:disabled {
+  cursor: default;
 }
 
 .suggestion-vote-btn.voted {

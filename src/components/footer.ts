@@ -19,7 +19,7 @@ export function renderFooter(parent: HTMLElement): void {
             <img class="footer-logo" src="assets/icons/favicon.png" alt="Kittech-Six brain logo" width="28" height="28" />
             <span class="footer-wordmark">Kittech-Six</span>
           </div>
-          <p class="footer-mission">A community-shaped medical software lab. Built in public by an ER physician.</p>
+          <p class="footer-mission">Free clinical and consumer health apps, built in public by an ER physician.</p>
           <div class="footer-social">
             <a href="https://facebook.com/kittechsix" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
             <a href="https://instagram.com/kittechsix" target="_blank" rel="noopener" aria-label="Instagram">${SOCIAL_ICONS.instagram}</a>
@@ -48,8 +48,8 @@ export function renderFooter(parent: HTMLElement): void {
           <h3 class="footer-col-head">Legal</h3>
           <div class="footer-links">
             <a href="#disclaimer">Medical Disclaimer</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Contact</a>
+            <a href="#disclaimer">Privacy Policy</a>
+            <a href="mailto:kittechsix@gmail.com">Contact</a>
           </div>
         </div>
       </div>

@@ -32,8 +32,8 @@ export function renderFeaturedRow(parent: HTMLElement): void {
 
   section.innerHTML = `
     <div class="section-content featured-content">
-      <p class="eyebrow eyebrow--green">The Kittech-Six ecosystem</p>
-      <p class="text-subhead featured-lede">Six focused apps from one bedside-tested lab — for clinicians, students, travelers, and families.</p>
+      <p class="eyebrow eyebrow--green">The apps, at a glance</p>
+      <p class="text-subhead featured-lede">Six focused apps from one bedside-tested lab — for clinicians, students, travelers, and families. Tap any icon to jump to its story.</p>
       <div class="featured-apps">
         ${logos}
       </div>

@@ -26,7 +26,7 @@ export function renderNav(parent: HTMLElement): void {
         <a href="#acidbase" data-section="acidbase">AcidBase</a>
         <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
         <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
-        <a href="#feedback" data-section="feedback">Feedback</a>
+        <a href="#feedback" data-section="feedback" class="nav-cta">Feedback</a>
       </div>
       <div class="nav-social">
         <a href="https://facebook.com/kittechsix" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
@@ -52,7 +52,7 @@ export function renderNav(parent: HTMLElement): void {
     <a href="#acidbase" data-section="acidbase">AcidBase</a>
     <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
     <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
-    <a href="#feedback" data-section="feedback">Feedback</a>
+    <a href="#feedback" data-section="feedback" class="nav-cta">Feedback</a>
   `;
   parent.appendChild(overlay);
 

@@ -20,8 +20,7 @@ const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MedKitt Learn', 'my-v
 export function renderFeedbackBoard(parent: HTMLElement): void {
   const section = document.createElement('section');
   section.id = 'feedback';
-  section.className = 'section section-dark';
-  section.style.background = 'var(--bg-cream)';
+  section.className = 'section section-cream';
 
   let suggestions: Suggestion[] = [];
   let sortMode: SortMode = 'votes';
@@ -32,8 +31,8 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
     <div class="section-content">
       <div class="feedback-intro">
         <span class="eyebrow eyebrow--green">Shape the roadmap</span>
-        <h2 class="text-heading" style="color: var(--ink-900)">Shape the Roadmap</h2>
-        <p>Vote on features, suggest new consults, request app ideas, and help decide what Kittechsix improves next.</p>
+        <h2 class="text-heading">You decide what we build next.</h2>
+        <p>Vote on features, suggest new consults, request app ideas, and help decide what Kittech-Six improves next.</p>
       </div>
       <form class="feedback-form" id="feedback-form">
         <input class="feedback-input" type="text" placeholder="What should we build or improve?" required maxlength="100" aria-label="Feature title">
@@ -127,10 +126,14 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
       controlsContainer.appendChild(btn);
     }
 
+    const divider = document.createElement('span');
+    divider.className = 'feedback-controls-divider';
+    controlsContainer.appendChild(divider);
+
     // Category filters
     for (const cat of CATEGORIES) {
       const btn = document.createElement('button');
-      btn.className = `feedback-filter-btn${categoryFilter === cat ? ' active' : ''}`;
+      btn.className = `feedback-filter-btn feedback-filter-btn--cat${categoryFilter === cat ? ' active' : ''}`;
       btn.textContent = cat;
       btn.addEventListener('click', () => {
         categoryFilter = cat;

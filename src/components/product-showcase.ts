@@ -32,19 +32,25 @@ export function renderProductShowcase(parent: HTMLElement, config: ProductShowca
     </div>
   `).join('');
 
-  // Status -> tag variant: Live = copper, everything else = clinical green
-  const tagVariant = config.status === 'Live' ? 'tag--live' : 'tag--clinical';
+  // Status -> tag variant: Live = copper, Coming Soon = soon, everything else = clinical green
+  const tagVariant = config.status === 'Live'
+    ? 'tag--live'
+    : config.status === 'Coming Soon'
+      ? 'tag--soon'
+      : 'tag--clinical';
   const eyebrowVariant = config.domain === 'clinical' ? ' eyebrow--green' : '';
 
   section.innerHTML = `
     <div class="section-content">
       <div class="showcase-text">
-        <span class="eyebrow${eyebrowVariant} showcase-eyebrow">${config.eyebrow}</span>
+        <div class="showcase-meta">
+          <span class="eyebrow${eyebrowVariant} showcase-eyebrow">${config.eyebrow}</span>
+          <p class="showcase-status tag ${tagVariant}">${config.status}</p>
+        </div>
         <h2 class="text-heading showcase-headline">${config.name}</h2>
         <p class="text-body showcase-description">${config.description}</p>
         <div class="showcase-features">${featuresHtml}</div>
         <div class="showcase-ctas" id="ctas-${config.id}"></div>
-        <p class="showcase-status tag ${tagVariant}">${config.status}</p>
       </div>
       <div class="showcase-media">
         <div class="showcase-icon-wrapper">
@@ -88,14 +94,14 @@ export function renderMyMedKitt(parent: HTMLElement): void {
     description: 'Evidence-based clinical decision trees for the emergency department. Built for the phone in your pocket, designed for the patient in front of you.',
     iconSrc: 'assets/icons/mymedkitt.png',
     features: [
-      { icon: '🧪', text: 'Syphilis serology interpreter' },
-      { icon: '❤️', text: 'A-Fib RVR management' },
-      { icon: '🧠', text: 'Neurosyphilis workup' },
+      { icon: '🩺', text: '44+ evidence-based ED consults' },
+      { icon: '💊', text: '157-drug pharmacy with weight-based dose calculators' },
+      { icon: '🧮', text: '25+ bedside calculators (PESI, NIHSS, TIMI, Sgarbossa)' },
       { icon: '📴', text: 'Fully offline PWA' },
     ],
-    status: 'In Development',
-    ctaPrimary: { label: 'Try the Demo', action: () => scrollTo('demo-mymedkitt') },
-    ctaSecondary: { label: 'Learn More', action: () => {} },
+    status: 'Live',
+    ctaPrimary: { label: 'Open the App', action: () => window.open('https://kittechsix-blip.github.io/mymedkitt/', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Try the Demo', action: () => scrollTo('demo-mymedkitt') },
   });
 }
 
@@ -103,7 +109,7 @@ export function renderMyVertigoApp(parent: HTMLElement): void {
   renderProductShowcase(parent, {
     id: 'myvertigoapp',
     name: 'my-vertigo-app',
-    eyebrow: 'Bedside clinical support',
+    eyebrow: 'For the dizzy-patient workup',
     domain: 'clinical',
     reverse: true,
     description: 'Bedside decision support for the dizzy patient. Walk the HINTS exam, run Dix-Hallpike, and guide Epley or Semont maneuvers — then build a shareable discharge plan in seconds.',
@@ -116,7 +122,6 @@ export function renderMyVertigoApp(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://my-vertigo-app.vercel.app', '_blank', 'noopener') },
-    ctaSecondary: { label: 'Learn More', action: () => {} },
   });
 }
 
@@ -136,7 +141,6 @@ export function renderMyTravelMedKitt(parent: HTMLElement): void {
     ],
     status: 'In Development',
     ctaPrimary: { label: 'Try the Demo', action: () => scrollTo('demo-mytravelmedkitt') },
-    ctaSecondary: { label: 'Learn More', action: () => {} },
   });
 }
 
@@ -165,7 +169,7 @@ export function renderAcidBase(parent: HTMLElement): void {
   renderProductShowcase(parent, {
     id: 'acidbase',
     name: 'AcidBase',
-    eyebrow: 'Bedside clinical support',
+    eyebrow: 'For ABG interpretation',
     domain: 'clinical',
     reverse: true,
     description: 'The complete acid-base analyzer. Enter an ABG and chemistry — AcidBase names the disorder, explains why, detects mixed disorders, then gives you the differential, the workup to narrow it, and evidence-based treatment with doses.',
@@ -178,7 +182,6 @@ export function renderAcidBase(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') },
-    ctaSecondary: { label: 'Learn More', action: () => {} },
   });
 }
 
@@ -198,6 +201,5 @@ export function renderMyToolKitt(parent: HTMLElement): void {
     ],
     status: 'Coming Soon',
     ctaPrimary: { label: 'Get Notified', action: () => scrollTo('feedback') },
-    ctaSecondary: { label: 'Learn More', action: () => {} },
   });
 }

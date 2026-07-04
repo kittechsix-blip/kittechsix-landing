@@ -1,12 +1,13 @@
+/* ========== HERO — "The Attending" asymmetric editorial split ========== */
+
 .hero {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: calc(var(--section-pad) - 8px) var(--space-3) var(--section-pad);
   background: var(--bg-white);
+  min-height: calc(100svh - var(--nav-height));
   overflow: hidden;
+  padding: 72px var(--space-3) 80px;
 }
 
 /* faint copper wash, top-right */
@@ -20,54 +21,135 @@
 
 .hero-content {
   position: relative;
-  max-width: 1280px;
+  max-width: 1240px;
+  margin: 0 auto;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+  gap: var(--space-8);
   align-items: center;
 }
 
+.hero-copy { text-align: left; }
+
 .hero-eyebrow {
   margin-bottom: var(--space-3);
-  animation: fadeInUp 0.8s ease 0.05s forwards;
+  animation: heroFade 0.2s ease 0s forwards;
   opacity: 0;
 }
 
-/* the single large title */
+/* line-mask headline reveal */
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(46px, 10.5vw, 124px);
   font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.025em;
+  font-size: clamp(38px, 4.5vw, 64px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
   color: var(--ink-900);
-  margin-bottom: var(--space-1);
-  animation: fadeInUp 0.8s ease 0.12s forwards;
-  opacity: 0;
+  max-width: 15ch;
+  margin-bottom: var(--space-3);
+}
+.hero-title .line { display: block; overflow: hidden; padding-bottom: 0.06em; }
+.hero-title .line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: heroMask 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.hero-title .line:nth-child(1) .line-inner { animation-delay: 0s; }
+.hero-title .line:nth-child(2) .line-inner { animation-delay: 0.09s; }
+.hero-title .line:nth-child(3) .line-inner { animation-delay: 0.18s; }
+
+/* the single accent word — Fraunces italic, copper gradient with one glint pass */
+.hero-accent {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding-right: 0.08em;
+  font-size: 1.02em;
+  background: linear-gradient(100deg, #8A5524 0%, #B87333 35%, #D89B6A 50%, #B87333 65%, #8A5524 100%);
+  background-size: 220% 100%;
+  background-position: 120% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: heroMask 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.18s forwards,
+             heroGlint 0.9s ease-out 1.2s 1 forwards;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero-accent { background: none; color: var(--copper-600); }
 }
 
-.hero-by {
+.hero-sub {
   font-family: var(--font-text);
-  font-size: clamp(15px, 2.1vw, 20px);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--copper-700);
-  margin-bottom: var(--space-6);
-  animation: fadeInUp 0.8s ease 0.2s forwards;
+  font-weight: 400;
+  color: var(--ink-600);
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.6;
+  max-width: 52ch;
+  margin-bottom: var(--space-4);
+  animation: fadeInUp 0.45s ease-out 0.26s forwards;
   opacity: 0;
 }
 
-/* the big, in-your-face glass triptych */
+.hero-cta {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  animation: fadeInUp 0.45s ease-out 0.32s forwards;
+  opacity: 0;
+}
+/* primary/ghost inherit global.css; local overrides make primary the loudest object on screen */
+.hero-cta .cta-primary {
+  background: var(--metal-copper);
+  border-radius: var(--radius-pill);
+  padding: 15px 28px;
+  text-decoration: none;
+}
+.hero-cta .cta-primary:hover { background: var(--copper-600); }
+.hero-cta .cta-ghost { border-radius: var(--radius-pill); text-decoration: none; }
+
+/* trust strip */
+.hero-trust {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) 0 0;
+  border-top: 1px solid var(--border-soft);
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-500);
+  font-variant-numeric: tabular-nums;
+  column-gap: var(--space-3);
+  row-gap: 6px;
+  animation: fadeInUp 0.45s ease-out 0.38s forwards;
+  opacity: 0;
+}
+.hero-trust li { display: inline-flex; align-items: center; gap: 8px; }
+.hero-trust strong { color: var(--copper-700); font-weight: 700; }
+.hero-trust .live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-300);
+  animation: heroPulse 2s ease-in-out infinite;
+}
+
+/* art column — single-emblem crop of the glass triptych */
 .hero-art {
   position: relative;
-  width: min(1240px, 96vw);
-  margin: 0 auto var(--space-6);
+  aspect-ratio: 3 / 4;
+  max-height: min(620px, calc(100svh - var(--nav-height) - 160px));
   border-radius: var(--radius-xl);
   overflow: hidden;
+  justify-self: stretch;
   box-shadow:
     0 2px 8px rgba(20, 16, 12, 0.10),
     0 28px 70px rgba(20, 16, 12, 0.32);
-  animation: fadeInScale 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.26s forwards;
+  animation: fadeInScale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s forwards;
   opacity: 0;
 }
 
@@ -99,60 +181,47 @@
 .hero-art-img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 50%;
 }
 
-/* role captions, aligned under each of the three symbols */
-.hero-roles {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: min(1240px, 96vw);
-  margin: 0 auto var(--space-6);
-  gap: var(--space-2);
-  animation: fadeInUp 0.8s ease 0.36s forwards;
-  opacity: 0;
-}
-
-.hero-role {
-  position: relative;
-  padding-top: 18px;
-  font-family: var(--font-text);
-  font-size: clamp(11px, 1.45vw, 15px);
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-700);
-  text-align: center;
-}
-
-.hero-role::before {
-  content: "";
+.hero-art-tint {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 26px;
-  height: 2px;
-  background: var(--metal-copper);
-  border-radius: 2px;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background: linear-gradient(160deg, rgba(184, 115, 51, 0.12), rgba(184, 115, 51, 0.04));
 }
 
-.hero-description {
-  color: var(--ink-600);
-  max-width: 620px;
-  margin: 0 auto var(--space-5);
-  animation: fadeInUp 0.8s ease 0.4s forwards;
-  opacity: 0;
+.hero-chip {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(26, 23, 20, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFF;
+  letter-spacing: 0.02em;
 }
 
-.hero-cta {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-  animation: fadeInUp 0.8s ease 0.5s forwards;
-  opacity: 0;
+/* edge bleed on very wide screens (guarded by .hero overflow:hidden) */
+@media (min-width: 1288px) {
+  .hero-art {
+    margin-right: calc((100vw - 1240px) / -2);
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  }
 }
+
+@keyframes heroFade  { to { opacity: 1; } }
+@keyframes heroMask  { to { transform: translateY(0); } }
+@keyframes heroGlint { to { background-position: 0% 0; } }
+@keyframes heroPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -165,24 +234,27 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow,
-  .hero-title,
-  .hero-by,
-  .hero-art,
-  .hero-roles,
-  .hero-description,
-  .hero-cta {
+  .hero-eyebrow, .hero-sub, .hero-cta, .hero-trust, .hero-art {
     opacity: 1;
     animation: none;
   }
+  .hero-title .line-inner { transform: none; animation: none; }
+  .hero-accent { animation: none; background-position: 50% 0; }
+  .hero-trust .live-dot { animation: none; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .hero {
-    padding-top: var(--section-pad-sm);
+    min-height: auto;
+    padding: 48px var(--space-2) var(--space-8);
   }
+  .hero-content { grid-template-columns: 1fr; gap: var(--space-5); }
+  .hero-cta { flex-direction: column; }
+  .hero-cta a { width: 100%; }
   .hero-art {
+    aspect-ratio: auto;
+    max-height: none;
     border-radius: var(--radius-lg);
-    margin-bottom: var(--space-5);
   }
+  .hero-art-img { height: auto; object-fit: contain; object-position: center; }
 }

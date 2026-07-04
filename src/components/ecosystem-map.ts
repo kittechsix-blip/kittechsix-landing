@@ -160,7 +160,7 @@ const PROJECTS: EcosystemProject[] = [
 export function renderEcosystemMap(parent: HTMLElement): void {
   const section = document.createElement('section');
   section.id = 'ecosystem';
-  section.className = 'section section-dark ecosystem-section';
+  section.className = 'section section-cream ecosystem-section';
 
   let activeAudience: Audience = 'All';
   let selectedId = PROJECTS[0].id;
@@ -169,7 +169,7 @@ export function renderEcosystemMap(parent: HTMLElement): void {
     <div class="section-content ecosystem-content">
       <div class="ecosystem-header">
         <p class="eyebrow ecosystem-eyebrow">Project ecosystem</p>
-        <h2 class="text-heading" style="color: var(--ink-900)">Pick a project. Shape what it becomes.</h2>
+        <h2 class="text-heading">Pick a project. Shape what it becomes.</h2>
         <p class="ecosystem-subtitle">A living map of Kittechsix apps, experiments, and the public roadmap. Every project has a clear audience, status, and community ask.</p>
       </div>
       <div class="ecosystem-filters" id="ecosystem-filters"></div>

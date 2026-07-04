@@ -3,20 +3,21 @@
 
 const TICKER_KEYWORDS = [
   'Emergency Medicine',
+  '25 Years at the Bedside',
+  'Built in Public',
+  'Free — No Sign-Up',
+  'Bedside Tools',
   'Clinical Decision Support',
-  'A-Fib RVR',
-  'HINTS Exam',
+  'Offline-First',
   'Travel Health',
   'Vertigo & Dizziness',
   'Cancer Prevention',
-  'Epley Maneuver',
-  'Offline-First',
-  'Bedside Tools',
-  'Built in Public',
   'Stroke Triage',
   'EM Simulation',
   'Patient-Ready Handouts',
-  '20+ Years at the Bedside',
+  'A-Fib RVR',
+  'HINTS Exam',
+  'Epley Maneuver',
   'Open Roadmap',
   'Austin, Texas',
 ];
@@ -27,8 +28,10 @@ export function renderTicker(parent: HTMLElement): void {
   band.setAttribute('aria-hidden', 'true');
 
   // Render the item list twice for a seamless -50% loop.
+  // The duplicate set carries its own class so CSS can hide it (reduced motion).
   const items = TICKER_KEYWORDS.map((k) => `<span class="ticker-item">${k}</span>`).join('');
+  const dupItems = TICKER_KEYWORDS.map((k) => `<span class="ticker-item ticker-item--dup">${k}</span>`).join('');
 
-  band.innerHTML = `<div class="ticker-track">${items}${items}</div>`;
+  band.innerHTML = `<div class="ticker-track">${items}${dupItems}</div>`;
   parent.appendChild(band);
 }

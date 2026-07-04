@@ -32,8 +32,9 @@ export function renderAfibDemo(parent: HTMLElement): void {
 
   section.innerHTML = `
     <div class="section-content">
-      <h2 class="text-heading demo-header" style="color: var(--ink-900)">myMedKitt Demo</h2>
-      <p class="demo-disclaimer">For educational purposes only. Not a substitute for clinical judgment.</p>
+      <div class="demo-eyebrow"><span class="eyebrow eyebrow--green">Live demo &middot; myMedKitt</span></div>
+      <h2 class="text-heading demo-header">Work a real case: A-Fib with RVR</h2>
+      <p class="text-subhead" style="text-align: center; margin-bottom: var(--space-5)">The same decision tree an ER clinician taps through at the bedside.</p>
       <div class="demo-toggle">
         <div class="demo-toggle-container">
           <button class="demo-toggle-btn active" data-mode="guided">Guided Tour</button>
@@ -42,6 +43,7 @@ export function renderAfibDemo(parent: HTMLElement): void {
       </div>
       <div class="demo-cards" id="afib-demo-cards"></div>
       <div class="demo-nav" id="afib-demo-nav"></div>
+      <p class="demo-disclaimer">For educational purposes only. Not a substitute for clinical judgment.</p>
     </div>
   `;
 
@@ -224,7 +226,6 @@ function createCard(node: DemoNode, opts: CardOptions): HTMLElement {
         btn.addEventListener('click', () => handler(opt.label, opt.nextId));
       } else {
         btn.disabled = true;
-        btn.style.cursor = 'default';
       }
 
       optionsDiv.appendChild(btn);

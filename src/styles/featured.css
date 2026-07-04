@@ -95,7 +95,8 @@
 }
 
 /* ===== hover: lift + glow + colorize rim ===== */
-.featured-app:hover .featured-app-tile {
+.featured-app:hover .featured-app-tile,
+.featured-app:focus-visible .featured-app-tile {
   transform: translateY(-6px);
   border-color: rgba(184, 115, 51, 0.45);
   box-shadow:
@@ -106,17 +107,29 @@
     0 0 0 4px rgba(184, 115, 51, 0.08);
 }
 
-.featured-app:hover .featured-app-icon {
+.featured-app:hover .featured-app-icon,
+.featured-app:focus-visible .featured-app-icon {
   transform: scale(1.05);
 }
 
-.featured-app:hover .featured-app-label {
+.featured-app:hover .featured-app-label,
+.featured-app:focus-visible .featured-app-label {
   color: var(--copper-700);
+}
+
+/* ===== keyboard focus ===== */
+.featured-app:focus-visible,
+.ecosystem-card:focus-visible,
+.ecosystem-filter:focus-visible {
+  outline: 2px solid var(--copper-500);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .featured-app:hover .featured-app-tile,
-  .featured-app:hover .featured-app-icon {
+  .featured-app:focus-visible .featured-app-tile,
+  .featured-app:hover .featured-app-icon,
+  .featured-app:focus-visible .featured-app-icon {
     transform: none;
   }
 }

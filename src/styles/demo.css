@@ -1,7 +1,12 @@
 /* Demo Styles — Phase 3 (light: white cards on cream/white) */
 .demo-section {
-  padding: var(--space-16) var(--space-3);
+  padding: var(--section-pad) var(--space-3);
   background: transparent;
+}
+
+.demo-eyebrow {
+  display: flex;
+  justify-content: center;
 }
 
 .demo-header {
@@ -14,7 +19,7 @@
   font-size: 12px;
   color: var(--ink-500);
   letter-spacing: -0.12px;
-  margin-bottom: var(--space-5);
+  margin-top: var(--space-4);
 }
 
 /* Mode Toggle */
@@ -100,9 +105,21 @@
   letter-spacing: -0.17px;
 }
 
-.demo-option-btn:hover {
+.demo-option-btn:hover:not(:disabled) {
   background: var(--copper-50);
   border-color: var(--copper-500);
+}
+
+.demo-option-btn:disabled {
+  cursor: default;
+}
+
+.demo-option-btn:focus-visible,
+.demo-toggle-btn:focus-visible,
+.demo-next-btn:focus-visible,
+.trip-card:focus-visible {
+  outline: 2px solid var(--copper-500);
+  outline-offset: 2px;
 }
 
 .demo-option-btn.selected {
