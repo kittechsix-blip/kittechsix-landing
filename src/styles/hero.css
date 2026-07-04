@@ -129,6 +129,11 @@
   opacity: 0;
 }
 .hero-trust li { display: inline-flex; align-items: center; gap: 8px; }
+/* trailing middot dividers — trailing position so a wrap never starts a line with one */
+.hero-trust li:not(:last-child)::after {
+  content: "\00B7";
+  color: var(--ink-400);
+}
 .hero-trust strong { color: var(--copper-700); font-weight: 700; }
 .hero-trust .live-dot {
   width: 8px;
@@ -248,13 +253,15 @@
     min-height: auto;
     padding: 48px var(--space-2) var(--space-8);
   }
-  .hero-content { grid-template-columns: 1fr; gap: var(--space-5); }
+  .hero-content { grid-template-columns: 1fr; gap: var(--space-4); }
   .hero-cta { flex-direction: column; }
   .hero-cta a { width: 100%; }
+  /* full-bleed triptych strip — edge-to-edge and closer to the fold */
   .hero-art {
     aspect-ratio: auto;
     max-height: none;
-    border-radius: var(--radius-lg);
+    margin: 0 calc(-1 * var(--space-2));
+    border-radius: 0;
   }
   .hero-art-img { height: auto; object-fit: contain; object-position: center; }
 }
