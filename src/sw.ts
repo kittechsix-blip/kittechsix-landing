@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v7';
+const CACHE_NAME = 'kittechsix-v8';
 
 const ASSETS_TO_CACHE = [
   '/',
