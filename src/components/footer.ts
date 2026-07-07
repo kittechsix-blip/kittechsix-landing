@@ -30,7 +30,10 @@ export function renderFooter(parent: HTMLElement): void {
           <h3 class="footer-col-head">Apps</h3>
           <div class="footer-links">
             <a href="#mymedkitt">myMedKitt</a>
+            <a href="#mystroke-kitt">myStroke-Kitt</a>
             <a href="#myvertigoapp">my-vertigo-app</a>
+            <a href="#acidbase">AcidBase</a>
+            <a href="#antibiotic-rx">Antibiotic Rx</a>
             <a href="#mytravelmedkitt">MyTravelMedKitt</a>
             <a href="#fckcancer">FCK Cancer</a>
             <a href="#mytoolkitt">MyToolKitt</a>
@@ -48,7 +51,7 @@ export function renderFooter(parent: HTMLElement): void {
           <h3 class="footer-col-head">Legal</h3>
           <div class="footer-links">
             <a href="#disclaimer">Medical Disclaimer</a>
-            <a href="#disclaimer">Privacy Policy</a>
+            <a href="#privacy">Privacy</a>
             <a href="mailto:kittechsix@gmail.com">Contact</a>
           </div>
         </div>

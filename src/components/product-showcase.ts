@@ -1,5 +1,7 @@
 // Product Showcase — reusable component for each app section
 
+import { activateAppTab } from './app-tabs.js';
+
 interface ProductShowcaseConfig {
   id: string;
   name: string;
@@ -100,8 +102,8 @@ export function renderMyMedKitt(parent: HTMLElement): void {
       { icon: '📴', text: 'Fully offline PWA' },
     ],
     status: 'Live',
-    ctaPrimary: { label: 'Open the App', action: () => window.open('https://kittechsix-blip.github.io/mymedkitt/', '_blank', 'noopener') },
-    ctaSecondary: { label: 'Try the Demo', action: () => scrollTo('demo-mymedkitt') },
+    ctaPrimary: { label: 'Open the App', action: () => window.open('https://kittechsix-blip.github.io/mymedkitt/app.html', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Try the Demo', action: () => activateAppTab('mymedkitt', 'demo') },
   });
 }
 
@@ -122,7 +124,7 @@ export function renderMyStrokeKitt(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://mystroke-kitt.vercel.app', '_blank', 'noopener') },
-    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-mystroke-kitt') },
+    ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('mystroke-kitt', 'tour') },
   });
 }
 
@@ -142,7 +144,7 @@ export function renderAntibioticRx(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://antibiotic-rx.vercel.app', '_blank', 'noopener') },
-    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-antibiotic-rx') },
+    ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('antibiotic-rx', 'tour') },
   });
 }
 
@@ -163,7 +165,7 @@ export function renderMyVertigoApp(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://my-vertigo-app.vercel.app', '_blank', 'noopener') },
-    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-my-vertigo-app') },
+    ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('myvertigoapp', 'tour') },
   });
 }
 
@@ -182,7 +184,7 @@ export function renderMyTravelMedKitt(parent: HTMLElement): void {
       { icon: '📴', text: 'Full offline functionality' },
     ],
     status: 'In Development',
-    ctaPrimary: { label: 'Try the Demo', action: () => scrollTo('demo-mytravelmedkitt') },
+    ctaPrimary: { label: 'Try the Demo', action: () => activateAppTab('mytravelmedkitt', 'demo') },
   });
 }
 
@@ -224,7 +226,7 @@ export function renderAcidBase(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') },
-    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-acidbase') },
+    ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('acidbase', 'tour') },
   });
 }
 

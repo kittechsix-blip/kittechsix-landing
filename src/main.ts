@@ -7,6 +7,8 @@ import { renderTicker } from './components/ticker.js';
 import { renderFeaturedRow } from './components/featured-row.js';
 import { renderEcosystemMap } from './components/ecosystem-map.js';
 import { renderAcidBase, renderAntibioticRx, renderFckCancer, renderMyMedKitt, renderMyStrokeKitt, renderMyToolKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
+import { renderAppTabs } from './components/app-tabs.js';
+import { renderPrivacy } from './components/privacy.js';
 import { renderAfibDemo } from './components/demo-afib.js';
 import { renderTripDemo } from './components/demo-trip.js';
 import { renderUITour } from './components/ui-tour.js';
@@ -37,22 +39,53 @@ function renderLandingPage(): void {
   renderTicker(app);
   renderFeaturedRow(app);
   renderEcosystemMap(app);
-  renderMyMedKitt(app);
-  renderUITour(app, mkTour);
-  renderAfibDemo(app);
-  renderMyStrokeKitt(app);
-  renderUITour(app, skTour);
-  renderMyVertigoApp(app);
-  renderUITour(app, vtTour);
-  renderAcidBase(app);
-  renderUITour(app, abTour);
-  renderAntibioticRx(app);
-  renderUITour(app, rxTour);
-  renderMyTravelMedKitt(app);
-  renderTripDemo(app);
+  renderAppTabs(app, {
+    id: 'mymedkitt',
+    tabs: [
+      { key: 'overview', label: 'myMedKitt', render: renderMyMedKitt },
+      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, mkTour) },
+      { key: 'demo', label: 'Try a consult', render: renderAfibDemo },
+    ],
+  });
+  renderAppTabs(app, {
+    id: 'mystroke-kitt',
+    tabs: [
+      { key: 'overview', label: 'myStroke-Kitt', render: renderMyStrokeKitt },
+      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, skTour) },
+    ],
+  });
+  renderAppTabs(app, {
+    id: 'myvertigoapp',
+    tabs: [
+      { key: 'overview', label: 'myVertigoApp', render: renderMyVertigoApp },
+      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, vtTour) },
+    ],
+  });
+  renderAppTabs(app, {
+    id: 'acidbase',
+    tabs: [
+      { key: 'overview', label: 'AcidBase', render: renderAcidBase },
+      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, abTour) },
+    ],
+  });
+  renderAppTabs(app, {
+    id: 'antibiotic-rx',
+    tabs: [
+      { key: 'overview', label: 'Antibiotic Rx', render: renderAntibioticRx },
+      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, rxTour) },
+    ],
+  });
+  renderAppTabs(app, {
+    id: 'mytravelmedkitt',
+    tabs: [
+      { key: 'overview', label: 'MyTravelMedKitt', render: renderMyTravelMedKitt },
+      { key: 'demo', label: 'Try the demo', render: renderTripDemo },
+    ],
+  });
   renderFckCancer(app);
   renderMyToolKitt(app);
   renderAbout(app);
+  renderPrivacy(app);
   renderFeedbackBoard(app);
   renderDisclaimer(app);
   renderFooter(app);

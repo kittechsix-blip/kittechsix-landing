@@ -28,7 +28,7 @@ const PROJECTS: EcosystemProject[] = [
     summary: 'Mobile-first emergency medicine consults, drugs, calculators, and rapid decision support.',
     proof: '44+ consults, 157+ drugs, offline PWA architecture, Supabase-backed clinical content.',
     communityAsk: 'Suggest missing consults, unsafe workflow gaps, and bedside usability fixes.',
-    url: 'https://kittechsix-blip.github.io/mymedkitt/',
+    url: 'https://kittechsix-blip.github.io/mymedkitt/app.html',
     sectionId: 'mymedkitt',
     feedbackCategory: 'myMedKitt',
   },

@@ -1,0 +1,56 @@
+/* Privacy section — plain-spoken trust block on cream */
+
+.privacy-section {
+  background: var(--bg-cream);
+  border-top: 1px solid var(--border-cream);
+}
+
+.privacy-content { text-align: center; }
+
+.privacy-headline {
+  max-width: 22ch;
+  margin: 0 auto var(--space-5);
+}
+
+.privacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-3);
+  text-align: left;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+.privacy-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-cream);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+}
+
+.privacy-card h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-900);
+  margin-bottom: 10px;
+}
+
+.privacy-card p {
+  font-family: var(--font-text);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-600);
+}
+
+.privacy-fineprint {
+  margin-top: var(--space-4);
+  font-size: 13px;
+  color: var(--ink-500);
+}
+
+.privacy-fineprint a {
+  color: var(--copper-700);
+  font-weight: 600;
+}

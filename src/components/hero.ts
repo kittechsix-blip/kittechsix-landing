@@ -1,5 +1,7 @@
 // Hero Section — product-forward: copy column + a live device running the real myMedKitt UI.
 
+import { activateAppTab } from './app-tabs.js';
+
 export interface HeroOptions {
   /** Screens to cycle inside the hero phone (usually the first myMedKitt tour screens). */
   phoneScreens?: Array<() => HTMLElement>;
@@ -28,7 +30,7 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
         <p class="hero-sub">Built by the ER doctor who actually uses them &mdash; 44+ ER consults, 157+ drugs, and clinical calculators, plus health apps for everyone. No account required.</p>
         <div class="hero-cta">
           <a class="cta-primary" href="https://kittechsix-blip.github.io/mymedkitt/app.html" target="_blank" rel="noopener" id="hero-explore-btn">Open myMedKitt &mdash; free, no sign-up</a>
-          <a class="cta-ghost" href="#tour-mymedkitt" id="hero-tour-btn">Tour the apps</a>
+          <a class="cta-ghost" href="#apptabs-mymedkitt" id="hero-tour-btn">Tour the apps</a>
         </div>
         <ul class="hero-trust" role="list">
           <li>Andy Kitlowski, MD &middot; <strong>25</strong> yrs in emergency medicine</li>
@@ -56,13 +58,10 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
 
   parent.appendChild(section);
 
-  // Progressive enhancement: smooth-scroll the tour anchor (href still works without JS)
+  // Progressive enhancement: open the myMedKitt tour tab (href still anchors without JS)
   document.getElementById('hero-tour-btn')?.addEventListener('click', (e) => {
-    const target = document.getElementById('tour-mymedkitt');
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    e.preventDefault();
+    activateAppTab('mymedkitt', 'tour');
   });
 
   mountPhone(section, options.phoneScreens ?? []);
