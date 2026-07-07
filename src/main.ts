@@ -6,14 +6,15 @@ import { renderHero } from './components/hero.js';
 import { renderTicker } from './components/ticker.js';
 import { renderFeaturedRow } from './components/featured-row.js';
 import { renderEcosystemMap } from './components/ecosystem-map.js';
-import { renderAcidBase, renderFckCancer, renderMyMedKitt, renderMyToolKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
+import { renderAcidBase, renderAntibioticRx, renderFckCancer, renderMyMedKitt, renderMyStrokeKitt, renderMyToolKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
 import { renderAfibDemo } from './components/demo-afib.js';
 import { renderTripDemo } from './components/demo-trip.js';
 import { renderUITour } from './components/ui-tour.js';
-import { myMedKittTour } from './data/ui-tour/mymedkitt-tour.js';
-import { myVertigoAppTour } from './data/ui-tour/myvertigoapp-tour.js';
-import { myToolKittTour } from './data/ui-tour/mytoolkitt-tour.js';
-import { myTravelMedKittTour } from './data/ui-tour/mytravelmedkitt-tour.js';
+import { mkTour } from './data/ui-tour/mymedkitt-tour.js';
+import { skTour } from './data/ui-tour/mystroke-kitt-tour.js';
+import { vtTour } from './data/ui-tour/my-vertigo-app-tour.js';
+import { abTour } from './data/ui-tour/acidbase-tour.js';
+import { rxTour } from './data/ui-tour/antibiotic-rx-tour.js';
 import { renderFeedbackBoard } from './components/feedback-board.js';
 import { renderAbout } from './components/about.js';
 import { renderDisclaimer } from './components/disclaimer.js';
@@ -26,22 +27,31 @@ function renderLandingPage(): void {
   app.innerHTML = '';
 
   renderNav(app);
-  renderHero(app);
+  // Hero phone cycles the first three real myMedKitt tour screens
+  renderHero(app, {
+    phoneScreens: mkTour.screens
+      .slice(0, 3)
+      .map((s) => s.renderClone)
+      .filter((r): r is () => HTMLElement => typeof r === 'function'),
+  });
   renderTicker(app);
   renderFeaturedRow(app);
   renderEcosystemMap(app);
   renderMyMedKitt(app);
-  renderUITour(app, myMedKittTour);
+  renderUITour(app, mkTour);
   renderAfibDemo(app);
+  renderMyStrokeKitt(app);
+  renderUITour(app, skTour);
   renderMyVertigoApp(app);
-  renderUITour(app, myVertigoAppTour);
+  renderUITour(app, vtTour);
+  renderAcidBase(app);
+  renderUITour(app, abTour);
+  renderAntibioticRx(app);
+  renderUITour(app, rxTour);
   renderMyTravelMedKitt(app);
-  renderUITour(app, myTravelMedKittTour);
   renderTripDemo(app);
   renderFckCancer(app);
   renderMyToolKitt(app);
-  renderUITour(app, myToolKittTour);
-  renderAcidBase(app);
   renderAbout(app);
   renderFeedbackBoard(app);
   renderDisclaimer(app);

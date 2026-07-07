@@ -18,6 +18,9 @@ const TICKER_KEYWORDS = [
   'A-Fib RVR',
   'HINTS Exam',
   'Epley Maneuver',
+  'NIHSS at the Bedside',
+  'Acid-Base Analysis',
+  'Empiric Antibiotics',
   'Open Roadmap',
   'Austin, Texas',
 ];

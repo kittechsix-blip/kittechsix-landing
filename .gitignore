@@ -6,3 +6,4 @@ dist/
 .shots/
 .claude/
 .playwright-mcp/
+recon/

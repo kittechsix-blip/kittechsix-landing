@@ -1,0 +1,1364 @@
+/* ============================================================================
+   myMedKitt — UI-tour clone styles.  Namespace: .mk-
+   Pixel-faithful to ~/Desktop/myMedKitt/docs/style.css (production).
+   Pearl White #FAFAF5 + 3D Metallic: 4-stop specialty gradients, glass
+   category cards, skeuomorphic btn-3d, decision green #3CB371, copper #B87333.
+   Renders inside a 375x812 phone frame → ~351x788 scrollable viewport.
+   ALL selectors are prefixed .mk- — no bare element selectors, no leakage.
+   ============================================================================ */
+
+.mk-screen {
+  /* Design tokens — verbatim from docs/style.css :root */
+  --mk-bg: #FAFAF5;
+  --mk-surface: #FFFFFF;
+  --mk-surface-hover: #F0F0EB;
+  --mk-border: #E0E0DA;
+  --mk-text: #1A1A1A;
+  --mk-text-secondary: #5A5A5A;
+  --mk-text-muted: #8A8A8A;
+  --mk-umber: #B87333;
+  --mk-green: #3CB371;
+  --mk-green-dark: #2E8B57;
+  --mk-danger: #ff4757;
+  --mk-warning: #ffa502;
+  --mk-info: #3498db;
+  --mk-radius-sm: 8px;
+  --mk-radius-md: 12px;
+  --mk-radius-lg: 16px;
+  --mk-radius-pill: 50px;
+  --mk-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --mk-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --mk-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --mk-font-mono: 'SF Mono', Monaco, monospace;
+
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Real app typeface is the system sans stack */
+  font-family: var(--font-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--mk-text);
+  background: var(--mk-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.mk-screen *,
+.mk-screen *::before,
+.mk-screen *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Legal banner (persistent red FDA banner) ──────────────────────────── */
+
+.mk-legal-banner {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.mk-legal-banner__icon {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+}
+
+.mk-legal-banner__text strong {
+  font-weight: 700;
+}
+
+.mk-legal-banner__link {
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mk-legal-banner__close {
+  flex: 0 0 auto;
+  font-size: 16px;
+  line-height: 1;
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+/* ── Bottom tab bar (3D skeuomorphic icons) ────────────────────────────── */
+
+.mk-tab-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 8px 0 10px;
+  background: linear-gradient(180deg, #F0F0F2 0%, #DCDCDE 100%);
+  border-top: 1px solid #C8C8CA;
+  box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.mk-tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 16px;
+  min-width: 44px;
+  min-height: 44px;
+  color: #7A7A7C;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mk-tab-item svg {
+  width: 34px;
+  height: 34px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.mk-tab-item--active {
+  color: var(--mk-green);
+}
+
+.mk-tab-item--active svg {
+  filter: drop-shadow(0 2px 5px rgba(60, 179, 113, 0.35));
+}
+
+.mk-tab-item__label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ── Dashboard (Command Center) ────────────────────────────────────────── */
+
+.mk-dashboard {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: 24px;
+  background: linear-gradient(180deg, #EBEBED 0%, #F5F5F7 50%, #E8E8EA 100%);
+}
+
+.mk-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 0 20px;
+}
+
+.mk-dashboard-header__logo {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.mk-dashboard-header__title {
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #3A3A3A;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.mk-dashboard-header__title-my {
+  font-style: italic;
+  font-weight: 400;
+  color: #2E7D32;
+}
+
+/* Hero search */
+
+.mk-hero-search {
+  position: relative;
+  margin: 0 0 24px;
+}
+
+.mk-hero-search__field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--mk-surface);
+  border: 1px solid var(--mk-border);
+  border-radius: 14px;
+  box-shadow: var(--mk-shadow-sm);
+}
+
+.mk-hero-search__icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.mk-hero-search__placeholder {
+  flex: 1;
+  font-size: 16px;
+  color: var(--mk-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Recents carousel */
+
+.mk-recents {
+  margin-bottom: 20px;
+}
+
+.mk-recents__title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--mk-text-muted);
+  margin-bottom: 6px;
+}
+
+.mk-recents__scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}
+
+.mk-recents__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mk-recent-item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 72px;
+  cursor: pointer;
+}
+
+/* Glass circle over the specialty gradient (inline style) */
+.mk-recent-item__icon {
+  position: relative;
+  overflow: hidden;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.mk-recent-item__icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 45%;
+  border-radius: 50% 50% 40% 40%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+}
+
+.mk-recent-item__cross {
+  position: relative;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  color: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.mk-recent-item__label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--mk-text-secondary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Hero feature cards — real gradients/borders from docs/style.css */
+
+.mk-hubs-card,
+.mk-tricks-card,
+.mk-learn-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 18px 20px;
+  border-radius: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mk-hubs-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E0F2F1 100%);
+  border: 2px solid #00695C;
+  box-shadow: 0 4px 12px rgba(0, 105, 92, 0.18);
+}
+
+.mk-tricks-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF3E0 100%);
+  border: 2px solid #E65100;
+  box-shadow: 0 4px 12px rgba(230, 81, 0, 0.18);
+}
+
+.mk-learn-card {
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF7ED 100%);
+  border: 2px solid var(--mk-umber);
+  box-shadow: 0 4px 12px rgba(184, 115, 51, 0.18);
+}
+
+.mk-hubs-card__badge,
+.mk-tricks-card__badge,
+.mk-learn-card__badge {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 7px;
+  border-radius: 999px;
+}
+
+.mk-hubs-card__badge { background: #00695C; }
+.mk-tricks-card__badge { background: #E65100; }
+.mk-learn-card__badge { background: var(--mk-umber); }
+
+.mk-hubs-card__title,
+.mk-tricks-card__title,
+.mk-learn-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--mk-text);
+  margin-bottom: 4px;
+}
+
+.mk-hubs-card__sub,
+.mk-tricks-card__sub,
+.mk-learn-card__sub {
+  font-size: 13px;
+  color: var(--mk-text);
+  opacity: 0.75;
+  line-height: 1.4;
+  padding-right: 24px;
+}
+
+.mk-hubs-card__arrow,
+.mk-tricks-card__arrow,
+.mk-learn-card__arrow {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.mk-hubs-card__arrow { color: #00695C; }
+.mk-tricks-card__arrow { color: #E65100; }
+.mk-learn-card__arrow { color: var(--mk-umber); }
+
+/* Glass-morphism category cards — THE signature dashboard look.
+   Specialty 4-stop gradient is set inline; the class supplies the glass
+   borders, layered shadows, and the ::before gloss band. */
+
+.mk-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mk-category-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-height: 72px;
+  padding: 16px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-right-color: rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    inset 0 2px 6px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.mk-category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+  border-radius: 100px / 40px;
+  pointer-events: none;
+}
+
+.mk-category-card__content {
+  position: relative;
+  z-index: 1;
+}
+
+.mk-category-card__name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+}
+
+.mk-category-card__count {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* Share & Install card */
+
+.mk-share-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin: 20px 0 0;
+  padding: 14px 56px 14px 16px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EEF4FF 100%);
+  border: 2px solid #4a90d9;
+  border-radius: 16px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(74, 144, 217, 0.18);
+}
+
+.mk-share-card__icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #4a90d9;
+  color: #FFFFFF;
+}
+
+.mk-share-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mk-share-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mk-text);
+  margin-bottom: 2px;
+}
+
+.mk-share-card__sub {
+  font-size: 12px;
+  color: var(--mk-text);
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+.mk-share-card__arrow {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  font-size: 22px;
+  font-weight: 700;
+  color: #4a90d9;
+}
+
+.mk-dashboard-disclaimer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--mk-text-muted);
+  padding: 20px 16px 0;
+  line-height: 1.5;
+}
+
+/* ── Consult flow header (specialty gradient set inline) ───────────────── */
+
+.mk-consult-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.mk-consult-header__btn {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mk-consult-header__title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mk-consult-header__progress {
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 2px 8px;
+  border-radius: 10px;
+  min-width: 28px;
+  text-align: center;
+}
+
+/* ── Card stack + decision cards ───────────────────────────────────────── */
+
+.mk-card-stack {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: 24px;
+}
+
+.mk-decision-card {
+  background: var(--mk-surface);
+  border-radius: var(--mk-radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--mk-shadow-card);
+  animation: mk-card-appear 0.3s ease-out;
+}
+
+@keyframes mk-card-appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mk-decision-card--active {
+  box-shadow: var(--mk-shadow-md);
+}
+
+.mk-decision-card--answered {
+  opacity: 0.9;
+  padding: 6px 12px;
+  box-shadow: none;
+  border-radius: 20px;
+  border: 1px solid var(--mk-border);
+}
+
+.mk-decision-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.mk-decision-card__body {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.mk-decision-card__options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Answered pills (collapsed trail) */
+
+.mk-answered-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.mk-answered-pill--critical-border {
+  border-left: 3px solid var(--mk-danger);
+}
+
+.mk-answered-pill--warning-border {
+  border-left: 3px solid var(--mk-warning);
+}
+
+.mk-answered-pill__q {
+  color: var(--mk-text-secondary);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mk-answered-pill__arrow {
+  color: var(--mk-text-muted);
+  flex: 0 0 auto;
+}
+
+.mk-answered-pill__a {
+  color: var(--mk-green);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mk-answered-pill__a--critical {
+  color: var(--mk-danger);
+}
+
+/* Safety banner */
+
+.mk-safety-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mk-safety-banner--critical {
+  background: rgba(255, 71, 87, 0.12);
+  color: var(--mk-danger);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+}
+
+.mk-safety-banner__icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.mk-safety-banner__text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Card summary + accordion */
+
+.mk-card-summary {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.mk-accordion {
+  margin-bottom: 16px;
+  border: 1px solid var(--mk-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mk-accordion__trigger {
+  display: block;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mk-green);
+  cursor: pointer;
+}
+
+/* ── The 3D button system (4-stop metallic gradients, verbatim) ────────── */
+
+.mk-btn-3d {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  min-height: 48px;
+  padding: 14px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.3;
+  color: #FFFFFF;
+  background: linear-gradient(to bottom, #6a6a6a 0%, #4a4a4a 40%, #3a3a3a 60%, #2a2a2a 100%);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
+}
+
+.mk-btn-3d--green {
+  background: linear-gradient(to bottom, #5cb85c 0%, #449d44 40%, #398439 60%, #2d6a2d 100%);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.mk-btn-3d--black {
+  background: linear-gradient(to bottom, #3a3a3a 0%, #2a2a2a 40%, #1a1a1a 60%, #0a0a0a 100%);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.mk-btn-3d--critical {
+  background: linear-gradient(to bottom, #ef5350 0%, #e53935 40%, #c62828 60%, #8e0000 100%);
+}
+
+.mk-btn-3d--urgent {
+  background: linear-gradient(to bottom, #ffb74d 0%, #ffa502 40%, #e68a00 60%, #bf6f00 100%);
+}
+
+.mk-btn-3d--dimmed {
+  background: linear-gradient(to bottom, #bbb 0%, #999 40%, #888 60%, #666 100%);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  opacity: 0.6;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.mk-btn-3d__label {
+  display: block;
+}
+
+.mk-btn-3d__desc {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* ── Contextual toolbar (per-consult toolkit) ──────────────────────────── */
+
+.mk-toolbar {
+  position: sticky;
+  bottom: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px 10px;
+  background: var(--mk-surface);
+  border-top: 1px solid var(--mk-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mk-toolbar::-webkit-scrollbar {
+  display: none;
+}
+
+.mk-toolbar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  color: var(--mk-text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mk-toolbar__icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* ── Inline links, dose chips, text buttons ────────────────────────────── */
+
+.mk-body-inline-link {
+  color: var(--mk-green);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.mk-dose-highlight {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--mk-font-mono);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.mk-dose-highlight--standard {
+  background: rgba(60, 179, 113, 0.12);
+  border-left: 3px solid #3CB371;
+  color: #2E8B57;
+}
+
+.mk-btn-text {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  color: var(--mk-text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ── Result node (confidence badge + drawn checkmark + pulse) ──────────── */
+
+.mk-decision-card--result {
+  animation: mk-card-appear 0.3s ease-out, mk-confidence-pulse 0.5s ease-out;
+}
+
+@keyframes mk-confidence-pulse {
+  0%   { box-shadow: var(--mk-shadow-md); }
+  30%  { box-shadow: 0 0 0 4px rgba(60, 179, 113, 0.25), var(--mk-shadow-md); }
+  100% { box-shadow: var(--mk-shadow-md); }
+}
+
+.mk-result-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mk-result-check {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--mk-green);
+  box-shadow: 0 2px 6px rgba(60, 179, 113, 0.4);
+}
+
+.mk-result-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mk-result-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: var(--mk-radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mk-result-badge--definitive { background: var(--mk-green); }
+.mk-result-badge--recommended { background: var(--mk-info); }
+.mk-result-badge--consider { background: var(--mk-warning); }
+
+.mk-result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ── Bottom-sheet modal (Pharmacy drug card / Steps Summary) ───────────── */
+
+.mk-modal-backdrop {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--mk-bg);
+}
+
+.mk-modal-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.mk-modal-content {
+  width: 100%;
+  max-height: 88%;
+  overflow: hidden;
+  background: var(--mk-surface);
+  border-radius: var(--mk-radius-lg) var(--mk-radius-lg) 0 0;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.mk-modal-content--tall {
+  max-height: 94%;
+}
+
+.mk-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border-bottom: 1px solid var(--mk-border);
+  background: var(--mk-surface);
+}
+
+.mk-modal-header__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mk-modal-header__subtitle {
+  font-size: 13px;
+  color: var(--mk-text-secondary);
+  margin-top: 2px;
+}
+
+.mk-modal-header__close {
+  flex: 0 0 auto;
+  font-size: 16px;
+  color: var(--mk-text-secondary);
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.mk-modal-body {
+  padding: 20px;
+}
+
+.mk-route-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--mk-bg);
+  border: 1px solid var(--mk-border);
+  border-radius: var(--mk-radius-pill);
+  font-size: 13px;
+  color: var(--mk-text-secondary);
+  margin-bottom: 12px;
+}
+
+/* Info-page sections */
+
+.mk-info-section {
+  margin-bottom: 16px;
+}
+
+.mk-info-section__heading {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--mk-border);
+}
+
+.mk-info-section__text {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* Per-indication drug cards */
+
+.mk-drug-card {
+  background: var(--mk-bg);
+  border: 1px solid var(--mk-border);
+  border-radius: var(--mk-radius-sm);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+
+.mk-drug-card--linked {
+  border-left: 4px solid #3CB371;
+}
+
+.mk-drug-card__name {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.mk-drug-card__regimen {
+  font-size: 14px;
+  color: var(--mk-text-secondary);
+  line-height: 1.55;
+}
+
+.mk-dose-calc-link {
+  color: var(--mk-green);
+  font-weight: 600;
+  font-family: var(--mk-font-mono);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.mk-dose-pin-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Inline weight-based dose calculator */
+
+.mk-dose-calc-panel {
+  background: var(--mk-bg);
+  border: 1px solid var(--mk-border);
+  border-radius: var(--mk-radius-sm);
+  padding: 12px;
+  margin-top: 8px;
+}
+
+.mk-dose-calc-mode-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.mk-dose-calc-mode-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--mk-border);
+  background: var(--mk-surface);
+  color: var(--mk-text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--mk-radius-sm);
+  text-align: center;
+  cursor: pointer;
+}
+
+.mk-dose-calc-mode-btn--active {
+  background: var(--mk-green);
+  border-color: var(--mk-green);
+  color: #ffffff;
+}
+
+.mk-dose-calc-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mk-dose-calc-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--mk-border);
+  border-radius: var(--mk-radius-sm);
+  font-size: 16px;
+  background: var(--mk-surface);
+  color: var(--mk-text);
+}
+
+.mk-dose-calc-unit {
+  font-size: 14px;
+  color: var(--mk-text-secondary);
+}
+
+.mk-dose-calc-go-btn {
+  padding: 10px 16px;
+  background: var(--mk-green);
+  color: #ffffff;
+  border-radius: var(--mk-radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mk-dose-calc-results {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--mk-border);
+}
+
+.mk-dose-calc-weight-summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mk-text-secondary);
+  margin-bottom: 8px;
+}
+
+.mk-dose-calc-result-row {
+  margin-bottom: 10px;
+}
+
+.mk-dose-calc-result-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mk-text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.mk-dose-calc-result-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--mk-green);
+}
+
+.mk-dose-calc-result-detail {
+  font-size: 13px;
+  color: var(--mk-text-secondary);
+  margin-top: 2px;
+}
+
+/* Citations accordion */
+
+.mk-citations {
+  margin-top: 8px;
+}
+
+.mk-citations__summary {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mk-green);
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.mk-citations__body {
+  font-size: 13px;
+  color: var(--mk-text-secondary);
+  line-height: 1.5;
+  padding-bottom: 8px;
+}
+
+/* ── 📊 Visual interactive infographic overlay ─────────────────────────── */
+
+.mk-infographic-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: rgba(20, 20, 20, 0.55);
+}
+
+.mk-infographic-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--mk-bg);
+  overflow: hidden;
+}
+
+.mk-infographic-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--mk-border);
+  background: var(--mk-surface);
+}
+
+.mk-infographic-panel__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mk-infographic-panel__close {
+  font-size: 16px;
+  color: var(--mk-text-secondary);
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.mk-infographic-frame {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: var(--mk-bg);
+}
+
+/* InfoKitt-style DKA infographic content */
+
+.mk-ig-hero {
+  padding: 20px;
+  border-radius: var(--mk-radius-lg);
+  background: linear-gradient(to bottom, #4D9DF8 0%, #2272CD 40%, #004CA7 60%, #002580 100%);
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--mk-shadow-md);
+}
+
+.mk-ig-hero__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.mk-ig-hero__title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.mk-ig-hero__sub {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-top: 6px;
+}
+
+.mk-ig-triad {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.mk-ig-triad__item {
+  flex: 1;
+  background: var(--mk-surface);
+  border: 1px solid var(--mk-border);
+  border-radius: var(--mk-radius-md);
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: var(--mk-shadow-sm);
+}
+
+.mk-ig-triad__value {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: var(--mk-font-mono);
+  color: #1565C0;
+}
+
+.mk-ig-triad__label {
+  font-size: 10px;
+  color: var(--mk-text-secondary);
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.mk-ig-triad__plus {
+  align-self: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--mk-text-muted);
+}
+
+.mk-ig-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mk-ig-pillar {
+  border-radius: var(--mk-radius-md);
+  padding: 12px 14px;
+  border-left: 4px solid transparent;
+}
+
+.mk-ig-pillar--fluids {
+  background: rgba(52, 152, 219, 0.08);
+  border-left-color: var(--mk-info);
+}
+
+.mk-ig-pillar--insulin {
+  background: rgba(60, 179, 113, 0.08);
+  border-left-color: var(--mk-green);
+}
+
+.mk-ig-pillar--k {
+  background: rgba(255, 165, 2, 0.1);
+  border-left-color: var(--mk-warning);
+}
+
+.mk-ig-pillar__head {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.mk-ig-pillar--fluids .mk-ig-pillar__head { color: #2471a3; }
+.mk-ig-pillar--insulin .mk-ig-pillar__head { color: var(--mk-green-dark); }
+.mk-ig-pillar--k .mk-ig-pillar__head { color: #b45309; }
+
+.mk-ig-pillar__body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--mk-text);
+  font-family: var(--mk-font-mono);
+}
+
+.mk-ig-footnote {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--mk-text-muted);
+  line-height: 1.5;
+}

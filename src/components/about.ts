@@ -8,7 +8,7 @@ export function renderAbout(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content about-grid">
       <div class="about-portrait">
-        <img src="assets/kittechsix-logo.png" alt="Kittech-Six" class="about-portrait-img" />
+        <img src="assets/kittechsix-logo.webp" alt="Kittech-Six" class="about-portrait-img" />
       </div>
       <div class="about-body">
         <svg class="about-quote-mark" viewBox="0 0 48 48" aria-hidden="true">

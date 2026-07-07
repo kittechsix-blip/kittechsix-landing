@@ -22,9 +22,10 @@ export function renderNav(parent: HTMLElement): void {
       <div class="nav-links" id="nav-links">
         <a href="#ecosystem" data-section="ecosystem">Ecosystem</a>
         <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
+        <a href="#mystroke-kitt" data-section="mystroke-kitt">Stroke</a>
         <a href="#myvertigoapp" data-section="myvertigoapp">Vertigo</a>
         <a href="#acidbase" data-section="acidbase">AcidBase</a>
-        <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
+        <a href="#antibiotic-rx" data-section="antibiotic-rx">Antibiotics</a>
         <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
         <a href="#feedback" data-section="feedback" class="nav-cta">Feedback</a>
       </div>
@@ -48,8 +49,10 @@ export function renderNav(parent: HTMLElement): void {
   overlay.innerHTML = `
     <a href="#ecosystem" data-section="ecosystem">Ecosystem</a>
     <a href="#mymedkitt" data-section="mymedkitt">myMedKitt</a>
+    <a href="#mystroke-kitt" data-section="mystroke-kitt">Stroke</a>
     <a href="#myvertigoapp" data-section="myvertigoapp">Vertigo</a>
     <a href="#acidbase" data-section="acidbase">AcidBase</a>
+    <a href="#antibiotic-rx" data-section="antibiotic-rx">Antibiotics</a>
     <a href="#mytravelmedkitt" data-section="mytravelmedkitt">Travel</a>
     <a href="#fckcancer" data-section="fckcancer">FCK Cancer</a>
     <a href="#feedback" data-section="feedback" class="nav-cta">Feedback</a>

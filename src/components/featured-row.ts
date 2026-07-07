@@ -9,8 +9,10 @@ interface FeaturedApp {
 
 const FEATURED_APPS: FeaturedApp[] = [
   { id: 'mymedkitt', icon: 'mymedkitt.png', label: 'myMedKitt' },
+  { id: 'mystroke-kitt', icon: 'mystroke-kitt.png', label: 'myStroke-Kitt' },
   { id: 'myvertigoapp', icon: 'myvertigoapp.png', label: 'my-vertigo-app' },
   { id: 'acidbase', icon: 'acidbase.png', label: 'AcidBase' },
+  { id: 'antibiotic-rx', icon: 'antibiotic-rx.png', label: 'Antibiotic Rx' },
   { id: 'mytravelmedkitt', icon: 'mytravelmedkitt.png', label: 'MyTravelMedKitt' },
   { id: 'fckcancer', icon: 'fck-cancer.png', label: 'FCK Cancer' },
   { id: 'mytoolkitt', icon: 'mytoolkitt.png', label: 'MyToolKitt' },
@@ -33,7 +35,7 @@ export function renderFeaturedRow(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content featured-content">
       <p class="eyebrow eyebrow--green">The apps, at a glance</p>
-      <p class="text-subhead featured-lede">Six focused apps from one bedside-tested lab — for clinicians, students, travelers, and families. Tap any icon to jump to its story.</p>
+      <p class="text-subhead featured-lede">Eight focused apps from one bedside-tested lab — for clinicians, students, travelers, and families. Tap any icon to jump to its story.</p>
       <div class="featured-apps">
         ${logos}
       </div>

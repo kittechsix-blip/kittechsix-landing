@@ -1,5 +1,5 @@
-// UI Tour Engine — interactive phone-frame snapshot with click-to-explain hotspots.
-// One engine, four configs. See src/data/ui-tour/*.
+// UI Tour Engine — interactive phone-frame walkthrough with click-to-explain hotspots.
+// One engine, five configs. See src/data/ui-tour/*.
 
 export interface HotspotDef {
   id: string;
@@ -30,6 +30,8 @@ export interface UITourConfig {
   accentColor: string;
   initialScreen: string;
   screens: ScreenDef[];
+  /** Live production URL — renders "Open the real app" CTAs. */
+  liveUrl?: string;
 }
 
 type Mode = 'explore' | 'guided';
@@ -43,6 +45,9 @@ interface TourState {
   activePopover?: { screenId: string; hotspotId: string };
   frameInner?: HTMLElement;
   breadcrumb?: HTMLElement;
+  section?: HTMLElement;
+  // attract mode — auto-plays the guided tour until the user touches anything
+  attract: { timer: number | null; dismissed: boolean };
 }
 
 export function renderUITour(parent: HTMLElement, config: UITourConfig): void {
@@ -50,6 +55,10 @@ export function renderUITour(parent: HTMLElement, config: UITourConfig): void {
   section.id = `tour-${config.appId}`;
   section.className = 'ui-tour-section';
   section.style.setProperty('--ui-tour-accent', config.accentColor);
+
+  const launchLink = config.liveUrl
+    ? `<a class="ui-tour-launch" href="${config.liveUrl}" target="_blank" rel="noopener">Open the real app<span aria-hidden="true"> ↗</span></a>`
+    : '';
 
   section.innerHTML = `
     <div class="ui-tour-content">
@@ -65,13 +74,16 @@ export function renderUITour(parent: HTMLElement, config: UITourConfig): void {
           <button data-mode="guided" role="tab" aria-selected="false">Guided Tour</button>
         </div>
         <button class="ui-tour-restart" type="button">↺ Restart</button>
+        ${launchLink}
       </div>
 
       <div class="ui-tour-breadcrumb" aria-live="polite"></div>
 
       <div class="ui-tour-frame-wrap">
-        <div class="ui-tour-frame" role="region" aria-label="${config.appName} UI tour">
-          <div class="ui-tour-frame-inner"></div>
+        <div class="ui-tour-frame-scaler">
+          <div class="ui-tour-frame" role="region" aria-label="${config.appName} UI tour">
+            <div class="ui-tour-frame-inner"></div>
+          </div>
         </div>
         <aside class="ui-tour-summary" aria-label="Screens in this tour">
           <h4>Screens</h4>
@@ -91,18 +103,38 @@ export function renderUITour(parent: HTMLElement, config: UITourConfig): void {
     guidedSteps: buildGuidedSteps(config),
     frameInner: section.querySelector<HTMLElement>('.ui-tour-frame-inner') ?? undefined,
     breadcrumb: section.querySelector<HTMLElement>('.ui-tour-breadcrumb') ?? undefined,
+    section,
+    attract: { timer: null, dismissed: false },
   };
 
   populateSummary(section, config);
   mountScreen(state);
   wireControls(section, state);
+  scaleFrame(section);
+  wireAttractMode(section, state);
 
-  // Recompute hotspot positions on resize (anchors depend on layout)
+  // Recompute hotspot positions + frame scale on resize (anchors depend on layout)
   const onResize = () => {
+    scaleFrame(section);
     const screen = state.frameInner?.querySelector<HTMLElement>('.ui-tour-screen');
     if (screen) repositionHotspots(screen, getCurrentScreenDef(state));
   };
   window.addEventListener('resize', onResize, { passive: true });
+}
+
+/* The frame is a fixed 375x812 canvas so clone CSS is deterministic; on narrow
+   viewports we scale the whole device down instead of letting it overflow. */
+function scaleFrame(section: HTMLElement) {
+  const scaler = section.querySelector<HTMLElement>('.ui-tour-frame-scaler');
+  const wrap = section.querySelector<HTMLElement>('.ui-tour-frame-wrap');
+  if (!scaler || !wrap) return;
+  const available = wrap.clientWidth;
+  const scale = Math.min(1, available / 375);
+  scaler.style.transform = scale < 1 ? `scale(${scale})` : '';
+  scaler.style.transformOrigin = 'top left';
+  // shrink the layout box with the transform so nothing overflows narrow viewports
+  scaler.style.width = `${Math.round(375 * scale)}px`;
+  scaler.style.height = `${Math.round(812 * scale)}px`;
 }
 
 function buildGuidedSteps(config: UITourConfig) {
@@ -113,6 +145,10 @@ function buildGuidedSteps(config: UITourConfig) {
       .sort((a, b) => (a.guidedOrder ?? 0) - (b.guidedOrder ?? 0));
     for (const h of ordered) steps.push({ screenId: screen.id, hotspotId: h.id });
   }
+  // Respect the author's global guidedOrder across screens
+  const orderOf = (s: { screenId: string; hotspotId: string }) =>
+    config.screens.find((sc) => sc.id === s.screenId)?.hotspots.find((h) => h.id === s.hotspotId)?.guidedOrder ?? 0;
+  steps.sort((a, b) => orderOf(a) - orderOf(b));
   return steps;
 }
 
@@ -122,7 +158,7 @@ function populateSummary(section: HTMLElement, config: UITourConfig) {
   ul.innerHTML = config.screens
     .map(
       (s, i) => `
-      <li>
+      <li data-screen-link="${s.id}" role="button" tabindex="0">
         <strong>Screen ${i + 1}</strong>
         ${s.title}
       </li>
@@ -143,7 +179,7 @@ function mountScreen(state: TourState) {
   state.frameInner.innerHTML = '';
 
   const screen = document.createElement('div');
-  screen.className = 'ui-tour-screen';
+  screen.className = 'ui-tour-screen ui-tour-screen-enter';
   screen.setAttribute('data-screen-id', screenDef.id);
 
   if (screenDef.renderClone) {
@@ -173,6 +209,7 @@ function mountScreen(state: TourState) {
   }
 
   state.frameInner.appendChild(screen);
+  screen.addEventListener('animationend', () => screen.classList.remove('ui-tour-screen-enter'), { once: true });
 
   // Compute hotspot positions after the DOM has laid out
   requestAnimationFrame(() => {
@@ -181,6 +218,13 @@ function mountScreen(state: TourState) {
   });
 
   updateBreadcrumb(state);
+  highlightSummary(state);
+}
+
+function highlightSummary(state: TourState) {
+  state.section?.querySelectorAll<HTMLElement>('.ui-tour-summary li').forEach((li) => {
+    li.classList.toggle('active', li.getAttribute('data-screen-link') === state.currentScreenId);
+  });
 }
 
 function repositionHotspots(screenEl: HTMLElement, screenDef: ScreenDef) {
@@ -218,7 +262,9 @@ function repositionHotspots(screenEl: HTMLElement, screenDef: ScreenDef) {
     dot.style.top = `${topPct}%`;
 
     if (h.guidedOrder !== undefined) {
-      dot.textContent = String(h.guidedOrder);
+      dot.innerHTML = `<span class="ui-tour-hotspot-dot">${h.guidedOrder}</span>`;
+    } else {
+      dot.innerHTML = `<span class="ui-tour-hotspot-dot"></span>`;
     }
 
     screenEl.appendChild(dot);
@@ -248,6 +294,13 @@ function activateHotspot(state: TourState, hotspotId: string) {
   const screenDef = getCurrentScreenDef(state);
   const hotspot = screenDef.hotspots.find((h) => h.id === hotspotId);
   if (!hotspot) return;
+  // In guided mode, clicking a numbered dot jumps the sequence there
+  if (state.mode === 'guided') {
+    const idx = state.guidedSteps.findIndex(
+      (s) => s.screenId === state.currentScreenId && s.hotspotId === hotspotId,
+    );
+    if (idx >= 0) state.guidedIndex = idx;
+  }
   showPopover(state, hotspot);
 }
 
@@ -261,6 +314,21 @@ function showPopover(state: TourState, hotspot: HotspotDef) {
 
   dot.classList.add('active');
 
+  // Bring the anchored element into view INSIDE the scrollable screen only —
+  // never scrollIntoView(), which would also scroll the page itself.
+  const anchorTarget = hotspot.anchorSelector
+    ? screen.querySelector<HTMLElement>(hotspot.anchorSelector)
+    : null;
+  if (anchorTarget) {
+    const screenRect = screen.getBoundingClientRect();
+    const tRect = anchorTarget.getBoundingClientRect();
+    const targetTop = tRect.top - screenRect.top + screen.scrollTop;
+    screen.scrollTo({
+      top: Math.max(0, targetTop - screen.clientHeight / 2 + tRect.height / 2),
+      behavior: 'smooth',
+    });
+  }
+
   const popover = document.createElement('div');
   popover.className = 'ui-tour-popover';
   popover.setAttribute('role', 'dialog');
@@ -273,11 +341,19 @@ function showPopover(state: TourState, hotspot: HotspotDef) {
 
   const isLastGuided =
     state.mode === 'guided' && state.guidedIndex >= state.guidedSteps.length - 1;
+
+  const launchCta =
+    isLastGuided && state.config.liveUrl
+      ? `<a class="ui-tour-popover-launch" href="${state.config.liveUrl}" target="_blank" rel="noopener">Open ${state.config.appName}<span aria-hidden="true"> ↗</span></a>`
+      : '';
+
   const nextLabel = hotspot.navigateTo
     ? `Open →`
     : state.mode === 'guided'
       ? isLastGuided
-        ? 'Done'
+        ? launchCta
+          ? ''
+          : 'Done'
         : 'Next →'
       : '';
 
@@ -289,6 +365,7 @@ function showPopover(state: TourState, hotspot: HotspotDef) {
     <p class="ui-tour-popover-body">${hotspot.description}</p>
     <div class="ui-tour-popover-actions">
       <span class="ui-tour-popover-step">${stepLabel}</span>
+      ${launchCta}
       ${nextLabel ? `<button class="ui-tour-popover-next" type="button">${nextLabel}</button>` : ''}
     </div>
   `;
@@ -312,8 +389,10 @@ function showPopover(state: TourState, hotspot: HotspotDef) {
 
   state.activePopover = { screenId: state.currentScreenId, hotspotId: hotspot.id };
 
-  // Focus management
-  popover.querySelector<HTMLElement>('.ui-tour-popover-next')?.focus({ preventScroll: true });
+  // Focus management — skip while attract mode is auto-playing so the page doesn't scroll
+  if (state.attract.dismissed || state.attract.timer === null) {
+    popover.querySelector<HTMLElement>('.ui-tour-popover-next')?.focus({ preventScroll: true });
+  }
 }
 
 function positionPopover(popover: HTMLElement, dot: HTMLElement, screen: HTMLElement) {
@@ -326,12 +405,12 @@ function positionPopover(popover: HTMLElement, dot: HTMLElement, screen: HTMLEle
   const dotTop = dotRect.top - screenRect.top + dotRect.height / 2 + screen.scrollTop;
 
   // Try below first
-  let top = dotTop + 24;
+  let top = dotTop + 28;
   let left = Math.max(8, Math.min(screenRect.width - popW - 8, dotLeft - popW / 2));
 
   // If would overflow bottom, position above
   if (top + popH > screen.scrollHeight) {
-    top = Math.max(8, dotTop - popH - 24);
+    top = Math.max(8, dotTop - popH - 28);
   }
 
   popover.style.left = `${left}px`;
@@ -393,6 +472,71 @@ function updateBreadcrumb(state: TourState) {
   state.breadcrumb.innerHTML = `Screen ${idx} of ${state.config.screens.length} — <strong>${screenDef.title}</strong>`;
 }
 
+/* Attract mode: when the tour scrolls into view and the user hasn't interacted,
+   auto-play the guided tour every 4.5s. First real interaction hands control over. */
+function wireAttractMode(section: HTMLElement, state: TourState) {
+  if (state.guidedSteps.length === 0) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const stop = () => {
+    if (state.attract.timer !== null) {
+      window.clearInterval(state.attract.timer);
+      state.attract.timer = null;
+    }
+  };
+  const dismiss = () => {
+    state.attract.dismissed = true;
+    stop();
+  };
+
+  // Any real interaction inside the section ends attract mode for good
+  section.addEventListener('pointerdown', dismiss, { capture: true });
+  section.addEventListener('keydown', dismiss, { capture: true });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (state.attract.dismissed) {
+          observer.disconnect();
+          return;
+        }
+        if (entry.isIntersecting && state.attract.timer === null) {
+          // Enter guided mode silently and start stepping
+          if (state.mode !== 'guided') {
+            state.mode = 'guided';
+            section.querySelectorAll<HTMLElement>('.ui-tour-mode-toggle button').forEach((b) => {
+              const isGuided = b.getAttribute('data-mode') === 'guided';
+              b.classList.toggle('active', isGuided);
+              b.setAttribute('aria-selected', String(isGuided));
+            });
+            state.guidedIndex = 0;
+            const first = state.guidedSteps[0]!;
+            state.currentScreenId = first.screenId;
+            mountScreen(state);
+            requestAnimationFrame(() => {
+              const screenDef = getCurrentScreenDef(state);
+              const hs = screenDef.hotspots.find((h) => h.id === first.hotspotId);
+              if (hs) showPopover(state, hs);
+            });
+          }
+          state.attract.timer = window.setInterval(() => {
+            if (state.attract.dismissed) return stop();
+            if (state.guidedIndex >= state.guidedSteps.length - 1) {
+              // Loop back to the start for ambient motion
+              state.guidedIndex = -1;
+            }
+            advanceGuided(state);
+          }, 4500);
+        } else if (!entry.isIntersecting) {
+          stop();
+        }
+      }
+    },
+    { threshold: 0.55 },
+  );
+  observer.observe(section);
+}
+
 function wireControls(section: HTMLElement, state: TourState) {
   const modeButtons = section.querySelectorAll<HTMLElement>('.ui-tour-mode-toggle button');
   modeButtons.forEach((btn) => {
@@ -434,6 +578,23 @@ function wireControls(section: HTMLElement, state: TourState) {
         if (hs) showPopover(state, hs);
       });
     }
+  });
+
+  // Sidebar screen links jump straight to a screen
+  section.querySelectorAll<HTMLElement>('.ui-tour-summary li').forEach((li) => {
+    const go = () => {
+      const id = li.getAttribute('data-screen-link');
+      if (!id) return;
+      state.currentScreenId = id;
+      mountScreen(state);
+    };
+    li.addEventListener('click', go);
+    li.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        go();
+      }
+    });
   });
 
   // Esc closes popover

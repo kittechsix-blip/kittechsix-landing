@@ -1,0 +1,41 @@
+/* ========== SELF-HOSTED FONTS ==========
+   Variable woff2, latin subset. Replaces the Google Fonts <link>,
+   which production CSP (style-src 'self') silently blocked — the
+   whole site was falling back to system fonts. */
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('../assets/fonts/hanken.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/inter.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/fraunces-italic.woff2') format('woff2');
+}
+/* App-fidelity fonts for the UI tour clones (the real apps ship Geist) */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../assets/fonts/geist.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/geist-mono.woff2') format('woff2');
+}

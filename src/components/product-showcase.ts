@@ -105,6 +105,47 @@ export function renderMyMedKitt(parent: HTMLElement): void {
   });
 }
 
+export function renderMyStrokeKitt(parent: HTMLElement): void {
+  renderProductShowcase(parent, {
+    id: 'mystroke-kitt',
+    name: 'myStroke-Kitt',
+    eyebrow: 'For code stroke',
+    domain: 'clinical',
+    reverse: true,
+    description: 'The complete code-stroke companion. Triage to CT, NIHSS at the bedside, thrombolysis contraindications with hard stops, TNK dosing, and dedicated ischemic, hemorrhagic, and mimic pathways — the whole resuscitation on one screen at a time.',
+    iconSrc: 'assets/icons/mystroke-kitt.png',
+    features: [
+      { icon: '🧠', text: 'Guided triage → CT → pathway decision tree' },
+      { icon: '📝', text: 'NIHSS fast-sheet with live score interpretation' },
+      { icon: '💉', text: 'TNK 0.25 mg/kg dosing with contraindication hard stops' },
+      { icon: '🩸', text: 'ICH pathway: reversal agents, BP targets, ICH score' },
+    ],
+    status: 'Live',
+    ctaPrimary: { label: 'Open the App', action: () => window.open('https://mystroke-kitt.vercel.app', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-mystroke-kitt') },
+  });
+}
+
+export function renderAntibioticRx(parent: HTMLElement): void {
+  renderProductShowcase(parent, {
+    id: 'antibiotic-rx',
+    name: 'Antibiotic Rx',
+    eyebrow: 'For empiric & culture-directed therapy',
+    domain: 'clinical',
+    description: 'Guideline-backed antibiotic guidance for ~130 infection syndromes. Toggle the patient in front of you — allergies, pregnancy, renal function, MDR risk — and the regimen rewrites itself, with local antibiogram data and weight-based dose calculators built in.',
+    iconSrc: 'assets/icons/antibiotic-rx.png',
+    features: [
+      { icon: '🦠', text: '~130 infections across 20 categories, empiric + culture-directed' },
+      { icon: '⚙️', text: 'Patient parameters recompute the regimen live' },
+      { icon: '📊', text: 'Local antibiogram susceptibilities overlaid on recommendations' },
+      { icon: '🧮', text: 'Pediatric weight-based + renal dose calculators' },
+    ],
+    status: 'Live',
+    ctaPrimary: { label: 'Open the App', action: () => window.open('https://antibiotic-rx.vercel.app', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-antibiotic-rx') },
+  });
+}
+
 export function renderMyVertigoApp(parent: HTMLElement): void {
   renderProductShowcase(parent, {
     id: 'myvertigoapp',
@@ -122,6 +163,7 @@ export function renderMyVertigoApp(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://my-vertigo-app.vercel.app', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-my-vertigo-app') },
   });
 }
 
@@ -182,6 +224,7 @@ export function renderAcidBase(parent: HTMLElement): void {
     ],
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') },
+    ctaSecondary: { label: 'Tour the UI', action: () => scrollTo('tour-acidbase') },
   });
 }
 

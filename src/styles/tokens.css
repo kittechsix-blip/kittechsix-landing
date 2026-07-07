@@ -54,6 +54,9 @@
   --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-text:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-accent:  'Fraunces', Georgia, 'Times New Roman', serif; /* founder + pull-quotes ONLY */
+  /* app-fidelity fonts used inside the UI tour clones (real apps ship Geist) */
+  --font-geist:      'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-geist-mono: 'Geist Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
 
   /* ===== SPACING (8px base — unchanged so existing rules hold) ===== */
   --space-1: 8px;  --space-2: 16px; --space-3: 24px; --space-4: 32px;

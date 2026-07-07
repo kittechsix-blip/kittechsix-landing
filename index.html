@@ -3,15 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kittech-Six by Dr. Andy Kitlowski — Clinical &amp; Consumer Health Apps, Built in Public</title>
-  <meta name="description" content="Kittech-Six by Dr. Andy Kitlowski — a community-shaped medical software lab. Explore myMedKitt, my-vertigo-app, MyTravelMedKitt, FCK Cancer, and MyToolKitt, try live demos, and help shape the roadmap.">
+  <title>Kittech-Six by Dr. Andy Kitlowski — Bedside Tools for Your Next Shift. Free.</title>
+  <meta name="description" content="Free clinical decision tools built by a practicing ER physician: myMedKitt (44+ ER consults, 157+ drugs), myStroke-Kitt, myVertigoApp, AcidBase, and Antibiotic Rx. No account, no tracking — open and use at the bedside.">
   <meta name="theme-color" content="#FFFFFF">
+  <link rel="canonical" href="https://kittechsix-landing.vercel.app/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kittech-Six">
+  <meta property="og:title" content="Kittech-Six — Bedside tools for your next shift. Free.">
+  <meta property="og:description" content="Free clinical decision tools built by a practicing ER physician: myMedKitt, myStroke-Kitt, myVertigoApp, AcidBase, and Antibiotic Rx. No account required.">
+  <meta property="og:url" content="https://kittechsix-landing.vercel.app/">
+  <meta property="og:image" content="https://kittechsix-landing.vercel.app/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kittech-Six — Bedside tools for your next shift. Free.">
+  <meta name="twitter:description" content="Free clinical decision tools built by a practicing ER physician. No account required.">
+  <meta name="twitter:image" content="https://kittechsix-landing.vercel.app/assets/og-card.png">
+
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="assets/icons/kittech-brain.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/kittech-brain.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+
+  <!-- Self-hosted fonts (CSP blocked the old Google Fonts stylesheet in production) -->
+  <link rel="preload" href="assets/fonts/hanken.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/fonts.css">
+
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/nav.css">
@@ -24,6 +43,72 @@
   <link rel="stylesheet" href="styles/feedback.css">
   <link rel="stylesheet" href="styles/footer.css">
   <link rel="stylesheet" href="styles/ui-tour.css">
+  <link rel="stylesheet" href="styles/tour/mymedkitt.css">
+  <link rel="stylesheet" href="styles/tour/mystroke-kitt.css">
+  <link rel="stylesheet" href="styles/tour/my-vertigo-app.css">
+  <link rel="stylesheet" href="styles/tour/acidbase.css">
+  <link rel="stylesheet" href="styles/tour/antibiotic-rx.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://kittechsix-landing.vercel.app/#andy",
+        "name": "Andy Kitlowski, MD",
+        "jobTitle": "Emergency Physician",
+        "description": "Practicing ER physician in Austin, TX building free clinical decision tools.",
+        "worksFor": { "@type": "Organization", "name": "Kittech-Six" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "myMedKitt",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@id": "https://kittechsix-landing.vercel.app/#andy" },
+        "description": "44+ emergency medicine consults, 157+ drugs, and clinical calculators as interactive decision trees."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "myStroke-Kitt",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@id": "https://kittechsix-landing.vercel.app/#andy" },
+        "description": "Code-stroke decision support: triage, NIHSS, thrombolysis and ICH pathways."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "myVertigoApp",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@id": "https://kittechsix-landing.vercel.app/#andy" },
+        "description": "GRACE-3 dizzy patient workup: red flags, HINTS+, maneuvers, disposition."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "AcidBase",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@id": "https://kittechsix-landing.vercel.app/#andy" },
+        "description": "ABG and metabolic analyzer — diagnosis, reasoning, differential, and treatment from one blood gas."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Antibiotic Rx",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@id": "https://kittechsix-landing.vercel.app/#andy" },
+        "description": "Empiric and culture-directed antibiotic guidance with patient parameters, local antibiogram, and dose calculators."
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="#app" class="skip-link">Skip to main content</a>

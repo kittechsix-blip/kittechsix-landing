@@ -1,6 +1,15 @@
-// Hero Section — "The Attending": asymmetric editorial split, utility-first copy
+// Hero Section — product-forward: copy column + a live device running the real myMedKitt UI.
 
-export function renderHero(parent: HTMLElement): void {
+export interface HeroOptions {
+  /** Screens to cycle inside the hero phone (usually the first myMedKitt tour screens). */
+  phoneScreens?: Array<() => HTMLElement>;
+}
+
+const CYCLE_MS = 4200;
+const PHONE_W = 375;
+const PHONE_H = 812;
+
+export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void {
   const section = document.createElement('section');
   section.className = 'hero section-dark';
   section.id = 'hero';
@@ -18,33 +27,90 @@ export function renderHero(parent: HTMLElement): void {
         </h1>
         <p class="hero-sub">Built by the ER doctor who actually uses them &mdash; 44+ ER consults, 157+ drugs, and clinical calculators, plus health apps for everyone. No account required.</p>
         <div class="hero-cta">
-          <a class="cta-primary" href="#mymedkitt" id="hero-explore-btn">Open myMedKitt &mdash; free, no sign-up</a>
-          <a class="cta-ghost" href="#about" id="hero-feedback-btn">See how it&rsquo;s built</a>
+          <a class="cta-primary" href="https://kittechsix-blip.github.io/mymedkitt/app.html" target="_blank" rel="noopener" id="hero-explore-btn">Open myMedKitt &mdash; free, no sign-up</a>
+          <a class="cta-ghost" href="#tour-mymedkitt" id="hero-tour-btn">Tour the apps</a>
         </div>
         <ul class="hero-trust" role="list">
           <li>Andy Kitlowski, MD &middot; <strong>25</strong> yrs in emergency medicine</li>
-          <li class="is-live"><span class="live-dot" aria-hidden="true"></span><strong>4</strong> live apps</li>
+          <li class="is-live"><span class="live-dot" aria-hidden="true"></span><strong>6</strong> live apps</li>
           <li><strong>44+</strong> consults &middot; <strong>157+</strong> drugs</li>
         </ul>
       </div>
-      <div class="hero-art">
-        <img src="assets/hero-symbols.jpg" alt="Glass caduceus emblem — Kittech-Six" class="hero-art-img" />
-        <span class="hero-art-tint" aria-hidden="true"></span>
-        <span class="hero-chip">Dr. Andy Kitlowski &middot; Austin, TX</span>
+      <div class="hero-device" aria-label="myMedKitt running on a phone">
+        <div class="hero-phone-scaler">
+          <div class="hero-phone-stage">
+            <div class="hero-phone">
+              <div class="hero-phone-inner" id="hero-phone-inner"></div>
+            </div>
+            <div class="hero-chipset" aria-hidden="true">
+              <span class="hero-float-chip hero-float-chip--consults"><strong>44+</strong>&nbsp;ER consults</span>
+              <span class="hero-float-chip hero-float-chip--dose"><span class="chip-mono">TNK 0.25 mg/kg &middot; max 25 mg</span></span>
+              <span class="hero-float-chip hero-float-chip--live"><span class="chip-dot"></span>Offline-first &middot; no sign-up</span>
+            </div>
+            <span class="hero-device-caption" aria-hidden="true">myMedKitt &mdash; live app UI</span>
+          </div>
+        </div>
       </div>
     </div>
   `;
 
   parent.appendChild(section);
 
-  // Progressive enhancement: smooth-scroll the anchor CTAs (href still works without JS)
-  const scrollTo = (id: string) => (e: Event) => {
-    const target = document.getElementById(id);
+  // Progressive enhancement: smooth-scroll the tour anchor (href still works without JS)
+  document.getElementById('hero-tour-btn')?.addEventListener('click', (e) => {
+    const target = document.getElementById('tour-mymedkitt');
     if (target) {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth' });
     }
+  });
+
+  mountPhone(section, options.phoneScreens ?? []);
+}
+
+/* Mount the real app screens inside the phone and cross-fade through them. */
+function mountPhone(section: HTMLElement, screens: Array<() => HTMLElement>): void {
+  const inner = section.querySelector<HTMLElement>('#hero-phone-inner');
+  if (!inner) return;
+
+  if (screens.length === 0) {
+    // No clone screens available — show a quiet branded placeholder, never a broken image.
+    inner.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#54504A;font-size:14px;">myMedKitt</div>`;
+    return;
+  }
+
+  const mounted: HTMLElement[] = screens.map((render, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'hero-phone-screen' + (i === 0 ? ' active' : '');
+    wrap.appendChild(render());
+    inner.appendChild(wrap);
+    return wrap;
+  });
+
+  if (mounted.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let idx = 0;
+    window.setInterval(() => {
+      mounted[idx]!.classList.remove('active');
+      idx = (idx + 1) % mounted.length;
+      mounted[idx]!.classList.add('active');
+    }, CYCLE_MS);
+  }
+
+  // Scale the fixed-size device to whatever width the column offers.
+  const scaler = section.querySelector<HTMLElement>('.hero-phone-scaler');
+  const device = section.querySelector<HTMLElement>('.hero-device');
+  if (!scaler || !device) return;
+  const rescale = () => {
+    const available = Math.min(device.clientWidth, 420);
+    // Cap device height to the viewport-ish hero: scale to fit both width and ~72vh
+    const maxH = Math.min(window.innerHeight * 0.74, PHONE_H);
+    const scale = Math.min(1, available / PHONE_W, maxH / PHONE_H);
+    scaler.style.transform = scale < 1 ? `scale(${scale})` : '';
+    scaler.style.transformOrigin = 'top left';
+    // shrink the layout box with the transform so nothing overflows narrow viewports
+    scaler.style.width = `${Math.round(PHONE_W * scale)}px`;
+    scaler.style.height = `${Math.round(PHONE_H * scale)}px`;
   };
-  document.getElementById('hero-explore-btn')!.addEventListener('click', scrollTo('mymedkitt'));
-  document.getElementById('hero-feedback-btn')!.addEventListener('click', scrollTo('about'));
+  rescale();
+  window.addEventListener('resize', rescale, { passive: true });
 }

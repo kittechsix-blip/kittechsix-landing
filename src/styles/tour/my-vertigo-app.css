@@ -1,0 +1,774 @@
+/* ==========================================================================
+   myVertigoApp tour clone — pixel-faithful to apps/web/src/app/globals.css
+   Brand: Burnt Orange #BF5700 on warm-white #FFF8F2.
+   Signals: Forest Green #228B22 (safe) / Brick Red #B22222 (danger).
+   Style: iOS-native glassmorphism + subtle 3D. All selectors .vt- prefixed.
+   Renders inside the 375x812 phone frame (~351x788 scrollable viewport).
+   ========================================================================== */
+
+.vt-screen {
+  --vt-primary: #BF5700;
+  --vt-primary-light: #E87511;
+  --vt-primary-dark: #8C3F00;
+  --vt-safe: #228B22;
+  --vt-safe-light: #2EAF2E;
+  --vt-safe-bg: #F0FFF0;
+  --vt-danger: #B22222;
+  --vt-danger-light: #D43333;
+  --vt-danger-bg: #FDF2F2;
+  --vt-text: #1A1A1A;
+  --vt-text-2: #6B7280;
+  --vt-text-muted: #9CA3AF;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #FFF8F2;
+  color: #1A1A1A;
+  font-family: var(--font-geist, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.vt-screen * { box-sizing: border-box; }
+
+.vt-screen button {
+  font-family: inherit;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* --- iOS status bar (PWA standalone) ------------------------------------ */
+
+.vt-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 26px 6px;
+  color: #1A1A1A;
+}
+
+.vt-statusbar__time {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.vt-statusbar__icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vt-statusbar__svg { width: 17px; height: 11px; display: block; }
+.vt-statusbar__svg--battery { width: 25px; height: 12px; }
+
+/* --- Amber "NOT FDA CLEARED" disclaimer banner --------------------------- */
+
+.vt-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #FEF3C7;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.3);
+  color: #78350F;
+}
+
+.vt-banner__icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #B45309;
+}
+
+.vt-banner__text {
+  flex: 1;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.vt-banner__strong { font-weight: 600; }
+
+.vt-banner__learn {
+  font-size: 11px;
+  color: #78350F;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+/* --- Progress pills header (sticky glass-panel) -------------------------- */
+
+.vt-pills {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.vt-pills__row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 16px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.vt-pills__row::-webkit-scrollbar { display: none; }
+
+.vt-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  min-height: 36px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vt-pill__glyph { font-size: 12px; line-height: 1; }
+
+.vt-pill--future { background: rgba(0, 0, 0, 0.04); color: #9CA3AF; }
+
+.vt-pill--current {
+  background: #BF5700;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(191, 87, 0, 0.3);
+}
+
+.vt-pill--completed {
+  background: rgba(34, 139, 34, 0.1);
+  color: #228B22;
+  border: 1.5px solid #228B22;
+}
+
+.vt-pill--danger {
+  background: rgba(178, 34, 34, 0.1);
+  color: #B22222;
+  border: 1.5px solid #B22222;
+}
+
+/* --- Main scroll column --------------------------------------------------- */
+
+.vt-main {
+  flex: 1;
+  padding: 24px 16px;
+}
+
+.vt-col {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+/* --- Glass cards ----------------------------------------------------------- */
+
+.vt-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  animation: vt-slide-up 0.35s ease-out;
+}
+
+.vt-card--danger {
+  border: 2px solid rgba(178, 34, 34, 0.3);
+  background: #FDF2F2;
+}
+
+.vt-card--stroke {
+  background: #B22222;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.vt-card__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1A1A1A;
+}
+
+.vt-card__title--onred { color: #FFFFFF; }
+
+.vt-card__bigicon {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.vt-card__body {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.625;
+  color: #1A1A1A;
+}
+
+.vt-card__body p { margin: 0 0 8px; }
+.vt-card__body p:last-child { margin-bottom: 0; }
+
+.vt-card__body--onred { margin-top: 12px; }
+.vt-card__body--onred p { color: rgba(255, 255, 255, 0.9); }
+
+.vt-card__sub {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #6B7280;
+}
+
+.vt-card__actions {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vt-card__actions--row {
+  flex-direction: row;
+  margin-top: 16px;
+}
+
+/* --- GRACE-3 bullets ------------------------------------------------------- */
+
+.vt-bullet {
+  display: flex;
+  gap: 8px;
+  padding-left: 8px;
+  margin-top: 8px;
+}
+
+.vt-bullet__dot {
+  flex-shrink: 0;
+  color: #BF5700;
+}
+
+/* --- 📚 Sources collapsible ------------------------------------------------ */
+
+.vt-sources {
+  margin-top: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.vt-sources__summary {
+  cursor: pointer;
+  list-style: none;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vt-sources__summary::-webkit-details-marker { display: none; }
+
+.vt-sources__label { font-weight: 600; }
+.vt-sources__count { opacity: 0.7; }
+.vt-sources__caret { margin-left: auto; opacity: 0.6; }
+
+/* --- 3D button system (the signature pattern) ------------------------------ */
+
+.vt-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  min-height: 48px;
+  text-decoration: none;
+}
+
+.vt-btn--full { width: 100%; }
+.vt-btn--flex { flex: 1; }
+.vt-btn--back { margin-top: 16px; }
+
+.vt-btn--primary {
+  background: linear-gradient(180deg, #E87511 0%, #BF5700 40%, #A64B00 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(191, 87, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.vt-btn--safe {
+  background: linear-gradient(180deg, #2EAF2E 0%, #228B22 40%, #1B6E1B 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.vt-btn--danger {
+  background: linear-gradient(180deg, #D43333 0%, #B22222 40%, #8B1A1A 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(178, 34, 34, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.vt-btn--neutral {
+  background: linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 40%, #E5E7EB 100%);
+  color: #1A1A1A;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Translucent buttons on the full-red stroke card */
+.vt-btn--ghost {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.vt-btn--ghost-dim {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vt-btn--pulse { animation: vt-pulse-red 1.5s ease-in-out infinite; }
+
+/* Stacked option buttons (Timing & Triggers) */
+.vt-btn--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+  padding: 14px 16px;
+}
+
+.vt-btn__t { font-weight: 600; }
+
+.vt-btn__d {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+  opacity: 0.8;
+}
+
+/* Picker buttons (HINTS+) */
+.vt-btn--pick {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.vt-pickgrid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+/* --- Section labels / hints ------------------------------------------------ */
+
+.vt-seclabel {
+  margin: 20px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6B7280;
+}
+
+.vt-hint {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #6B7280;
+}
+
+/* --- Checklist rows (Deadly D's + disposition toggles) ---------------------- */
+
+.vt-checklist {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vt-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.vt-check--danger {
+  background: rgba(178, 34, 34, 0.1);
+  border: 1px solid rgba(178, 34, 34, 0.3);
+}
+
+.vt-check__box {
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 2px solid #D1D5DB;
+  background: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.vt-check__box--danger {
+  border-color: #B22222;
+  background: #B22222;
+  color: #FFFFFF;
+}
+
+.vt-check__box--done {
+  border-color: #228B22;
+  background: #228B22;
+  color: #FFFFFF;
+}
+
+.vt-check__box--radio { border-radius: 9999px; }
+
+.vt-check__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vt-check__label {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.vt-check__label--danger { color: #B22222; }
+
+.vt-check__desc {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #6B7280;
+}
+
+/* --- HINTS result banners --------------------------------------------------- */
+
+.vt-result {
+  margin-top: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #1A1A1A;
+}
+
+.vt-result--safe {
+  background: #F0FFF0;
+  border-color: rgba(34, 139, 34, 0.25);
+}
+
+.vt-result--danger {
+  background: #FDF2F2;
+  border-color: rgba(178, 34, 34, 0.25);
+}
+
+/* --- Dictation block ---------------------------------------------------------- */
+
+.vt-dictation { margin-top: 16px; }
+
+.vt-dictation .vt-seclabel { margin-top: 0; }
+
+.vt-dictation__pre {
+  margin: 8px 0 0;
+  white-space: pre-wrap;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.03);
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #1A1A1A;
+  font-family: var(--font-geist-mono, ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace);
+}
+
+/* --- 🎬 Video link row ----------------------------------------------------------- */
+
+.vt-video {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-size: 14px;
+  background: linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 40%, #E5E7EB 100%);
+  color: #1A1A1A;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vt-video__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vt-video__title { font-weight: 600; }
+
+.vt-video__ext {
+  margin-left: auto;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.vt-video__sub {
+  padding-left: 24px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* --- Maneuver timeline (gradient numbered circles) -------------------------------- */
+
+.vt-steps {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vt-step { display: flex; gap: 12px; }
+
+.vt-step__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vt-step__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #E87511 0%, #BF5700 100%);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.vt-step__line {
+  flex: 1;
+  width: 2px;
+  background: rgba(191, 87, 0, 0.2);
+}
+
+.vt-step__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
+}
+
+.vt-step__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #1A1A1A;
+}
+
+.vt-step__chip {
+  display: inline-block;
+  width: fit-content;
+  border-radius: 9999px;
+  background: rgba(191, 87, 0, 0.1);
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #BF5700;
+}
+
+/* --- Disposition builder -------------------------------------------------------------- */
+
+.vt-dispo-h {
+  margin: 22px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.vt-dispo-h + .vt-checklist { margin-top: 10px; }
+
+.vt-info-panel {
+  margin: -2px 0 2px;
+  border: 1px solid rgba(191, 87, 0, 0.2);
+  background: rgba(191, 87, 0, 0.05);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.vt-info-panel__text {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1A1A1A;
+}
+
+.vt-microhead {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #BF5700;
+}
+
+.vt-microhead--danger { color: #B22222; }
+
+.vt-return-panel {
+  margin-top: 10px;
+  border: 1px solid rgba(178, 34, 34, 0.2);
+  background: #FDF2F2;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.vt-return-panel__text {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1A1A1A;
+}
+
+.vt-qr-note {
+  margin: 0;
+  font-size: 12px;
+  text-align: center;
+  color: #6B7280;
+}
+
+/* --- Expert toolbar (sticky bottom glass-panel) ------------------------------------------ */
+
+.vt-toolbar {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding-bottom: 14px; /* home-indicator safe area */
+}
+
+.vt-toolbar__row {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 8px 12px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.vt-toolbar__row::-webkit-scrollbar { display: none; }
+
+.vt-toolbar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  padding: 6px 12px;
+  color: #6B7280;
+  cursor: pointer;
+}
+
+.vt-toolbar__item--pro {
+  color: #9CA3AF;
+  opacity: 0.7;
+}
+
+.vt-toolbar__icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.vt-toolbar__label {
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.vt-toolbar__badge {
+  margin-left: 2px;
+  border-radius: 4px;
+  background: rgba(191, 87, 0, 0.1);
+  padding: 0 4px;
+  font-size: 8px;
+  font-weight: 600;
+  color: #BF5700;
+  vertical-align: 1px;
+}
+
+.vt-toolbar__divider {
+  margin: 0 4px;
+  width: 1px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* --- Animations ----------------------------------------------------------------------------- */
+
+@keyframes vt-slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes vt-pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(178, 34, 34, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(178, 34, 34, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vt-card { animation: none; }
+  .vt-btn--pulse { animation: none; }
+}

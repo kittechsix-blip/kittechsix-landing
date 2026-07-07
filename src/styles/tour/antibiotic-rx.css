@@ -1,0 +1,554 @@
+/* ============================================================================
+   Antibiotic Rx — UI-tour clone styles.  Namespace: .rx-
+   Pixel-faithful to ~/Desktop/Antibiotic-Rx (Clinical Indigo #4338CA, Emerald
+   #047857 culture path, Copper #B45309 resistance/antibiogram, Geist,
+   glassmorphism over an indigo/emerald aurora on #F5F6FB, subtle 3D buttons).
+   Renders inside a 375x812 phone frame → ~351x788 scrollable viewport.
+   ALL selectors are prefixed .rx- — no bare element selectors, no leakage.
+   ============================================================================ */
+
+.rx-screen {
+  /* Design tokens (scoped to the clone) */
+  --rx-primary: #4338CA;
+  --rx-primary-light: #6366F1;
+  --rx-primary-dark: #3730A3;
+  --rx-bg: #F5F6FB;
+  --rx-fg: #101828;
+  --rx-text-secondary: #475467;
+  --rx-text-muted: #98A2B3;
+  --rx-border: rgba(16, 24, 40, 0.08);
+
+  --rx-safe: #15803D;        --rx-safe-bg: #F0FDF4;
+  --rx-danger: #BE123C;      --rx-danger-bg: #FFF1F3;
+  --rx-caution: #B45309;     --rx-caution-bg: #FFFBEB;
+
+  --rx-empiric: #4338CA;     --rx-empiric-bg: #EEF2FF;
+  --rx-culture: #047857;     --rx-culture-bg: #ECFDF5;
+  --rx-resistance: #B45309;  --rx-resistance-bg: #FEF3C7;
+
+  --rx-shadow-card: 0 2px 8px rgba(16,24,40,0.06), 0 0 1px rgba(16,24,40,0.1);
+  --rx-shadow-glass: 0 8px 32px rgba(16,24,40,0.08);
+  --rx-shadow-button: 0 4px 12px rgba(67, 56, 202, 0.25);
+
+  --rx-radius-md: 12px;
+  --rx-radius-lg: 16px;
+  --rx-radius-xl: 20px;
+
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-geist, "Geist", -apple-system, "Segoe UI", ui-sans-serif, system-ui, sans-serif);
+  color: var(--rx-fg);
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(99, 102, 241, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(4, 120, 87, 0.06), transparent 55%),
+    var(--rx-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.rx-screen *,
+.rx-screen *::before,
+.rx-screen *::after { box-sizing: border-box; }
+
+.rx-ico { display: block; width: 100%; height: 100%; }
+
+/* ── shared glass card ──────────────────────────────────────────────────── */
+.rx-glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--rx-radius-xl);
+  box-shadow: var(--rx-shadow-card);
+}
+
+/* ── micro-labels ───────────────────────────────────────────────────────── */
+.rx-microlabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--rx-text-muted);
+}
+.rx-microlabel--primary { color: var(--rx-primary); font-size: 12px; }
+.rx-microlabel--resistance { color: var(--rx-resistance); font-size: 12px; }
+
+/* ── pills ──────────────────────────────────────────────────────────────── */
+.rx-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  min-height: 24px;
+  letter-spacing: 0.01em;
+}
+.rx-pill--empiric { background: rgba(67, 56, 202, 0.12); color: var(--rx-primary-dark); }
+.rx-pill--culture { background: rgba(4, 120, 87, 0.12); color: var(--rx-culture); }
+.rx-pill--resistance { background: rgba(180, 83, 9, 0.14); color: var(--rx-resistance); }
+
+/* ── 3D buttons ─────────────────────────────────────────────────────────── */
+.rx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--rx-radius-lg);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+  min-height: 52px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.rx-btn--primary {
+  background: linear-gradient(180deg, #6366F1 0%, #4338CA 45%, #3730A3 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* ── header (sticky, gradient fade) ─────────────────────────────────────── */
+.rx-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 8px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  background: linear-gradient(180deg, var(--rx-bg) 78%, transparent);
+}
+.rx-header__brand { display: flex; align-items: center; gap: 10px; }
+.rx-header__badge {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: var(--rx-primary);
+  color: #fff;
+  padding: 8px;
+}
+.rx-header__title { font-size: 17px; font-weight: 700; line-height: 1; color: var(--rx-fg); }
+.rx-header__tagline { font-size: 11px; font-weight: 500; color: var(--rx-text-secondary); margin-top: 3px; }
+.rx-header__ref {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 9999px; border: none;
+  background: rgba(16, 24, 40, 0.05);
+  color: var(--rx-text-secondary);
+  padding: 9px;
+  cursor: pointer;
+}
+
+/* ── body ───────────────────────────────────────────────────────────────── */
+.rx-body {
+  flex: 1;
+  padding: 0 16px 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rx-intro {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--rx-text-secondary);
+  padding: 0 2px;
+}
+
+/* ── search ─────────────────────────────────────────────────────────────── */
+.rx-search { position: relative; display: flex; align-items: center; }
+.rx-search > .rx-ico {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 18px; height: 18px;
+  color: var(--rx-text-muted);
+  pointer-events: none;
+}
+.rx-lab-input {
+  width: 100%;
+  min-height: 52px;
+  border-radius: var(--rx-radius-md);
+  border: 1.5px solid var(--rx-border);
+  background: #fff;
+  padding: 0 14px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--rx-fg);
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.rx-search__input { padding-left: 44px; }
+
+/* ── infection categories ───────────────────────────────────────────────── */
+.rx-cat { display: flex; flex-direction: column; gap: 8px; }
+.rx-cat__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--rx-text-muted);
+  padding: 0 2px;
+}
+.rx-cat__rows { display: flex; flex-direction: column; gap: 8px; }
+.rx-inf-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.rx-inf-row__main { min-width: 0; flex: 1; }
+.rx-inf-row__name {
+  font-size: 15px; font-weight: 700; color: var(--rx-fg);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rx-inf-row__sub {
+  font-size: 12px; color: var(--rx-text-secondary); margin-top: 2px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rx-inf-row > .rx-ico { width: 18px; height: 18px; flex-shrink: 0; color: var(--rx-text-muted); }
+
+/* ── result head ────────────────────────────────────────────────────────── */
+.rx-result-head { display: flex; flex-direction: column; gap: 4px; }
+.rx-back {
+  display: inline-flex; align-items: center; gap: 2px;
+  align-self: flex-start;
+  font-size: 13px; font-weight: 700;
+  color: var(--rx-primary);
+  background: none; border: none; cursor: pointer;
+  padding: 0; font-family: inherit;
+  margin-bottom: 2px;
+}
+.rx-back > .rx-ico { width: 16px; height: 16px; }
+.rx-result-head__title { font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--rx-fg); }
+.rx-result-head__desc { font-size: 13px; line-height: 1.4; color: var(--rx-text-secondary); margin-top: 2px; }
+
+/* ── path segmented selector ────────────────────────────────────────────── */
+.rx-pathseg {
+  display: flex; gap: 4px;
+  border-radius: 9999px;
+  padding: 4px;
+  background: rgba(16, 24, 40, 0.05);
+}
+.rx-pathseg__tab {
+  flex: 1;
+  border-radius: 9999px;
+  padding: 8px 12px;
+  min-height: 42px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: var(--rx-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+}
+.rx-pathseg__tab--empiric-on {
+  background: var(--rx-empiric); color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.rx-pathseg__tab--culture-on {
+  background: var(--rx-culture); color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* ── patient-parameters summary bar ─────────────────────────────────────── */
+.rx-params-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.rx-params-bar__left { display: flex; align-items: center; gap: 10px; }
+.rx-params-bar__icon { width: 17px; height: 17px; color: var(--rx-primary); }
+.rx-params-bar__title { font-size: 13px; font-weight: 700; color: var(--rx-fg); }
+.rx-params-bar__sub { font-size: 12px; color: var(--rx-text-secondary); margin-top: 1px; }
+
+/* ── result list + regimen cards ────────────────────────────────────────── */
+.rx-result-list { display: flex; flex-direction: column; gap: 16px; }
+.rx-regimen { padding: 16px; }
+.rx-regimen--empiric { border-left: 4px solid var(--rx-empiric); }
+.rx-regimen--culture { border-left: 4px solid var(--rx-culture); }
+.rx-regimen__tagrow { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.rx-regimen__ctx { font-size: 12px; font-weight: 600; color: var(--rx-text-secondary); }
+.rx-regimen__drug {
+  font-size: 15px; font-weight: 700; line-height: 1.35; color: var(--rx-fg);
+  margin: 2px 0 10px;
+}
+.rx-regimen__alt { font-size: 13.5px; line-height: 1.35; color: var(--rx-text-secondary); margin: 2px 0 10px; }
+.rx-regimen__dur { font-size: 12.5px; line-height: 1.4; color: var(--rx-text-secondary); }
+.rx-regimen__dur strong { color: var(--rx-fg); }
+.rx-regimen__note { font-size: 12.5px; line-height: 1.4; color: var(--rx-text-secondary); margin-top: 8px; }
+.rx-regimen__orghead {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  font-size: 14px; font-weight: 700; color: var(--rx-culture);
+}
+.rx-regimen__orghead > .rx-ico { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ── collapsible other settings ─────────────────────────────────────────── */
+.rx-details { overflow: hidden; }
+.rx-details__summary {
+  cursor: pointer; list-style: none;
+  padding: 12px 16px;
+  font-size: 13px; font-weight: 700;
+  color: var(--rx-primary);
+}
+.rx-details__summary::-webkit-details-marker { display: none; }
+.rx-details__body { display: flex; flex-direction: column; gap: 12px; padding: 0 16px 16px; }
+.rx-subcard { border-radius: var(--rx-radius-md); padding: 14px; background: rgba(16,24,40,0.03); }
+.rx-subcard__ctx { font-size: 12px; font-weight: 600; color: var(--rx-text-secondary); margin-bottom: 8px; }
+
+/* ── can't-miss ─────────────────────────────────────────────────────────── */
+.rx-cantmiss { padding: 16px; }
+.rx-cantmiss__head { display: flex; align-items: center; gap: 8px; color: var(--rx-danger); margin-bottom: 8px; }
+.rx-cantmiss__head > .rx-ico { width: 16px; height: 16px; }
+.rx-cantmiss__head h3 {
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.rx-cantmiss__list { display: flex; flex-direction: column; gap: 6px; list-style: none; }
+.rx-cantmiss__list li {
+  display: flex; gap: 8px;
+  font-size: 13px; line-height: 1.35; color: var(--rx-text-secondary);
+}
+.rx-bullet { color: var(--rx-danger); margin-top: 2px; }
+
+.rx-sources { padding: 0 2px; font-size: 11px; line-height: 1.5; color: var(--rx-text-muted); }
+
+/* ── FAB ────────────────────────────────────────────────────────────────── */
+.rx-fab {
+  position: absolute;
+  right: 16px; bottom: 20px;
+  z-index: 40;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 22px 14px 20px;
+  border-radius: 9999px;
+  min-height: 52px;
+  font-size: 16px; font-weight: 600;
+  border: none; cursor: pointer;
+  font-family: inherit;
+  background: linear-gradient(180deg, #6366F1 0%, #4338CA 45%, #3730A3 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.rx-fab > .rx-ico { width: 18px; height: 18px; }
+
+/* ── disclaimer gate ────────────────────────────────────────────────────── */
+.rx-screen--gate { justify-content: center; }
+.rx-gate-wrap {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  padding-top: max(20px, env(safe-area-inset-top));
+}
+.rx-gate { width: 100%; max-width: 340px; padding: 24px; }
+.rx-gate__head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.rx-gate__badge {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 16px;
+  background: var(--rx-primary); color: #fff;
+  padding: 11px;
+}
+.rx-gate__title { font-size: 18px; font-weight: 700; line-height: 1.15; color: var(--rx-fg); }
+.rx-gate__sub { font-size: 12px; font-weight: 500; color: var(--rx-text-secondary); margin-top: 2px; }
+.rx-gate__body { display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.6; color: var(--rx-text-secondary); }
+.rx-gate__body strong { color: var(--rx-fg); }
+.rx-gate__cta { width: 100%; margin-top: 24px; }
+
+/* ── bottom sheet ───────────────────────────────────────────────────────── */
+.rx-screen--sheet {
+  justify-content: flex-end;
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(99, 102, 241, 0.10), transparent 60%),
+    rgba(16, 24, 40, 0.45);
+}
+.rx-sheet {
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: var(--rx-shadow-glass);
+  max-height: 94%;
+  display: flex;
+  flex-direction: column;
+}
+.rx-sheet__handle {
+  width: 38px; height: 5px;
+  border-radius: 9999px;
+  background: rgba(16, 24, 40, 0.15);
+  margin: 8px auto 0;
+}
+.rx-sheet__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px 14px;
+  border-bottom: 1px solid var(--rx-border);
+}
+.rx-sheet__head h2 { font-size: 16px; font-weight: 700; color: var(--rx-fg); }
+.rx-sheet__close {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 9999px; border: none;
+  background: rgba(16, 24, 40, 0.05);
+  color: var(--rx-text-secondary);
+  padding: 9px; cursor: pointer;
+}
+.rx-sheet__body {
+  overflow-y: auto;
+  padding: 16px 20px 24px;
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+/* ── param fields ───────────────────────────────────────────────────────── */
+.rx-field { display: flex; flex-direction: column; gap: 8px; }
+.rx-field__label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--rx-text-muted);
+}
+
+/* segmented control (in sheets/result) */
+.rx-seg {
+  display: flex; gap: 4px;
+  border-radius: 9999px;
+  padding: 4px;
+  background: rgba(16, 24, 40, 0.05);
+}
+.rx-seg__tab {
+  flex: 1;
+  border-radius: 9999px;
+  padding: 8px 12px;
+  min-height: 38px;
+  font-size: 13px; font-weight: 600;
+  border: none; background: transparent;
+  color: var(--rx-text-secondary);
+  cursor: pointer; font-family: inherit;
+}
+.rx-seg__tab--on {
+  background: var(--rx-primary); color: #fff;
+  box-shadow: 0 2px 6px rgba(67, 56, 202, 0.3);
+}
+.rx-seg--sm { margin: 12px 0; }
+.rx-seg--sm .rx-seg__tab { min-height: 34px; padding: 6px 8px; font-size: 12px; }
+
+/* toggle chips */
+.rx-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.rx-toggle-chip {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 14px;
+  border-radius: 9999px;
+  font-size: 13px; font-weight: 600;
+  min-height: 40px;
+  border: 1.5px solid var(--rx-border);
+  background: #fff;
+  color: var(--rx-text-secondary);
+  cursor: pointer; font-family: inherit;
+}
+.rx-toggle-chip[data-on="true"] {
+  border-color: var(--rx-primary);
+  background: var(--rx-empiric-bg);
+  color: var(--rx-primary-dark);
+  box-shadow: inset 0 0 0 1px rgba(67, 56, 202, 0.25);
+}
+.rx-toggle-chip[data-tone="danger"][data-on="true"] {
+  border-color: var(--rx-danger);
+  background: var(--rx-danger-bg);
+  color: var(--rx-danger);
+  box-shadow: inset 0 0 0 1px rgba(190, 18, 60, 0.25);
+}
+.rx-toggle-chip[data-tone="resistance"][data-on="true"] {
+  border-color: var(--rx-resistance);
+  background: var(--rx-resistance-bg);
+  color: var(--rx-resistance);
+  box-shadow: inset 0 0 0 1px rgba(180, 83, 9, 0.28);
+}
+
+/* CrCl input row */
+.rx-crcl { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.rx-crcl__label { font-size: 13px; font-weight: 600; color: var(--rx-text-secondary); }
+.rx-crcl__input { max-width: 90px; min-height: 44px; }
+.rx-crcl__hint { font-size: 12px; color: var(--rx-text-muted); }
+
+/* ── signal blocks ──────────────────────────────────────────────────────── */
+.rx-signal { display: flex; align-items: flex-start; gap: 10px; border-radius: var(--rx-radius-md); padding: 12px; }
+.rx-signal--danger { background: var(--rx-danger-bg); border-left: 4px solid var(--rx-danger); }
+.rx-signal--resistance { background: var(--rx-resistance-bg); border-left: 4px solid var(--rx-resistance); }
+.rx-signal__icon { width: 17px; height: 17px; flex-shrink: 0; color: var(--rx-danger); margin-top: 1px; }
+.rx-signal__title { font-size: 13px; font-weight: 700; color: var(--rx-fg); }
+.rx-signal__text { font-size: 13px; line-height: 1.5; color: var(--rx-text-secondary); margin-top: 2px; }
+
+/* ── modifiers card ─────────────────────────────────────────────────────── */
+.rx-modifiers { padding: 16px; }
+.rx-modifiers__head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--rx-primary); }
+.rx-modifiers__head > .rx-ico { width: 16px; height: 16px; }
+.rx-modifiers__head h3 {
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--rx-fg);
+}
+.rx-modifiers__item { border-radius: 10px; padding: 10px; background: rgba(16, 24, 40, 0.03); }
+.rx-modifiers__text { font-size: 13.5px; font-weight: 600; line-height: 1.35; color: var(--rx-fg); margin-top: 6px; }
+
+/* ── local antibiogram card ─────────────────────────────────────────────── */
+.rx-abg { padding: 16px; border-left: 4px solid var(--rx-resistance); }
+.rx-abg__head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--rx-resistance); }
+.rx-abg__head > .rx-ico { width: 16px; height: 16px; flex-shrink: 0; }
+.rx-abg__head h3 { font-size: 13px; font-weight: 700; color: var(--rx-fg); }
+.rx-abg__guidance {
+  font-size: 13px; line-height: 1.4; color: var(--rx-fg);
+  margin-bottom: 12px; padding: 10px; border-radius: 10px;
+}
+.rx-abg__table { display: flex; flex-direction: column; gap: 6px; }
+.rx-srow { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; }
+.rx-srow__label { color: var(--rx-text-secondary); }
+.rx-srow__label strong { color: var(--rx-fg); }
+.rx-srow__pct { font-weight: 700; font-variant-numeric: tabular-nums; }
+.rx-srow__pct--safe { color: var(--rx-safe); }
+.rx-srow__pct--caution { color: var(--rx-caution); }
+.rx-srow__pct--danger { color: var(--rx-danger); }
+.rx-abg__source { font-size: 11px; line-height: 1.5; color: var(--rx-text-muted); margin-top: 10px; }
+
+/* ── dose calculator ────────────────────────────────────────────────────── */
+.rx-druglist { display: block; width: 100%; padding: 12px; text-align: left; cursor: pointer; }
+.rx-druglist__name { font-size: 15px; font-weight: 700; color: var(--rx-fg); }
+.rx-druglist__sub { font-size: 12px; color: var(--rx-text-secondary); margin-top: 2px; }
+
+.rx-dosecard { padding: 14px; }
+.rx-dosecard__formula { font-size: 11px; color: var(--rx-text-secondary); margin-top: 4px; }
+.rx-dosecard__result { margin-top: 12px; border-radius: 10px; padding: 12px; background: var(--rx-empiric-bg); }
+.rx-dosecard__weight { font-size: 11px; font-weight: 600; color: var(--rx-text-secondary); }
+.rx-dosecard__give { font-size: 18px; font-weight: 700; color: var(--rx-primary-dark); margin: 2px 0; }
+.rx-dosecard__math { font-size: 12px; color: var(--rx-text-secondary); }
+
+.rx-renal { padding: 14px; }
+.rx-renal__inputrow { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.rx-renal__input { max-width: 120px; min-height: 44px; }
+.rx-renal__hint { font-size: 11px; color: var(--rx-text-muted); }
+.rx-renal__tiers { display: flex; flex-direction: column; gap: 4px; }
+.rx-renal__tier {
+  display: flex; align-items: flex-start; gap: 8px;
+  border-radius: 10px; padding: 8px;
+  font-size: 12.5px;
+  background: rgba(16, 24, 40, 0.03);
+  border: 1.5px solid transparent;
+}
+.rx-renal__tier--active {
+  background: var(--rx-resistance-bg);
+  border-color: var(--rx-resistance);
+}
+.rx-renal__range { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--rx-fg); min-width: 60px; }
+.rx-renal__dose { color: var(--rx-text-secondary); }
