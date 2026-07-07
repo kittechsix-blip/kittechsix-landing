@@ -18,7 +18,7 @@ export const mkTour: UITourConfig = {
   appName: 'myMedKitt',
   eyebrow: 'Tour the UI',
   subtitle:
-    'The flagship: 44+ evidence-based consults across 18 specialties, 157+ drugs, 20+ calculators — offline, free, no sign-up. Walk one real DKA resuscitation from dashboard to dosed insulin drip.',
+    'The flagship: 400+ evidence-based consults across 20 specialties, 300+ drugs, 20+ calculators — offline, free, no sign-up. Walk one real DKA resuscitation from dashboard to dosed insulin drip.',
   accentColor: '#3CB371',
   initialScreen: 'dashboard',
   liveUrl: 'https://kittechsix-blip.github.io/mymedkitt/app.html',
@@ -33,7 +33,7 @@ export const mkTour: UITourConfig = {
           anchorSelector: '[data-mk="search"]',
           title: 'One search box for everything',
           description:
-            'Type "dka", "diltiazem", or "PESI" — the first keystroke returns ranked results across 44+ consults, 157+ drugs, and 20+ calculators, each badged by type so you grab the right one at a glance.',
+            'Type "dka", "diltiazem", or "PESI" — the first keystroke returns ranked results across 400+ consults, 300+ drugs, and 20+ calculators, each badged by type so you grab the right one at a glance.',
           guidedOrder: 1,
         },
         {
@@ -50,7 +50,7 @@ export const mkTour: UITourConfig = {
           anchorSelector: '[data-mk="cat-cardiology"]',
           title: 'Specialty glass cards',
           description:
-            'Eighteen specialties as color-coded metallic glass — Cardiology red, EM blue, Neurology teal. Every card shows its live consult count; you’re two taps from any answer.',
+            'Twenty specialties as color-coded metallic glass — Cardiology red, EM blue, Neurology teal. Every card shows its live consult count; you’re two taps from any answer.',
         },
         {
           id: 'hubs',

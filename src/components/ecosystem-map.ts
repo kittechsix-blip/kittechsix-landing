@@ -26,7 +26,7 @@ const PROJECTS: EcosystemProject[] = [
     stage: 'Live clinical build',
     statusTone: 'live',
     summary: 'Mobile-first emergency medicine consults, drugs, calculators, and rapid decision support.',
-    proof: '44+ consults, 157+ drugs, offline PWA architecture, Supabase-backed clinical content.',
+    proof: '400+ consults, 300+ drugs, offline PWA architecture, Supabase-backed clinical content.',
     communityAsk: 'Suggest missing consults, unsafe workflow gaps, and bedside usability fixes.',
     url: 'https://kittechsix-blip.github.io/mymedkitt/app.html',
     sectionId: 'mymedkitt',

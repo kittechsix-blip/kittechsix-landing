@@ -27,7 +27,7 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
             <span class="line"><span class="line-inner hero-accent">Free.</span></span>
           </span>
         </h1>
-        <p class="hero-sub">Built by the ER doctor who actually uses them &mdash; 44+ ER consults, 157+ drugs, and clinical calculators, plus health apps for everyone. No account required.</p>
+        <p class="hero-sub">Built by the ER doctor who actually uses them &mdash; 400+ ER consults, 300+ drugs, and clinical calculators, plus health apps for everyone. No account required.</p>
         <div class="hero-cta">
           <a class="cta-primary" href="https://kittechsix-blip.github.io/mymedkitt/app.html" target="_blank" rel="noopener" id="hero-explore-btn">Open myMedKitt &mdash; free, no sign-up</a>
           <a class="cta-ghost" href="#apptabs-mymedkitt" id="hero-tour-btn">Tour the apps</a>
@@ -35,7 +35,7 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
         <ul class="hero-trust" role="list">
           <li>Andy Kitlowski, MD &middot; <strong>25</strong> yrs in emergency medicine</li>
           <li class="is-live"><span class="live-dot" aria-hidden="true"></span><strong>6</strong> live apps</li>
-          <li><strong>44+</strong> consults &middot; <strong>157+</strong> drugs</li>
+          <li><strong>400+</strong> consults &middot; <strong>300+</strong> drugs</li>
         </ul>
       </div>
       <div class="hero-device" aria-label="myMedKitt running on a phone">
@@ -45,7 +45,7 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
               <div class="hero-phone-inner" id="hero-phone-inner"></div>
             </div>
             <div class="hero-chipset" aria-hidden="true">
-              <span class="hero-float-chip hero-float-chip--consults"><strong>44+</strong>&nbsp;ER consults</span>
+              <span class="hero-float-chip hero-float-chip--consults"><strong>400+</strong>&nbsp;ER consults</span>
               <span class="hero-float-chip hero-float-chip--dose"><span class="chip-mono">TNK 0.25 mg/kg &middot; max 25 mg</span></span>
               <span class="hero-float-chip hero-float-chip--live"><span class="chip-dot"></span>Offline-first &middot; no sign-up</span>
             </div>

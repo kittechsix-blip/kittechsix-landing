@@ -96,8 +96,8 @@ export function renderMyMedKitt(parent: HTMLElement): void {
     description: 'Evidence-based clinical decision trees for the emergency department. Built for the phone in your pocket, designed for the patient in front of you.',
     iconSrc: 'assets/icons/mymedkitt.png',
     features: [
-      { icon: '🩺', text: '44+ evidence-based ED consults' },
-      { icon: '💊', text: '157-drug pharmacy with weight-based dose calculators' },
+      { icon: '🩺', text: '400+ evidence-based ED consults' },
+      { icon: '💊', text: '300+ drug pharmacy with weight-based dose calculators' },
       { icon: '🧮', text: '25+ bedside calculators (PESI, NIHSS, TIMI, Sgarbossa)' },
       { icon: '📴', text: 'Fully offline PWA' },
     ],
