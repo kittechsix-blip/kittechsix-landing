@@ -183,7 +183,7 @@ export function renderMyTravelMedKitt(parent: HTMLElement): void {
       { icon: '💊', text: 'Drug interaction checker' },
       { icon: '📴', text: 'Full offline functionality' },
     ],
-    status: 'In Development',
+    status: 'Live',
     ctaPrimary: { label: 'Try the Demo', action: () => activateAppTab('mytravelmedkitt', 'demo') },
   });
 }
@@ -203,7 +203,7 @@ export function renderFckCancer(parent: HTMLElement): void {
       { icon: '🧴', text: 'My Body protocols for skin, heart, brain, gut, and more' },
       { icon: '🩺', text: 'Cancer screening checklist and reminders' },
     ],
-    status: 'Live',
+    status: 'In Development',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://fck-cancer.vercel.app', '_blank', 'noopener') },
     ctaSecondary: { label: 'Suggest Improvements', action: () => scrollTo('feedback') },
   });
@@ -227,24 +227,5 @@ export function renderAcidBase(parent: HTMLElement): void {
     status: 'Live',
     ctaPrimary: { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') },
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('acidbase', 'tour') },
-  });
-}
-
-export function renderMyToolKitt(parent: HTMLElement): void {
-  renderProductShowcase(parent, {
-    id: 'mytoolkitt',
-    name: 'MyToolKitt',
-    eyebrow: 'For clinical imaging',
-    domain: 'clinical',
-    description: 'AI-powered clinical image analysis. Snap a photo of a rash or fracture \u2014 get a differential diagnosis and a consult-ready description.',
-    iconSrc: 'assets/icons/mytoolkitt.png',
-    features: [
-      { icon: '📸', text: 'Rash differential diagnosis from photos' },
-      { icon: '🦴', text: 'Fracture description generator' },
-      { icon: '🤖', text: 'Embedded LLM for clinical reasoning' },
-      { icon: '💡', text: 'More tools coming based on your feedback' },
-    ],
-    status: 'Coming Soon',
-    ctaPrimary: { label: 'Get Notified', action: () => scrollTo('feedback') },
   });
 }

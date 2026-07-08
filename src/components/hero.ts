@@ -20,16 +20,15 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
     <div class="hero-content">
       <div class="hero-copy">
         <p class="eyebrow hero-eyebrow">Kittech-Six &middot; Medical Software Lab&nbsp;&middot;&nbsp;Austin,&nbsp;TX</p>
-        <h1 class="hero-title" aria-label="Bedside tools for your next shift. Free.">
+        <h1 class="hero-title" aria-label="Bedside tools for your next shift.">
           <span aria-hidden="true">
             <span class="line"><span class="line-inner">Bedside tools</span></span>
-            <span class="line"><span class="line-inner">for your next shift.</span></span>
-            <span class="line"><span class="line-inner hero-accent">Free.</span></span>
+            <span class="line"><span class="line-inner hero-accent">for your next shift.</span></span>
           </span>
         </h1>
         <p class="hero-sub">Built by the ER doctor who actually uses them &mdash; 400+ ER consults, 300+ drugs, and clinical calculators, plus health apps for everyone. No account required.</p>
         <div class="hero-cta">
-          <a class="cta-primary" href="https://kittechsix-blip.github.io/mymedkitt/app.html" target="_blank" rel="noopener" id="hero-explore-btn">Open myMedKitt &mdash; free, no sign-up</a>
+          <a class="cta-primary" href="https://kittechsix-blip.github.io/mymedkitt/app.html" target="_blank" rel="noopener" id="hero-explore-btn">Open myMedKitt &mdash; no sign-up</a>
           <a class="cta-ghost" href="#apptabs-mymedkitt" id="hero-tour-btn">Tour the apps</a>
         </div>
         <ul class="hero-trust" role="list">

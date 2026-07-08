@@ -6,7 +6,7 @@ import { renderHero } from './components/hero.js';
 import { renderTicker } from './components/ticker.js';
 import { renderFeaturedRow } from './components/featured-row.js';
 import { renderEcosystemMap } from './components/ecosystem-map.js';
-import { renderAcidBase, renderAntibioticRx, renderFckCancer, renderMyMedKitt, renderMyStrokeKitt, renderMyToolKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
+import { renderAcidBase, renderAntibioticRx, renderFckCancer, renderMyMedKitt, renderMyStrokeKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
 import { renderAppTabs } from './components/app-tabs.js';
 import { renderPrivacy } from './components/privacy.js';
 import { renderAfibDemo } from './components/demo-afib.js';
@@ -83,7 +83,6 @@ function renderLandingPage(): void {
     ],
   });
   renderFckCancer(app);
-  renderMyToolKitt(app);
   renderAbout(app);
   renderPrivacy(app);
   renderFeedbackBoard(app);

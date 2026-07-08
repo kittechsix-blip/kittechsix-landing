@@ -50,6 +50,9 @@
   margin-bottom: var(--space-3);
 }
 .hero-title .line { display: block; overflow: hidden; padding-bottom: 0.06em; }
+/* the accent line is Fraunces italic — its descenders (e.g. the "y") need
+   extra bottom room so the reveal mask's overflow:hidden doesn't clip them */
+.hero-title .line:has(.hero-accent) { padding-bottom: 0.2em; }
 .hero-title .line-inner {
   display: inline-block;
   transform: translateY(110%);

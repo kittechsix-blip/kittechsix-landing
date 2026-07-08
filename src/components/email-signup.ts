@@ -2,7 +2,7 @@
 
 import { supabaseInsert } from '../utils/supabase.js';
 
-export function renderEmailSignup(parent: HTMLElement, source: string = 'mytoolkitt'): void {
+export function renderEmailSignup(parent: HTMLElement, source: string = 'landing'): void {
   const wrapper = document.createElement('div');
   wrapper.className = 'email-signup';
   wrapper.id = `email-signup-${source}`;

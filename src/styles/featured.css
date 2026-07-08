@@ -88,6 +88,45 @@
   transition: transform var(--transition-slow);
 }
 
+/* text-glyph placeholder for apps without icon art yet (e.g. PowerKitt) */
+.featured-app-glyph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  font-size: 40px;
+  line-height: 1;
+  background:
+    radial-gradient(120% 90% at 30% 18%, rgba(255, 255, 255, 0.9), rgba(247, 243, 238, 0.7) 70%, rgba(184, 115, 51, 0.12) 100%);
+  transition: transform var(--transition-slow);
+}
+
+/* small status pill in the corner of a tile (e.g. 'In dev') */
+.featured-app-badge {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(60, 42, 24, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.featured-app:hover .featured-app-glyph,
+.featured-app:focus-visible .featured-app-glyph {
+  transform: scale(1.05);
+}
+
 .featured-app-label {
   color: var(--ink-600);
   font-weight: 600;

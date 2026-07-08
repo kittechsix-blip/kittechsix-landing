@@ -17,7 +17,7 @@ export function renderAbout(parent: HTMLElement): void {
         <p class="eyebrow about-eyebrow">What drives us</p>
         <h2 class="text-accent about-headline">Twenty-five years at the bedside, now in your pocket.</h2>
         <p class="text-body about-text">Founded by a physician who got tired of clunky clinical tools designed by people who've never stood at a bedside. Every feature in our apps comes from real shifts, real patients, and real frustration with what's available.</p>
-        <p class="text-body about-text">We're building software that solves real problems encountered on shift — fast, offline-first tools for the phone in your scrub pocket. No login walls. No subscription paywalls for basic clinical references. Just the information you need, when you need it.</p>
+        <p class="text-body about-text">We're building software that solves real problems encountered on shift — fast, offline-first tools for the phone in your scrub pocket. No login walls, and the core clinical references stay open to everyone. A Pro tier (coming soon) funds the deeper tooling — but the information you need at the bedside is always there when you need it.</p>
         <p class="text-accent about-pullquote">"Good health information shouldn't require a medical degree to find."</p>
         <p class="text-body about-text">We're also building consumer health tools for travelers, families, and anyone who wants better access to medical knowledge.</p>
         <div class="about-actions">

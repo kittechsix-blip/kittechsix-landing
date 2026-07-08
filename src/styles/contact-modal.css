@@ -1,0 +1,154 @@
+/* Contact Modal — mailto composer overlay */
+
+.contact-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: rgba(30, 22, 14, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: contact-fade 0.18s ease-out;
+}
+
+.contact-modal-backdrop[hidden] {
+  display: none;
+}
+
+@keyframes contact-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.contact-modal {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg-white);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 24px 60px rgba(40, 28, 16, 0.35);
+  padding: var(--space-6);
+}
+
+.contact-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--ink-500);
+  cursor: pointer;
+  transition: background var(--transition-default), color var(--transition-default);
+}
+
+.contact-modal-close:hover {
+  background: var(--bg-cream);
+  color: var(--ink-800);
+}
+
+.contact-modal-eyebrow {
+  margin-bottom: var(--space-1);
+}
+
+.contact-modal-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(22px, 4vw, 28px);
+  color: var(--ink-800);
+  margin: 0 0 var(--space-2);
+}
+
+.contact-modal-lede {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-600);
+  margin: 0 0 var(--space-4);
+}
+
+.contact-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--ink-700);
+}
+
+.contact-field-input {
+  width: 100%;
+  padding: 11px 13px;
+  font-family: var(--font-text);
+  font-size: 15px;
+  color: var(--ink-800);
+  background: var(--bg-cream);
+  border: 1px solid var(--border-soft, rgba(60, 42, 24, 0.16));
+  border-radius: 10px;
+  transition: border-color var(--transition-default), box-shadow var(--transition-default);
+}
+
+.contact-field-input:focus {
+  outline: none;
+  border-color: var(--copper-500);
+  box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.14);
+}
+
+.contact-field-textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.contact-modal-error {
+  margin: 0;
+  font-size: 13px;
+  color: #b42318;
+}
+
+.contact-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 480px) {
+  .contact-modal {
+    padding: var(--space-5) var(--space-4);
+  }
+  .contact-modal-actions {
+    flex-direction: column-reverse;
+  }
+  .contact-modal-actions .cta-primary,
+  .contact-modal-actions .cta-ghost {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-modal-backdrop {
+    animation: none;
+  }
+}

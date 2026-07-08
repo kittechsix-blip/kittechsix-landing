@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v12';
+const CACHE_NAME = 'kittechsix-v13';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -18,6 +18,7 @@ const ASSETS_TO_CACHE = [
   '/styles/about.css',
   '/styles/feedback.css',
   '/styles/footer.css',
+  '/styles/contact-modal.css',
   '/styles/app-tabs.css',
   '/styles/privacy.css',
   '/styles/ui-tour.css',
@@ -36,6 +37,7 @@ const ASSETS_TO_CACHE = [
   '/components/email-signup.js',
   '/components/feedback-board.js',
   '/components/footer.js',
+  '/components/contact-modal.js',
   '/components/hero.js',
   '/components/ticker.js',
   '/components/featured-row.js',
@@ -69,7 +71,6 @@ const ASSETS_TO_CACHE = [
   '/assets/icons/mystroke-kitt.png',
   '/assets/icons/antibiotic-rx.png',
   '/assets/icons/acidbase.png',
-  '/assets/icons/mytoolkitt.png',
   '/assets/icons/mytravelmedkitt.png',
   '/assets/icons/myvertigoapp.png',
   '/assets/icons/fck-cancer.png',

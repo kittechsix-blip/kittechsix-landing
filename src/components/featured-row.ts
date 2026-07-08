@@ -2,9 +2,11 @@
 // Pause-Life "featured in" strip, repurposed as a row of the five app icons.
 
 interface FeaturedApp {
-  id: string;       // target showcase section id
-  icon: string;     // icon filename under assets/icons/
+  id: string;       // target showcase (or section) id to scroll to
+  icon?: string;    // icon filename under assets/icons/
+  glyph?: string;   // fallback text glyph when no icon art exists yet
   label: string;
+  badge?: string;   // small status pill (e.g. 'In dev')
 }
 
 const FEATURED_APPS: FeaturedApp[] = [
@@ -14,8 +16,8 @@ const FEATURED_APPS: FeaturedApp[] = [
   { id: 'acidbase', icon: 'acidbase.png', label: 'AcidBase' },
   { id: 'antibiotic-rx', icon: 'antibiotic-rx.png', label: 'Antibiotic Rx' },
   { id: 'mytravelmedkitt', icon: 'mytravelmedkitt.png', label: 'MyTravelMedKitt' },
-  { id: 'fckcancer', icon: 'fck-cancer.png', label: 'FCK Cancer' },
-  { id: 'mytoolkitt', icon: 'mytoolkitt.png', label: 'MyToolKitt' },
+  { id: 'ecosystem', glyph: '⚡', label: 'PowerKitt', badge: 'In dev' },
+  { id: 'fckcancer', icon: 'fck-cancer.png', label: 'FCK Cancer', badge: 'In dev' },
 ];
 
 export function renderFeaturedRow(parent: HTMLElement): void {
@@ -23,14 +25,23 @@ export function renderFeaturedRow(parent: HTMLElement): void {
   section.className = 'section featured-row';
   section.id = 'featured';
 
-  const logos = FEATURED_APPS.map((app) => `
+  const logos = FEATURED_APPS.map((app) => {
+    const media = app.icon
+      ? `<img class="featured-app-icon" src="assets/icons/${app.icon}" alt="${app.label}" loading="lazy" decoding="async" />`
+      : `<span class="featured-app-glyph" aria-hidden="true">${app.glyph ?? ''}</span>`;
+    const badge = app.badge
+      ? `<span class="featured-app-badge">${app.badge}</span>`
+      : '';
+    return `
     <a class="featured-app" href="#${app.id}" data-target="${app.id}">
       <span class="featured-app-tile">
-        <img class="featured-app-icon" src="assets/icons/${app.icon}" alt="${app.label}" loading="lazy" decoding="async" />
+        ${media}
+        ${badge}
       </span>
       <span class="featured-app-label text-caption">${app.label}</span>
     </a>
-  `).join('');
+  `;
+  }).join('');
 
   section.innerHTML = `
     <div class="section-content featured-content">

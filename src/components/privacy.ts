@@ -21,7 +21,7 @@ export function renderPrivacy(parent: HTMLElement): void {
         </div>
         <div class="privacy-card">
           <h3>No ad tech</h3>
-          <p>No advertising trackers, no cross-site cookies, no data brokers, no selling anything to anyone. The apps are free because they're built to be used, not monetized.</p>
+          <p>No advertising trackers, no cross-site cookies, no data brokers, no selling anything to anyone. However the lab is funded, it will never be by selling your data &mdash; the core tools stay open, and optional Pro features are what keep the lights on.</p>
         </div>
         <div class="privacy-card">
           <h3>What we do count</h3>
