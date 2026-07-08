@@ -9,6 +9,9 @@
 //   POLAR_ORGANIZATION_ID  — required; endpoint returns 503 until set
 //   POLAR_SERVER           — 'sandbox' | 'production' (default 'production')
 
+// No @types/node in this zero-dependency repo; declare the one Node global we use.
+declare const process: { env: Record<string, string | undefined> };
+
 // Origins allowed to call this endpoint from the browser (the apps' homes).
 const ALLOWED_ORIGINS = new Set([
   'https://kittechsix-blip.github.io',
