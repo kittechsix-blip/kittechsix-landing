@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v13';
+const CACHE_NAME = 'kittechsix-v14';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -21,6 +21,7 @@ const ASSETS_TO_CACHE = [
   '/styles/contact-modal.css',
   '/styles/app-tabs.css',
   '/styles/privacy.css',
+  '/styles/legal.css',
   '/styles/ui-tour.css',
   '/styles/tour/mymedkitt.css',
   '/styles/tour/mystroke-kitt.css',
@@ -34,6 +35,7 @@ const ASSETS_TO_CACHE = [
   '/components/demo-afib.js',
   '/components/demo-trip.js',
   '/components/disclaimer.js',
+  '/components/legal.js',
   '/components/email-signup.js',
   '/components/feedback-board.js',
   '/components/footer.js',
@@ -51,6 +53,7 @@ const ASSETS_TO_CACHE = [
   '/components/ui-tour-clones/acidbase-clone.js',
   '/components/ui-tour-clones/antibiotic-rx-clone.js',
   '/data/afib-rvr-tree.js',
+  '/data/app-registry.js',
   '/data/trip-builder-data.js',
   '/data/ui-tour/mymedkitt-tour.js',
   '/data/ui-tour/mystroke-kitt-tour.js',

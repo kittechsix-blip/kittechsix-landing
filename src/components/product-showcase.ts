@@ -1,6 +1,7 @@
 // Product Showcase — reusable component for each app section
 
 import { activateAppTab } from './app-tabs.js';
+import { APP_REGISTRY } from '../data/app-registry.js';
 
 interface ProductShowcaseConfig {
   id: string;
@@ -87,6 +88,20 @@ function scrollTo(id: string): void {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
 
+// Primary CTA resolves through the app registry: once a listing is marked
+// forSale with a checkout link, the free CTA becomes a Buy button.
+function primaryCta(appId: string, fallback: { label: string; action: () => void }): { label: string; action: () => void } {
+  const listing = APP_REGISTRY[appId];
+  if (listing?.forSale && listing.checkoutUrl) {
+    const checkoutUrl = listing.checkoutUrl;
+    return {
+      label: listing.price ? `Buy — ${listing.price}` : 'Buy the App',
+      action: () => window.open(checkoutUrl, '_blank', 'noopener'),
+    };
+  }
+  return fallback;
+}
+
 export function renderMyMedKitt(parent: HTMLElement): void {
   renderProductShowcase(parent, {
     id: 'mymedkitt',
@@ -102,7 +117,7 @@ export function renderMyMedKitt(parent: HTMLElement): void {
       { icon: '📴', text: 'Fully offline PWA' },
     ],
     status: 'Live',
-    ctaPrimary: { label: 'Open the App', action: () => window.open('https://kittechsix-blip.github.io/mymedkitt/app.html', '_blank', 'noopener') },
+    ctaPrimary: primaryCta('mymedkitt', { label: 'Open the App', action: () => window.open('https://kittechsix-blip.github.io/mymedkitt/app.html', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Try the Demo', action: () => activateAppTab('mymedkitt', 'demo') },
   });
 }
@@ -123,7 +138,7 @@ export function renderMyStrokeKitt(parent: HTMLElement): void {
       { icon: '🩸', text: 'ICH pathway: reversal agents, BP targets, ICH score' },
     ],
     status: 'Live',
-    ctaPrimary: { label: 'Open the App', action: () => window.open('https://mystroke-kitt.vercel.app', '_blank', 'noopener') },
+    ctaPrimary: primaryCta('mystroke-kitt', { label: 'Open the App', action: () => window.open('https://mystroke-kitt.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('mystroke-kitt', 'tour') },
   });
 }
@@ -143,7 +158,7 @@ export function renderAntibioticRx(parent: HTMLElement): void {
       { icon: '🧮', text: 'Pediatric weight-based + renal dose calculators' },
     ],
     status: 'Live',
-    ctaPrimary: { label: 'Open the App', action: () => window.open('https://antibiotic-rx.vercel.app', '_blank', 'noopener') },
+    ctaPrimary: primaryCta('antibiotic-rx', { label: 'Open the App', action: () => window.open('https://antibiotic-rx.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('antibiotic-rx', 'tour') },
   });
 }
@@ -164,7 +179,7 @@ export function renderMyVertigoApp(parent: HTMLElement): void {
       { icon: '📱', text: 'Web PWA + native iOS/Android' },
     ],
     status: 'Live',
-    ctaPrimary: { label: 'Open the App', action: () => window.open('https://my-vertigo-app.vercel.app', '_blank', 'noopener') },
+    ctaPrimary: primaryCta('myvertigoapp', { label: 'Open the App', action: () => window.open('https://my-vertigo-app.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('myvertigoapp', 'tour') },
   });
 }
@@ -184,7 +199,7 @@ export function renderMyTravelMedKitt(parent: HTMLElement): void {
       { icon: '📴', text: 'Full offline functionality' },
     ],
     status: 'Live',
-    ctaPrimary: { label: 'Try the Demo', action: () => activateAppTab('mytravelmedkitt', 'demo') },
+    ctaPrimary: primaryCta('mytravelmedkitt', { label: 'Try the Demo', action: () => activateAppTab('mytravelmedkitt', 'demo') }),
   });
 }
 
@@ -204,7 +219,7 @@ export function renderFckCancer(parent: HTMLElement): void {
       { icon: '🩺', text: 'Cancer screening checklist and reminders' },
     ],
     status: 'In Development',
-    ctaPrimary: { label: 'Open the App', action: () => window.open('https://fck-cancer.vercel.app', '_blank', 'noopener') },
+    ctaPrimary: primaryCta('fckcancer', { label: 'Open the App', action: () => window.open('https://fck-cancer.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Suggest Improvements', action: () => scrollTo('feedback') },
   });
 }
@@ -225,7 +240,7 @@ export function renderAcidBase(parent: HTMLElement): void {
       { icon: '📴', text: 'Runs entirely on-device — no patient data leaves your phone' },
     ],
     status: 'Live',
-    ctaPrimary: { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') },
+    ctaPrimary: primaryCta('acidbase', { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('acidbase', 'tour') },
   });
 }

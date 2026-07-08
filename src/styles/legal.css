@@ -1,0 +1,43 @@
+/* Terms of Service + Refund Policy — quiet legal band, mirrors the disclaimer register */
+
+.legal-section .legal-content {
+  max-width: var(--content-narrow);
+  border-top: 1px solid var(--border-soft);
+  padding-top: var(--space-6);
+}
+
+.legal-tag-row {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.legal-headline {
+  text-align: center;
+  margin-bottom: var(--space-5);
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.legal-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.legal-block h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-800);
+  margin-bottom: var(--space-1);
+}
+
+.legal-block p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-600, inherit);
+}
+
+.legal-block a {
+  color: inherit;
+  text-decoration: underline;
+}

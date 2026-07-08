@@ -55,6 +55,8 @@ export function renderFooter(parent: HTMLElement): void {
           <div class="footer-links">
             <a href="#disclaimer">Medical Disclaimer</a>
             <a href="#privacy">Privacy</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#refunds">Refund Policy</a>
             <a href="mailto:kittechsix@gmail.com" id="footer-contact">Contact</a>
           </div>
         </div>

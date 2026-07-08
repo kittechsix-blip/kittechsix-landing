@@ -20,6 +20,7 @@ import { rxTour } from './data/ui-tour/antibiotic-rx-tour.js';
 import { renderFeedbackBoard } from './components/feedback-board.js';
 import { renderAbout } from './components/about.js';
 import { renderDisclaimer } from './components/disclaimer.js';
+import { renderLegal } from './components/legal.js';
 import { renderFooter } from './components/footer.js';
 import { setupScrollAnimations } from './utils/intersection.js';
 
@@ -87,6 +88,7 @@ function renderLandingPage(): void {
   renderPrivacy(app);
   renderFeedbackBoard(app);
   renderDisclaimer(app);
+  renderLegal(app);
   renderFooter(app);
 
   // Scroll animations after DOM is populated
