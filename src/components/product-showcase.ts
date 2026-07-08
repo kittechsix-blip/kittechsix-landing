@@ -198,7 +198,7 @@ export function renderMyTravelMedKitt(parent: HTMLElement): void {
       { icon: '💊', text: 'Drug interaction checker' },
       { icon: '📴', text: 'Full offline functionality' },
     ],
-    status: 'Live',
+    status: 'In Development',
     ctaPrimary: primaryCta('mytravelmedkitt', { label: 'Try the Demo', action: () => activateAppTab('mytravelmedkitt', 'demo') }),
   });
 }

@@ -15,7 +15,7 @@ const FEATURED_APPS: FeaturedApp[] = [
   { id: 'myvertigoapp', icon: 'myvertigoapp.png', label: 'my-vertigo-app' },
   { id: 'acidbase', icon: 'acidbase.png', label: 'AcidBase' },
   { id: 'antibiotic-rx', icon: 'antibiotic-rx.png', label: 'Antibiotic Rx' },
-  { id: 'mytravelmedkitt', icon: 'mytravelmedkitt.png', label: 'MyTravelMedKitt' },
+  { id: 'mytravelmedkitt', icon: 'mytravelmedkitt.png', label: 'MyTravelMedKitt', badge: 'In dev' },
   { id: 'ecosystem', glyph: '⚡', label: 'PowerKitt', badge: 'In dev' },
   { id: 'fckcancer', icon: 'fck-cancer.png', label: 'FCK Cancer', badge: 'In dev' },
 ];

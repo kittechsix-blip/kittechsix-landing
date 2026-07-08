@@ -2,15 +2,15 @@
 // Fronts Polar's customer-portal license-key endpoints so the apps never embed
 // the organization ID and so the payment provider stays swappable.
 //
+// Plain .mjs on purpose: the repo's tsconfig targets browser ESM, which breaks
+// Vercel's TS function compile (emits ESM into a CJS lambda). No compile, no problem.
+//
 // POST { key: string, appId?: string, activate?: boolean, label?: string }
 //  -> { valid: boolean, status?: string, expiresAt?: string | null, activationId?: string }
 //
 // Env (Vercel project settings):
 //   POLAR_ORGANIZATION_ID  — required; endpoint returns 503 until set
 //   POLAR_SERVER           — 'sandbox' | 'production' (default 'production')
-
-// No @types/node in this zero-dependency repo; declare the one Node global we use.
-declare const process: { env: Record<string, string | undefined> };
 
 // Origins allowed to call this endpoint from the browser (the apps' homes).
 const ALLOWED_ORIGINS = new Set([
@@ -26,9 +26,9 @@ const ALLOWED_ORIGINS = new Set([
 // Best-effort per-IP rate limit (in-memory, resets on cold start).
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 20;
-const hits = new Map<string, { count: number; windowStart: number }>();
+const hits = new Map();
 
-function rateLimited(ip: string): boolean {
+function rateLimited(ip) {
   const now = Date.now();
   const entry = hits.get(ip);
   if (!entry || now - entry.windowStart > WINDOW_MS) {
@@ -39,8 +39,8 @@ function rateLimited(ip: string): boolean {
   return entry.count > MAX_PER_WINDOW;
 }
 
-export default async function handler(req: any, res: any): Promise<void> {
-  const origin = req.headers.origin as string | undefined;
+export default async function handler(req, res) {
+  const origin = req.headers.origin;
   if (origin && ALLOWED_ORIGINS.has(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
@@ -63,7 +63,7 @@ export default async function handler(req: any, res: any): Promise<void> {
     return;
   }
 
-  const ip = (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() || 'unknown';
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
   if (rateLimited(ip)) {
     res.status(429).json({ error: 'rate_limited' });
     return;
@@ -79,7 +79,7 @@ export default async function handler(req: any, res: any): Promise<void> {
     ? 'https://sandbox-api.polar.sh'
     : 'https://api.polar.sh';
   const endpoint = activate ? 'activate' : 'validate';
-  const payload: Record<string, unknown> = { key, organization_id: orgId };
+  const payload = { key, organization_id: orgId };
   if (activate) payload.label = typeof label === 'string' && label ? label.slice(0, 100) : 'device';
 
   try {
@@ -88,7 +88,7 @@ export default async function handler(req: any, res: any): Promise<void> {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
-    const data: any = await upstream.json().catch(() => ({}));
+    const data = await upstream.json().catch(() => ({}));
     if (!upstream.ok) {
       // 404 from Polar = key doesn't exist; anything else is an upstream fault.
       if (upstream.status === 404) {
