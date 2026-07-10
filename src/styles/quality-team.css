@@ -1,0 +1,163 @@
+/* Quality Team — AI audit officers */
+
+.qteam-section {
+  background: var(--bg-white);
+}
+
+.qteam-content {
+  max-width: 1120px;
+}
+
+.qteam-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto var(--space-6);
+}
+
+.qteam-subtitle {
+  margin-top: var(--space-2);
+}
+
+.qteam-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.qteam-card {
+  background: var(--bg-cream);
+  border: 1px solid var(--border-cream);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-default), box-shadow var(--transition-default), transform var(--transition-default);
+}
+
+.qteam-card:hover {
+  border-color: var(--copper-500);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+
+.qteam-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.qteam-glyph {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-white);
+  border: 1px solid var(--border-strong);
+  font-size: 20px;
+}
+
+.qteam-name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink-900);
+  line-height: 1.2;
+}
+
+.qteam-role {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--copper-700);
+  letter-spacing: 0.01em;
+  margin-top: 2px;
+}
+
+.qteam-cadence {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--green-700);
+  background: var(--green-50);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  margin-top: 2px;
+}
+
+.qteam-domain {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-700);
+  margin-top: var(--space-1);
+}
+
+.qteam-proof {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-600);
+  border-top: 1px solid var(--border-cream);
+  padding-top: var(--space-2);
+  margin-top: auto;
+}
+
+.qteam-guardrail {
+  background: var(--bg-ink);
+  color: var(--ink-on-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto var(--space-4);
+}
+
+.qteam-guardrail-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--copper-300);
+  margin-bottom: var(--space-1);
+}
+
+.qteam-guardrail-text {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-on-dark);
+}
+
+.qteam-guardrail-sign {
+  margin-top: var(--space-2);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-on-dark-mut);
+}
+
+.qteam-next {
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-500);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.qteam-next-label {
+  font-weight: 700;
+  color: var(--ink-700);
+}
+
+@media (max-width: 720px) {
+  .qteam-grid {
+    grid-template-columns: 1fr;
+  }
+}

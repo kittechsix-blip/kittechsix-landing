@@ -18,6 +18,7 @@ import { vtTour } from './data/ui-tour/my-vertigo-app-tour.js';
 import { abTour } from './data/ui-tour/acidbase-tour.js';
 import { rxTour } from './data/ui-tour/antibiotic-rx-tour.js';
 import { renderFeedbackBoard } from './components/feedback-board.js';
+import { renderQualityTeam } from './components/quality-team.js';
 import { renderAbout } from './components/about.js';
 import { renderDisclaimer } from './components/disclaimer.js';
 import { renderLegal } from './components/legal.js';
@@ -84,6 +85,7 @@ function renderLandingPage(): void {
     ],
   });
   renderFckCancer(app);
+  renderQualityTeam(app);
   renderAbout(app);
   renderPrivacy(app);
   renderFeedbackBoard(app);
