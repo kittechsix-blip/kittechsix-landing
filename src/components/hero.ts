@@ -29,36 +29,27 @@ export function renderHero(parent: HTMLElement): void {
         </ul>
       </div>
 
-      <div class="hero-visual" aria-label="Dr. Andy Kitlowski, founder of Kittech-Six">
-        <figure class="hero-portrait">
+      <div class="hero-visual" aria-label="Kittech-Six, founded by Dr. Andy Kitlowski">
+        <figure class="hero-brand-visual">
           <img
-            class="hero-portrait-img"
+            class="hero-brand-img"
+            src="assets/kittechsix-logo-hero.jpg"
+            alt="Kittech-Six brain and circuit logo"
+            width="1200"
+            height="1071"
+            fetchpriority="high"
+          />
+        </figure>
+
+        <figure class="hero-headshot-card">
+          <img
             src="assets/andy-kitlowski-headshot.jpg"
             alt="Dr. Andy Kitlowski, emergency physician and founder of Kittech-Six"
             width="1200"
             height="1152"
-            fetchpriority="high"
           />
-          <figcaption class="hero-founder-card">
-            <span class="hero-founder-label">Physician &amp; builder</span>
-            <strong>Andy Kitlowski, MD</strong>
-            <span>Emergency Medicine &middot; Austin, TX</span>
-          </figcaption>
         </figure>
 
-        <div class="hero-brand-card">
-          <img
-            src="assets/kittechsix-logo-hero.jpg"
-            alt="Kittech-Six"
-            width="1200"
-            height="1071"
-          />
-        </div>
-
-        <div class="hero-proof-card" aria-hidden="true">
-          <span class="hero-proof-icon">+</span>
-          <span><strong>Built from real shifts</strong>Clinical tools, tested at the bedside</span>
-        </div>
       </div>
     </div>
   `;
