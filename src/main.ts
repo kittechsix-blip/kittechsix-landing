@@ -31,7 +31,12 @@ function renderLandingPage(): void {
   app.innerHTML = '';
 
   renderNav(app);
-  renderHero(app);
+  renderHero(app, {
+    phoneScreens: mkTour.screens
+      .slice(0, 3)
+      .map((screen) => screen.renderClone)
+      .filter((render): render is () => HTMLElement => typeof render === 'function'),
+  });
   renderTicker(app);
   renderFeaturedRow(app);
   renderEcosystemMap(app);
