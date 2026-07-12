@@ -24,7 +24,7 @@ export function renderFooter(parent: HTMLElement): void {
           <p class="footer-mission">Clinical and consumer health apps, built in public by an ER physician.</p>
           <button class="footer-pro-link" id="footer-pro" type="button">&#10024; Pro tier in the works &mdash; join the waitlist</button>
           <div class="footer-social">
-            <a href="https://facebook.com/kittechsix" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
+            <a href="https://www.facebook.com/profile.php?id=61591723356651" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
             <a href="https://instagram.com/kittechsix" target="_blank" rel="noopener" aria-label="Instagram">${SOCIAL_ICONS.instagram}</a>
             <a href="https://tiktok.com/@kittechsix" target="_blank" rel="noopener" aria-label="TikTok">${SOCIAL_ICONS.tiktok}</a>
           </div>

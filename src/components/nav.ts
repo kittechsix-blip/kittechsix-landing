@@ -30,7 +30,7 @@ export function renderNav(parent: HTMLElement): void {
         <a href="#feedback" data-section="feedback" class="nav-cta">Feedback</a>
       </div>
       <div class="nav-social">
-        <a href="https://facebook.com/kittechsix" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
+        <a href="https://www.facebook.com/profile.php?id=61591723356651" target="_blank" rel="noopener" aria-label="Facebook">${SOCIAL_ICONS.facebook}</a>
         <a href="https://instagram.com/kittechsix" target="_blank" rel="noopener" aria-label="Instagram">${SOCIAL_ICONS.instagram}</a>
         <a href="https://tiktok.com/@kittechsix" target="_blank" rel="noopener" aria-label="TikTok">${SOCIAL_ICONS.tiktok}</a>
       </div>
