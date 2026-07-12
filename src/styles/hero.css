@@ -1,32 +1,39 @@
-/* ========== HERO — product-forward: live myMedKitt device instead of stock art ========== */
+/* ========== HERO — physician-led editorial composition ========== */
 
 .hero {
   position: relative;
   display: flex;
   align-items: center;
-  background: var(--bg-white);
   min-height: calc(100svh - var(--nav-height));
   overflow: hidden;
   padding: 72px var(--space-3) 80px;
+  background:
+    radial-gradient(48% 52% at 88% 8%, rgba(184, 115, 51, 0.09), transparent 72%),
+    var(--bg-white);
 }
 
-/* faint copper wash, top-right */
-.hero::before {
+.hero::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: radial-gradient(58% 44% at 85% 4%, rgba(184, 115, 51, 0.06), transparent 70%);
+  width: 460px;
+  height: 460px;
+  right: -240px;
+  bottom: -290px;
+  border: 1px solid rgba(184, 115, 51, 0.16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 56px rgba(184, 115, 51, 0.025), 0 0 0 112px rgba(184, 115, 51, 0.018);
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
+  z-index: 1;
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
-  gap: var(--space-8);
+  grid-template-columns: minmax(0, 54fr) minmax(420px, 46fr);
+  gap: clamp(56px, 7vw, 104px);
   align-items: center;
 }
 
@@ -34,110 +41,116 @@
 
 .hero-eyebrow {
   margin-bottom: var(--space-3);
-  animation: heroFade 0.2s ease 0s forwards;
+  animation: heroFade 0.2s ease forwards;
   opacity: 0;
 }
 
-/* line-mask headline reveal */
 .hero-title {
+  max-width: 15ch;
+  margin-bottom: var(--space-3);
   font-family: var(--font-display);
-  font-weight: 800;
   font-size: clamp(38px, 4.5vw, 64px);
+  font-weight: 800;
   line-height: 1.06;
   letter-spacing: -0.02em;
   color: var(--ink-900);
-  max-width: 15ch;
-  margin-bottom: var(--space-3);
 }
-.hero-title .line { display: block; overflow: hidden; padding-bottom: 0.06em; }
-/* the accent line is Fraunces italic — its descenders (e.g. the "y") need
-   extra bottom room so the reveal mask's overflow:hidden doesn't clip them */
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
 .hero-title .line:has(.hero-accent) { padding-bottom: 0.2em; }
+
 .hero-title .line-inner {
   display: inline-block;
   transform: translateY(110%);
   animation: heroMask 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
-.hero-title .line:nth-child(1) .line-inner { animation-delay: 0s; }
-.hero-title .line:nth-child(2) .line-inner { animation-delay: 0.09s; }
-.hero-title .line:nth-child(3) .line-inner { animation-delay: 0.18s; }
 
-/* the single accent word — Fraunces italic, copper gradient with one glint pass */
+.hero-title .line:nth-child(2) .line-inner { animation-delay: 0.09s; }
+
 .hero-accent {
+  padding-right: 0.08em;
   font-family: var(--font-accent);
+  font-size: 1.02em;
   font-style: italic;
   font-weight: 600;
   letter-spacing: 0;
-  padding-right: 0.08em;
-  font-size: 1.02em;
   background: linear-gradient(100deg, #8A5524 0%, #B87333 35%, #D89B6A 50%, #B87333 65%, #8A5524 100%);
   background-size: 220% 100%;
   background-position: 120% 0;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: heroMask 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.18s forwards,
+  animation: heroMask 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.09s forwards,
              heroGlint 0.9s ease-out 1.2s 1 forwards;
 }
+
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
   .hero-accent { background: none; color: var(--copper-600); }
 }
 
 .hero-sub {
-  font-family: var(--font-text);
-  font-weight: 400;
-  color: var(--ink-600);
-  font-size: clamp(16px, 1.3vw, 19px);
-  line-height: 1.6;
   max-width: 52ch;
   margin-bottom: var(--space-4);
-  animation: fadeInUp 0.45s ease-out 0.26s forwards;
+  font-family: var(--font-text);
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-600);
+  animation: fadeInUp 0.45s ease-out 0.2s forwards;
   opacity: 0;
 }
 
 .hero-cta {
   display: flex;
-  gap: var(--space-2);
   flex-wrap: wrap;
-  animation: fadeInUp 0.45s ease-out 0.32s forwards;
+  gap: var(--space-2);
+  animation: fadeInUp 0.45s ease-out 0.26s forwards;
   opacity: 0;
 }
-/* primary/ghost inherit global.css; local overrides make primary the loudest object on screen */
+
 .hero-cta .cta-primary {
-  background: var(--metal-copper);
-  border-radius: var(--radius-pill);
   padding: 15px 28px;
+  border-radius: var(--radius-pill);
+  background: var(--metal-copper);
   text-decoration: none;
 }
+
 .hero-cta .cta-primary:hover { background: var(--copper-600); }
 .hero-cta .cta-ghost { border-radius: var(--radius-pill); text-decoration: none; }
 
-/* trust strip */
 .hero-trust {
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  column-gap: var(--space-3);
+  row-gap: 6px;
   margin: var(--space-4) 0 0;
   padding: var(--space-3) 0 0;
   border-top: 1px solid var(--border-soft);
+  list-style: none;
   font-family: var(--font-text);
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink-500);
   font-variant-numeric: tabular-nums;
-  column-gap: var(--space-3);
-  row-gap: 6px;
-  animation: fadeInUp 0.45s ease-out 0.38s forwards;
+  color: var(--ink-500);
+  animation: fadeInUp 0.45s ease-out 0.32s forwards;
   opacity: 0;
 }
+
 .hero-trust li { display: inline-flex; align-items: center; gap: 8px; }
-/* trailing middot dividers — trailing position so a wrap never starts a line with one */
+
 .hero-trust li:not(:last-child)::after {
   content: "\00B7";
   color: var(--ink-400);
 }
+
 .hero-trust strong { color: var(--copper-700); font-weight: 700; }
+
 .hero-trust .live-dot {
   width: 8px;
   height: 8px;
@@ -146,180 +159,204 @@
   animation: heroPulse 2s ease-in-out infinite;
 }
 
-/* ===== device column — the real product, running ===== */
-.hero-device {
+/* ===== portrait composition ===== */
+
+.hero-visual {
   position: relative;
-  display: flex;
-  justify-content: center;
-  animation: fadeInScale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s forwards;
+  width: min(100%, 520px);
+  justify-self: end;
+  padding: 28px 28px 34px 0;
+  animation: fadeInScale 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s forwards;
   opacity: 0;
 }
 
-/* ambient color glow bleeding out behind the device to blend it into the white page */
-.hero-device::before {
+.hero-portrait {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 115, 51, 0.28);
+  border-radius: 34px 34px 92px 34px;
+  background: #0D2940;
+  box-shadow: 0 3px 8px rgba(30, 21, 14, 0.10), 0 34px 80px rgba(30, 21, 14, 0.22);
+}
+
+.hero-portrait::after {
   content: "";
   position: absolute;
-  inset: -8% -10% -14% -10%;
-  z-index: 0;
-  background:
-    radial-gradient(42% 58% at 22% 58%, rgba(60, 179, 113, 0.16), transparent 70%),
-    radial-gradient(44% 58% at 80% 52%, rgba(214, 155, 106, 0.20), transparent 70%);
-  filter: blur(46px);
+  inset: 0;
+  background: linear-gradient(180deg, transparent 54%, rgba(7, 18, 29, 0.22) 70%, rgba(7, 18, 29, 0.94) 100%);
   pointer-events: none;
 }
 
-/* fixed 375x812 canvas scaled by JS so the clone CSS stays deterministic */
-.hero-phone-scaler {
-  position: relative;
-  z-index: 1;
-  transform-origin: top left;
-}
-
-/* fixed-size local coordinate space: chips/caption position against the real
-   375x812 device, then the whole stage scales as one unit */
-.hero-phone-stage {
-  position: relative;
-  width: 375px;
-  height: 812px;
-}
-
-.hero-phone {
-  position: relative;
-  isolation: isolate; /* contain clone-internal z-indexes so chips always float above */
-  width: 375px;
-  height: 812px;
-  background: linear-gradient(160deg, #3a3a3c 0%, #1c1c1e 30%, #000000 100%);
-  border-radius: 54px;
-  padding: 12px;
-  box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-    0 0 0 1px rgba(0, 0, 0, 0.65),
-    0 2px 6px rgba(0, 0, 0, 0.25),
-    0 34px 80px rgba(20, 16, 12, 0.38);
-}
-
-.hero-phone-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 42px;
-  overflow: hidden;
-  background: #FAFAF5;
-}
-
-/* cross-fading app screens inside the phone */
-.hero-phone-screen {
+.hero-portrait-img {
   position: absolute;
   inset: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.7s ease;
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 46%;
 }
-.hero-phone-screen.active { opacity: 1; }
 
-/* floating proof chips around the device */
-.hero-chipset { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
-
-.hero-float-chip {
+.hero-founder-card {
   position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 10px rgba(60, 42, 24, 0.07), 0 18px 44px rgba(60, 42, 24, 0.13);
-  font-family: var(--font-text);
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--ink-800);
-  white-space: nowrap;
-  animation: heroFloat 6s ease-in-out infinite;
-}
-.hero-float-chip strong { color: var(--copper-700); font-weight: 700; }
-.hero-float-chip .chip-mono {
-  font-family: var(--font-geist-mono);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--green-700);
-}
-.hero-float-chip .chip-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green-300);
-  animation: heroPulse 2s ease-in-out infinite;
-}
-
-.hero-float-chip--consults { top: 10%; left: -84px; animation-delay: 0.4s; }
-.hero-float-chip--dose     { top: 40%; right: -128px; animation-delay: 1.6s; }
-.hero-float-chip--live     { bottom: 11%; left: -96px; animation-delay: 2.8s; }
-
-/* device caption chip */
-.hero-device-caption {
-  position: absolute;
-  bottom: -46px;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 2;
-  padding: 7px 14px;
-  border-radius: var(--radius-pill);
-  background: rgba(26, 23, 20, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 600;
-  color: #FFF;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  left: 28px;
+  right: 190px;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
 }
 
-@keyframes heroFade  { to { opacity: 1; } }
-@keyframes heroMask  { to { transform: translateY(0); } }
+.hero-founder-label {
+  margin-bottom: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #E8B58E;
+}
+
+.hero-founder-card strong {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.hero-founder-card > span:last-child {
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.hero-brand-card {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  width: 184px;
+  aspect-ratio: 1.12;
+  overflow: hidden;
+  padding: 7px;
+  border: 1px solid rgba(216, 155, 106, 0.38);
+  border-radius: 24px;
+  background: #101116;
+  box-shadow: 0 18px 44px rgba(12, 18, 24, 0.30);
+}
+
+.hero-brand-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.hero-proof-card {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: -34px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px 12px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-family: var(--font-text);
+}
+
+.hero-proof-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border-radius: 11px;
+  background: var(--metal-copper);
+  color: #FFFFFF;
+  font-size: 22px;
+  line-height: 1;
+  box-shadow: var(--shadow-copper);
+}
+
+.hero-proof-card > span:last-child {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--ink-500);
+}
+
+.hero-proof-card strong {
+  font-size: 12px;
+  color: var(--ink-800);
+}
+
+@keyframes heroFade { to { opacity: 1; } }
+@keyframes heroMask { to { transform: translateY(0); } }
 @keyframes heroGlint { to { background-position: 0% 0; } }
 @keyframes heroPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-9px); }
-}
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInScale {
-  from { opacity: 0; transform: translateY(28px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow, .hero-sub, .hero-cta, .hero-trust, .hero-device {
+  .hero-eyebrow, .hero-sub, .hero-cta, .hero-trust, .hero-visual {
     opacity: 1;
     animation: none;
   }
   .hero-title .line-inner { transform: none; animation: none; }
   .hero-accent { animation: none; background-position: 50% 0; }
-  .hero-trust .live-dot, .hero-float-chip .chip-dot { animation: none; }
-  .hero-float-chip { animation: none; }
-  .hero-phone-screen { transition: none; }
+  .hero-trust .live-dot { animation: none; }
+}
+
+@media (max-width: 1050px) {
+  .hero-content {
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 0.82fr);
+    gap: 44px;
+  }
+  .hero-proof-card { left: -18px; }
+  .hero-portrait { min-height: 520px; }
 }
 
 @media (max-width: 900px) {
   .hero {
     min-height: auto;
-    padding: 48px var(--space-2) var(--space-6);
+    padding: 48px var(--space-2) var(--space-8);
   }
-  .hero-content { grid-template-columns: 1fr; gap: var(--space-5); }
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-copy { max-width: 680px; }
   .hero-cta { flex-direction: column; }
   .hero-cta a { width: 100%; }
-  /* chips tuck inward so nothing leaves the viewport */
-  .hero-float-chip--consults { left: 0; }
-  .hero-float-chip--dose     { right: 0; }
-  .hero-float-chip--live     { left: 4%; }
+  .hero-visual { width: min(100%, 560px); justify-self: center; }
+}
+
+@media (max-width: 560px) {
+  .hero { padding-top: 38px; }
+  .hero-title { font-size: clamp(38px, 12vw, 52px); }
+  .hero-visual { padding: 20px 16px 24px 0; }
+  .hero-portrait { min-height: 440px; border-radius: 26px 26px 68px 26px; }
+  .hero-portrait-img { object-position: 50% 45%; }
+  .hero-founder-card { left: 20px; right: 132px; bottom: 18px; }
+  .hero-founder-card strong { font-size: 17px; }
+  .hero-founder-card > span:last-child { font-size: 10px; }
+  .hero-brand-card { width: 128px; padding: 5px; border-radius: 18px; }
+  .hero-brand-card img { border-radius: 13px; }
+  .hero-proof-card { left: -4px; padding: 9px 11px 9px 9px; }
+  .hero-proof-icon { width: 30px; height: 30px; border-radius: 9px; }
+  .hero-proof-card > span:last-child { font-size: 9.5px; }
+  .hero-proof-card strong { font-size: 11px; }
 }

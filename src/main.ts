@@ -31,13 +31,7 @@ function renderLandingPage(): void {
   app.innerHTML = '';
 
   renderNav(app);
-  // Hero phone cycles the first three real myMedKitt tour screens
-  renderHero(app, {
-    phoneScreens: mkTour.screens
-      .slice(0, 3)
-      .map((s) => s.renderClone)
-      .filter((r): r is () => HTMLElement => typeof r === 'function'),
-  });
+  renderHero(app);
   renderTicker(app);
   renderFeaturedRow(app);
   renderEcosystemMap(app);
