@@ -1,4 +1,5 @@
-// Hero Section — brand authority first, followed by the live flagship product.
+// Hero Section — one cinematic dark moment: brand, live flagship product, founder.
+// The old two-piece banner+hero is unified into a single full-bleed statement.
 
 import { activateAppTab } from './app-tabs.js';
 
@@ -11,64 +12,50 @@ const CYCLE_MS = 4200;
 const PHONE_W = 375;
 const PHONE_H = 812;
 
+// Animated vitals trace — the clinical signature of the lab.
+// One PQRST complex per 220px unit, tiled across the hero on a hairline.
+const ECG_UNIT =
+  'h52 q5,-7 10,0 h26 l5,8 l7,-30 l7,25 l5,-3 h34 q7,-9 14,0 h40';
+
 export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void {
   const section = document.createElement('section');
-  section.className = 'hero section-dark';
+  section.className = 'hero';
   section.id = 'hero';
 
   section.innerHTML = `
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-glow hero-glow--copper"></div>
+      <div class="hero-glow hero-glow--green"></div>
+      <div class="hero-grid"></div>
+      <svg class="hero-ecg" viewBox="0 0 1440 60" preserveAspectRatio="none" focusable="false">
+        <path class="hero-ecg-base" d="M0,30 ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT}" />
+        <path class="hero-ecg-sweep" d="M0,30 ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT} ${ECG_UNIT}" />
+      </svg>
+    </div>
+
     <div class="hero-shell">
-      <header class="hero-banner" aria-label="Kittech-Six medical software lab">
-        <div class="hero-banner-brand">
-          <img
-            class="hero-banner-logo"
-            src="assets/kittechsix-logo-hero.jpg"
-            alt="Kittech-Six brain and circuit logo"
-            width="1200"
-            height="1071"
-            fetchpriority="high"
-          />
-          <div class="hero-banner-message">
-            <span class="hero-banner-kicker">Medical software lab &middot; Austin, Texas</span>
-            <strong>Clinical instinct, engineered.</strong>
-            <span>Serious tools for the moments that matter.</span>
-          </div>
-        </div>
-
-        <figure class="hero-creator">
-          <img
-            src="assets/andy-kitlowski-headshot.jpg"
-            alt="Dr. Andy Kitlowski, emergency physician and creator of Kittech-Six"
-            width="1200"
-            height="1152"
-          />
-          <figcaption>
-            <span>Created by</span>
-            <strong>Andy Kitlowski, MD</strong>
-            <small>Emergency physician &middot; 25 years</small>
-          </figcaption>
-        </figure>
-      </header>
-
       <div class="hero-content">
         <div class="hero-copy">
-          <p class="eyebrow hero-eyebrow">The flagship &middot; myMedKitt</p>
+          <p class="eyebrow hero-eyebrow">
+            <span class="hero-eyebrow-pulse" aria-hidden="true"></span>Medical software lab &middot; Austin, Texas
+          </p>
           <h1 class="hero-title" aria-label="Bedside tools for your next shift.">
             <span aria-hidden="true">
               <span class="line"><span class="line-inner">Bedside tools</span></span>
               <span class="line"><span class="line-inner hero-accent">for your next shift.</span></span>
             </span>
           </h1>
-          <p class="hero-sub">The emergency department in your pocket: 400+ consults, 300+ drugs, and bedside calculators built by the ER doctor who uses them. Fast, offline-first, and ready without an account.</p>
+          <p class="hero-sub">Clinical instinct, engineered &mdash; 400+ ER consults, 300+ drugs, and bedside calculators built by the emergency physician who uses them. Fast, offline-first, and ready without an account.</p>
           <div class="hero-cta">
             <a class="cta-primary" href="https://kittechsix-blip.github.io/mymedkitt/app.html" target="_blank" rel="noopener" id="hero-explore-btn">Open myMedKitt &mdash; no sign-up</a>
             <a class="cta-ghost" href="#apptabs-mymedkitt" id="hero-tour-btn">Tour the live UI</a>
           </div>
-          <ul class="hero-trust" role="list">
-            <li><strong>400+</strong> clinical consults</li>
-            <li><strong>300+</strong> drugs</li>
-            <li class="is-live"><span class="live-dot" aria-hidden="true"></span><strong>6</strong> live apps</li>
-          </ul>
+          <dl class="hero-stats" aria-label="Kittech-Six in numbers">
+            <div class="hero-stat"><dt>ER consults</dt><dd><span class="count" data-count-to="400">0</span>+</dd></div>
+            <div class="hero-stat"><dt>Drugs &amp; dosing</dt><dd><span class="count" data-count-to="300">0</span>+</dd></div>
+            <div class="hero-stat"><dt>Bedside calculators</dt><dd><span class="count" data-count-to="25">0</span>+</dd></div>
+            <div class="hero-stat is-live"><dt>Live apps</dt><dd><span class="count" data-count-to="6">0</span><span class="live-dot" aria-hidden="true"></span></dd></div>
+          </dl>
         </div>
 
         <div class="hero-device" aria-label="myMedKitt running live on a phone">
@@ -87,7 +74,29 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
           </div>
         </div>
       </div>
+
+      <footer class="hero-founder">
+        <img
+          class="hero-founder-photo"
+          src="assets/andy-kitlowski-headshot.jpg"
+          alt="Dr. Andy Kitlowski, emergency physician and creator of Kittech-Six"
+          width="1200"
+          height="1152"
+        />
+        <p class="hero-founder-line">
+          <strong>Built &amp; maintained by Andy Kitlowski, MD</strong>
+          <span>Emergency physician &middot; 25 years at the bedside &middot; every dose and pathway reviewed by the doctor who stands at one</span>
+        </p>
+        <a class="hero-founder-link link-arrow" href="#about">Why I build this
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </footer>
     </div>
+
+    <a class="hero-scroll-cue" href="#featured" aria-label="Scroll to explore the apps">
+      <span class="hero-scroll-cue-track" aria-hidden="true"><span class="hero-scroll-cue-dot"></span></span>
+      Explore
+    </a>
   `;
 
   parent.appendChild(section);
@@ -98,6 +107,7 @@ export function renderHero(parent: HTMLElement, options: HeroOptions = {}): void
   });
 
   mountPhone(section, options.phoneScreens ?? []);
+  runCounters(section);
 }
 
 function mountPhone(section: HTMLElement, screens: Array<() => HTMLElement>): void {
@@ -142,4 +152,27 @@ function mountPhone(section: HTMLElement, screens: Array<() => HTMLElement>): vo
 
   rescale();
   window.addEventListener('resize', rescale, { passive: true });
+}
+
+// Count-up on the stat row — one pass, ease-out, skipped for reduced motion.
+function runCounters(section: HTMLElement): void {
+  const counters = section.querySelectorAll<HTMLElement>('.count[data-count-to]');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    counters.forEach((el) => { el.textContent = el.dataset['countTo'] ?? '0'; });
+    return;
+  }
+
+  const DURATION = 1500;
+  const DELAY = 550;
+  counters.forEach((el, i) => {
+    const target = Number(el.dataset['countTo'] ?? 0);
+    const start = performance.now() + DELAY + i * 120;
+    const tick = (now: number) => {
+      const t = Math.min(1, Math.max(0, (now - start) / DURATION));
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = String(Math.round(target * eased));
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
 }

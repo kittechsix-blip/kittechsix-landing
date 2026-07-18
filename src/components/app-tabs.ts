@@ -1,6 +1,8 @@
 // App Tabs — wraps an app's showcase / UI tour / live demo into one tabbed
 // section so the page doesn't stack every panel into one enormous scroll.
 
+import { APP_REGISTRY } from '../data/app-registry.js';
+
 export interface AppTabDef {
   key: string;
   label: string;
@@ -24,6 +26,14 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
   const section = document.createElement('section');
   section.className = 'app-tabs';
   section.id = `apptabs-${config.id}`;
+
+  // Theme the whole tabbed section with the app's identity color.
+  const accent = APP_REGISTRY[config.id]?.accent;
+  if (accent) {
+    section.style.setProperty('--app-accent', accent.base);
+    section.style.setProperty('--app-accent-soft', accent.soft);
+    section.style.setProperty('--app-accent-deep', accent.deep);
+  }
 
   const bar = document.createElement('div');
   bar.className = 'app-tabs-bar';

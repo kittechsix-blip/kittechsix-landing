@@ -16,6 +16,35 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* Transparent dark state while the nav sits over the dark hero */
+.glass-nav--dark {
+  background: rgba(22, 17, 13, 0.35);
+  border-bottom-color: rgba(251, 248, 244, 0.08);
+  box-shadow: none;
+}
+
+.glass-nav--dark .nav-logo-mark { color: var(--ink-on-dark); }
+.glass-nav--dark .nav-logo-by { color: rgba(251, 248, 244, 0.55); }
+
+.glass-nav--dark .nav-links a { color: rgba(251, 248, 244, 0.78); }
+.glass-nav--dark .nav-links a:hover,
+.glass-nav--dark .nav-links a.active { color: #FFFFFF; }
+.glass-nav--dark .nav-links a::after { background: var(--copper-300); }
+
+.glass-nav--dark .nav-links a.nav-cta {
+  background: rgba(216, 155, 106, 0.16);
+  color: var(--copper-300);
+}
+.glass-nav--dark .nav-links a.nav-cta:hover {
+  background: var(--copper-500);
+  color: #FFFFFF;
+}
+
+.glass-nav--dark .nav-social a { color: rgba(251, 248, 244, 0.6); }
+.glass-nav--dark .nav-social a:hover { color: var(--copper-300); }
+
+.glass-nav--dark .nav-hamburger span { background: var(--ink-on-dark); }
+
 .nav-content {
   max-width: var(--content-max);
   margin: 0 auto;

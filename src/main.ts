@@ -100,12 +100,16 @@ function renderLandingPage(): void {
   });
 }
 
-// Nav goes from translucent to solid white once the user scrolls past the hero.
+// Nav starts transparent-dark over the hero, then flips to solid white
+// once the user scrolls past it.
 function setupNavSolidOnScroll(): void {
   const nav = document.getElementById('main-nav');
-  if (!nav) return;
+  const hero = document.getElementById('hero');
+  if (!nav || !hero) return;
   const onScroll = () => {
-    nav.classList.toggle('glass-nav--solid', window.scrollY > 8);
+    const overHero = window.scrollY < hero.offsetTop + hero.offsetHeight - 64;
+    nav.classList.toggle('glass-nav--dark', overHero);
+    nav.classList.toggle('glass-nav--solid', !overHero);
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });

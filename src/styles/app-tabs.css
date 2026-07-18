@@ -39,12 +39,12 @@
 }
 
 .app-tabs-btn:hover {
-  color: var(--copper-700);
-  background: var(--copper-50);
+  color: var(--app-accent-deep, var(--copper-700));
+  background: var(--app-accent-soft, var(--copper-50));
 }
 
 .app-tabs-btn.active {
-  background: var(--copper-500);
+  background: var(--app-accent, var(--copper-500));
   color: #FFFFFF;
   box-shadow: var(--shadow-copper);
 }

@@ -1,6 +1,8 @@
 // Featured app-logo row — the ecosystem at a glance.
 // Pause-Life "featured in" strip, repurposed as a row of the five app icons.
 
+import { APP_REGISTRY } from '../data/app-registry.js';
+
 interface FeaturedApp {
   id: string;       // target showcase (or section) id to scroll to
   icon?: string;    // icon filename under assets/icons/
@@ -32,8 +34,10 @@ export function renderFeaturedRow(parent: HTMLElement): void {
     const badge = app.badge
       ? `<span class="featured-app-badge">${app.badge}</span>`
       : '';
+    const accent = APP_REGISTRY[app.id]?.accent;
+    const accentStyle = accent ? ` style="--app-accent:${accent.base};--app-accent-deep:${accent.deep}"` : '';
     return `
-    <a class="featured-app" href="#${app.id}" data-target="${app.id}">
+    <a class="featured-app" href="#${app.id}" data-target="${app.id}"${accentStyle}>
       <span class="featured-app-tile">
         ${media}
         ${badge}

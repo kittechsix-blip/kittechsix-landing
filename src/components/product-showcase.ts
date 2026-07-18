@@ -25,6 +25,15 @@ export function renderProductShowcase(parent: HTMLElement, config: ProductShowca
   section.id = config.id;
   section.className = `section section-light showcase${config.reverse ? ' showcase--reverse' : ''}`;
 
+  // Per-app identity color — standalone sections (FCK Cancer) carry it themselves;
+  // inside an app-tabs wrapper the container sets the same vars, this is a harmless override.
+  const accent = APP_REGISTRY[config.id]?.accent;
+  if (accent) {
+    section.style.setProperty('--app-accent', accent.base);
+    section.style.setProperty('--app-accent-soft', accent.soft);
+    section.style.setProperty('--app-accent-deep', accent.deep);
+  }
+
   // Forest-green check glyph leads every feature (clinical-trust accent)
   const featuresHtml = config.features.map(f => `
     <div class="showcase-feature">

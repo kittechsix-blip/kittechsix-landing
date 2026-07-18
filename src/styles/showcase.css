@@ -62,7 +62,7 @@
   gap: var(--space-1);
 }
 
-/* forest-green check glyph (clinical-trust accent) */
+/* per-app check glyph (falls back to clinical green) */
 .showcase-feature-icon {
   display: inline-flex;
   align-items: center;
@@ -72,8 +72,8 @@
   height: 22px;
   margin-top: 1px;
   border-radius: var(--radius-pill);
-  background: var(--green-50);
-  color: var(--green-500);
+  background: var(--app-accent-soft, var(--green-50));
+  color: var(--app-accent, var(--green-500));
 }
 
 .showcase-feature-icon svg {
@@ -117,7 +117,8 @@
   max-width: 360px;
   padding: var(--space-8);
   margin: 0;
-  background: var(--bg-cream-deep);
+  background:
+    radial-gradient(120% 120% at 50% 0%, var(--app-accent-soft, var(--bg-cream-deep)) 0%, var(--bg-cream-deep) 72%);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -125,15 +126,15 @@
   transition: transform var(--transition-default), box-shadow var(--transition-default);
 }
 
-/* signature copper sheen on the TOP edge */
+/* per-app sheen on the TOP edge (falls back to brand copper) */
 .showcase-icon-wrapper::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: var(--sheen-line);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--app-accent, var(--copper-300)), transparent);
   opacity: 0.9;
 }
 
@@ -149,6 +150,7 @@
   height: auto;
   border-radius: 44px;
   display: block;
+  box-shadow: 0 18px 44px rgba(40, 28, 16, 0.18);
 }
 
 /* ===== RESPONSIVE: stack to 1 col (media on TOP) below 860px ===== */

@@ -28,6 +28,11 @@ img {
   display: block;
 }
 
+::selection {
+  background: var(--copper-100);
+  color: var(--copper-900);
+}
+
 a {
   text-decoration: none;
   color: inherit;

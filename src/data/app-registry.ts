@@ -11,6 +11,15 @@ export interface AppListing {
   /** Display price shown on the Buy CTA, e.g. '$19'. */
   price: string | null;
   forSale: boolean;
+  /** Per-app identity color (drawn from the app icon) used to theme its page section. */
+  accent: {
+    /** mid-tone — check glyphs, active tab fill */
+    base: string;
+    /** pale wash — chip/tag backgrounds */
+    soft: string;
+    /** dark shade — text on light backgrounds */
+    deep: string;
+  };
 }
 
 export const APP_REGISTRY: Record<string, AppListing> = {
@@ -21,6 +30,7 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
+    accent: { base: '#2E9E5B', soft: '#E4F3EA', deep: '#1F6B3D' },
   },
   'mystroke-kitt': {
     id: 'mystroke-kitt',
@@ -29,6 +39,7 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
+    accent: { base: '#C8452C', soft: '#F9E8E3', deep: '#99321F' },
   },
   'antibiotic-rx': {
     id: 'antibiotic-rx',
@@ -37,6 +48,7 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
+    accent: { base: '#7C5CBF', soft: '#EEE9F8', deep: '#5A3E96' },
   },
   myvertigoapp: {
     id: 'myvertigoapp',
@@ -45,6 +57,7 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
+    accent: { base: '#2A9D8F', soft: '#E2F2EF', deep: '#1C6E64' },
   },
   acidbase: {
     id: 'acidbase',
@@ -53,6 +66,7 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
+    accent: { base: '#3D7EA6', soft: '#E5EFF6', deep: '#2A5A79' },
   },
   mytravelmedkitt: {
     id: 'mytravelmedkitt',
@@ -61,6 +75,7 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
+    accent: { base: '#C4822E', soft: '#F8EEDC', deep: '#8F5C19' },
   },
   fckcancer: {
     id: 'fckcancer',
@@ -69,5 +84,6 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
+    accent: { base: '#B87333', soft: '#FBF1E8', deep: '#8A5524' },
   },
 };
