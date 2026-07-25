@@ -1,0 +1,168 @@
+/* Roadmap — honest build log for work still in development.
+   Per-app accent arrives as --app-accent / --app-accent-soft / --app-accent-deep
+   on .roadmap-item (see src/components/roadmap.ts). */
+
+.roadmap-section { background: var(--bg-cream); }
+.roadmap-content { max-width: var(--content-max); }
+
+/* ---------- Header ---------- */
+.roadmap-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.62fr);
+  gap: clamp(48px, 9vw, 140px);
+  align-items: end;
+  margin-bottom: 64px;
+  text-align: left;
+}
+.roadmap-header .text-heading { max-width: 12ch; }
+.roadmap-lede { max-width: 46ch; }
+
+/* ---------- List ---------- */
+.roadmap-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--border-strong);
+}
+
+.roadmap-item {
+  padding: 42px 0 46px;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+/* ---------- Item head ---------- */
+.roadmap-item-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.roadmap-index {
+  align-self: start;
+  padding-top: 6px;
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--app-accent-deep, var(--copper-700));
+}
+.roadmap-name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 580;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  color: var(--ink-900);
+}
+.roadmap-discipline {
+  margin-top: 6px;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+.roadmap-stage {
+  justify-self: end;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-geist-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--app-accent-deep, var(--ink-600));
+  background: var(--app-accent-soft, var(--bg-cream-deep));
+}
+
+.roadmap-statement {
+  max-width: 62ch;
+  margin-bottom: 30px;
+  padding-left: 16px;
+  border-left: 2px solid var(--app-accent, var(--border-strong));
+  font-family: var(--font-accent);
+  font-size: clamp(18px, 2vw, 23px);
+  font-style: italic;
+  line-height: 1.34;
+  color: var(--ink-800);
+}
+
+/* ---------- Built / remains ledger ---------- */
+.roadmap-ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+.roadmap-col--remains { padding-left: clamp(20px, 3vw, 40px); border-left: 1px solid var(--border-cream); }
+
+.roadmap-col-label {
+  margin-bottom: 14px;
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.roadmap-col--built .roadmap-col-label { color: var(--app-accent-deep, var(--green-700)); }
+.roadmap-col--remains .roadmap-col-label { color: var(--ink-500); }
+
+.roadmap-lines { list-style: none; display: grid; gap: 10px; }
+.roadmap-line {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-600);
+}
+.roadmap-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.roadmap-col--built .roadmap-line::before { background: var(--app-accent, var(--green-500)); }
+.roadmap-col--remains .roadmap-line::before { background: transparent; border: 1px solid var(--ink-400); }
+
+/* ---------- Lab note ---------- */
+.roadmap-labnote {
+  margin-top: 28px;
+  max-width: 72ch;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-500);
+}
+.roadmap-labnote-label {
+  font-weight: 650;
+  color: var(--ink-700);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .roadmap-header { gap: clamp(32px, 6vw, 72px); }
+  .roadmap-ledger { gap: 32px; }
+  .roadmap-col--remains { padding-left: 24px; }
+}
+
+@media (max-width: 760px) {
+  .roadmap-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 44px; }
+  .roadmap-item { padding: 32px 0 36px; }
+  .roadmap-item-head { grid-template-columns: auto minmax(0, 1fr); gap: 14px; }
+  .roadmap-stage { grid-column: 1 / -1; justify-self: start; }
+  .roadmap-statement { margin-bottom: 24px; }
+  .roadmap-ledger { grid-template-columns: 1fr; gap: 24px; }
+  .roadmap-col--remains {
+    padding-left: 0;
+    padding-top: 22px;
+    border-left: 0;
+    border-top: 1px solid var(--border-cream);
+  }
+}
+
+@media (max-width: 480px) {
+  .roadmap-line { font-size: 12.5px; }
+}

@@ -77,13 +77,13 @@ export const APP_REGISTRY: Record<string, AppListing> = {
     forSale: false,
     accent: { base: '#C4822E', soft: '#F8EEDC', deep: '#8F5C19' },
   },
-  fckcancer: {
-    id: 'fckcancer',
-    name: 'FCK Cancer',
-    liveUrl: 'https://fck-cancer.vercel.app',
+  powerkitt: {
+    id: 'powerkitt',
+    name: 'PowerKitt',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
-    accent: { base: '#B87333', soft: '#FBF1E8', deep: '#8A5524' },
+    accent: { base: '#8A5524', soft: '#F5EDE4', deep: '#5E3715' },
   },
 };

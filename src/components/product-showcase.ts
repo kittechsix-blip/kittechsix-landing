@@ -14,6 +14,9 @@ interface ProductShowcaseConfig {
   domain: 'clinical' | 'consumer';
   features: { icon: string; text: string }[];
   status: 'In Development' | 'Coming Soon' | 'Live';
+  /** Oversized proof point shown in the product portrait. */
+  metric: string;
+  metricLabel: string;
   /** flips the editorial 2-col layout for visual rhythm */
   reverse?: boolean;
   ctaPrimary: { label: string; action: () => void };
@@ -25,8 +28,8 @@ export function renderProductShowcase(parent: HTMLElement, config: ProductShowca
   section.id = config.id;
   section.className = `section section-light showcase${config.reverse ? ' showcase--reverse' : ''}`;
 
-  // Per-app identity color — standalone sections (FCK Cancer) carry it themselves;
-  // inside an app-tabs wrapper the container sets the same vars, this is a harmless override.
+  // Per-app identity color — inside an app-tabs wrapper the container sets the same
+  // vars, so this is a harmless override.
   const accent = APP_REGISTRY[config.id]?.accent;
   if (accent) {
     section.style.setProperty('--app-accent', accent.base);
@@ -66,7 +69,16 @@ export function renderProductShowcase(parent: HTMLElement, config: ProductShowca
       </div>
       <div class="showcase-media">
         <div class="showcase-icon-wrapper">
-          <img class="showcase-icon" src="${config.iconSrc}" alt="${config.name} app icon" loading="lazy">
+          <span class="showcase-visual-name" aria-hidden="true">${config.name}</span>
+          <span class="showcase-visual-grid" aria-hidden="true"></span>
+          <div class="showcase-icon-orbit">
+            <img class="showcase-icon" src="${config.iconSrc}" alt="${config.name} app icon" loading="lazy">
+          </div>
+          <div class="showcase-metric">
+            <strong>${config.metric}</strong>
+            <span>${config.metricLabel}</span>
+          </div>
+          <span class="showcase-visual-state"><i></i>${config.status === 'Live' ? 'System live' : config.status}</span>
         </div>
       </div>
     </div>
@@ -92,11 +104,6 @@ export function renderProductShowcase(parent: HTMLElement, config: ProductShowca
   }
 }
 
-// Scroll helper
-function scrollTo(id: string): void {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-}
-
 // Primary CTA resolves through the app registry: once a listing is marked
 // forSale with a checkout link, the free CTA becomes a Buy button.
 function primaryCta(appId: string, fallback: { label: string; action: () => void }): { label: string; action: () => void } {
@@ -120,12 +127,14 @@ export function renderMyMedKitt(parent: HTMLElement): void {
     description: 'Evidence-based clinical decision trees for the emergency department. Built for the phone in your pocket, designed for the patient in front of you.',
     iconSrc: 'assets/icons/mymedkitt.png',
     features: [
-      { icon: '🩺', text: '400+ evidence-based ED consults' },
-      { icon: '💊', text: '300+ drug pharmacy with weight-based dose calculators' },
+      { icon: '🩺', text: '353 evidence-based ED consults' },
+      { icon: '💊', text: '306 drugs across 945 dosing indications, with weight-based calculators' },
       { icon: '🧮', text: '25+ bedside calculators (PESI, NIHSS, TIMI, Sgarbossa)' },
       { icon: '📴', text: 'Fully offline PWA' },
     ],
     status: 'Live',
+    metric: '353',
+    metricLabel: 'evidence-based ER consults',
     ctaPrimary: primaryCta('mymedkitt', { label: 'Open the App', action: () => window.open('https://kittechsix-blip.github.io/mymedkitt/app.html', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Try the Demo', action: () => activateAppTab('mymedkitt', 'demo') },
   });
@@ -147,6 +156,8 @@ export function renderMyStrokeKitt(parent: HTMLElement): void {
       { icon: '🩸', text: 'ICH pathway: reversal agents, BP targets, ICH score' },
     ],
     status: 'Live',
+    metric: '20',
+    metricLabel: 'code-stroke tools in one workflow',
     ctaPrimary: primaryCta('mystroke-kitt', { label: 'Open the App', action: () => window.open('https://mystroke-kitt.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('mystroke-kitt', 'tour') },
   });
@@ -167,6 +178,8 @@ export function renderAntibioticRx(parent: HTMLElement): void {
       { icon: '🧮', text: 'Pediatric weight-based + renal dose calculators' },
     ],
     status: 'Live',
+    metric: '~130',
+    metricLabel: 'infection syndromes with adaptive regimens',
     ctaPrimary: primaryCta('antibiotic-rx', { label: 'Open the App', action: () => window.open('https://antibiotic-rx.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('antibiotic-rx', 'tour') },
   });
@@ -188,48 +201,10 @@ export function renderMyVertigoApp(parent: HTMLElement): void {
       { icon: '📱', text: 'Web PWA + native iOS/Android' },
     ],
     status: 'Live',
+    metric: 'HINTS+',
+    metricLabel: 'exam to maneuver to disposition',
     ctaPrimary: primaryCta('myvertigoapp', { label: 'Open the App', action: () => window.open('https://my-vertigo-app.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('myvertigoapp', 'tour') },
-  });
-}
-
-export function renderMyTravelMedKitt(parent: HTMLElement): void {
-  renderProductShowcase(parent, {
-    id: 'mytravelmedkitt',
-    name: 'MyTravelMedKitt',
-    eyebrow: 'For travelers',
-    domain: 'consumer',
-    description: 'Your personal travel medicine kit builder. Tell us where you\'re going \u2014 we\'ll tell you what to pack and what to take when symptoms strike.',
-    iconSrc: 'assets/icons/mytravelmedkitt.png',
-    features: [
-      { icon: '🎒', text: 'Personalized OTC kit builder by destination' },
-      { icon: '🩺', text: 'Symptom-to-treatment matching' },
-      { icon: '💊', text: 'Drug interaction checker' },
-      { icon: '📴', text: 'Full offline functionality' },
-    ],
-    status: 'In Development',
-    ctaPrimary: primaryCta('mytravelmedkitt', { label: 'Try the Demo', action: () => activateAppTab('mytravelmedkitt', 'demo') }),
-  });
-}
-
-export function renderFckCancer(parent: HTMLElement): void {
-  renderProductShowcase(parent, {
-    id: 'fckcancer',
-    name: 'FCK Cancer',
-    eyebrow: 'For everyday prevention',
-    domain: 'consumer',
-    reverse: true,
-    description: 'A daily prevention and longevity companion for turning evidence-backed choices into habits, shopping lists, body-system protocols, fitness logs, and health screening reminders.',
-    iconSrc: 'assets/icons/fck-cancer.png',
-    features: [
-      { icon: '✅', text: 'Daily anti-cancer habit scoring' },
-      { icon: '💪', text: 'Fitness logging with habit integration' },
-      { icon: '🧴', text: 'My Body protocols for skin, heart, brain, gut, and more' },
-      { icon: '🩺', text: 'Cancer screening checklist and reminders' },
-    ],
-    status: 'In Development',
-    ctaPrimary: primaryCta('fckcancer', { label: 'Open the App', action: () => window.open('https://fck-cancer.vercel.app', '_blank', 'noopener') }),
-    ctaSecondary: { label: 'Suggest Improvements', action: () => scrollTo('feedback') },
   });
 }
 
@@ -249,6 +224,8 @@ export function renderAcidBase(parent: HTMLElement): void {
       { icon: '📴', text: 'Runs entirely on-device — no patient data leaves your phone' },
     ],
     status: 'Live',
+    metric: '1 ABG',
+    metricLabel: 'disorder, reasoning, workup, treatment',
     ctaPrimary: primaryCta('acidbase', { label: 'Open the App', action: () => window.open('https://acidbase.vercel.app', '_blank', 'noopener') }),
     ctaSecondary: { label: 'Tour the UI', action: () => activateAppTab('acidbase', 'tour') },
   });

@@ -37,17 +37,17 @@ export function renderFooter(parent: HTMLElement): void {
             <a href="#myvertigoapp">my-vertigo-app</a>
             <a href="#acidbase">AcidBase</a>
             <a href="#antibiotic-rx">Antibiotic Rx</a>
-            <a href="#mytravelmedkitt">MyTravelMedKitt</a>
-            <a href="#ecosystem">PowerKitt</a>
-            <a href="#fckcancer">FCK Cancer</a>
+            <a href="#roadmap">MyTravelMedKitt</a>
+            <a href="#roadmap">PowerKitt</a>
           </div>
         </div>
         <div class="footer-col">
           <h3 class="footer-col-head">The Lab</h3>
           <div class="footer-links">
-            <a href="#ecosystem">Ecosystem</a>
+            <a href="#consulting">Consulting</a>
+            <a href="#quality-team">Standards</a>
+            <a href="#roadmap">Roadmap</a>
             <a href="#about">About</a>
-            <a href="#feedback">Roadmap</a>
           </div>
         </div>
         <div class="footer-col">

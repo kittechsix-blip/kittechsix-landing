@@ -366,7 +366,7 @@ export function renderRxParams(): HTMLElement {
           <div class="rx-field__label">Local antibiogram</div>
           <div class="rx-chips">
             ${chip('Off')}
-            ${chip('Dell Seton — Austin, TX', true)}
+            ${chip('Your unit', true)}
           </div>
         </div>
 
@@ -391,7 +391,9 @@ export function renderRxParams(): HTMLElement {
   return el;
 }
 
-/* ---------- SCREEN E — Local antibiogram (Dell Seton) ---------- */
+/* ---------- SCREEN E — Local antibiogram ----------
+   Illustrative susceptibilities only. No real institutional antibiogram data
+   appears on this marketing site; the point of the screen is the mechanism. */
 
 function sRow(org: string, drug: string, pct: string, tone: 'safe' | 'caution' | 'danger'): string {
   return `
@@ -415,28 +417,28 @@ export function renderRxAntibiogram(): HTMLElement {
       </div>
 
       <div class="rx-glass-card rx-abg" data-rx="abg">
-        <div class="rx-abg__head">${icoMapPin}<h3>Local antibiogram — Dell Seton — Austin, TX</h3></div>
+        <div class="rx-abg__head">${icoMapPin}<h3>Local antibiogram — your unit</h3></div>
 
         <div class="rx-signal rx-signal--resistance rx-abg__guidance" data-rx="abg-guidance">
-          Uncomplicated cystitis (IDSA 2025, local): Nitrofurantoin 100 mg BID (95% E. coli susceptible —
-          first-line), Cephalexin 500 mg TID, or Cefadroxil 500 mg BID. Cipro (79%) / TMP-SMX (70%) —
-          consider alternatives given local resistance.
+          The guideline regimen re-ranks itself against whatever your unit's susceptibilities actually are.
+          Where local resistance undercuts a first-line drug, it drops down the list and the alternative
+          moves up — before you write the prescription, not after the culture returns.
         </div>
 
         <div class="rx-abg__table" data-rx="abg-table">
-          <div class="rx-microlabel">Local susceptibility (%S)</div>
-          ${sRow('E. coli (urine)', 'Ceftriaxone', '99%', 'safe')}
-          ${sRow('E. coli (urine)', 'Nitrofurantoin', '95%', 'safe')}
-          ${sRow('E. coli (urine)', 'Cefazolin', '94%', 'safe')}
-          ${sRow('E. coli (urine)', 'Ciprofloxacin', '79%', 'caution')}
+          <div class="rx-microlabel">Local susceptibility (%S) — illustrative</div>
+          ${sRow('E. coli (urine)', 'Ceftriaxone', '95%', 'safe')}
+          ${sRow('E. coli (urine)', 'Nitrofurantoin', '90%', 'safe')}
+          ${sRow('E. coli (urine)', 'Cefazolin', '90%', 'safe')}
+          ${sRow('E. coli (urine)', 'Ciprofloxacin', '75%', 'caution')}
           ${sRow('E. coli (urine)', 'TMP-SMX', '70%', 'caution')}
-          ${sRow('E. coli (urine)', 'Ampicillin', '48%', 'danger')}
-          ${sRow('ESBL E. coli (urine)', 'Nitrofurantoin', '93%', 'safe')}
-          ${sRow('ESBL E. coli (urine)', 'Ciprofloxacin', '17%', 'danger')}
-          ${sRow('MRSA', 'Minocycline', '88%', 'safe')}
-          ${sRow('MRSA', 'TMP-SMX', '71%', 'caution')}
+          ${sRow('E. coli (urine)', 'Ampicillin', '50%', 'danger')}
+          ${sRow('ESBL E. coli (urine)', 'Nitrofurantoin', '90%', 'safe')}
+          ${sRow('ESBL E. coli (urine)', 'Ciprofloxacin', '20%', 'danger')}
+          ${sRow('MRSA', 'Minocycline', '85%', 'safe')}
+          ${sRow('MRSA', 'TMP-SMX', '70%', 'caution')}
         </div>
-        <p class="rx-abg__source">Dell Seton ED Antibiogram 2024–2025 (Randle/Kim, PharmD).</p>
+        <p class="rx-abg__source">Illustrative figures. In the app this table is your own institution's antibiogram, loaded locally.</p>
       </div>
     </div>
     ${FAB}

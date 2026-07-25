@@ -1,0 +1,402 @@
+/* Consulting — the page's gravitational center.
+   Heavier rhythm than the app chapters: wider vertical field, a scattered
+   "lives everywhere" argument that resolves into one answer, an ink case slab. */
+
+.consulting-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-cream);
+  border-block: 1px solid var(--border-cream);
+  padding-block: calc(var(--section-pad) + 24px);
+}
+
+/* soft copper field, top-right — weight without noise */
+.consulting-section::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -320px;
+  right: -240px;
+  width: 860px;
+  height: 860px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--copper-500) 10%, transparent), transparent 62%);
+  pointer-events: none;
+}
+
+.cons-content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
+}
+
+/* ===== Header ===== */
+.cons-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.72fr);
+  gap: clamp(40px, 7vw, 110px);
+  align-items: end;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.cons-title { max-width: 15ch; }
+.cons-subhead { max-width: 44ch; }
+
+.cons-stamp {
+  margin-top: 20px;
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.cons-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(27px, 3.2vw, 40px);
+  font-weight: 560;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--ink-900);
+}
+
+/* ===== The visual argument: scatter → resolve ===== */
+.cons-problem { padding-block: 72px 88px; }
+
+.cons-problem-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+  margin-bottom: 52px;
+}
+.cons-problem-head .cons-h3 { max-width: 14ch; }
+.cons-problem-note { max-width: 54ch; font-size: 15px; color: var(--ink-600); }
+
+.cons-argument {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) 56px minmax(280px, 0.78fr);
+  gap: 0;
+  align-items: center;
+}
+
+.cons-scatter {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 20px;
+  padding: 18px 8px 34px;
+  list-style: none;
+}
+
+.cons-frag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-cream);
+  border-radius: var(--radius-sm);
+  background: var(--bg-white);
+  box-shadow: var(--shadow-xs);
+  transform: translate(var(--sx, 0), var(--sy, 0)) rotate(var(--rot, 0deg));
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition-slow);
+}
+
+/* the thesis, made kinetic: hovering the mess snaps it into order.
+   Pointer-only by design — the resolve card sits beside the scatter and carries
+   the same argument statically, so nothing is lost without a hover. */
+.cons-scatter:hover .cons-frag {
+  transform: translate(0, 0) rotate(0deg);
+  border-color: var(--border-strong);
+  box-shadow: none;
+}
+
+.cons-frag-dot {
+  flex: 0 0 auto;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-400);
+}
+
+.cons-frag-label {
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: -0.008em;
+  color: var(--ink-600);
+}
+
+.cons-arrow {
+  justify-self: center;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--copper-500);
+}
+
+.cons-resolve {
+  padding: 36px 34px;
+  border-radius: var(--radius-md);
+  color: var(--ink-on-dark);
+  background: var(--bg-ink);
+  box-shadow: var(--shadow-lift);
+}
+
+.cons-resolve-label {
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--copper-300);
+}
+
+.cons-resolve-title {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 560;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: var(--ink-on-dark);
+}
+
+.cons-resolve-text {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-on-dark-mut);
+}
+
+/* ===== Case study slab ===== */
+.cons-case {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(36px, 5vw, 76px);
+  padding: clamp(36px, 5vw, 64px);
+  color: var(--ink-700);
+  background: var(--bg-white);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.cons-kicker {
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--copper-700);
+}
+
+.cons-case-title {
+  max-width: 16ch;
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 560;
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  color: var(--ink-900);
+}
+
+.cons-case-body {
+  max-width: 52ch;
+  margin-top: 24px;
+  font-size: 15px;
+  line-height: 1.68;
+  color: var(--ink-600);
+}
+
+.cons-sublabel {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+  font-family: var(--font-text);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.cons-caps { margin-top: 20px; list-style: none; }
+
+.cons-cap {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.cons-cap:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.cons-cap-tick {
+  flex: 0 0 auto;
+  padding-top: 3px;
+  font-size: 10px;
+  color: var(--copper-500);
+}
+
+.cons-cap-body { display: block; }
+
+.cons-cap-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+  color: var(--ink-900);
+}
+
+.cons-cap-detail {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-600);
+}
+
+.cons-case-outcome { grid-column: 1 / -1; }
+
+.cons-proofs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.cons-proof { padding-left: 18px; border-left: 2px solid var(--copper-100); }
+
+.cons-proof-figure {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 27px);
+  font-weight: 580;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--copper-700);
+}
+
+.cons-proof-label {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-600);
+}
+
+/* ===== Engagement steps ===== */
+.cons-engage { padding-block: 88px 0; }
+
+.cons-engage-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+  margin-bottom: 44px;
+}
+.cons-engage-head .cons-h3 { max-width: 14ch; }
+.cons-engage-note { max-width: 46ch; font-size: 15px; color: var(--ink-600); }
+
+.cons-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  list-style: none;
+}
+
+.cons-step { padding-top: 20px; border-top: 1px solid var(--border-strong); }
+
+.cons-step-index {
+  display: block;
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--copper-700);
+}
+
+.cons-step-title {
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 580;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--ink-900);
+}
+
+.cons-step-detail {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-600);
+}
+
+/* ===== Closing CTA ===== */
+.cons-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-top: 88px;
+  padding-top: 56px;
+  border-top: 1px solid var(--border-strong);
+  text-align: center;
+}
+
+.cons-cta-line {
+  max-width: 20ch;
+  font-family: var(--font-accent);
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink-900);
+}
+
+.cons-cta-button { padding-inline: 30px; }
+
+.cons-cta-note {
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: var(--ink-500);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px) {
+  .cons-header { grid-template-columns: 1fr; gap: 26px; align-items: start; }
+  .cons-title { max-width: 18ch; }
+  .cons-problem-head,
+  .cons-engage-head { grid-template-columns: 1fr; gap: 20px; }
+  .cons-argument { grid-template-columns: 1fr; gap: 8px; justify-items: stretch; }
+  .cons-arrow { justify-self: center; padding: 6px 0 18px; transform: rotate(90deg); }
+  .cons-scatter { padding-bottom: 40px; }
+  .cons-case { grid-template-columns: 1fr; }
+  .cons-case-title { max-width: 22ch; }
+  .cons-proofs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cons-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+}
+
+@media (max-width: 760px) {
+  .consulting-section { padding-block: var(--section-pad-sm); }
+  .cons-problem { padding-block: 48px 60px; }
+  .cons-engage { padding-block: 60px 0; }
+  .cons-scatter { grid-template-columns: 1fr; gap: 10px; padding: 8px 0 26px; }
+  /* single column on phones: zero the tilt too, or the rotated corner clips the viewport */
+  .cons-frag { --sx: 0px; --sy: 0px; --rot: 0deg; }
+  .cons-resolve { padding: 28px 24px; }
+  .cons-proofs { grid-template-columns: 1fr; gap: 18px; }
+  .cons-steps { grid-template-columns: 1fr; row-gap: 26px; }
+  .cons-cta { align-items: flex-start; margin-top: 60px; padding-top: 40px; text-align: left; }
+  .cons-cta-line { max-width: none; }
+}
+
+/* ===== Reduced motion — settle the scatter, drop the tilt entirely ===== */
+@media (prefers-reduced-motion: reduce) {
+  .cons-frag {
+    --sx: 0px;
+    --sy: 0px;
+    --rot: 0deg;
+    transform: none;
+  }
+  .cons-scatter:hover .cons-frag { transform: none; }
+}

@@ -1,25 +1,64 @@
-// Featured app-logo row — the ecosystem at a glance.
-// Pause-Life "featured in" strip, repurposed as a row of the five app icons.
+// Selected Work — an editorial project index that establishes hierarchy before
+// the visitor reaches the deeper interactive product chapters.
 
 import { APP_REGISTRY } from '../data/app-registry.js';
 
-interface FeaturedApp {
-  id: string;       // target showcase (or section) id to scroll to
-  icon?: string;    // icon filename under assets/icons/
-  glyph?: string;   // fallback text glyph when no icon art exists yet
-  label: string;
-  badge?: string;   // small status pill (e.g. 'In dev')
+interface FeaturedProject {
+  id: string;
+  index: string;
+  name: string;
+  category: string;
+  statement: string;
+  proof: string;
+  icon: string;
 }
 
-const FEATURED_APPS: FeaturedApp[] = [
-  { id: 'mymedkitt', icon: 'mymedkitt.png', label: 'myMedKitt' },
-  { id: 'mystroke-kitt', icon: 'mystroke-kitt.png', label: 'myStroke-Kitt' },
-  { id: 'myvertigoapp', icon: 'myvertigoapp.png', label: 'my-vertigo-app' },
-  { id: 'acidbase', icon: 'acidbase.png', label: 'AcidBase' },
-  { id: 'antibiotic-rx', icon: 'antibiotic-rx.png', label: 'Antibiotic Rx' },
-  { id: 'mytravelmedkitt', icon: 'mytravelmedkitt.png', label: 'MyTravelMedKitt', badge: 'In dev' },
-  { id: 'ecosystem', glyph: '⚡', label: 'PowerKitt', badge: 'In dev' },
-  { id: 'fckcancer', icon: 'fck-cancer.png', label: 'FCK Cancer', badge: 'In dev' },
+const FEATURED_PROJECTS: FeaturedProject[] = [
+  {
+    id: 'mymedkitt',
+    index: '01',
+    name: 'myMedKitt',
+    category: 'Emergency medicine system',
+    statement: 'The emergency department, compressed into the phone in your pocket.',
+    proof: '353 consults · 306 drugs · offline-first',
+    icon: 'mymedkitt.png',
+  },
+  {
+    id: 'antibiotic-rx',
+    index: '02',
+    name: 'Antibiotic Rx',
+    category: 'Adaptive prescribing',
+    statement: 'Guideline-backed regimens that rewrite themselves around the patient.',
+    proof: '~130 syndromes · local antibiogram · renal dosing',
+    icon: 'antibiotic-rx.png',
+  },
+  {
+    id: 'myvertigoapp',
+    index: '03',
+    name: 'my-vertigo-app',
+    category: 'Focused clinical workflow',
+    statement: 'A clearer path through the dizzy patient, from exam to disposition.',
+    proof: 'HINTS+ · all three canals · 29 citations',
+    icon: 'myvertigoapp.png',
+  },
+  {
+    id: 'acidbase',
+    index: '04',
+    name: 'AcidBase',
+    category: 'Reasoning engine',
+    statement: 'From one blood gas to the disorder, the why, and what comes next.',
+    proof: 'Mixed disorders · differential · treatment',
+    icon: 'acidbase.png',
+  },
+  {
+    id: 'mystroke-kitt',
+    index: '05',
+    name: 'myStroke-Kitt',
+    category: 'Time-critical decision support',
+    statement: 'Code-stroke decisions organized for the minutes that change outcomes.',
+    proof: 'NIHSS · TNK dosing · hard-stop logic',
+    icon: 'mystroke-kitt.png',
+  },
 ];
 
 export function renderFeaturedRow(parent: HTMLElement): void {
@@ -27,48 +66,57 @@ export function renderFeaturedRow(parent: HTMLElement): void {
   section.className = 'section featured-row';
   section.id = 'featured';
 
-  const logos = FEATURED_APPS.map((app) => {
-    const media = app.icon
-      ? `<img class="featured-app-icon" src="assets/icons/${app.icon}" alt="${app.label}" loading="lazy" decoding="async" />`
-      : `<span class="featured-app-glyph" aria-hidden="true">${app.glyph ?? ''}</span>`;
-    const badge = app.badge
-      ? `<span class="featured-app-badge">${app.badge}</span>`
+  const projects = FEATURED_PROJECTS.map((project) => {
+    const accent = APP_REGISTRY[project.id]?.accent;
+    const accentStyle = accent
+      ? ` style="--app-accent:${accent.base};--app-accent-soft:${accent.soft};--app-accent-deep:${accent.deep}"`
       : '';
-    const accent = APP_REGISTRY[app.id]?.accent;
-    const accentStyle = accent ? ` style="--app-accent:${accent.base};--app-accent-deep:${accent.deep}"` : '';
+
     return `
-    <a class="featured-app" href="#${app.id}" data-target="${app.id}"${accentStyle}>
-      <span class="featured-app-tile">
-        ${media}
-        ${badge}
-      </span>
-      <span class="featured-app-label text-caption">${app.label}</span>
-    </a>
-  `;
+      <a class="featured-project" href="#apptabs-${project.id}" data-target="apptabs-${project.id}"${accentStyle}>
+        <span class="featured-project-index">${project.index}</span>
+        <span class="featured-project-title">
+          <span class="featured-project-category">${project.category}</span>
+          <strong>${project.name}</strong>
+        </span>
+        <span class="featured-project-statement">${project.statement}</span>
+        <span class="featured-project-proof">${project.proof}</span>
+        <span class="featured-project-media" aria-hidden="true">
+          <img src="assets/icons/${project.icon}" alt="" loading="lazy" decoding="async" />
+        </span>
+        <span class="featured-project-arrow" aria-hidden="true">↘</span>
+      </a>
+    `;
   }).join('');
 
   section.innerHTML = `
     <div class="section-content featured-content">
-      <p class="eyebrow eyebrow--green">The apps, at a glance</p>
-      <p class="text-subhead featured-lede">Eight focused apps from one bedside-tested lab — for clinicians, students, travelers, and families. Tap any icon to jump to its story.</p>
-      <div class="featured-apps">
-        ${logos}
+      <header class="featured-header">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h2 class="text-heading">Built for decisions that happen in real time.</h2>
+        </div>
+        <p class="featured-lede">Each product starts with a recurring bedside problem, then removes everything that slows the answer down.</p>
+      </header>
+      <div class="featured-projects">
+        ${projects}
+      </div>
+      <div class="featured-index-footer">
+        <span>Five clinical systems</span>
+        <a class="link-arrow" href="#roadmap">See what is still in the lab <span aria-hidden="true">↓</span></a>
       </div>
     </div>
   `;
 
   parent.appendChild(section);
 
-  // Smooth-scroll each logo to its showcase section.
-  section.querySelectorAll<HTMLAnchorElement>('.featured-app').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const id = link.getAttribute('data-target');
-      if (!id) return;
-      const target = document.getElementById(id);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+  section.querySelectorAll<HTMLAnchorElement>('.featured-project').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const id = link.dataset['target'];
+      const target = id ? document.getElementById(id) : null;
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 }

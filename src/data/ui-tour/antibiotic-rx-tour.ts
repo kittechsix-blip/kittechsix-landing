@@ -139,7 +139,7 @@ export const rxTour: UITourConfig = {
           anchorSelector: '[data-rx="abg-table"]',
           title: 'Know your unit',
           description:
-            'Real Dell Seton 2024–25 susceptibilities overlaid on the recommendation — Ceftriaxone 99%, Nitrofurantoin 95%, ESBL Cipro just 17%. Because 79% local Cipro coverage changes the call.',
+            'Your institution’s own susceptibilities overlay the recommendation, so a drug the guideline ranks first can drop below one your unit still has coverage for. National guidance tells you what usually works. This tells you what works here.',
           navigateTo: 'calc',
           guidedOrder: 9,
         },

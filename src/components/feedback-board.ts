@@ -13,9 +13,9 @@ interface Suggestion {
 }
 
 type SortMode = 'votes' | 'newest';
-type CategoryFilter = 'All' | 'myMedKitt' | 'MedKitt Learn' | 'myStroke-Kitt' | 'my-vertigo-app' | 'AcidBase' | 'Antibiotic Rx' | 'MyTravelMedKitt' | 'PowerKitt' | 'FCK Cancer' | 'Community Roadmap' | 'General';
+type CategoryFilter = 'All' | 'myMedKitt' | 'myStroke-Kitt' | 'my-vertigo-app' | 'AcidBase' | 'Antibiotic Rx' | 'MyTravelMedKitt' | 'PowerKitt' | 'Consulting' | 'General';
 
-const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'MedKitt Learn', 'myStroke-Kitt', 'my-vertigo-app', 'AcidBase', 'Antibiotic Rx', 'MyTravelMedKitt', 'PowerKitt', 'FCK Cancer', 'Community Roadmap', 'General'];
+const CATEGORIES: CategoryFilter[] = ['All', 'myMedKitt', 'myStroke-Kitt', 'my-vertigo-app', 'AcidBase', 'Antibiotic Rx', 'MyTravelMedKitt', 'PowerKitt', 'Consulting', 'General'];
 
 export function renderFeedbackBoard(parent: HTMLElement): void {
   const section = document.createElement('section');
@@ -39,15 +39,13 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
         <textarea class="feedback-textarea" placeholder="What problem would this solve? Who would use it?" maxlength="500" aria-label="Description"></textarea>
         <select class="feedback-select" aria-label="Category">
           <option value="myMedKitt">myMedKitt</option>
-          <option value="MedKitt Learn">MedKitt Learn</option>
           <option value="myStroke-Kitt">myStroke-Kitt</option>
           <option value="my-vertigo-app">my-vertigo-app</option>
           <option value="AcidBase">AcidBase</option>
           <option value="Antibiotic Rx">Antibiotic Rx</option>
           <option value="MyTravelMedKitt">MyTravelMedKitt</option>
           <option value="PowerKitt">PowerKitt</option>
-          <option value="FCK Cancer">FCK Cancer</option>
-          <option value="Community Roadmap">Community Roadmap</option>
+          <option value="Consulting">Consulting</option>
           <option value="General">General</option>
         </select>
         <button type="submit" class="cta-primary feedback-submit">Submit Suggestion</button>

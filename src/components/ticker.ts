@@ -2,28 +2,14 @@
 // A calm marquee of clinical + product themes on a thin cream band.
 
 const TICKER_KEYWORDS = [
-  'Emergency Medicine',
-  '25 Years at the Bedside',
-  'Built in Public',
-  'No Sign-Up',
-  'Pro Tier Coming Soon',
-  'Bedside Tools',
-  'Clinical Decision Support',
-  'Offline-First',
-  'Travel Health',
-  'Vertigo & Dizziness',
-  'Cancer Prevention',
-  'Stroke Triage',
-  'EM Simulation',
-  'Patient-Ready Handouts',
-  'A-Fib RVR',
-  'HINTS Exam',
-  'Epley Maneuver',
-  'NIHSS at the Bedside',
-  'Acid-Base Analysis',
-  'Empiric Antibiotics',
-  'Open Roadmap',
-  'Austin, Texas',
+  'Built by an emergency physician',
+  '353 evidence-based consults',
+  'Patient data stays on-device',
+  'No account required',
+  'Offline-first',
+  'Daily evidence review',
+  'Designed in Austin, Texas',
+  'Clinical instinct, engineered',
 ];
 
 export function renderTicker(parent: HTMLElement): void {

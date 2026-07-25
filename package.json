@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "bunx tsc && cp index.html dist/ && cp manifest.json dist/ && cp robots.txt dist/ && cp sitemap.xml dist/ && cp -r src/styles dist/ && cp -r assets dist/",
+    "build": "rm -rf dist && bunx tsc && cp index.html dist/ && cp manifest.json dist/ && cp robots.txt dist/ && cp sitemap.xml dist/ && cp -r src/styles dist/ && cp -r assets dist/",
     "dev": "bunx tsc --watch"
   }
 }

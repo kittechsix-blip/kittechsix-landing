@@ -1,46 +1,46 @@
 :root {
   /* ===== BACKGROUNDS ===== */
-  --bg-white:        #FFFFFF;   /* dominant section bg */
-  --bg-cream:        #F7F3EE;   /* primary alternating warm band */
-  --bg-cream-deep:   #F1EAE0;   /* deeper cream for nested cards / founder plate */
-  --bg-ink:          #1A1714;   /* warm near-black band (footer, founder mission) */
+  --bg-white:        #F8F7F3;
+  --bg-cream:        #EFECE5;
+  --bg-cream-deep:   #E6E0D7;
+  --bg-ink:          #0C1012;
 
   /* ===== CHARCOAL TEXT SCALE (warm-tinted, not blue-black) ===== */
-  --ink-900: #1D1A17;   /* headlines */
-  --ink-800: #2A2521;   /* strong body / headline on cream */
-  --ink-700: #423B34;   /* body default */
-  --ink-600: #54504A;   /* secondary body */
-  --ink-500: #6B6157;   /* muted body / captions */
-  --ink-400: #938A7F;   /* disabled / fine print */
-  --ink-on-dark:     #FBF8F4;   /* text on ink surfaces */
-  --ink-on-dark-mut: rgba(251,248,244,0.72);
+  --ink-900: #111516;
+  --ink-800: #202526;
+  --ink-700: #343A3B;
+  --ink-600: #505758;
+  --ink-500: #6B7271;
+  --ink-400: #939896;
+  --ink-on-dark:     #F4F0E9;
+  --ink-on-dark-mut: rgba(244,240,233,0.68);
 
   /* ===== COPPER SCALE (PRIMARY accent + CTA + brand) ===== */
-  --copper-50:  #FBF1E8;   /* tint wash / tag bg / hover wash */
-  --copper-100: #F3DCC7;
-  --copper-300: #D89B6A;   /* light highlight */
-  --copper-500: #B87333;   /* CORE brand copper + CTA fill */
-  --copper-600: #A4641F;   /* CTA hover (darken) */
-  --copper-700: #8A5524;   /* deep / pressed / text-on-tint */
-  --copper-900: #5E3A16;   /* metallic shadow stop */
+  --copper-50:  #F8EEE5;
+  --copper-100: #EED6C1;
+  --copper-300: #D89B68;
+  --copper-500: #B8733E;
+  --copper-600: #9E5E2F;
+  --copper-700: #794621;
+  --copper-900: #4C2D18;
 
   /* ===== FOREST GREEN SCALE (SECONDARY accent = clinical trust) ===== */
-  --green-50:  #E9F1EB;   /* clinical-tag bg */
-  --green-300: #3CB371;   /* bright myMedKitt emerald / Live dot */
-  --green-500: #2E6B3E;   /* CORE secondary — clinical eyebrows, ticks */
-  --green-700: #235430;   /* deep / text-on-tint green */
-  --green-900: #163A20;
+  --green-50:  #E7F1EB;
+  --green-300: #63C08A;
+  --green-500: #2F7D50;
+  --green-700: #245E3D;
+  --green-900: #163A28;
 
   /* ===== BORDERS & LINES ===== */
-  --border-soft:   #ECE4DA;   /* hairline on white */
-  --border-cream:  #E3D8C9;   /* hairline on cream */
-  --border-strong: #D8CCBC;   /* card outlines / eyebrow rule */
+  --border-soft:   #DFDDD7;
+  --border-cream:  #D7D2C9;
+  --border-strong: #C5BFB5;
 
   /* ===== SHADOWS (warm-tinted, soft, premium) ===== */
   --shadow-xs:    0 1px 2px rgba(40,28,16,0.04);
   --shadow-sm:    0 2px 8px rgba(40,28,16,0.06);
-  --shadow-card:  0 1px 2px rgba(60,42,24,0.04), 0 8px 24px rgba(60,42,24,0.07);
-  --shadow-lift:  0 4px 10px rgba(60,42,24,0.07), 0 18px 44px rgba(60,42,24,0.13);
+  --shadow-card:  0 1px 2px rgba(12,16,18,0.04), 0 12px 32px rgba(12,16,18,0.07);
+  --shadow-lift:  0 8px 18px rgba(12,16,18,0.08), 0 30px 70px rgba(12,16,18,0.15);
   --shadow-copper:0 8px 24px rgba(184,115,51,0.24);
   --shadow-nav:   0 1px 0 rgba(40,28,16,0.06);
   --shadow-inset-copper: inset 0 1px 0 rgba(255,255,255,0.32);
@@ -51,9 +51,9 @@
   --sheen-line:        linear-gradient(90deg, transparent, var(--copper-300), transparent);
 
   /* ===== TYPOGRAPHY FAMILIES ===== */
-  --font-display: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-text:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-accent:  'Fraunces', Georgia, 'Times New Roman', serif; /* founder + pull-quotes ONLY */
+  --font-display: 'Instrument Sans', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-text:    'Instrument Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-accent:  'Instrument Serif', 'Fraunces', Georgia, 'Times New Roman', serif;
   /* app-fidelity fonts used inside the UI tour clones (real apps ship Geist) */
   --font-geist:      'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-geist-mono: 'Geist Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
@@ -62,18 +62,18 @@
   --space-1: 8px;  --space-2: 16px; --space-3: 24px; --space-4: 32px;
   --space-5: 40px; --space-6: 48px; --space-8: 64px; --space-10: 80px;
   --space-12: 96px; --space-16: 128px;
-  --section-pad: 104px;       /* desktop section vertical rhythm */
+  --section-pad: 128px;
   --section-pad-sm: 72px;     /* tablet */
   --section-pad-xs: 56px;     /* mobile */
 
   /* ===== LAYOUT ===== */
-  --content-max: 1120px;      /* widened from 980 for editorial breadth */
+  --content-max: 1240px;
   --content-narrow: 720px;    /* prose / founder column */
-  --nav-height: 64px;
+  --nav-height: 72px;
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
   --radius-pill: 999px;
 
   /* ===== MOTION ===== */

@@ -12,6 +12,10 @@ export interface AppTabDef {
 export interface AppTabsConfig {
   /** Stable id — section becomes #apptabs-<id>; used by activateAppTab(). */
   id: string;
+  /** Editorial chapter number shown in the persistent product rail. */
+  chapter: string;
+  /** Short discipline label, e.g. "Reasoning engine". */
+  discipline: string;
   tabs: AppTabDef[];
 }
 
@@ -26,6 +30,8 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
   const section = document.createElement('section');
   section.className = 'app-tabs';
   section.id = `apptabs-${config.id}`;
+  section.dataset['appId'] = config.id;
+  section.dataset['chapter'] = config.chapter;
 
   // Theme the whole tabbed section with the app's identity color.
   const accent = APP_REGISTRY[config.id]?.accent;
@@ -37,8 +43,22 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
 
   const bar = document.createElement('div');
   bar.className = 'app-tabs-bar';
-  bar.setAttribute('role', 'tablist');
-  bar.setAttribute('aria-label', 'App section tabs');
+
+  const identity = document.createElement('div');
+  identity.className = 'app-tabs-identity';
+  identity.innerHTML = `
+    <span class="app-tabs-chapter">${config.chapter}</span>
+    <span class="app-tabs-name">${APP_REGISTRY[config.id]?.name ?? config.id}</span>
+    <span class="app-tabs-discipline">${config.discipline}</span>
+  `;
+
+  const tablist = document.createElement('div');
+  tablist.className = 'app-tabs-list';
+  tablist.setAttribute('role', 'tablist');
+  tablist.setAttribute('aria-label', `${APP_REGISTRY[config.id]?.name ?? config.id} views`);
+
+  bar.appendChild(identity);
+  bar.appendChild(tablist);
 
   const panels = document.createElement('div');
   panels.className = 'app-tabs-panels';
@@ -47,19 +67,26 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
   const panelEls: HTMLElement[] = [];
 
   config.tabs.forEach((tab, i) => {
+    const tabId = `tab-${config.id}-${tab.key}`;
+    const panelId = `panel-${config.id}-${tab.key}`;
     const btn = document.createElement('button');
     btn.type = 'button';
+    btn.id = tabId;
     btn.className = 'app-tabs-btn' + (i === 0 ? ' active' : '');
     btn.setAttribute('role', 'tab');
     btn.setAttribute('aria-selected', String(i === 0));
+    btn.setAttribute('aria-controls', panelId);
+    btn.tabIndex = i === 0 ? 0 : -1;
     btn.setAttribute('data-tab-key', tab.key);
     btn.textContent = tab.label;
-    bar.appendChild(btn);
+    tablist.appendChild(btn);
     buttons.push(btn);
 
     const panel = document.createElement('div');
+    panel.id = panelId;
     panel.className = 'app-tabs-panel';
     panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', tabId);
     panel.setAttribute('data-tab-key', tab.key);
     if (i !== 0) panel.hidden = true;
     panels.appendChild(panel);
@@ -80,6 +107,7 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
     buttons.forEach((b, i) => {
       b.classList.toggle('active', i === idx);
       b.setAttribute('aria-selected', String(i === idx));
+      b.tabIndex = i === idx ? 0 : -1;
     });
     panelEls.forEach((p, i) => {
       p.hidden = i !== idx;
@@ -91,6 +119,20 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => activate(btn.getAttribute('data-tab-key') ?? ''));
+    btn.addEventListener('keydown', (event) => {
+      const current = buttons.indexOf(btn);
+      let next = current;
+      if (event.key === 'ArrowRight') next = (current + 1) % buttons.length;
+      else if (event.key === 'ArrowLeft') next = (current - 1 + buttons.length) % buttons.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = buttons.length - 1;
+      else return;
+      event.preventDefault();
+      const nextButton = buttons[next];
+      if (!nextButton) return;
+      activate(nextButton.getAttribute('data-tab-key') ?? '');
+      nextButton.focus();
+    });
   });
 
   registry.set(config.id, activate);

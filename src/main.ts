@@ -5,12 +5,10 @@ import { renderNav } from './components/nav.js';
 import { renderHero } from './components/hero.js';
 import { renderTicker } from './components/ticker.js';
 import { renderFeaturedRow } from './components/featured-row.js';
-import { renderEcosystemMap } from './components/ecosystem-map.js';
-import { renderAcidBase, renderAntibioticRx, renderFckCancer, renderMyMedKitt, renderMyStrokeKitt, renderMyTravelMedKitt, renderMyVertigoApp } from './components/product-showcase.js';
+import { renderAcidBase, renderAntibioticRx, renderMyMedKitt, renderMyStrokeKitt, renderMyVertigoApp } from './components/product-showcase.js';
 import { renderAppTabs } from './components/app-tabs.js';
 import { renderPrivacy } from './components/privacy.js';
 import { renderAfibDemo } from './components/demo-afib.js';
-import { renderTripDemo } from './components/demo-trip.js';
 import { renderUITour } from './components/ui-tour.js';
 import { mkTour } from './data/ui-tour/mymedkitt-tour.js';
 import { skTour } from './data/ui-tour/mystroke-kitt-tour.js';
@@ -19,10 +17,13 @@ import { abTour } from './data/ui-tour/acidbase-tour.js';
 import { rxTour } from './data/ui-tour/antibiotic-rx-tour.js';
 import { renderFeedbackBoard } from './components/feedback-board.js';
 import { renderQualityTeam } from './components/quality-team.js';
+import { renderConsulting } from './components/consulting.js';
+import { renderRoadmap } from './components/roadmap.js';
 import { renderAbout } from './components/about.js';
 import { renderDisclaimer } from './components/disclaimer.js';
 import { renderLegal } from './components/legal.js';
 import { renderFooter } from './components/footer.js';
+import { renderFinalCta } from './components/final-cta.js';
 import { setupScrollAnimations } from './utils/intersection.js';
 
 function renderLandingPage(): void {
@@ -39,55 +40,59 @@ function renderLandingPage(): void {
   });
   renderTicker(app);
   renderFeaturedRow(app);
-  renderEcosystemMap(app);
   renderAppTabs(app, {
     id: 'mymedkitt',
+    chapter: '01',
+    discipline: 'Emergency medicine system',
     tabs: [
-      { key: 'overview', label: 'myMedKitt', render: renderMyMedKitt },
+      { key: 'overview', label: 'Overview', render: renderMyMedKitt },
       { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, mkTour) },
       { key: 'demo', label: 'Try a consult', render: renderAfibDemo },
     ],
   });
   renderAppTabs(app, {
-    id: 'mystroke-kitt',
+    id: 'antibiotic-rx',
+    chapter: '02',
+    discipline: 'Adaptive prescribing',
     tabs: [
-      { key: 'overview', label: 'myStroke-Kitt', render: renderMyStrokeKitt },
-      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, skTour) },
+      { key: 'overview', label: 'Overview', render: renderAntibioticRx },
+      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, rxTour) },
     ],
   });
   renderAppTabs(app, {
     id: 'myvertigoapp',
+    chapter: '03',
+    discipline: 'Focused clinical workflow',
     tabs: [
-      { key: 'overview', label: 'myVertigoApp', render: renderMyVertigoApp },
+      { key: 'overview', label: 'Overview', render: renderMyVertigoApp },
       { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, vtTour) },
     ],
   });
   renderAppTabs(app, {
     id: 'acidbase',
+    chapter: '04',
+    discipline: 'Reasoning engine',
     tabs: [
-      { key: 'overview', label: 'AcidBase', render: renderAcidBase },
+      { key: 'overview', label: 'Overview', render: renderAcidBase },
       { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, abTour) },
     ],
   });
   renderAppTabs(app, {
-    id: 'antibiotic-rx',
+    id: 'mystroke-kitt',
+    chapter: '05',
+    discipline: 'Time-critical decision support',
     tabs: [
-      { key: 'overview', label: 'Antibiotic Rx', render: renderAntibioticRx },
-      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, rxTour) },
+      { key: 'overview', label: 'Overview', render: renderMyStrokeKitt },
+      { key: 'tour', label: 'Tour the UI', render: (p) => renderUITour(p, skTour) },
     ],
   });
-  renderAppTabs(app, {
-    id: 'mytravelmedkitt',
-    tabs: [
-      { key: 'overview', label: 'MyTravelMedKitt', render: renderMyTravelMedKitt },
-      { key: 'demo', label: 'Try the demo', render: renderTripDemo },
-    ],
-  });
-  renderFckCancer(app);
+  renderConsulting(app);
   renderQualityTeam(app);
+  renderRoadmap(app);
   renderAbout(app);
   renderPrivacy(app);
   renderFeedbackBoard(app);
+  renderFinalCta(app);
   renderDisclaimer(app);
   renderLegal(app);
   renderFooter(app);
