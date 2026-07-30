@@ -214,7 +214,7 @@ export function renderSKHome(): HTMLElement {
     <main class="sk-main">
       <header>
         <p class="sk-brand-eyebrow">myStroke-Kitt</p>
-        <h1 class="sk-h1">Stroke Decision Tree</h1>
+        <p class="sk-h1">Stroke Decision Tree</p>
         <p class="sk-home-sub">Start with the code-stroke spine. The app will fork after CT into ischemic, hemorrhagic, or mimic pathways.</p>
       </header>
 

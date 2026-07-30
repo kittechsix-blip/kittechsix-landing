@@ -19,11 +19,17 @@ export interface AppTabsConfig {
   tabs: AppTabDef[];
 }
 
-// Registry so CTAs elsewhere (showcase buttons, hero) can switch tabs.
-const registry = new Map<string, (key: string, scroll?: boolean) => void>();
-
+// CTAs elsewhere (showcase buttons, hero) switch tabs through here.
+//
+// Resolved from the live DOM rather than a module-level Map: every route
+// re-render rebuilds these sections, and a cached callback would keep firing
+// into a detached tree (and keep the detached tree alive) after navigation.
 export function activateAppTab(id: string, key: string): void {
-  registry.get(id)?.(key, true);
+  const section = document.getElementById(`apptabs-${id}`);
+  const btn = section?.querySelector<HTMLButtonElement>(
+    `.app-tabs-btn[data-tab-key="${key}"]`,
+  );
+  btn?.click();
 }
 
 export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void {
@@ -101,7 +107,7 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
   // document.getElementById internally and need live DOM.
   config.tabs.forEach((tab, i) => tab.render(panelEls[i]!));
 
-  const activate = (key: string, scroll = false) => {
+  const activate = (key: string) => {
     const idx = config.tabs.findIndex((t) => t.key === key);
     if (idx < 0) return;
     buttons.forEach((b, i) => {
@@ -114,7 +120,6 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
     });
     // Tour frames/hotspots measure the DOM — recompute now that the panel is visible.
     window.dispatchEvent(new Event('resize'));
-    if (scroll) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   buttons.forEach((btn) => {
@@ -134,6 +139,4 @@ export function renderAppTabs(parent: HTMLElement, config: AppTabsConfig): void 
       nextButton.focus();
     });
   });
-
-  registry.set(config.id, activate);
 }

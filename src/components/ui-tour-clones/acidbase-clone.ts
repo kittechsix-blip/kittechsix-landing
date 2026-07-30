@@ -36,7 +36,7 @@ const HEADER = (formulasAttr = '') => `
     <div class="ab-header__brand" data-ab="logo">
       <span class="ab-logo">${icon.beaker}</span>
       <div class="ab-header__titles">
-        <h1 class="ab-header__name">AcidBase</h1>
+        <p class="ab-header__name">AcidBase</p>
         <p class="ab-header__sub">ABG &amp; metabolic analyzer</p>
       </div>
     </div>

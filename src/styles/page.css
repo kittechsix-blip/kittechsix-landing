@@ -1,0 +1,253 @@
+/* Shared page frame — the header band that opens a sub-page (/studio, /legal),
+ * plus the two page shells that host already-existing sections as bands.
+ * Composes existing components; adds no parallel palette. Link LAST in index.html
+ * so the frame overrides the per-section bands it wraps. */
+
+/* ========== Page header (both pages) ========== */
+
+.page-head {
+  width: 100%;
+  padding: 84px var(--space-3) 76px;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.page-head-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.page-title {
+  max-width: 17ch;
+  margin-bottom: 26px;
+  font-size: clamp(42px, 5.8vw, 76px);
+}
+
+.page-lede {
+  max-width: 62ch;
+  color: var(--ink-600);
+}
+
+@media (max-width: 700px) {
+  .page-head { padding: 56px 18px 52px; }
+  .page-title { max-width: none; }
+}
+
+/* Cross-page link used inline inside a composed band's prose. Kept plain-inline
+ * (not .cta-link, which is inline-flex and cannot wrap mid-sentence). */
+.page-inline-link {
+  color: var(--copper-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: color var(--transition-default);
+}
+.page-inline-link:hover { color: var(--copper-900); }
+
+/* ========== /studio — bands on one page ========== */
+/* Alternates the composed bands so no two identical grounds sit adjacent:
+ * head (white) -> about (ink) -> standards (white) -> roadmap (cream) -> feedback (white). */
+
+.studio-page > #feedback {
+  background: var(--bg-white);
+}
+
+/* The first band follows a header that already carries its own bottom space. */
+.studio-page > .section:first-child {
+  padding-top: var(--space-12);
+}
+
+/* ========== /legal — three parts, one document ========== */
+
+/* The reading column is flush with the page header's left rule — one document,
+ * one left edge — not centred inside the grid. */
+.legaldoc {
+  --legaldoc-col: 860px;
+  max-width: calc(var(--content-max) + var(--space-3) * 2);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-3) var(--space-12);
+}
+
+/* Contents — buttons, not fragment anchors: a bare href="#id" is swallowed by the
+ * hash router and would navigate away from this page. */
+.legaldoc-contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: var(--legaldoc-col);
+  margin: 0 0 var(--space-8);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.legaldoc-contents-label {
+  width: 100%;
+  margin-bottom: 6px;
+  font-family: var(--font-text);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+.legaldoc-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 550;
+  letter-spacing: -0.005em;
+  color: var(--ink-700);
+  background: transparent;
+  transition: border-color var(--transition-default), color var(--transition-default), background var(--transition-default);
+}
+
+.legaldoc-jump span {
+  font-family: var(--font-geist-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--copper-600);
+}
+
+.legaldoc-jump:hover {
+  border-color: var(--copper-500);
+  color: var(--copper-700);
+  background: var(--copper-50);
+}
+
+/* Inline cross-references between the parts (rewritten from bare fragment anchors). */
+.legaldoc-xref {
+  padding: 0;
+  font: inherit;
+  color: var(--copper-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legaldoc-xref:hover { color: var(--copper-900); }
+
+/* Part marker — number and rule only. Each part's own h2 names it. */
+.legaldoc-marker {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: var(--legaldoc-col);
+  margin: 0 0 var(--space-4);
+}
+
+.legaldoc-marker-num {
+  font-family: var(--font-geist-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--copper-600);
+}
+
+.legaldoc-marker-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border-strong);
+}
+
+.legaldoc .section + .legaldoc-marker {
+  margin-top: var(--space-8);
+}
+
+/* --- Neutralize the three sections' competing band chrome --- */
+
+.legaldoc .section {
+  padding: 0;
+  background: transparent;
+  color: var(--ink-700);
+}
+
+/* A legal document does not fade in. Overrides the .section-content scroll-reveal
+ * so these three parts are readable without any JS having to run. */
+.legaldoc .section-content {
+  max-width: var(--legaldoc-col);
+  margin: 0;
+  opacity: 1;
+  transform: none;
+}
+
+/* disclaimer.ts sets these three inline; legal-page.ts strips the attribute at
+ * render time, and these rules restore the intent in the shared register. */
+.legaldoc .disclaimer-section .section-content > div:first-child {
+  margin-bottom: var(--space-4);
+}
+
+.legaldoc .legal-section .legal-content,
+.legaldoc .disclaimer-section .section-content {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* One reading register across all three parts: left-aligned, same rhythm. */
+.legaldoc .legal-tag-row,
+.legaldoc .legal-headline,
+.legaldoc .disclaimer-section .section-content > div:first-child,
+.legaldoc .disclaimer-section h2 {
+  text-align: left;
+}
+
+.legaldoc h2 {
+  margin-bottom: var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 580;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--ink-900);
+}
+
+.legaldoc .privacy-headline {
+  max-width: 20ch;
+  margin-bottom: var(--space-5);
+}
+
+/* One type register across all three parts — privacy shipped a display-scale card
+ * grid, the other two a legal-block scale; inside the document they match. */
+.legaldoc .privacy-card h3,
+.legaldoc .legal-block h3 {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink-900);
+}
+
+.legaldoc .privacy-card p,
+.legaldoc .legal-block p,
+.legaldoc .text-body-sm {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.legaldoc .privacy-fineprint { font-size: 13px; }
+
+.legaldoc p { color: var(--ink-600); }
+.legaldoc strong { font-weight: 600; color: var(--ink-900); }
+
+.legaldoc .disclaimer-section .section-content > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Privacy's four-across grid is a full-bleed device; inside the reading column it
+ * runs two-up, matching its own 900px breakpoint. */
+.legaldoc .privacy-grid { grid-template-columns: 1fr 1fr; }
+.legaldoc .privacy-card { min-height: 0; padding: 24px 24px 24px 0; }
+.legaldoc .privacy-card:nth-child(3) { padding-left: 0; border-left: 0; }
+
+@media (max-width: 700px) {
+  .legaldoc { padding: var(--space-6) 18px var(--space-10); }
+  .legaldoc .privacy-grid { grid-template-columns: 1fr; }
+  .legaldoc .privacy-card,
+  .legaldoc .privacy-card + .privacy-card { padding: 22px 0; border-left: 0; }
+}

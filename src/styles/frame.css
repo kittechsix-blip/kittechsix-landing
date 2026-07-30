@@ -1,0 +1,223 @@
+/* ============================================================================
+   Metallic frame — a milled brass/burnt-umber picture frame around the viewport.
+
+   Built entirely from gradients: no images, no requests, sharp at any DPI, and
+   safe under the site's strict CSP.
+
+   CONSTRUCTION — four rails, each a full-viewport fixed layer clipped to a
+   trapezoid. The trapezoids meet at 45 degrees, which is what produces real
+   mitered corners like a joined frame rather than four overlapping bars.
+
+   Because every rail spans the whole viewport and is only *clipped* to its
+   trapezoid, a background painted in viewport coordinates lines up perfectly
+   across all four. That is what lets one specular highlight travel around the
+   frame continuously instead of restarting at each corner.
+
+   Each rail paints, bottom to top:
+     1. the bevel — a gradient ACROSS the rail's width, the milled cross-section
+     2. the brushed grain — fine striations, barely there
+     3. the specular bloom — screen-blended, tracks the pointer
+
+   Lighting is fixed: source above and slightly left. The top rail faces it and
+   is brightest; the left rail is a warm mid-tone; the right falls away; the
+   bottom faces away and is nearly black. Per-rail `filter: brightness()` does
+   that dimming, and it correctly dims each rail's share of the highlight too —
+   a surface angled away from the light reflects less of it.
+   ========================================================================== */
+
+:root {
+  /* Width tracks BOTH axes on purpose. Against width alone, a wide-but-short
+     laptop gets a heavy frame that eats the height the hero needs; the vh term
+     thins the stock on short screens so the frame never costs more than the
+     page can spare. */
+  --frame-w: clamp(10px, min(1.4vw, 2.4vh), 24px);
+
+  /* Ramp sampled from the Kittech-Six mark: rose-gold highlight through burnt
+     umber to a near-black shadow. */
+  --mf-spec:   #FFE9D2;
+  --mf-hi:     #D9A574;
+  --mf-warm:   #A9683A;
+  --mf-mid:    #8A4F26;
+  --mf-umber:  #653517;
+  --mf-deep:   #40200D;
+  --mf-shadow: #241004;
+  --mf-black:  #0D0501;
+
+  /* The milled cross-section, outer edge -> inner edge. A hard bright catch
+     near the outer third is what makes it read as a machined chamfer instead
+     of a soft tube. */
+  --mf-profile:
+      var(--mf-shadow)  0%,
+      var(--mf-black)   3%,
+      var(--mf-deep)    7%,
+      var(--mf-umber)  13%,
+      var(--mf-warm)   19%,
+      var(--mf-hi)     23%,
+      var(--mf-spec)   25.5%,
+      var(--mf-hi)     28%,
+      var(--mf-mid)    34%,
+      var(--mf-umber)  46%,
+      var(--mf-deep)   62%,
+      var(--mf-shadow) 80%,
+      var(--mf-black) 100%;
+}
+
+.metal-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.mf-rail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  /* sheen (screen) over grain (overlay) over the bevel */
+  background-blend-mode: screen, overlay, normal;
+}
+
+/* --mf-x / --mf-y are written by frame.ts on pointer move. The defaults sit the
+   hotspot upper-left so the frame is still lit on a device that never sends a
+   pointermove. */
+.metal-frame {
+  --mf-x: 22%;
+  --mf-y: 4%;
+}
+
+/* Shared paint layers, in viewport space so they are continuous across rails. */
+.mf-rail {
+  --mf-sheen:
+    radial-gradient(
+      circle 210px at var(--mf-x) var(--mf-y),
+      rgba(255, 250, 242, 0.78) 0%,
+      rgba(255, 228, 198, 0.40) 12%,
+      rgba(214, 156, 104, 0.15) 32%,
+      rgba(255, 255, 255, 0) 70%
+    );
+  --mf-grain:
+    repeating-linear-gradient(
+      96deg,
+      rgba(255, 244, 232, 0.10) 0px,
+      rgba(255, 244, 232, 0.10) 1px,
+      rgba(28, 14, 6, 0.11) 1px,
+      rgba(28, 14, 6, 0.11) 2px
+    );
+}
+
+/* ---- the four rails ----------------------------------------------------- */
+
+.mf-top {
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--frame-w)) var(--frame-w), var(--frame-w) var(--frame-w));
+  background-image: var(--mf-sheen), var(--mf-grain), linear-gradient(to bottom, var(--mf-profile));
+  background-size: 100% 100%, 100% 100%, 100% var(--frame-w);
+  background-position: 0 0, 0 0, 0 0;
+  filter: brightness(1.02) saturate(0.96);
+}
+
+.mf-left {
+  clip-path: polygon(0 0, var(--frame-w) var(--frame-w), var(--frame-w) calc(100% - var(--frame-w)), 0 100%);
+  background-image: var(--mf-sheen), var(--mf-grain), linear-gradient(to right, var(--mf-profile));
+  background-size: 100% 100%, 100% 100%, var(--frame-w) 100%;
+  background-position: 0 0, 0 0, 0 0;
+  filter: brightness(0.86) saturate(0.94);
+}
+
+.mf-right {
+  clip-path: polygon(100% 0, 100% 100%, calc(100% - var(--frame-w)) calc(100% - var(--frame-w)), calc(100% - var(--frame-w)) var(--frame-w));
+  background-image: var(--mf-sheen), var(--mf-grain), linear-gradient(to left, var(--mf-profile));
+  background-size: 100% 100%, 100% 100%, var(--frame-w) 100%;
+  background-position: 0 0, 0 0, 100% 0;
+  filter: brightness(0.62) saturate(0.9);
+}
+
+.mf-bottom {
+  clip-path: polygon(0 100%, var(--frame-w) calc(100% - var(--frame-w)), calc(100% - var(--frame-w)) calc(100% - var(--frame-w)), 100% 100%);
+  background-image: var(--mf-sheen), var(--mf-grain), linear-gradient(to top, var(--mf-profile));
+  background-size: 100% 100%, 100% 100%, 100% var(--frame-w);
+  background-position: 0 0, 0 0, 0 100%;
+  filter: brightness(0.48) saturate(0.88);
+}
+
+/* ---- joints, lip and cast shadow ---------------------------------------- */
+
+/* A hair of darkness along every miter so the joints read as separate pieces of
+   stock rather than one folded sheet. */
+.mf-joints {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom right, rgba(21, 10, 3, 0.5) 0 1px, transparent 1px) 0 0 / var(--frame-w) var(--frame-w) no-repeat,
+    linear-gradient(to bottom left,  rgba(21, 10, 3, 0.5) 0 1px, transparent 1px) 100% 0 / var(--frame-w) var(--frame-w) no-repeat,
+    linear-gradient(to top right,    rgba(21, 10, 3, 0.5) 0 1px, transparent 1px) 0 100% / var(--frame-w) var(--frame-w) no-repeat,
+    linear-gradient(to top left,     rgba(21, 10, 3, 0.5) 0 1px, transparent 1px) 100% 100% / var(--frame-w) var(--frame-w) no-repeat;
+  opacity: 0.55;
+}
+
+/* Where the frame turns down onto the page: a bright catch-light on the inner
+   edge, then the shadow the frame throws across the paper, then a faint warm
+   bounce from the metal. This is also the glass note — a translucent film with
+   the page showing through it. */
+.mf-lip {
+  position: fixed;
+  inset: calc(var(--frame-w) - 1px);
+  pointer-events: none;
+  border: 1px solid rgba(255, 226, 198, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(21, 10, 3, 0.6),
+    0 8px 26px -8px rgba(21, 10, 3, 0.55),
+    0 2px 7px rgba(21, 10, 3, 0.32),
+    inset 0 2px 18px rgba(184, 115, 62, 0.13);
+}
+
+/* The outside corner of the stock, catching a thin line of light. */
+.mf-edge {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 232, 206, 0.3),
+    inset 0 0 0 2px rgba(21, 10, 3, 0.28);
+}
+
+/* ---- content inset ------------------------------------------------------ */
+
+body { padding: var(--frame-w); }
+
+/* Sticky and fixed chrome measures from the viewport, not the padded body, so
+   it has to be pushed in by hand or it tucks under the frame. */
+.glass-nav { top: var(--frame-w); }
+.nav-overlay { inset: var(--frame-w); }
+
+/* The hero's whole premise is fitting the viewport exactly; the frame eats
+   twice its width out of that budget.
+
+   Both elements carry a viewport-height floor and BOTH have to be reduced —
+   .hx-page is the one that actually drives the height, so overriding .hero
+   alone silently leaves the page 2x--frame-w too tall and reintroduces the
+   scrollbar the hero exists to avoid. */
+.hero,
+.hx-page {
+  min-height: calc(100vh - (var(--frame-w) * 2));
+  min-height: calc(100svh - (var(--frame-w) * 2));
+}
+
+/* The hero's vertical rhythm was tuned against a full viewport. The frame takes
+   2x--frame-w out of that, so the baseline unit tightens to give the metal its
+   room back — every gap in the hero is a multiple of this, so one number
+   rebalances the whole column rather than special-casing a dozen rules. */
+.hero { --hx-base: 8px; }
+.hx-page { padding-block: calc(var(--hx-base) * 2.4); }
+
+@media (max-width: 640px) {
+  /* A heavy frame on a phone steals real estate the hero needs. Keep it, but
+     make it a slim reveal rather than a mantelpiece. */
+  :root { --frame-w: 11px; }
+}
+
+@media print {
+  .metal-frame { display: none; }
+  body { padding: 0; }
+}

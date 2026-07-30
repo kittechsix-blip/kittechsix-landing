@@ -17,10 +17,10 @@ export function renderFooter(parent: HTMLElement): void {
     <div class="footer-content">
       <div class="footer-cols">
         <div class="footer-col footer-brand">
-          <div class="footer-brand-mark">
+          <a class="footer-brand-mark" href="#/" aria-label="Kittech-Six — home">
             <img class="footer-logo" src="assets/icons/favicon.png" alt="Kittech-Six brain logo" width="28" height="28" />
             <span class="footer-wordmark">Kittech-Six</span>
-          </div>
+          </a>
           <p class="footer-mission">Clinical and consumer health apps, built in public by an ER physician.</p>
           <button class="footer-pro-link" id="footer-pro" type="button">&#10024; Pro tier in the works &mdash; join the waitlist</button>
           <div class="footer-social">
@@ -30,33 +30,34 @@ export function renderFooter(parent: HTMLElement): void {
           </div>
         </div>
         <div class="footer-col">
-          <h3 class="footer-col-head">Apps</h3>
+          <h2 class="footer-col-head">Apps</h2>
           <div class="footer-links">
-            <a href="#mymedkitt">myMedKitt</a>
-            <a href="#mystroke-kitt">myStroke-Kitt</a>
-            <a href="#myvertigoapp">my-vertigo-app</a>
-            <a href="#acidbase">AcidBase</a>
-            <a href="#antibiotic-rx">Antibiotic Rx</a>
-            <a href="#roadmap">MyTravelMedKitt</a>
-            <a href="#roadmap">PowerKitt</a>
+            <a href="#/work/mymedkitt">myMedKitt</a>
+            <a href="#/work/mystroke-kitt">myStroke-Kitt</a>
+            <a href="#/work/myvertigoapp">my-vertigo-app</a>
+            <a href="#/work/acidbase">AcidBase</a>
+            <a href="#/work/antibiotic-rx">Antibiotic Rx</a>
+            <a href="#/studio">MyTravelMedKitt <span class="footer-link-tag">In build</span></a>
+            <a href="#/studio">PowerKitt <span class="footer-link-tag">In build</span></a>
           </div>
         </div>
         <div class="footer-col">
-          <h3 class="footer-col-head">The Lab</h3>
+          <h2 class="footer-col-head">The Lab</h2>
           <div class="footer-links">
-            <a href="#consulting">Consulting</a>
-            <a href="#quality-team">Standards</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#about">About</a>
+            <a href="#/work">Selected work</a>
+            <a href="#/consulting">Consulting</a>
+            <a href="#/studio">Standards</a>
+            <a href="#/studio">Roadmap</a>
+            <a href="#/studio">About the studio</a>
           </div>
         </div>
         <div class="footer-col">
-          <h3 class="footer-col-head">Legal</h3>
+          <h2 class="footer-col-head">Legal</h2>
           <div class="footer-links">
-            <a href="#disclaimer">Medical Disclaimer</a>
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms of Service</a>
-            <a href="#refunds">Refund Policy</a>
+            <a href="#/legal">Medical Disclaimer</a>
+            <a href="#/legal">Privacy</a>
+            <a href="#/legal">Terms of Service</a>
+            <a href="#/legal">Refund Policy</a>
             <a href="mailto:kittechsix@gmail.com" id="footer-contact">Contact</a>
           </div>
         </div>

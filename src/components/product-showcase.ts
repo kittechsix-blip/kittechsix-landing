@@ -21,6 +21,8 @@ interface ProductShowcaseConfig {
   reverse?: boolean;
   ctaPrimary: { label: string; action: () => void };
   ctaSecondary?: { label: string; action: () => void };
+  /** Suppress the headline when a page-level <h1> already names this app. */
+  suppressHeadline?: boolean;
 }
 
 export function renderProductShowcase(parent: HTMLElement, config: ProductShowcaseConfig): void {
@@ -62,7 +64,7 @@ export function renderProductShowcase(parent: HTMLElement, config: ProductShowca
           <span class="eyebrow${eyebrowVariant} showcase-eyebrow">${config.eyebrow}</span>
           <p class="showcase-status tag ${tagVariant}">${config.status}</p>
         </div>
-        <h2 class="text-heading showcase-headline">${config.name}</h2>
+        ${config.suppressHeadline ? '' : `<h2 class="text-heading showcase-headline">${config.name}</h2>`}
         <p class="text-body showcase-description">${config.description}</p>
         <div class="showcase-features">${featuresHtml}</div>
         <div class="showcase-ctas" id="ctas-${config.id}"></div>

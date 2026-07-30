@@ -21,10 +21,6 @@ export function renderAbout(parent: HTMLElement): void {
         <p class="text-body about-text">We're building software that solves real problems encountered on shift — fast, offline-first tools for the phone in your scrub pocket. No login walls, and the core clinical references stay open to everyone. A Pro tier (coming soon) funds the deeper tooling — but the information you need at the bedside is always there when you need it.</p>
         <p class="text-accent about-pullquote">“The interface should disappear before the decision does.”</p>
         <p class="text-body about-text">We're also building consumer health tools for travelers, families, and anyone who wants better access to medical knowledge.</p>
-        <div class="about-actions">
-          <button class="cta-ghost" id="about-feedback-btn">Shape the Roadmap</button>
-          <span class="about-signature">— Dr. Andy Kitlowski, ER Physician · Austin, TX</span>
-        </div>
         <div class="about-tags">
           <span class="tag tag--clinical">Emergency Medicine</span>
           <span class="tag tag--clinical">15+ yrs teaching &amp; simulation</span>
@@ -35,8 +31,4 @@ export function renderAbout(parent: HTMLElement): void {
   `;
 
   parent.appendChild(section);
-
-  document.getElementById('about-feedback-btn')?.addEventListener('click', () => {
-    document.getElementById('feedback')?.scrollIntoView({ behavior: 'smooth' });
-  });
 }

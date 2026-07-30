@@ -29,6 +29,7 @@
   <!-- Self-hosted fonts (CSP blocked the old Google Fonts stylesheet in production) -->
   <link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles/fonts.css">
 
   <link rel="stylesheet" href="styles/tokens.css">
@@ -46,8 +47,8 @@
   <link rel="stylesheet" href="styles/footer.css">
   <link rel="stylesheet" href="styles/contact-modal.css">
   <link rel="stylesheet" href="styles/app-tabs.css">
+  <link rel="stylesheet" href="styles/work.css">
   <link rel="stylesheet" href="styles/privacy.css">
-  <link rel="stylesheet" href="styles/final-cta.css">
   <link rel="stylesheet" href="styles/legal.css">
   <link rel="stylesheet" href="styles/ui-tour.css">
   <link rel="stylesheet" href="styles/tour/mymedkitt.css">
@@ -55,6 +56,8 @@
   <link rel="stylesheet" href="styles/tour/my-vertigo-app.css">
   <link rel="stylesheet" href="styles/tour/acidbase.css">
   <link rel="stylesheet" href="styles/tour/antibiotic-rx.css">
+  <link rel="stylesheet" href="styles/page.css">
+  <link rel="stylesheet" href="styles/frame.css">
 
   <script type="application/ld+json">
   {
@@ -118,7 +121,17 @@
   </script>
 </head>
 <body>
-  <a href="#app" class="skip-link">Skip to main content</a>
+  <button type="button" class="skip-link" data-skip-main>Skip to main content</button>
+
+  <div class="metal-frame" aria-hidden="true">
+    <span class="mf-rail mf-top"></span>
+    <span class="mf-rail mf-left"></span>
+    <span class="mf-rail mf-right"></span>
+    <span class="mf-rail mf-bottom"></span>
+    <span class="mf-joints"></span>
+    <span class="mf-lip"></span>
+    <span class="mf-edge"></span>
+  </div>
   <div id="app" role="main"></div>
   <script type="module" src="main.js"></script>
   <!-- Vercel Web Analytics: cookieless, same-origin (passes CSP). Requires

@@ -86,7 +86,7 @@ export function renderUITour(parent: HTMLElement, config: UITourConfig): void {
           </div>
         </div>
         <aside class="ui-tour-summary" aria-label="Screens in this tour">
-          <h4>Screens</h4>
+          <h3 class="tour-screens-label">Screens</h3>
           <ul></ul>
         </aside>
       </div>

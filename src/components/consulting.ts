@@ -134,7 +134,7 @@ export function renderConsulting(parent: HTMLElement): void {
   const steps = STEPS.map((step) => `
     <li class="cons-step">
       <span class="cons-step-index" aria-hidden="true">${step.index}</span>
-      <h4 class="cons-step-title">${step.title}</h4>
+      <h3 class="cons-step-title">${step.title}</h3>
       <p class="cons-step-detail">${step.detail}</p>
     </li>
   `).join('');
@@ -144,7 +144,7 @@ export function renderConsulting(parent: HTMLElement): void {
       <header class="cons-header">
         <div class="cons-header-lead">
           <p class="eyebrow">Consulting</p>
-          <h2 class="text-heading cons-title" id="consulting-title">Your department already knows the answer. Nobody can find it at 3&nbsp;a.m.</h2>
+          <h1 class="text-heading cons-title" id="consulting-title">Your department already knows the answer. Nobody can find it at 3&nbsp;a.m.</h1>
         </div>
         <div class="cons-header-aside">
           <p class="text-subhead cons-subhead">I build the internal tools clinical teams actually open on shift — the reference, the workflow, the checklist, the who-do-I-call — collapsed into one app that lives on the phone already in the pocket.</p>
@@ -154,7 +154,7 @@ export function renderConsulting(parent: HTMLElement): void {
 
       <div class="cons-problem">
         <div class="cons-problem-head">
-          <h3 class="cons-h3">Right now it lives everywhere.</h3>
+          <h2 class="cons-h3">Right now it lives everywhere.</h2>
           <p class="text-body cons-problem-note">Nothing is wrong, exactly. Every piece of it is correct somewhere. It is just spread across eight places, half of them offline, and none of them the place a clinician thinks to look while the room is filling up.</p>
         </div>
 
@@ -174,19 +174,19 @@ export function renderConsulting(parent: HTMLElement): void {
       <article class="cons-case" aria-labelledby="cons-case-title">
         <div class="cons-case-head">
           <p class="cons-kicker">Case study · anonymized</p>
-          <h3 class="cons-case-title" id="cons-case-title">An operations app for a large academic emergency department.</h3>
+          <h2 class="cons-case-title" id="cons-case-title">An operations app for a large academic emergency department.</h2>
           <p class="cons-case-body">A department running on reference material that had accumulated rather than been designed: one thing in a binder, another on a shared drive, a third in whoever happened to remember it. I mapped every place the knowledge was hiding, then rebuilt it as one installable app — protocols, department operations, onboarding, disposition and follow-up routing, quality metrics, scheduling, contacts and consultants, all searchable from any screen and all readable with no signal. It went from first commit to department-wide release in under five months, and it is in daily use on shift today.</p>
         </div>
 
         <div class="cons-case-detail">
-          <h4 class="cons-sublabel">What was built</h4>
+          <h3 class="cons-sublabel">What was built</h3>
           <ul class="cons-caps">
             ${capabilities}
           </ul>
         </div>
 
         <div class="cons-case-outcome">
-          <h4 class="cons-sublabel">What changed</h4>
+          <h3 class="cons-sublabel">What changed</h3>
           <dl class="cons-proofs">
             ${proofs}
           </dl>
@@ -195,7 +195,7 @@ export function renderConsulting(parent: HTMLElement): void {
 
       <div class="cons-engage">
         <div class="cons-engage-head">
-          <h3 class="cons-h3">How an engagement runs.</h3>
+          <h2 class="cons-h3">How an engagement runs.</h2>
           <p class="text-body cons-engage-note">Small, senior, and fast. You are working with the physician who builds it, not an account team.</p>
         </div>
         <ol class="cons-steps">

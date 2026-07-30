@@ -1,4 +1,5 @@
-/* Studio navigation */
+/* Studio navigation — one solid bar. No hero sits underneath it any more, so
+   the transparent-over-hero variant and its scroll listener are gone. */
 
 .glass-nav {
   position: sticky;
@@ -6,22 +7,10 @@
   z-index: 100;
   width: 100%;
   height: var(--nav-height);
-  border-bottom: 1px solid transparent;
-  transition: background 300ms ease, border-color 300ms ease, color 300ms ease;
-}
-
-.glass-nav--dark {
-  color: var(--ink-on-dark);
-  background: rgba(12, 16, 18, 0.46);
-  border-color: rgba(255,255,255,0.08);
-  backdrop-filter: blur(18px) saturate(130%);
-  -webkit-backdrop-filter: blur(18px) saturate(130%);
-}
-
-.glass-nav--solid {
   color: var(--ink-900);
   background: rgba(248,247,243,0.9);
-  border-color: var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-nav);
   backdrop-filter: blur(18px) saturate(130%);
   -webkit-backdrop-filter: blur(18px) saturate(130%);
 }
@@ -101,8 +90,10 @@
 
 .nav-links a:hover,
 .nav-links a.active { opacity: 1; }
+.nav-links a.active { color: var(--copper-700); }
 .nav-links a:hover::after,
 .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
+.nav-links a.active::after { background: var(--copper-500); height: 2px; }
 
 .nav-product-cta {
   justify-self: end;
@@ -118,13 +109,7 @@
   transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
-.glass-nav--dark .nav-product-cta:hover {
-  color: var(--bg-ink);
-  background: var(--ink-on-dark);
-  border-color: var(--ink-on-dark);
-}
-
-.glass-nav--solid .nav-product-cta:hover {
+.nav-product-cta:hover {
   color: #fff;
   background: var(--ink-900);
   border-color: var(--ink-900);
@@ -198,6 +183,8 @@
   letter-spacing: 0.14em;
   color: var(--copper-300);
 }
+
+.nav-overlay > a.active:not(.nav-overlay-primary) { color: var(--copper-300); }
 
 .nav-overlay-primary {
   align-self: flex-start;

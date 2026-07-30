@@ -120,12 +120,12 @@ export function renderRoadmap(parent: HTMLElement): void {
           <p class="eyebrow">Roadmap</p>
           <h2 class="text-heading" id="roadmap-title">What is still unfinished.</h2>
         </div>
-        <p class="text-subhead roadmap-lede">The five systems above are live. These two are not, and I would rather show you the gap than describe them as though they were finished. Here is what exists today and what is still missing.</p>
+        <p class="text-subhead roadmap-lede"><a class="page-inline-link" href="#/work">The five clinical systems</a> are live and in daily use. These two are not, and I would rather show you the gap than describe them as though they were finished. Here is what exists today and what is still missing.</p>
       </header>
       <ol class="roadmap-list">
         ${items}
       </ol>
-      <p class="roadmap-labnote"><span class="roadmap-labnote-label">Also in the lab:</span> every one of the 336 decision pathways in the flagship system now has an interactive visual map generated from the pathway itself, and a conversational study companion built from each app’s own clinical source is in internal testing. There are no ship dates on this page on purpose. Things release when the review offices clear them and I sign off clinically, not when a date on a slide says they should.</p>
+      <p class="roadmap-labnote"><span class="roadmap-labnote-label">Also in the lab:</span> 336 of the flagship system’s 353 consults now carry an interactive visual map generated straight from the consult’s own decision logic, and a conversational study companion built from each app’s own clinical source is in internal testing. There are no ship dates on this page on purpose. Things release when the review offices clear them and I sign off clinically, not when a date on a slide says they should.</p>
     </div>
   `;
 

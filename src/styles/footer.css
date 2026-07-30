@@ -38,10 +38,18 @@
   max-width: 320px;
 }
 
+/* Brand mark is a link home (the hero route) */
 .footer-brand-mark {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-1);
+  align-self: flex-start;
+  color: inherit;
+  transition: opacity var(--transition-default);
+}
+
+.footer-brand-mark:hover {
+  opacity: 0.82;
 }
 
 .footer-logo {
@@ -150,6 +158,21 @@
 
 .footer-links a:hover {
   color: var(--ink-on-dark);
+}
+
+/* "In build" marker on apps that have no page of their own yet */
+.footer-link-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border: 1px solid rgba(216, 155, 104, 0.4);
+  border-radius: var(--radius-pill);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--copper-300);
+  vertical-align: middle;
 }
 
 /* ===== BOTTOM BAR ===== */

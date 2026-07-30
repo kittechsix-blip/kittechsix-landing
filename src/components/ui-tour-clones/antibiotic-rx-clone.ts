@@ -38,7 +38,7 @@ const HEADER = `
     <div class="rx-header__brand">
       <div class="rx-header__badge">${icoPill}</div>
       <div>
-        <h1 class="rx-header__title">Antibiotic Rx</h1>
+        <p class="rx-header__title">Antibiotic Rx</p>
         <p class="rx-header__tagline">Empiric &amp; culture-directed therapy</p>
       </div>
     </div>
@@ -61,7 +61,7 @@ export function renderRxDisclaimer(): HTMLElement {
         <div class="rx-gate__head">
           <div class="rx-gate__badge">${icoShield}</div>
           <div>
-            <h1 class="rx-gate__title">Antibiotic Rx</h1>
+            <p class="rx-gate__title">Antibiotic Rx</p>
             <p class="rx-gate__sub">Clinician decision-support tool</p>
           </div>
         </div>

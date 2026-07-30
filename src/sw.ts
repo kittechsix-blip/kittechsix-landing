@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v20';
+const CACHE_NAME = 'kittechsix-v22';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -11,6 +11,9 @@ const ASSETS_TO_CACHE = [
   '/styles/global.css',
   '/styles/nav.css',
   '/styles/hero.css',
+  '/styles/work.css',
+  '/styles/page.css',
+  '/styles/frame.css',
   '/styles/featured.css',
   '/styles/showcase.css',
   '/styles/demo.css',
@@ -23,7 +26,6 @@ const ASSETS_TO_CACHE = [
   '/styles/contact-modal.css',
   '/styles/app-tabs.css',
   '/styles/privacy.css',
-  '/styles/final-cta.css',
   '/styles/legal.css',
   '/styles/ui-tour.css',
   '/styles/tour/mymedkitt.css',
@@ -33,7 +35,12 @@ const ASSETS_TO_CACHE = [
   '/styles/tour/antibiotic-rx.css',
   '/main.js',
   '/components/quality-team.js',
+  '/components/frame.js',
   '/components/consulting.js',
+  '/components/work-index.js',
+  '/components/work-detail.js',
+  '/components/studio.js',
+  '/components/legal-page.js',
   '/components/roadmap.js',
   '/components/about.js',
   '/components/app-tabs.js',
@@ -45,9 +52,7 @@ const ASSETS_TO_CACHE = [
   '/components/feedback-board.js',
   '/components/footer.js',
   '/components/contact-modal.js',
-  '/components/final-cta.js',
   '/components/hero.js',
-  '/components/ticker.js',
   '/components/featured-row.js',
   '/components/nav.js',
   '/components/product-showcase.js',
