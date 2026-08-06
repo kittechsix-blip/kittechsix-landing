@@ -66,16 +66,20 @@ const SOCIALS: ReadonlyArray<{ label: string; href: string; icon: string }> = [
   { label: 'TikTok', href: 'https://tiktok.com/@kittechsix', icon: ICON_TIKTOK },
 ];
 
-type StatusKind = 'live' | 'index' | 'plain';
+type StatusKind = 'live' | 'index' | 'plain' | 'open';
 
 interface Kid {
-  idx: string;
+  idx?: string;
+  /** Canonical app icon. Replaces the chapter number for Work links. */
+  iconSrc?: string;
   name: string;
   /** Factual gloss. Numbers come from the app registry / product showcase copy. */
   desc: string;
   status: string;
   kind: StatusKind;
   href: string;
+  /** App links leave the portfolio and open the production app. */
+  external?: boolean;
   /** Band anchor within the destination page, for the integrator to pick up later. */
   band?: string;
 }
@@ -96,23 +100,23 @@ interface Node {
   kids?: Kid[];
 }
 
-// Every branch leads with its own index route, so a branch row never has to
-// mean both "expand me" and "go to me".
+// Index-style branches lead with their overview route. Work is the deliberate
+// exception: its children open the six production apps directly.
 const NODES: ReadonlyArray<Node> = [
   {
     num: '01',
     key: 'work',
     title: 'Work',
-    note: 'five live systems',
-    count: '5 live',
+    note: 'six clinical apps',
+    count: '6 apps',
     path: '#/work',
     kids: [
-      { idx: '01.0', name: 'Index — all five', desc: 'the portfolio, side by side', status: 'Index', kind: 'index', href: '#/work' },
-      { idx: '01.1', name: 'myMedKitt', desc: '353 evidence-based ED consults', status: 'Live', kind: 'live', href: '#/work/mymedkitt' },
-      { idx: '01.2', name: 'Antibiotic Rx', desc: '~130 infection syndromes', status: 'Live', kind: 'live', href: '#/work/antibiotic-rx' },
-      { idx: '01.3', name: 'my-vertigo-app', desc: 'HINTS+, all three canals', status: 'Live', kind: 'live', href: '#/work/myvertigoapp' },
-      { idx: '01.4', name: 'AcidBase', desc: 'one blood gas to the disorder', status: 'Live', kind: 'live', href: '#/work/acidbase' },
-      { idx: '01.5', name: 'myStroke-Kitt', desc: 'NIHSS, TNK dosing, hard stops', status: 'Live', kind: 'live', href: '#/work/mystroke-kitt' },
+      { iconSrc: 'assets/icons/mymedkitt.png', name: 'myMedKitt', desc: '353 evidence-based ED consults', status: 'Open ↗', kind: 'open', href: 'https://kittechsix-blip.github.io/mymedkitt/app.html', external: true },
+      { iconSrc: 'assets/icons/myvertigoapp.png', name: 'my-vertigo-app', desc: 'HINTS+, all three canals', status: 'Open ↗', kind: 'open', href: 'https://my-vertigo-app.vercel.app', external: true },
+      { iconSrc: 'assets/icons/mystroke-kitt.png', name: 'myStroke-Kitt', desc: 'NIHSS, TNK dosing, hard stops', status: 'Open ↗', kind: 'open', href: 'https://mystroke-kitt.vercel.app', external: true },
+      { iconSrc: 'assets/icons/acidbase.png', name: 'AcidBase', desc: 'one blood gas to the disorder', status: 'Open ↗', kind: 'open', href: 'https://acidbase.vercel.app', external: true },
+      { iconSrc: 'assets/icons/electrokitt.png', name: 'ElectroKitt', desc: 'five electrolytes, one coupled panel', status: 'Open ↗', kind: 'open', href: 'https://electrokitt.vercel.app', external: true },
+      { iconSrc: 'assets/icons/antibiotic-rx.png', name: 'Antibiotic-Rx', desc: '~130 infection syndromes', status: 'Open ↗', kind: 'open', href: 'https://antibiotic-rx.vercel.app', external: true },
     ],
   },
   {
@@ -204,12 +208,18 @@ function kidMarkup(kid: Kid): string {
   const statusClass =
     kid.kind === 'live' ? ' hx-status--live'
     : kid.kind === 'index' ? ' hx-status--index'
+    : kid.kind === 'open' ? ' hx-status--open'
     : '';
   const band = kid.band ? ` data-band="${kid.band}"` : '';
+  const leading = kid.iconSrc
+    ? `<span class="hx-leaf-icon" aria-hidden="true"><img src="${kid.iconSrc}" alt="" width="30" height="30" /></span>`
+    : `<span class="hx-leaf-idx" aria-hidden="true">${kid.idx ?? ''}</span>`;
+  const external = kid.external ? ' target="_blank" rel="noopener"' : '';
+  const appClass = kid.iconSrc ? ' hx-leaf--app' : '';
   return `
     <li class="hx-kid">
-      <a class="hx-leaf" href="${kid.href}" data-path="${kid.href}"${band}>
-        <span class="hx-leaf-idx" aria-hidden="true">${kid.idx}</span>
+      <a class="hx-leaf${appClass}" href="${kid.href}" data-path="${kid.href}"${band}${external}>
+        ${leading}
         <span class="hx-leaf-name">${kid.name}<span class="hx-desc">${kid.desc}</span></span>
         <span class="hx-leader" aria-hidden="true"></span>
         <span class="hx-status${statusClass}">${dot}${kid.status}</span>
@@ -276,7 +286,7 @@ function markup(): string {
         <span class="hx-rail-mark">${HEX_MARK}<span>Kittech-Six LLC</span></span>
         <span class="hx-rail-right">
           <span class="hx-coord" aria-hidden="true">30.2672&deg; N &middot; 97.7431&deg; W</span>
-          <span class="hx-live"><span class="hx-live-dot" aria-hidden="true"></span>Five systems live</span>
+          <span class="hx-live"><span class="hx-live-dot" aria-hidden="true"></span>Six apps online</span>
         </span>
       </header>
 
