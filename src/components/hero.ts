@@ -100,8 +100,9 @@ interface Node {
   kids?: Kid[];
 }
 
-// Index-style branches lead with their overview route. Work is the deliberate
-// exception: its children open the six production apps directly.
+// Index-style branches lead with their overview route. Work links to each
+// existing portfolio detail page; ElectroKitt remains direct until its detail
+// page is added to the registry.
 const NODES: ReadonlyArray<Node> = [
   {
     num: '01',
@@ -111,12 +112,12 @@ const NODES: ReadonlyArray<Node> = [
     count: '6 apps',
     path: '#/work',
     kids: [
-      { iconSrc: 'assets/icons/mymedkitt.png', name: 'myMedKitt', desc: '353 evidence-based ED consults', status: 'Open ↗', kind: 'open', href: 'https://kittechsix-blip.github.io/mymedkitt/app.html', external: true },
-      { iconSrc: 'assets/icons/myvertigoapp.png', name: 'my-vertigo-app', desc: 'HINTS+, all three canals', status: 'Open ↗', kind: 'open', href: 'https://my-vertigo-app.vercel.app', external: true },
-      { iconSrc: 'assets/icons/mystroke-kitt.png', name: 'myStroke-Kitt', desc: 'NIHSS, TNK dosing, hard stops', status: 'Open ↗', kind: 'open', href: 'https://mystroke-kitt.vercel.app', external: true },
-      { iconSrc: 'assets/icons/acidbase.png', name: 'AcidBase', desc: 'one blood gas to the disorder', status: 'Open ↗', kind: 'open', href: 'https://acidbase.vercel.app', external: true },
+      { iconSrc: 'assets/icons/mymedkitt.png', name: 'myMedKitt', desc: '353 evidence-based ED consults', status: 'View →', kind: 'open', href: '#/work/mymedkitt' },
+      { iconSrc: 'assets/icons/myvertigoapp.png', name: 'my-vertigo-app', desc: 'HINTS+, all three canals', status: 'View →', kind: 'open', href: '#/work/myvertigoapp' },
+      { iconSrc: 'assets/icons/mystroke-kitt.png', name: 'myStroke-Kitt', desc: 'NIHSS, TNK dosing, hard stops', status: 'View →', kind: 'open', href: '#/work/mystroke-kitt' },
+      { iconSrc: 'assets/icons/acidbase.png', name: 'AcidBase', desc: 'one blood gas to the disorder', status: 'View →', kind: 'open', href: '#/work/acidbase' },
       { iconSrc: 'assets/icons/electrokitt.png', name: 'ElectroKitt', desc: 'five electrolytes, one coupled panel', status: 'Open ↗', kind: 'open', href: 'https://electrokitt.vercel.app', external: true },
-      { iconSrc: 'assets/icons/antibiotic-rx.png', name: 'Antibiotic-Rx', desc: '~130 infection syndromes', status: 'Open ↗', kind: 'open', href: 'https://antibiotic-rx.vercel.app', external: true },
+      { iconSrc: 'assets/icons/antibiotic-rx.png', name: 'Antibiotic-Rx', desc: '~130 infection syndromes', status: 'View →', kind: 'open', href: '#/work/antibiotic-rx' },
     ],
   },
   {
