@@ -285,7 +285,6 @@ function markup(): string {
       <header class="hx-rail">
         <span class="hx-rail-mark">${HEX_MARK}<span>Kittech-Six LLC</span></span>
         <span class="hx-rail-right">
-          <span class="hx-coord" aria-hidden="true">30.2672&deg; N &middot; 97.7431&deg; W</span>
           <span class="hx-live"><span class="hx-live-dot" aria-hidden="true"></span>Six apps online</span>
         </span>
       </header>
@@ -341,7 +340,6 @@ function markup(): string {
 
       <footer class="hx-foot">
         <span>&copy; 2026 Kittech-Six &middot; A. Kitlowski, MD</span>
-        <span class="hx-foot-legal"><a href="#/legal">Education only &mdash; in an emergency, call 911</a></span>
       </footer>
     </div>
   `;

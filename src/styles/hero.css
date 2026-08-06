@@ -686,7 +686,6 @@
   .hx-page { padding-top: calc(var(--hx-base) * 1.6); padding-bottom: calc(var(--hx-base) * 1.4); }
   .hx-main { padding: var(--hx-base) 0 0; row-gap: calc(var(--hx-base) * 1.4); }
   .hx-rail { padding-bottom: calc(var(--hx-base) * 1.3); }
-  .hx-coord { display: none; }
   .hx-eyebrow { margin-bottom: calc(var(--hx-base) * 1.3); }
   .hx-wordmark { font-size: clamp(40px, 15vw, 68px); }
   .hx-positioning { font-size: 16px; max-width: 100%; margin-top: calc(var(--hx-base) * 1.6); }
@@ -716,7 +715,6 @@
   .hx-contact { margin-bottom: calc(var(--hx-base) * 0.7); }
   .hx-kb { display: none; }
   .hx-foot { padding-top: calc(var(--hx-base) * 1.2); }
-  .hx-foot-legal { display: none; }
 }
 
 @media (max-width: 400px) {
