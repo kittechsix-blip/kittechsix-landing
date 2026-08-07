@@ -1,4 +1,4 @@
-// /work/:id — ONE template for all five shipped apps.
+// /work/:id — one template for every portfolio app.
 //
 // Every app-specific value comes from APP_REGISTRY. The Overview body reuses
 // renderProductShowcase and the Tour body reuses renderUITour — this file only
@@ -103,7 +103,9 @@ export function renderWorkDetail(parent: HTMLElement, appId: string): void {
 
   const secondaryCta = app.hasDemo
     ? { label: 'Try a consult', action: () => activate('demo') }
-    : { label: 'Tour the UI', action: () => activate('tour') };
+    : app.tour
+      ? { label: 'Tour the UI', action: () => activate('tour') }
+      : undefined;
 
   const tabs: AppTabDef[] = [
     {
@@ -129,13 +131,17 @@ export function renderWorkDetail(parent: HTMLElement, appId: string): void {
           suppressHeadline: true,
         }),
     },
-    {
+  ];
+
+  const tour = getTourFor(app);
+  if (tour) {
+    tabs.push({
       key: 'tour',
       label: 'Tour the UI',
       // getTourFor normalizes appId/appName/liveUrl/subtitle against the registry.
-      render: (panel) => renderUITour(panel, getTourFor(app)),
-    },
-  ];
+      render: (panel) => renderUITour(panel, tour),
+    });
+  }
 
   if (app.hasDemo) {
     tabs.push({ key: 'demo', label: 'Try a consult', render: renderAfibDemo });

@@ -54,7 +54,7 @@ export function renderWorkIndex(parent: HTMLElement): void {
       <div class="work-rows">${rows}</div>
 
       <div class="work-index-footer">
-        <span>${apps.length} clinical systems, live today</span>
+        <span>${apps.length} clinical systems</span>
         <a class="link-arrow" href="#/studio">What is still in the lab <span aria-hidden="true">→</span></a>
       </div>
     </div>

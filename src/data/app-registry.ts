@@ -37,9 +37,9 @@ export interface AppListing {
 }
 
 /**
- * A shipped app with a /work/:id page. Superset of AppListing — every field the
- * index row, the Overview showcase, and the Tour need, with no optionals to
- * defend against at render time.
+ * A portfolio app with a /work/:id page. Superset of AppListing — every field the
+ * index row and Overview showcase need, plus an optional UI tour when one has
+ * been built.
  */
 export interface WorkApp extends AppListing {
   /** Live apps always have a URL — narrowed from AppListing. */
@@ -64,14 +64,14 @@ export interface WorkApp extends AppListing {
   metricLabel: string;
   status: 'In Development' | 'Coming Soon' | 'Live';
   iconSrc: string;
-  /** The app's UI tour. Read through getTourFor() — never passed to renderUITour raw. */
-  tour: UITourConfig;
+  /** The app's UI tour, when one has been built. Read through getTourFor(). */
+  tour?: UITourConfig;
   /**
    * Tour-tab subtitle. Deliberately NOT a restatement of `description`: on
    * /work/:id both sit on the same page, so this one only says what the walk
    * itself covers.
    */
-  tourSubtitle: string;
+  tourSubtitle?: string;
   /** Renders the interactive consult demo as a third tab. */
   hasDemo?: boolean;
 }
@@ -83,6 +83,7 @@ export const WORK_ORDER = [
   'myvertigoapp',
   'acidbase',
   'mystroke-kitt',
+  'electrokitt',
 ] as const;
 
 export type WorkAppId = (typeof WORK_ORDER)[number];
@@ -243,6 +244,34 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     tourSubtitle:
       'Seven screens, one code stroke — initial actions, live NIHSS, the CT fork, the thrombolysis hard stop, real TNK dosing, and the ICH reversal branch.',
   },
+
+  electrokitt: {
+    id: 'electrokitt',
+    name: 'ElectroKitt',
+    chapter: '06',
+    discipline: 'Electrolyte reasoning engine',
+    statement: 'Five electrolytes, one coupled bedside engine.',
+    proof: 'Na · K · Ca · Mg · PO₄',
+    eyebrow: 'For electrolyte disorders',
+    domain: 'clinical',
+    description:
+      'A bedside electrolyte disorder engine for sodium, potassium, calcium, magnesium, and phosphate — with classification, ranked differential reasoning, evidence-cited management pathways, and dose calculators in one coupled panel.',
+    features: [
+      { icon: '🧪', text: 'Sodium, potassium, calcium, magnesium & phosphate in one workflow' },
+      { icon: '🧠', text: 'Ranked differential with the reasoning shown' },
+      { icon: '📋', text: 'Evidence-cited management pathways' },
+      { icon: '🧮', text: 'Bedside correction and dose calculators' },
+    ],
+    metric: '5',
+    metricLabel: 'electrolyte systems in one coupled panel',
+    status: 'In Development',
+    iconSrc: 'assets/icons/electrokitt.png',
+    liveUrl: 'https://electrokitt.vercel.app',
+    checkoutUrl: null,
+    price: null,
+    forSale: false,
+    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+  },
 };
 
 /** Apps that are not (yet) shipped — listed for commerce/accent lookups only. */
@@ -292,7 +321,9 @@ export function getWorkApp(id: string): WorkApp | null {
  * address. Normalizing here makes the registry key authoritative, so the
  * mismatch cannot leak into the DOM no matter what a tour file says.
  */
-export function getTourFor(app: WorkApp): UITourConfig {
+export function getTourFor(app: WorkApp): UITourConfig | null {
+  if (!app.tour || !app.tourSubtitle) return null;
+
   return {
     ...app.tour,
     appId: app.id,

@@ -36,6 +36,7 @@ export function renderFooter(parent: HTMLElement): void {
             <a href="#/work/mystroke-kitt">myStroke-Kitt</a>
             <a href="#/work/myvertigoapp">my-vertigo-app</a>
             <a href="#/work/acidbase">AcidBase</a>
+            <a href="#/work/electrokitt">ElectroKitt</a>
             <a href="#/work/antibiotic-rx">Antibiotic Rx</a>
             <a href="#/studio">MyTravelMedKitt <span class="footer-link-tag">In build</span></a>
             <a href="#/studio">PowerKitt <span class="footer-link-tag">In build</span></a>
