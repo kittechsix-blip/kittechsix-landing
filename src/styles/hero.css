@@ -478,6 +478,8 @@
 .hx-branch[data-open="true"] .hx-kid:nth-child(4) .hx-leaf { animation-delay: 135ms; }
 .hx-branch[data-open="true"] .hx-kid:nth-child(5) .hx-leaf { animation-delay: 170ms; }
 .hx-branch[data-open="true"] .hx-kid:nth-child(6) .hx-leaf { animation-delay: 205ms; }
+.hx-branch[data-open="true"] .hx-kid:nth-child(7) .hx-leaf { animation-delay: 240ms; }
+.hx-branch[data-open="true"] .hx-kid:nth-child(8) .hx-leaf { animation-delay: 275ms; }
 @keyframes hxLeafIn { to { opacity: 1; transform: none; } }
 .hx-leaf:hover { padding-left: 8px; }
 
@@ -664,6 +666,28 @@
   .hx-contact { margin-bottom: 10px; }
   .hx-positioning { margin-top: 16px; }
   .hx-leaf-name, .hx-leaf-name .hx-desc { font-size: 14px; }
+
+  /* Eight apps no longer fit the one-viewport composition as a single list
+     on short laptops. Only the Work disclosure becomes a compact two-column
+     index; every label and gloss remains visible, and each link keeps the
+     44px interaction floor. */
+  .hx-branch[data-key="work"] .hx-kids {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(16px, 2vw, 26px);
+  }
+  .hx-branch[data-key="work"] .hx-kids::before { display: none; }
+  .hx-branch[data-key="work"] .hx-leaf {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    min-height: 44px;
+    column-gap: 8px;
+    padding: 3px 0;
+  }
+  .hx-branch[data-key="work"] .hx-leader { display: none; }
+  .hx-branch[data-key="work"] .hx-leaf-name .hx-desc {
+    flex: 1 0 100%;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 1024px) {

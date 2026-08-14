@@ -44,7 +44,7 @@ export interface AppListing {
 export interface WorkApp extends AppListing {
   /** Live apps always have a URL — narrowed from AppListing. */
   liveUrl: string;
-  /** Editorial chapter number, '01'–'05'. */
+  /** Editorial chapter number, '01'–'08'. */
   chapter: string;
   /** Short discipline label, e.g. 'Reasoning engine'. Doubles as the index category. */
   discipline: string;
@@ -84,6 +84,8 @@ export const WORK_ORDER = [
   'acidbase',
   'mystroke-kitt',
   'electrokitt',
+  'myventkitt',
+  'endocrinekitt',
 ] as const;
 
 export type WorkAppId = (typeof WORK_ORDER)[number];
@@ -267,6 +269,62 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     status: 'In Development',
     iconSrc: 'assets/icons/electrokitt.png',
     liveUrl: 'https://electrokitt.vercel.app',
+    checkoutUrl: null,
+    price: null,
+    forSale: false,
+    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+  },
+
+  myventkitt: {
+    id: 'myventkitt',
+    name: 'myVentKitt',
+    chapter: '07',
+    discipline: 'Ventilator strategy simulator',
+    statement: 'Two ventilator strategies, four dials, and the machine you can practice on.',
+    proof: 'Claude Code build · PB980 simulator · 9 tools',
+    eyebrow: 'For emergency ventilator management',
+    domain: 'clinical',
+    description:
+      'An interactive PB980 ventilator simulator that teaches obstruction and lung-protection strategies through the same controls clinicians use at the bedside. Set the patient, turn the four dials, run pause maneuvers, respond to alarms, and practice scenarios with guided debriefs.',
+    features: [
+      { icon: '🫁', text: 'Obstruction and lung-protection strategies' },
+      { icon: '🎛️', text: 'Four ventilator dials, each tied to one clinical job' },
+      { icon: '📈', text: 'PB980 simulator with pause maneuvers and an alarm engine' },
+      { icon: '🎓', text: 'Nine bedside tools plus scenarios with guided debriefs' },
+    ],
+    metric: '2',
+    metricLabel: 'ventilator strategies, one mental model',
+    status: 'In Development',
+    iconSrc: 'assets/icons/myventkitt.png',
+    liveUrl: 'https://myventkitt-cc.vercel.app',
+    checkoutUrl: null,
+    price: null,
+    forSale: false,
+    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+  },
+
+  endocrinekitt: {
+    id: 'endocrinekitt',
+    name: 'EndocrineKitt',
+    chapter: '08',
+    discipline: 'Ordered endocrine emergency care',
+    statement: 'Endocrine emergencies organized around the steps that must never be swapped.',
+    proof: '5 axes · prerequisite locks · private review',
+    eyebrow: 'For endocrine emergencies',
+    domain: 'clinical',
+    description:
+      'A bedside endocrine-emergency engine: pick an axis, work the panel, understand why the patient looks this way, then follow management in the order it must happen. Prerequisite locks keep time-critical steps from being performed in the wrong sequence.',
+    features: [
+      { icon: '🧬', text: 'Thyroid, adrenal, pancreas, parathyroid, and pituitary axes' },
+      { icon: '🔒', text: 'Prerequisite locks enforce the order of time-critical care' },
+      { icon: '🧠', text: 'Plain-language pathophysiology and ranked differential reasoning' },
+      { icon: '📚', text: 'Source sheet joined to the adjudicated evidence corpus' },
+    ],
+    metric: '5',
+    metricLabel: 'endocrine axes with ordered management',
+    status: 'In Development',
+    iconSrc: 'assets/icons/endocrinekitt.png',
+    liveUrl: 'https://endocrinekitt.vercel.app',
     checkoutUrl: null,
     price: null,
     forSale: false,
