@@ -59,6 +59,15 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     proof: 'NIHSS · TNK dosing · hard-stop logic',
     icon: 'mystroke-kitt.png',
   },
+  {
+    id: 'acute-vision-loss',
+    index: '06',
+    name: 'Acute Vision Loss',
+    category: 'Acute eye workup',
+    statement: 'Four questions, the eye vital signs, and the pathway that cannot wait.',
+    proof: '8 modules · bedside tools · cited pathways',
+    icon: 'acute-vision-loss.png',
+  },
 ];
 
 export function renderFeaturedRow(parent: HTMLElement): void {
@@ -102,7 +111,7 @@ export function renderFeaturedRow(parent: HTMLElement): void {
         ${projects}
       </div>
       <div class="featured-index-footer">
-        <span>Five clinical systems</span>
+        <span>Six clinical systems</span>
         <a class="link-arrow" href="#roadmap">See what is still in the lab <span aria-hidden="true">↓</span></a>
       </div>
     </div>

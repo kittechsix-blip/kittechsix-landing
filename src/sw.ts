@@ -1,6 +1,6 @@
 // Service Worker — kittechsix Landing Page
 
-const CACHE_NAME = 'kittechsix-v25';
+const CACHE_NAME = 'kittechsix-v26';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -89,6 +89,7 @@ const ASSETS_TO_CACHE = [
   '/assets/icons/electrokitt.png',
   '/assets/icons/myventkitt.png',
   '/assets/icons/endocrinekitt.png',
+  '/assets/icons/acute-vision-loss.png',
   '/assets/icons/mytravelmedkitt.png',
   '/assets/icons/myvertigoapp.png',
   '/assets/og-card-studio.png',

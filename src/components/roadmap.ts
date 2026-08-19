@@ -120,7 +120,7 @@ export function renderRoadmap(parent: HTMLElement): void {
           <p class="eyebrow">Roadmap</p>
           <h2 class="text-heading" id="roadmap-title">What is still unfinished.</h2>
         </div>
-        <p class="text-subhead roadmap-lede"><a class="page-inline-link" href="#/work">The five clinical systems</a> are live and in daily use. These two are not, and I would rather show you the gap than describe them as though they were finished. Here is what exists today and what is still missing.</p>
+        <p class="text-subhead roadmap-lede"><a class="page-inline-link" href="#/work">The six clinical systems</a> are live and in daily use. These two are not, and I would rather show you the gap than describe them as though they were finished. Here is what exists today and what is still missing.</p>
       </header>
       <ol class="roadmap-list">
         ${items}

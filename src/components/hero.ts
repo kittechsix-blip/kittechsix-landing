@@ -107,8 +107,8 @@ const NODES: ReadonlyArray<Node> = [
     num: '01',
     key: 'work',
     title: 'Work',
-    note: 'eight clinical apps',
-    count: '8 apps',
+    note: 'nine clinical apps',
+    count: '9 apps',
     path: '#/work',
     kids: [
       { iconSrc: 'assets/icons/mymedkitt.png', name: 'myMedKitt', desc: '353 evidence-based ED consults', status: 'View →', kind: 'open', href: '#/work/mymedkitt' },
@@ -119,6 +119,7 @@ const NODES: ReadonlyArray<Node> = [
       { iconSrc: 'assets/icons/antibiotic-rx.png', name: 'Antibiotic-Rx', desc: '~130 infection syndromes', status: 'View →', kind: 'open', href: '#/work/antibiotic-rx' },
       { iconSrc: 'assets/icons/myventkitt.png', name: 'myVentKitt', desc: 'PB980 simulator, two strategies', status: 'View →', kind: 'open', href: '#/work/myventkitt' },
       { iconSrc: 'assets/icons/endocrinekitt.png', name: 'EndocrineKitt', desc: 'five axes, care in the right order', status: 'View →', kind: 'open', href: '#/work/endocrinekitt' },
+      { iconSrc: 'assets/icons/acute-vision-loss.png', name: 'Acute Vision Loss', desc: 'the acute eye complaint, organized', status: 'View →', kind: 'open', href: '#/work/acute-vision-loss' },
     ],
   },
   {

@@ -86,6 +86,7 @@ export const WORK_ORDER = [
   'electrokitt',
   'myventkitt',
   'endocrinekitt',
+  'acute-vision-loss',
 ] as const;
 
 export type WorkAppId = (typeof WORK_ORDER)[number];
@@ -325,6 +326,34 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     status: 'In Development',
     iconSrc: 'assets/icons/endocrinekitt.png',
     liveUrl: 'https://endocrinekitt.vercel.app',
+    checkoutUrl: null,
+    price: null,
+    forSale: false,
+    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+  },
+
+  'acute-vision-loss': {
+    id: 'acute-vision-loss',
+    name: 'Acute Vision Loss',
+    chapter: '09',
+    discipline: 'Acute eye workup',
+    statement: 'Four questions, the eye vital signs, and the pathway that cannot wait.',
+    proof: '8 modules · bedside exam tools · cited pathways',
+    eyebrow: 'For the acute eye complaint',
+    domain: 'clinical',
+    description:
+      'A bedside workup for sudden vision loss. Start with monocular versus binocular, split painful from painless, run the eye vital signs, and move through the retinal, optic-nerve, and neurologic pathways with urgent actions surfaced when time matters.',
+    features: [
+      { icon: '👁️', text: 'Monocular versus binocular triage in four questions' },
+      { icon: '🔦', text: 'Acuity, RAPD, pressure, slit lamp, fundus, and ocular ultrasound tools' },
+      { icon: '🚨', text: 'Time-critical CRAO, retinal detachment, GCA, and angle-closure pathways' },
+      { icon: '📚', text: 'Cited teaching content with quick and full detail modes' },
+    ],
+    metric: '8',
+    metricLabel: 'clinical modules from triage to disposition',
+    status: 'Live',
+    iconSrc: 'assets/icons/acute-vision-loss.png',
+    liveUrl: 'https://acute-vision-loss.vercel.app',
     checkoutUrl: null,
     price: null,
     forSale: false,
