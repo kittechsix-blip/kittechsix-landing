@@ -21,6 +21,7 @@
 // one.
 
 import { openContactModal } from './contact-modal.js';
+import { WORK_ORDER } from '../data/app-registry.js';
 
 const CONTACT_EMAIL = 'kittechsix@gmail.com';
 
@@ -66,7 +67,7 @@ const SOCIALS: ReadonlyArray<{ label: string; href: string; icon: string }> = [
   { label: 'TikTok', href: 'https://tiktok.com/@kittechsix', icon: ICON_TIKTOK },
 ];
 
-type StatusKind = 'live' | 'index' | 'plain' | 'open';
+type StatusKind = 'live' | 'index' | 'plain' | 'open' | 'more';
 
 interface Kid {
   idx?: string;
@@ -82,6 +83,8 @@ interface Kid {
   external?: boolean;
   /** Band anchor within the destination page, for the integrator to pick up later. */
   band?: string;
+  kids?: Kid[];
+  count?: string;
 }
 
 interface Node {
@@ -102,13 +105,16 @@ interface Node {
 
 // Index-style branches lead with their overview route. Work links to each
 // portfolio detail page; the live app remains one deliberate click deeper.
+const WORK_APP_COUNT = WORK_ORDER.length;
+const CORE_WORK_APP_COUNT = 5;
+
 const NODES: ReadonlyArray<Node> = [
   {
     num: '01',
     key: 'work',
     title: 'Work',
-    note: 'five core clinical apps',
-    count: '5 apps',
+    note: 'all clinical apps',
+    count: `${WORK_APP_COUNT} apps`,
     path: '#/work',
     kids: [
       { iconSrc: 'assets/icons/mymedkitt.png', name: 'myMedKitt', desc: '353 evidence-based ED consults', status: 'View →', kind: 'open', href: '#/work/mymedkitt' },
@@ -116,24 +122,16 @@ const NODES: ReadonlyArray<Node> = [
       { iconSrc: 'assets/icons/mystroke-kitt.png', name: 'myStroke-Kitt', desc: 'NIHSS, TNK dosing, hard stops', status: 'View →', kind: 'open', href: '#/work/mystroke-kitt' },
       { iconSrc: 'assets/icons/acidbase.png', name: 'AcidBase', desc: 'one blood gas to the disorder', status: 'View →', kind: 'open', href: '#/work/acidbase' },
       { iconSrc: 'assets/icons/antibiotic-rx.png', name: 'Antibiotic-Rx', desc: '~130 infection syndromes', status: 'View →', kind: 'open', href: '#/work/antibiotic-rx' },
+      { name: 'More', desc: 'other applications', status: 'Open', kind: 'more', href: '#/work', count: `${WORK_APP_COUNT - CORE_WORK_APP_COUNT} apps`, kids: [
+        { iconSrc: 'assets/icons/electrokitt.png', name: 'ElectroKitt', desc: 'five electrolytes, one coupled panel', status: 'View →', kind: 'open', href: '#/work/electrokitt' },
+        { iconSrc: 'assets/icons/myventkitt.png', name: 'myVentKitt', desc: 'PB980 simulator, two strategies', status: 'View →', kind: 'open', href: '#/work/myventkitt' },
+        { iconSrc: 'assets/icons/endocrinekitt.png', name: 'EndocrineKitt', desc: 'five axes, care in the right order', status: 'View →', kind: 'open', href: '#/work/endocrinekitt' },
+        { iconSrc: 'assets/icons/acute-vision-loss.png', name: 'Acute Vision Loss', desc: 'the acute eye complaint, organized', status: 'View →', kind: 'open', href: '#/work/acute-vision-loss' },
+      ] },
     ],
   },
   {
     num: '02',
-    key: 'more',
-    title: 'More',
-    note: 'other applications',
-    count: '4 apps',
-    path: '#/work',
-    kids: [
-      { iconSrc: 'assets/icons/electrokitt.png', name: 'ElectroKitt', desc: 'five electrolytes, one coupled panel', status: 'View →', kind: 'open', href: '#/work/electrokitt' },
-      { iconSrc: 'assets/icons/myventkitt.png', name: 'myVentKitt', desc: 'PB980 simulator, two strategies', status: 'View →', kind: 'open', href: '#/work/myventkitt' },
-      { iconSrc: 'assets/icons/endocrinekitt.png', name: 'EndocrineKitt', desc: 'five axes, care in the right order', status: 'View →', kind: 'open', href: '#/work/endocrinekitt' },
-      { iconSrc: 'assets/icons/acute-vision-loss.png', name: 'Acute Vision Loss', desc: 'the acute eye complaint, organized', status: 'View →', kind: 'open', href: '#/work/acute-vision-loss' },
-    ],
-  },
-  {
-    num: '03',
     key: 'consulting',
     title: 'Consulting',
     note: 'clinical software, scoped',
@@ -141,36 +139,36 @@ const NODES: ReadonlyArray<Node> = [
     path: '#/consulting',
   },
   {
-    num: '04',
+    num: '03',
     key: 'studio',
     title: 'Studio',
     note: 'how the work is held',
     count: '4 bands',
     path: '#/studio',
     kids: [
-      { idx: '04.0', name: 'Open the studio', desc: 'all four bands, one page', status: 'Index', kind: 'index', href: '#/studio' },
-      { idx: '04.1', name: 'About', desc: 'Andy Kitlowski, MD — 25 years at the bedside', status: 'Band', kind: 'plain', href: '#/studio', band: 'about' },
-      { idx: '04.2', name: 'Standards', desc: 'the scheduled review offices', status: 'Band', kind: 'plain', href: '#/studio', band: 'standards' },
-      { idx: '04.3', name: 'Roadmap', desc: 'what is on the bench right now', status: 'Band', kind: 'plain', href: '#/studio', band: 'roadmap' },
-      { idx: '04.4', name: 'Feedback', desc: 'you decide what ships next', status: 'Band', kind: 'plain', href: '#/studio', band: 'feedback' },
+      { idx: '03.0', name: 'Open the studio', desc: 'all four bands, one page', status: 'Index', kind: 'index', href: '#/studio' },
+      { idx: '03.1', name: 'About', desc: 'Andy Kitlowski, MD — 25 years at the bedside', status: 'Band', kind: 'plain', href: '#/studio', band: 'about' },
+      { idx: '03.2', name: 'Standards', desc: 'the scheduled review offices', status: 'Band', kind: 'plain', href: '#/studio', band: 'standards' },
+      { idx: '03.3', name: 'Roadmap', desc: 'what is on the bench right now', status: 'Band', kind: 'plain', href: '#/studio', band: 'roadmap' },
+      { idx: '03.4', name: 'Feedback', desc: 'you decide what ships next', status: 'Band', kind: 'plain', href: '#/studio', band: 'feedback' },
     ],
   },
   {
-    num: '05',
+    num: '04',
     key: 'legal',
     title: 'Legal',
     note: 'education only',
     count: '3 docs',
     path: '#/legal',
     kids: [
-      { idx: '05.0', name: 'All three documents', desc: 'privacy, disclaimer, terms', status: 'Index', kind: 'index', href: '#/legal' },
-      { idx: '05.1', name: 'Medical Disclaimer', desc: 'in an emergency, call 911', status: 'Doc', kind: 'plain', href: '#/legal', band: 'disclaimer' },
-      { idx: '05.2', name: 'Privacy', desc: 'on-device, no account required', status: 'Doc', kind: 'plain', href: '#/legal', band: 'privacy' },
-      { idx: '05.3', name: 'Terms & Refunds', desc: 'plain-language terms of use', status: 'Doc', kind: 'plain', href: '#/legal', band: 'terms' },
+      { idx: '04.0', name: 'All three documents', desc: 'privacy, disclaimer, terms', status: 'Index', kind: 'index', href: '#/legal' },
+      { idx: '04.1', name: 'Medical Disclaimer', desc: 'in an emergency, call 911', status: 'Doc', kind: 'plain', href: '#/legal', band: 'disclaimer' },
+      { idx: '04.2', name: 'Privacy', desc: 'on-device, no account required', status: 'Doc', kind: 'plain', href: '#/legal', band: 'privacy' },
+      { idx: '04.3', name: 'Terms & Refunds', desc: 'plain-language terms of use', status: 'Doc', kind: 'plain', href: '#/legal', band: 'terms' },
     ],
   },
   {
-    num: '06',
+    num: '05',
     key: 'contact',
     title: 'Contact',
     note: 'one physician reads it',
@@ -214,6 +212,7 @@ const HEX_MARK = `
   </svg>`;
 
 function kidMarkup(kid: Kid): string {
+  if (kid.kids) return nestedKidMarkup(kid);
   const dot =
     kid.kind === 'live' ? '<span class="hx-dot" aria-hidden="true"></span>'
     : kid.kind === 'index' ? '<span class="hx-dot hx-dot--index" aria-hidden="true"></span>'
@@ -237,6 +236,20 @@ function kidMarkup(kid: Kid): string {
         <span class="hx-leader" aria-hidden="true"></span>
         <span class="hx-status${statusClass}">${dot}${kid.status}</span>
       </a>
+    </li>`;
+}
+
+function nestedKidMarkup(kid: Kid): string {
+  const panelId = `hx-panel-${kid.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+  return `
+    <li class="hx-branch hx-kid-branch" data-open="false" data-key="more">
+      <button class="hx-row hx-leaf hx-leaf--app" type="button" aria-expanded="false" aria-controls="${panelId}" data-path="${kid.href}">
+        <span class="hx-leaf-name">${kid.name}<span class="hx-desc">${kid.desc}</span></span>
+        <span class="hx-leader" aria-hidden="true"></span>
+        <span class="hx-status hx-status--open">${kid.status}</span>
+        <span class="hx-meta"><span class="hx-count">${kid.count ?? ''}</span><span class="hx-glyph" aria-hidden="true"></span></span>
+      </button>
+      <div class="hx-panel" id="${panelId}"><div class="hx-panel-inner"><ul class="hx-kids">${(kid.kids ?? []).map(kidMarkup).join('')}</ul></div></div>
     </li>`;
 }
 
@@ -322,7 +335,7 @@ function markup(): string {
         <nav class="hx-index" aria-label="Site index">
           <div class="hx-index-head">
             <span>Contents</span>
-            <span aria-hidden="true">Six sections &middot; nine apps</span>
+          <span aria-hidden="true">Five sections &middot; ${WORK_APP_COUNT} apps</span>
           </div>
 
           <div class="hx-tree-wrap">
@@ -404,7 +417,8 @@ function wire(root: HTMLElement): () => void {
 
   function expand(branch: HTMLElement): void {
     tree!.querySelectorAll<HTMLElement>('.hx-branch[data-open="true"]').forEach((other) => {
-      if (other !== branch) collapse(other);
+      // Keep an ancestor open while a nested disclosure (Work → More) opens.
+      if (other !== branch && !other.contains(branch) && !branch.contains(other)) collapse(other);
     });
     setOpen(branch, true);
   }
