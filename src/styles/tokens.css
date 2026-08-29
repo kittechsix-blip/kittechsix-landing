@@ -1,19 +1,19 @@
 :root {
-  /* ===== BACKGROUNDS ===== */
-  --bg-white:        #F8F7F3;
-  --bg-cream:        #EFECE5;
-  --bg-cream-deep:   #E6E0D7;
-  --bg-ink:          #0C1012;
+  /* ===== BACKGROUNDS (Atlantic v2: pure white canvas, pure black ink) ===== */
+  --bg-white:        #FFFFFF;
+  --bg-cream:        #FFFFFF;
+  --bg-cream-deep:   rgba(0,0,0,0.05);
+  --bg-ink:          #000000;
 
-  /* ===== CHARCOAL TEXT SCALE (warm-tinted, not blue-black) ===== */
-  --ink-900: #111516;
-  --ink-800: #202526;
-  --ink-700: #343A3B;
-  --ink-600: #505758;
-  --ink-500: #6B7271;
-  --ink-400: #939896;
-  --ink-on-dark:     #F4F0E9;
-  --ink-on-dark-mut: rgba(244,240,233,0.68);
+  /* ===== INK TEXT SCALE (Atlantic v2: pure black + brand secondary) ===== */
+  --ink-900: #000000;
+  --ink-800: #000000;
+  --ink-700: #000000;
+  --ink-600: #5E6A74;
+  --ink-500: #5E6A74;
+  --ink-400: #9CA3AF;
+  --ink-on-dark:     #FFFFFF;
+  --ink-on-dark-mut: rgba(255,255,255,0.68);
 
   /* ===== COPPER SCALE (PRIMARY accent + CTA + brand) ===== */
   --copper-50:  #F8EEE5;
