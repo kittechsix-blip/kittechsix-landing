@@ -198,7 +198,7 @@
 }
 
 .ui-tour-screen-placeholder strong {
-  color: #1A1A1A;
+  color: #000000;
   font-size: 17px;
   margin-bottom: var(--space-2);
 }

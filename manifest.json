@@ -3,8 +3,8 @@
   "short_name": "Kittech-Six",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0C1012",
-  "theme_color": "#0C1012",
+  "background_color": "#FFFFFF",
+  "theme_color": "#BF5700",
   "icons": [
     { "src": "assets/icons/kittech-brain.png", "sizes": "512x512", "type": "image/png" }
   ]

@@ -142,6 +142,34 @@ button {
   color: var(--ink-900);
 }
 
+/* ========== Atlantic v2 reading layer (kittech-brand) ==========
+   EB Garamond for long-form editorial prose only — UI chrome stays sans.
+   Doubled selector beats later per-component 15px rules without !important.
+   Color inherits so the layer works on light and dark bands alike. */
+.reading-body.reading-body {
+  font-family: var(--font-reading);
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+@media (min-width: 728px) {
+  .reading-body.reading-body {
+    font-size: 22px;
+    line-height: 33px;
+  }
+}
+.reading-heading.reading-heading {
+  font-family: var(--font-reading);
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
 /* metallic copper foil text — wordmark accents ONLY */
 .metal-text {
   background: var(--metal-copper-text);

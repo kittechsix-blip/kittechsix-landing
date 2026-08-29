@@ -155,7 +155,7 @@ export function renderConsulting(parent: HTMLElement): void {
       <div class="cons-problem">
         <div class="cons-problem-head">
           <h2 class="cons-h3">Right now it lives everywhere.</h2>
-          <p class="text-body cons-problem-note">Nothing is wrong, exactly. Every piece of it is correct somewhere. It is just spread across eight places, half of them offline, and none of them the place a clinician thinks to look while the room is filling up.</p>
+          <p class="text-body cons-problem-note reading-body">Nothing is wrong, exactly. Every piece of it is correct somewhere. It is just spread across eight places, half of them offline, and none of them the place a clinician thinks to look while the room is filling up.</p>
         </div>
 
         <div class="cons-argument">
@@ -175,7 +175,7 @@ export function renderConsulting(parent: HTMLElement): void {
         <div class="cons-case-head">
           <p class="cons-kicker">Case study · anonymized</p>
           <h2 class="cons-case-title" id="cons-case-title">An operations app for a large academic emergency department.</h2>
-          <p class="cons-case-body">A department running on reference material that had accumulated rather than been designed: one thing in a binder, another on a shared drive, a third in whoever happened to remember it. I mapped every place the knowledge was hiding, then rebuilt it as one installable app — protocols, department operations, onboarding, disposition and follow-up routing, quality metrics, scheduling, contacts and consultants, all searchable from any screen and all readable with no signal. It went from first commit to department-wide release in under five months, and it is in daily use on shift today.</p>
+          <p class="cons-case-body reading-body">A department running on reference material that had accumulated rather than been designed: one thing in a binder, another on a shared drive, a third in whoever happened to remember it. I mapped every place the knowledge was hiding, then rebuilt it as one installable app — protocols, department operations, onboarding, disposition and follow-up routing, quality metrics, scheduling, contacts and consultants, all searchable from any screen and all readable with no signal. It went from first commit to department-wide release in under five months, and it is in daily use on shift today.</p>
         </div>
 
         <div class="cons-case-detail">
@@ -196,7 +196,7 @@ export function renderConsulting(parent: HTMLElement): void {
       <div class="cons-engage">
         <div class="cons-engage-head">
           <h2 class="cons-h3">How an engagement runs.</h2>
-          <p class="text-body cons-engage-note">Small, senior, and fast. You are working with the physician who builds it, not an account team.</p>
+          <p class="text-body cons-engage-note reading-body">Small, senior, and fast. You are working with the physician who builds it, not an account team.</p>
         </div>
         <ol class="cons-steps">
           ${steps}
