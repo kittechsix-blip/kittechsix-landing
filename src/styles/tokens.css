@@ -23,19 +23,24 @@
   --ink-3:        #5E6A74;
   --meta:         #737373;
   --hairline:     #E5E5E5;
-  --accent:       #8A3324;
-  --accent-hover: #7A2D1F;
-  --accent-press: #5E2418;
-  --accent-dark:  #D98E62;
+  /* brand-audit-exempt: marketing-site accent override — copper, per Andy
+     2026-08-31 (brand.md escape hatch: a non-clinical microsite may override
+     --color-primary and its siblings, nothing else). Fleet accent for
+     reference/audit: #8A3324. */
+  --kittech-fleet-accent: #8A3324;
+  --accent:       #B8733E;
+  --accent-hover: #9E5E2F;
+  --accent-press: #794621;
+  --accent-dark:  #D89B68;
 
-  /* ===== BURNT UMBER LADDER (was copper — aliases repaint downstream sheets) ===== */
-  --copper-50:  #F6EEEB;
-  --copper-100: #E9D5CD;
+  /* ===== COPPER LADDER (restored 2026-08-31 — landing identity) ===== */
+  --copper-50:  #F8EEE5;
+  --copper-100: #EED6C1;
   --copper-300: var(--accent-dark);
   --copper-500: var(--accent);
   --copper-600: var(--accent-hover);
   --copper-700: var(--accent-press);
-  --copper-900: #4A1C13;
+  --copper-900: #4C2D18;
 
   /* ===== FOREST GREEN SCALE (clinical data semantics — never wayfinding) ===== */
   --green-50:  #E7F1EB;
@@ -54,14 +59,14 @@
   --shadow-sm:    none;
   --shadow-card:  none;
   --shadow-lift:  0 8px 24px rgba(0,0,0,0.08); /* dialog-only allowance */
-  --shadow-copper: none;
+  --shadow-copper: 0 8px 24px rgba(184,115,51,0.24);
   --shadow-nav:   none;
-  --shadow-inset-copper: none;
+  --shadow-inset-copper: inset 0 1px 0 rgba(255,255,255,0.32);
 
   /* ===== FORMER METALLIC GRADIENTS (v3: flat — solid umber / hairline) ===== */
-  --metal-copper:      var(--accent);
-  --metal-copper-text: var(--accent);
-  --sheen-line:        rgba(255,255,255,0.16);
+  --metal-copper:      linear-gradient(135deg, #D89B6A 0%, #B87333 42%, #8A5524 78%, #B87333 100%); /* brand-audit-exempt: frame/identity metal */
+  --metal-copper-text: linear-gradient(180deg, #D89B6A 0%, #B87333 55%, #8A5524 100%); /* brand-audit-exempt */
+  --sheen-line:        linear-gradient(90deg, transparent, var(--copper-300), transparent); /* brand-audit-exempt: copper identity */
 
   /* ===== TYPOGRAPHY FAMILIES (v3 four voices) ===== */
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
