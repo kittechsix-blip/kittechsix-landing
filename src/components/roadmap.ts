@@ -12,12 +12,13 @@ interface Accent {
   deep: string;
 }
 
-/** Used when APP_REGISTRY has no entry for an id (PowerKitt today). Points at existing
- *  copper tokens rather than inventing a new hex, so a future rebrand carries it along. */
+/** Used when APP_REGISTRY has no entry for an id (PowerKitt today). Points at the
+ *  v3 brand tokens (burnt umber, decree fallbacks) rather than inventing a new hex,
+ *  so a future rebrand carries it along. */
 const FALLBACK_ACCENT: Accent = {
-  base: 'var(--copper-500)',
-  soft: 'var(--copper-50)',
-  deep: 'var(--copper-700)',
+  base: 'var(--accent, #8A3324)',
+  soft: 'var(--paper-warm, #FAF4EB)',
+  deep: 'var(--accent-press, #5E2418)',
 };
 
 interface RoadmapItem {

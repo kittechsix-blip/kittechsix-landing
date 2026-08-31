@@ -120,7 +120,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     accent: { base: '#2E9E5B', soft: '#E4F3EA', deep: '#1F6B3D' },
     tour: mkTour,
     tourSubtitle:
-      'Six screens, one real DKA resuscitation — dashboard to decision tree to a dosed insulin drip, then a Steps Summary and the 📊 Visual overlay.',
+      'Six screens, one real DKA resuscitation — dashboard to decision tree to a dosed insulin drip, then a Steps Summary and the Visual overlay.',
     hasDemo: true,
   },
 
@@ -273,7 +273,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
-    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+    accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
   },
 
   myventkitt: {
@@ -301,7 +301,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
-    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+    accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
   },
 
   endocrinekitt: {
@@ -329,7 +329,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
-    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+    accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
   },
 
   'acute-vision-loss': {
@@ -357,7 +357,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
-    accent: { base: '#BF5700', soft: '#FFF0E6', deep: '#8C3F00' },
+    accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
   },
 };
 

@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v29';
+const CACHE_NAME = 'kittechsix-v31';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -85,6 +85,9 @@ const ASSETS_TO_CACHE = [
   '/assets/fonts/instrument-serif-italic.woff2',
   '/assets/fonts/EBGaramond-400.woff2',
   '/assets/fonts/EBGaramond-400i.woff2',
+  '/assets/fonts/PlayfairDisplay.woff2',
+  '/assets/fonts/IBMPlexMono-400.woff2',
+  '/assets/fonts/IBMPlexMono-500.woff2',
   '/assets/icons/kittech-brain.png',
   '/assets/icons/mymedkitt.png',
   '/assets/icons/mystroke-kitt.png',

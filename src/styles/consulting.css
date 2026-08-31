@@ -1,27 +1,24 @@
-/* Consulting — the page's gravitational center.
+/* Consulting — the page's gravitational center (v3 Atlantic × burnt umber).
    Heavier rhythm than the app chapters: wider vertical field, a scattered
-   "lives everywhere" argument that resolves into one answer, an ink case slab. */
+   "lives everywhere" argument that resolves into one answer, a flat ink
+   case slab. No gradient fields, no lifted shadows — paper and hairlines. */
 
 .consulting-section {
+  --v3-accent: var(--accent, #8A3324);
+  --v3-accent-hover: var(--accent-hover, #7A2D1F);
+  --v3-accent-dark: var(--accent-dark, #D98E62);
+  --v3-hairline: var(--hairline, #E5E5E5);
+  --v3-meta: var(--meta, #737373);
+  --v3-paper-warm: var(--paper-warm, #FAF4EB);
+  --v3-display: 'Playfair Display', Georgia, serif;
+  --v3-serif: 'EB Garamond', 'Adobe Garamond Pro', Garamond, Georgia, serif;
+  --v3-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
   position: relative;
   overflow: hidden;
-  background: var(--bg-cream);
-  border-block: 1px solid var(--border-cream);
+  background: var(--bg-white);
+  border-block: 1px solid var(--v3-hairline);
   padding-block: calc(var(--section-pad) + 24px);
-}
-
-/* soft copper field, top-right — weight without noise */
-.consulting-section::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: -320px;
-  right: -240px;
-  width: 860px;
-  height: 860px;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--copper-500) 10%, transparent), transparent 62%);
-  pointer-events: none;
 }
 
 .cons-content {
@@ -37,7 +34,7 @@
   gap: clamp(40px, 7vw, 110px);
   align-items: end;
   padding-bottom: 56px;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--v3-hairline);
 }
 
 .cons-title { max-width: 15ch; }
@@ -45,19 +42,19 @@
 
 .cons-stamp {
   margin-top: 20px;
-  font-family: var(--font-geist-mono);
-  font-size: 9px;
-  letter-spacing: 0.13em;
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-500);
+  color: var(--v3-meta);
 }
 
 .cons-h3 {
-  font-family: var(--font-display);
-  font-size: clamp(27px, 3.2vw, 40px);
-  font-weight: 560;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+  font-family: var(--v3-display);
+  font-size: clamp(26px, 3vw, 37px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0;
   color: var(--ink-900);
 }
 
@@ -94,12 +91,11 @@
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
-  border: 1px solid var(--border-cream);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--v3-hairline);
+  border-radius: 2px;
   background: var(--bg-white);
-  box-shadow: var(--shadow-xs);
   transform: translate(var(--sx, 0), var(--sy, 0)) rotate(var(--rot, 0deg));
-  transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition-slow);
+  transition: transform var(--transition-slow), border-color var(--transition-slow);
 }
 
 /* the thesis, made kinetic: hovering the mess snaps it into order.
@@ -107,8 +103,7 @@
    the same argument statically, so nothing is lost without a hover. */
 .cons-scatter:hover .cons-frag {
   transform: translate(0, 0) rotate(0deg);
-  border-color: var(--border-strong);
-  box-shadow: none;
+  border-color: var(--v3-meta);
 }
 
 .cons-frag-dot {
@@ -116,7 +111,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--ink-400);
+  background: var(--v3-meta);
 }
 
 .cons-frag-label {
@@ -130,43 +125,43 @@
   justify-self: center;
   font-size: 22px;
   line-height: 1;
-  color: var(--copper-500);
+  color: var(--v3-accent);
 }
 
 .cons-resolve {
   padding: 36px 34px;
-  border-radius: var(--radius-md);
+  border-radius: 4px;
   color: var(--ink-on-dark);
-  background: var(--bg-ink);
-  box-shadow: var(--shadow-lift);
+  background: #141414;
 }
 
 .cons-resolve-label {
-  font-family: var(--font-geist-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--v3-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--copper-300);
+  color: var(--v3-accent-dark);
 }
 
 .cons-resolve-title {
   margin-top: 18px;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 3.4vw, 42px);
-  font-weight: 560;
-  line-height: 1.02;
-  letter-spacing: -0.045em;
+  font-family: var(--v3-display);
+  font-size: clamp(28px, 3.2vw, 39px);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: 0;
   color: var(--ink-on-dark);
 }
 
 .cons-resolve-text {
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--ink-on-dark-mut);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-family: var(--v3-serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.72);
 }
 
 /* ===== Case study slab ===== */
@@ -177,28 +172,27 @@
   padding: clamp(36px, 5vw, 64px);
   color: var(--ink-700);
   background: var(--bg-white);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
+  border: 1px solid var(--v3-hairline);
+  border-radius: 2px;
 }
 
 .cons-kicker {
-  font-family: var(--font-geist-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--v3-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--copper-700);
+  color: var(--v3-accent);
 }
 
 .cons-case-title {
   max-width: 16ch;
   margin-top: 18px;
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.4vw, 44px);
-  font-weight: 560;
-  line-height: 1.03;
-  letter-spacing: -0.045em;
+  font-family: var(--v3-display);
+  font-size: clamp(27px, 3.2vw, 41px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0;
   color: var(--ink-900);
 }
 
@@ -212,13 +206,13 @@
 
 .cons-sublabel {
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-soft);
-  font-family: var(--font-text);
-  font-size: 10px;
-  font-weight: 650;
-  letter-spacing: 0.13em;
+  border-bottom: 1px solid var(--v3-hairline);
+  font-family: var(--v3-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--ink-500);
+  color: var(--ink-900);
 }
 
 .cons-caps { margin-top: 20px; list-style: none; }
@@ -227,7 +221,7 @@
   display: flex;
   gap: 12px;
   padding: 14px 0;
-  border-bottom: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--v3-hairline);
 }
 .cons-cap:last-child { border-bottom: 0; padding-bottom: 0; }
 
@@ -235,7 +229,7 @@
   flex: 0 0 auto;
   padding-top: 3px;
   font-size: 10px;
-  color: var(--copper-500);
+  color: var(--v3-accent);
 }
 
 .cons-cap-body { display: block; }
@@ -265,15 +259,15 @@
   margin-top: 24px;
 }
 
-.cons-proof { padding-left: 18px; border-left: 2px solid var(--copper-100); }
+.cons-proof { padding-left: 18px; border-left: 2px solid var(--v3-hairline); }
 
 .cons-proof-figure {
-  font-family: var(--font-display);
+  font-family: var(--v3-display);
   font-size: clamp(20px, 2.2vw, 27px);
-  font-weight: 580;
+  font-weight: 600;
   line-height: 1.05;
-  letter-spacing: -0.04em;
-  color: var(--copper-700);
+  letter-spacing: 0;
+  color: var(--v3-accent);
 }
 
 .cons-proof-label {
@@ -303,24 +297,24 @@
   list-style: none;
 }
 
-.cons-step { padding-top: 20px; border-top: 1px solid var(--border-strong); }
+.cons-step { padding-top: 20px; border-top: 1px solid var(--v3-hairline); }
 
 .cons-step-index {
   display: block;
-  font-family: var(--font-geist-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--copper-700);
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--v3-accent);
 }
 
 .cons-step-title {
   margin-top: 14px;
-  font-family: var(--font-display);
+  font-family: var(--v3-display);
   font-size: 19px;
-  font-weight: 580;
-  line-height: 1.1;
-  letter-spacing: -0.035em;
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: 0;
   color: var(--ink-900);
 }
 
@@ -339,21 +333,29 @@
   gap: 22px;
   margin-top: 88px;
   padding-top: 56px;
-  border-top: 1px solid var(--border-strong);
+  border-top: 1px solid var(--v3-hairline);
   text-align: center;
 }
 
 .cons-cta-line {
   max-width: 20ch;
-  font-family: var(--font-accent);
+  font-family: var(--v3-serif);
   font-size: clamp(26px, 3.2vw, 40px);
   font-style: italic;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   color: var(--ink-900);
 }
 
-.cons-cta-button { padding-inline: 30px; }
+/* Flat umber CTA, 4px radius — overrides the global 3D treatment. */
+.cons-cta-button {
+  padding-inline: 30px;
+  background: var(--v3-accent);
+  border-radius: 4px;
+  box-shadow: none;
+}
+.cons-cta-button:hover { background: var(--v3-accent-hover); transform: none; box-shadow: none; }
+.cons-cta-button:active { background: var(--accent-press, #5E2418); }
 
 .cons-cta-note {
   font-size: 12px;

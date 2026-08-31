@@ -1,6 +1,19 @@
-/* Continuous assurance system */
+/* Continuous assurance system (v3 Atlantic × burnt umber).
+   Flat paper ledger rows on hairlines; Playfair office titles; IBM Plex
+   Mono cadence capsules; the governing-rule slab is flat ink with the
+   dark-surface accent (#D98E62). */
 
-.qteam-section { background: var(--bg-white); }
+.qteam-section {
+  --v3-accent: var(--accent, #8A3324);
+  --v3-accent-dark: var(--accent-dark, #D98E62);
+  --v3-hairline: var(--hairline, #E5E5E5);
+  --v3-meta: var(--meta, #737373);
+  --v3-display: 'Playfair Display', Georgia, serif;
+  --v3-serif: 'EB Garamond', 'Adobe Garamond Pro', Garamond, Georgia, serif;
+  --v3-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  background: var(--bg-white);
+}
 .qteam-content { max-width: 1240px; }
 
 .qteam-header {
@@ -21,7 +34,7 @@
   display: grid;
   grid-template-columns: 1fr;
   margin-bottom: 72px;
-  border-top: 1px solid var(--border-strong);
+  border-top: 1px solid var(--v3-hairline);
 }
 
 .qteam-card {
@@ -30,7 +43,7 @@
   gap: clamp(22px,3vw,48px);
   align-items: start;
   padding: 34px 0;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--v3-hairline);
   background: transparent;
 }
 
@@ -46,36 +59,38 @@
 .qteam-glyph {
   grid-column: 1;
   padding-top: 7px;
-  font-family: var(--font-geist-mono);
-  font-size: 9px;
-  letter-spacing: .12em;
-  color: var(--copper-700);
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  color: var(--v3-accent);
 }
 .qteam-title {
   grid-column: 2;
-  font-family: var(--font-display);
-  font-size: clamp(20px,1.7vw,25px);
-  font-weight: 580;
-  line-height: 1.08;
-  letter-spacing: -.038em;
+  font-family: var(--v3-display);
+  font-size: clamp(20px,1.7vw,24px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0;
   color: var(--ink-900);
   text-wrap: balance;
 }
+/* Hairline-outline capsule, mono caps — cadence is metadata, not a signal. */
 .qteam-cadence {
   grid-column: 2;
   justify-self: start;
-  padding: 6px 10px;
+  padding: 5px 10px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-geist-mono);
-  font-size: 8px;
-  font-weight: 700;
+  border: 1px solid var(--v3-hairline);
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  font-weight: 500;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--green-700);
-  background: var(--green-50);
+  color: var(--v3-meta);
+  background: transparent;
 }
 .qteam-domain, .qteam-proof { font-size: 13px; line-height: 1.55; color: var(--ink-600); }
-.qteam-proof { padding-left: 22px; border-left: 1px solid var(--border-soft); }
+.qteam-proof { padding-left: 22px; border-left: 1px solid var(--v3-hairline); }
 
 .qteam-guardrail {
   display: grid;
@@ -87,18 +102,18 @@
   padding: 42px;
   border-radius: 0;
   color: var(--ink-on-dark);
-  background: var(--bg-ink);
+  background: #141414;
   text-align: left;
 }
-.qteam-guardrail-label { font-family: var(--font-geist-mono); font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--copper-300); }
-.qteam-guardrail-text { font-family: var(--font-accent); font-size: clamp(21px,2.4vw,32px); font-style: italic; line-height: 1.28; color: var(--ink-on-dark); }
-.qteam-guardrail-sign { align-self: end; font-size: 11px; font-weight: 650; color: var(--ink-on-dark-mut); white-space: nowrap; }
+.qteam-guardrail-label { font-family: var(--v3-mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--v3-accent-dark); }
+.qteam-guardrail-text { font-family: var(--v3-serif); font-size: clamp(21px,2.4vw,31px); font-style: italic; line-height: 1.3; color: var(--ink-on-dark); }
+.qteam-guardrail-sign { align-self: end; font-family: var(--v3-mono); font-size: 11px; font-weight: 400; letter-spacing: .04em; color: rgba(255,255,255,.68); white-space: nowrap; }
 
 /* Tablet — identity column keeps the left rail, prose stacks in the right rail. */
 @media (max-width: 980px) {
   .qteam-card { grid-template-columns: minmax(230px,.82fr) minmax(0,1fr); row-gap: 16px; }
   .qteam-domain { grid-column: 2; }
-  .qteam-proof { grid-column: 2; padding-left: 0; padding-top: 14px; border-left: 0; border-top: 1px solid var(--border-soft); }
+  .qteam-proof { grid-column: 2; padding-left: 0; padding-top: 14px; border-left: 0; border-top: 1px solid var(--v3-hairline); }
 }
 
 @media (max-width: 760px) {
@@ -106,7 +121,7 @@
   .qteam-subtitle { max-width: none; }
   .qteam-card { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
   .qteam-domain, .qteam-proof { grid-column: 1; }
-  .qteam-proof { padding-top: 12px; border-top: 1px solid var(--border-soft); }
+  .qteam-proof { padding-top: 12px; border-top: 1px solid var(--v3-hairline); }
   .qteam-guardrail { grid-template-columns: 1fr; gap: 22px; padding: 30px 24px; }
   .qteam-guardrail-sign { justify-self: start; }
 }

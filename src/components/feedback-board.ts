@@ -30,7 +30,7 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content">
       <div class="feedback-intro">
-        <span class="eyebrow eyebrow--green">Shape the roadmap</span>
+        <span class="eyebrow">Shape the roadmap</span>
         <h2 class="text-heading">You decide what we build next.</h2>
         <p>Vote on features, suggest new consults, request app ideas, and help decide what Kittech-Six improves next.</p>
       </div>
@@ -155,7 +155,7 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
     }
 
     if (filtered.length === 0) {
-      gridContainer.innerHTML = '<p style="text-align: center; color: var(--ink-500); grid-column: 1 / -1;">No suggestions yet. Be the first!</p>';
+      gridContainer.innerHTML = '<p style="text-align: center; color: var(--meta, #737373); grid-column: 1 / -1;">No suggestions yet. Be the first!</p>';
       return;
     }
 

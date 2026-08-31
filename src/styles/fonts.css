@@ -26,6 +26,30 @@
   src: url('../assets/fonts/instrument-serif-italic.woff2') format('woff2');
 }
 
+/* ===== v3 "Atlantic × burnt umber" primary faces ===== */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../assets/fonts/PlayfairDisplay.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/IBMPlexMono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/IBMPlexMono-500.woff2') format('woff2');
+}
+
+/* Hanken Grotesk — variable file (400–800 incl. the UI 600) */
 @font-face {
   font-family: 'Hanken Grotesk';
   font-style: normal;

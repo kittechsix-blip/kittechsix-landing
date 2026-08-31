@@ -1,4 +1,5 @@
-/* Feedback Board Styles — Phase 4 (cream band, white cards, copper/green discipline) */
+/* Feedback Board — v3 "Atlantic × Burnt Umber": flat paper, hairlines,
+   umber discipline. Green is reserved for clinical data and is not used here. */
 .feedback-intro {
   text-align: center;
   max-width: 600px;
@@ -6,7 +7,7 @@
 }
 
 .feedback-intro p {
-  color: var(--ink-600);
+  color: var(--ink-2, #39434B);
   margin-top: var(--space-2);
 }
 
@@ -22,29 +23,30 @@
 .feedback-input,
 .feedback-textarea,
 .feedback-select {
-  background: var(--bg-white);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
+  background: var(--paper, #FFFFFF);
+  border: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 2px;
   padding: 12px 16px;
+  min-height: 44px;
   font-size: 15px;
-  font-family: var(--font-text);
-  color: var(--ink-800);
-  letter-spacing: -0.17px;
-  box-shadow: var(--shadow-xs);
-  transition: border-color var(--transition-default), box-shadow var(--transition-default);
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink, #141414);
+  letter-spacing: 0;
+  box-shadow: none;
+  transition: border-color var(--transition-default);
 }
 
 .feedback-input:focus,
 .feedback-textarea:focus,
 .feedback-select:focus {
-  border-color: var(--copper-500);
-  box-shadow: var(--shadow-xs), 0 0 0 3px var(--copper-50);
+  border-color: var(--accent, #8A3324);
+  box-shadow: 0 0 0 3px #F4EBE6;
   outline: none;
 }
 
 .feedback-input::placeholder,
 .feedback-textarea::placeholder {
-  color: var(--ink-500);
+  color: var(--ink-3, #5E6A74);
 }
 
 .feedback-textarea {
@@ -54,7 +56,7 @@
 
 .feedback-select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236B6157' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23737373' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 36px;
@@ -64,7 +66,7 @@
   align-self: flex-end;
 }
 
-/* Sort/Filter */
+/* Sort/Filter — hairline-outline capsules, mono caps; active = umber */
 .feedback-controls {
   display: flex;
   justify-content: center;
@@ -75,41 +77,46 @@
 
 .feedback-filter-btn {
   padding: 6px 16px;
-  font-size: 13px;
+  min-height: 44px;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
   font-weight: 500;
-  color: var(--ink-700);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2, #39434B);
   background: transparent;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-soft);
-  transition: all var(--transition-default);
-  letter-spacing: -0.12px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline, #E5E5E5);
+  transition: border-color var(--transition-default), color var(--transition-default), background var(--transition-default);
 }
 
 .feedback-filter-btn:hover {
-  border-color: var(--copper-300);
-  color: var(--copper-700);
-  background: var(--copper-50);
+  border-color: var(--accent, #8A3324);
+  color: var(--accent, #8A3324);
+  background: transparent;
 }
 
 .feedback-filter-btn.active {
-  background: var(--copper-500);
-  border-color: var(--copper-500);
-  color: var(--bg-white);
+  background: #F4EBE6;
+  border-color: var(--accent, #8A3324);
+  color: var(--accent-press, #5E2418);
 }
 
 .feedback-controls-divider {
   width: 1px;
   height: 20px;
-  background: var(--border-strong);
+  background: var(--hairline, #E5E5E5);
   align-self: center;
 }
 
+/* Category filters share the umber active state — places are told apart by
+   label, never by borrowing the clinical green. */
 .feedback-filter-btn--cat.active {
-  background: var(--green-500);
-  border-color: var(--green-500);
+  background: #F4EBE6;
+  border-color: var(--accent, #8A3324);
 }
 
-/* Suggestion Cards */
+/* Suggestion Cards — hairline boxes, no lift, no shadow */
 .feedback-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -119,33 +126,33 @@
 }
 
 .suggestion-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-lg);
+  background: var(--paper, #FFFFFF);
+  border: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 2px;
   padding: var(--space-3);
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  box-shadow: var(--shadow-card);
-  transition: transform var(--transition-default), box-shadow var(--transition-default), border-color var(--transition-default);
+  box-shadow: none;
+  transition: border-color var(--transition-default);
 }
 
 .suggestion-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
-  border-color: var(--copper-300);
+  transform: none;
+  box-shadow: none;
+  border-color: var(--ink-3, #5E6A74);
 }
 
 .suggestion-title {
   font-size: 15px;
   font-weight: 600;
-  color: var(--ink-900);
-  letter-spacing: -0.17px;
+  color: var(--ink, #141414);
+  letter-spacing: 0;
 }
 
 .suggestion-description {
   font-size: 14px;
-  color: var(--ink-600);
+  color: var(--ink-2, #39434B);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -162,33 +169,38 @@
 }
 
 .suggestion-badge {
-  font-size: 11px;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   padding: 3px 10px;
-  border-radius: var(--radius-pill);
-  background: var(--bg-cream-deep);
-  color: var(--ink-600);
-  letter-spacing: -0.12px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--hairline, #E5E5E5);
+  color: var(--meta, #737373);
 }
 
 .suggestion-vote-btn {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--copper-50);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 4px;
   padding: 6px 12px;
+  min-height: 44px;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: var(--copper-700);
-  transition: all var(--transition-default);
+  color: var(--ink-2, #39434B);
+  transition: border-color var(--transition-default), color var(--transition-default), background var(--transition-default);
 }
 
 .suggestion-vote-btn:hover {
-  background: var(--copper-100);
-  border-color: var(--copper-300);
-  color: var(--copper-700);
+  background: #F4EBE6;
+  border-color: var(--accent, #8A3324);
+  color: var(--accent-press, #5E2418);
 }
 
 .suggestion-vote-btn:disabled {
@@ -196,14 +208,14 @@
 }
 
 .suggestion-vote-btn.voted {
-  background: var(--copper-500);
-  border-color: var(--copper-500);
-  color: var(--bg-white);
+  background: var(--accent, #8A3324);
+  border-color: var(--accent, #8A3324);
+  color: #FFFFFF;
 }
 
 .suggestion-vote-btn.voted:hover {
-  background: var(--copper-600);
-  border-color: var(--copper-600);
+  background: var(--accent-hover, #7A2D1F);
+  border-color: var(--accent-hover, #7A2D1F);
 }
 
 /* Email Signup */
@@ -216,38 +228,39 @@
 
 .email-signup-input {
   flex: 1;
-  background: var(--bg-white);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
+  background: var(--paper, #FFFFFF);
+  border: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 2px;
   padding: 10px 16px;
+  min-height: 44px;
   font-size: 15px;
-  font-family: var(--font-text);
-  color: var(--ink-800);
-  letter-spacing: -0.17px;
-  box-shadow: var(--shadow-xs);
-  transition: border-color var(--transition-default), box-shadow var(--transition-default);
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink, #141414);
+  letter-spacing: 0;
+  box-shadow: none;
+  transition: border-color var(--transition-default);
 }
 
 .email-signup-input:focus {
-  border-color: var(--copper-500);
-  box-shadow: var(--shadow-xs), 0 0 0 3px var(--copper-50);
+  border-color: var(--accent, #8A3324);
+  box-shadow: 0 0 0 3px #F4EBE6;
   outline: none;
 }
 
 .email-signup-input::placeholder {
-  color: var(--ink-500);
+  color: var(--ink-3, #5E6A74);
 }
 
 .email-signup-success {
   text-align: center;
   font-size: 15px;
-  color: var(--green-500);
-  font-weight: 500;
+  color: var(--ink-2, #39434B);
+  font-weight: 600;
 }
 
 .email-signup-error {
   font-size: 13px;
-  color: var(--copper-700);
+  color: var(--accent-press, #5E2418);
   margin-top: var(--space-1);
 }
 

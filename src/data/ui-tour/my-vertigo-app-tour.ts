@@ -1,3 +1,5 @@
+// brand-audit-exempt: tour metadata mirroring the toured app's own accents and
+// screen chrome (app-identity data, not landing chrome).
 // myVertigoApp UI tour — pixel-faithful clone screens + guided GRACE-3 narrative.
 // Content sourced from recon/my-vertigo-app.md (real app: https://my-vertigo-app.vercel.app).
 
@@ -190,3 +192,4 @@ export const vtTour: UITourConfig = {
     },
   ],
 };
+

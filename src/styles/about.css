@@ -1,26 +1,46 @@
-/* Founder philosophy */
+/* Founder philosophy (v3 Atlantic × burnt umber).
+   Flat ink slab — no orbit glow rings, no colored shadows. On this dark
+   surface the accent is --accent-dark (#D98E62), per the decree. */
 
-.about-section { position:relative; overflow:hidden; background:#111719; }
-.about-section::before { content:""; position:absolute; width:720px; height:720px; right:-280px; top:-300px; border:1px solid rgba(184,115,62,.2); border-radius:50%; box-shadow:0 0 0 120px rgba(184,115,62,.025), 0 0 0 240px rgba(184,115,62,.018); }
+.about-section {
+  --v3-accent-dark: var(--accent-dark, #D98E62);
+  --v3-serif: 'EB Garamond', 'Adobe Garamond Pro', Garamond, Georgia, serif;
+  --v3-display: 'Playfair Display', Georgia, serif;
+  --v3-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  position:relative; overflow:hidden; background:#141414;
+}
 
 .about-grid { position:relative; display:grid; grid-template-columns:220px minmax(0,1fr); gap:clamp(52px,8vw,112px); align-items:start; max-width:1120px; }
 
-.about-portrait { position:relative; width:220px; height:292px; margin-top:74px; overflow:hidden; background:#1A2326; box-shadow:0 22px 54px rgba(0,0,0,.24); }
-.about-portrait::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(12,16,18,.78)); pointer-events:none; }
+.about-portrait { position:relative; width:220px; height:292px; margin-top:74px; overflow:hidden; background:#1A1A1A; border:1px solid rgba(255,255,255,.16); }
+/* brand-audit-exempt: the linear-gradient below is a photographic caption
+   scrim over the portrait (legibility technique), not chrome decoration. */
+.about-portrait::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.72)); pointer-events:none; }
 .about-portrait-img { width:100%; height:100%; object-fit:cover; object-position:50% 18%; filter:grayscale(1) contrast(1.04); }
-.about-portrait-caption { position:absolute; z-index:2; left:18px; bottom:16px; font-family:var(--font-geist-mono); font-size:8px; line-height:1.5; letter-spacing:.1em; text-transform:uppercase; color:rgba(244,240,233,.66); }
+.about-portrait-caption { position:absolute; z-index:2; left:18px; bottom:16px; font-family:var(--v3-mono); font-size:10px; line-height:1.5; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.7); }
 
 .about-body { position:relative; max-width:700px; }
-.about-quote-mark { width:46px; height:46px; margin-bottom:32px; fill:var(--copper-500); opacity:.55; }
-.about-eyebrow { color:var(--copper-300); }
-.about-eyebrow::before { background:var(--copper-300); }
-.about-headline { max-width:11ch; margin-bottom:36px; font-size:clamp(48px,5.7vw,76px); line-height:.98; letter-spacing:-.045em; color:var(--ink-on-dark); }
-.about-text { max-width:60ch; margin-bottom:20px; font-size:15px; line-height:1.65; color:rgba(244,240,233,.62); }
-.about-pullquote { margin:40px 0; padding:26px 0; border-block:1px solid rgba(255,255,255,.13); font-size:clamp(26px,3vw,38px); line-height:1.18; color:var(--copper-300); }
+.about-quote-mark { width:46px; height:46px; margin-bottom:32px; fill:var(--v3-accent-dark); opacity:.7; }
+.about-eyebrow { font-family:var(--v3-mono); letter-spacing:.1em; color:var(--v3-accent-dark); }
+.about-eyebrow::before { background:var(--v3-accent-dark); }
+.about-headline { max-width:14ch; margin-bottom:36px; font-family:var(--v3-display); font-size:clamp(40px,4.6vw,62px); font-weight:600; line-height:1.06; letter-spacing:0; color:var(--ink-on-dark); }
+.about-text { max-width:60ch; margin-bottom:20px; font-family:var(--v3-serif); font-size:17px; line-height:1.55; color:rgba(255,255,255,.72); }
+.about-pullquote { margin:40px 0; padding:26px 0; border-block:1px solid rgba(255,255,255,.16); font-family:var(--v3-serif); font-style:italic; font-size:clamp(25px,2.9vw,36px); line-height:1.22; color:var(--v3-accent-dark); }
 .about-actions { display:flex; align-items:center; gap:22px; margin-top:36px; }
-.about-signature { font-size:11px; color:rgba(244,240,233,.46); }
+.about-signature { font-size:11px; color:rgba(255,255,255,.5); }
 .about-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
-.about-tags .tag { color:#8AD7A8; background:rgba(47,125,80,.17); }
+/* Hairline-outline capsules, mono caps — no filled blobs on the ink slab. */
+.about-tags .tag {
+  color:rgba(255,255,255,.78);
+  background:transparent;
+  border:1px solid rgba(255,255,255,.28);
+  font-family:var(--v3-mono);
+  font-size:10.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.about-tags .tag--clinical::before { background:rgba(255,255,255,.5); }
 
 @media (max-width: 920px) {
   .about-grid { grid-template-columns:170px minmax(0,1fr); gap:44px; }
@@ -33,6 +53,6 @@
   .about-grid { grid-template-columns:1fr; gap:34px; }
   .about-portrait { width:112px; height:142px; margin-top:0; }
   .about-portrait-caption { display:none; }
-  .about-headline { font-size:clamp(46px,14vw,64px); }
+  .about-headline { font-size:clamp(36px,11vw,52px); }
   .about-actions { align-items:flex-start; flex-direction:column; }
 }

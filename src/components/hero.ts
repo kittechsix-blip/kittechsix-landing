@@ -28,37 +28,25 @@ const CONTACT_EMAIL = 'kittechsix@gmail.com';
 // Platform marks as inline SVG in their own brand colours, drawn as the rounded
 // app tiles they appear as on a phone home screen. Inline because the CSP allows
 // no external images, and because vector stays crisp at any size for zero bytes.
-// Gradient ids are namespaced per-platform so two tiles can never collide.
+// v3 chrome icon language: monochrome 1.5px-stroke line glyphs on the 24px
+// grid, currentColor — ink at rest, umber on hover (the full-color platform
+// tiles were retired with the v3 flat-paper decree).
 const ICON_FACEBOOK = `
-<svg viewBox="0 0 48 48" role="img" aria-hidden="true" focusable="false">
-  <rect width="48" height="48" rx="11" fill="#1877F2"/>
-  <path fill="#fff" d="M32.5 30.9l1-6.6h-6.3v-4.3c0-1.8.9-3.6 3.7-3.6h2.9v-5.6s-2.6-.45-5.1-.45c-5.2 0-8.6 3.15-8.6 8.85v5.01h-5.8v6.6h5.8v15.9a23 23 0 007.1 0V30.9h5.3z"/>
+<svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
 </svg>`;
 
 const ICON_INSTAGRAM = `
-<svg viewBox="0 0 48 48" role="img" aria-hidden="true" focusable="false">
-  <defs>
-    <radialGradient id="kt6-ig" cx="19%" cy="99%" r="120%">
-      <stop offset="0%" stop-color="#FFDD55"/>
-      <stop offset="22%" stop-color="#FF9F3E"/>
-      <stop offset="45%" stop-color="#FF543E"/>
-      <stop offset="62%" stop-color="#D6249F"/>
-      <stop offset="82%" stop-color="#962FBF"/>
-      <stop offset="100%" stop-color="#4F5BD5"/>
-    </radialGradient>
-  </defs>
-  <rect width="48" height="48" rx="11" fill="url(#kt6-ig)"/>
-  <rect x="12" y="12" width="24" height="24" rx="7.4" fill="none" stroke="#fff" stroke-width="2.9"/>
-  <circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="2.9"/>
-  <circle cx="31.6" cy="16.4" r="1.9" fill="#fff"/>
+<svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
 </svg>`;
 
 const ICON_TIKTOK = `
-<svg viewBox="0 0 48 48" role="img" aria-hidden="true" focusable="false">
-  <rect width="48" height="48" rx="11" fill="#010101"/>
-  <path fill="#25F4EE" d="M20.6 21.3v-2a8.4 8.4 0 00-1.5-.13 8.7 8.7 0 00-4.9 15.9 8.68 8.68 0 016.4-13.77z"/>
-  <path fill="#FE2C55" d="M31.1 12.6a8.4 8.4 0 01-2.1-4.6h-1.6a8.44 8.44 0 003.7 4.6zM36.6 18.3v-3.05a8.3 8.3 0 01-3.4-.75 8.36 8.36 0 003.4 3.8z"/>
-  <path fill="#fff" d="M33.2 14.5a8.36 8.36 0 01-4.2-6.5h-4.8v19.6a3.6 3.6 0 01-6.5 2.1 3.6 3.6 0 013.4-5.4v-3.3a8.68 8.68 0 00-4.5 15.6A8.7 8.7 0 0029.2 29V18.6a11.6 11.6 0 007.4 2.4v-3.3a8.3 8.3 0 01-3.4-3.2z"/>
+<svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M15.2 3.5v10.7a4.2 4.2 0 1 1-4.2-4.2"/>
+  <path d="M15.2 5.9a6 6 0 0 0 5.4 4"/>
 </svg>`;
 
 const SOCIALS: ReadonlyArray<{ label: string; href: string; icon: string }> = [

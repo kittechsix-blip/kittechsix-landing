@@ -1,3 +1,5 @@
+// brand-audit-exempt: pixel-faithful clone of the real app's UI shown inside
+// the tour phone frame. Colors/typography here are the app's own, not landing chrome.
 // myVertigoApp — pixel-faithful clone of ~/Desktop/my-vertigo-app/apps/web (Next.js 16 PWA).
 // Tokens + DOM extracted in recon/my-vertigo-app.md. Burnt Orange #BF5700 on pure-white #FFFFFF,
 // iOS glassmorphism + 3D gradient buttons ("btn-3d"), glass progress-pill header, emoji expert toolbar.
@@ -406,3 +408,4 @@ export function renderVTDispo(): HTMLElement {
   `;
   return el;
 }
+

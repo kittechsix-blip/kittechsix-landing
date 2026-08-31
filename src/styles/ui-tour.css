@@ -1,7 +1,9 @@
-/* UI Tour — engine chrome only. Per-app clone styles live in styles/tour/<app>.css */
+/* UI Tour — engine chrome only, v3 "Atlantic × Burnt Umber".
+   Per-app clone styles live in styles/tour/<app>.css (pixel-faithful, hands off).
+   The device bezel is a hardware depiction, not UI chrome — it keeps its finish. */
 
 .ui-tour-section {
-  background: var(--bg-white);
+  background: var(--paper, #FFFFFF);
   padding: var(--space-7) var(--space-4);
 }
 
@@ -16,29 +18,33 @@
 }
 
 .ui-tour-eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: var(--copper-700);
+  color: var(--accent, #8A3324);
   margin-bottom: var(--space-2);
 }
 
 .ui-tour-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--ink-900);
+  font-family: 'Playfair Display', 'EB Garamond', Georgia, serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink, #141414);
   margin-bottom: var(--space-2);
 }
 
 .ui-tour-subtitle {
-  color: var(--ink-600);
+  color: var(--ink-2, #39434B);
   max-width: 560px;
   margin: 0 auto;
   line-height: 1.5;
 }
 
-/* Mode toggle */
+/* Mode toggle — segmented tabs: ink text + 3px umber underline on a hairline */
 .ui-tour-controls {
   display: flex;
   justify-content: center;
@@ -50,76 +56,99 @@
 
 .ui-tour-mode-toggle {
   display: inline-flex;
-  background: var(--bg-cream-deep);
-  border-radius: 999px;
-  padding: 4px;
-  border: 1px solid var(--border-cream);
+  gap: var(--space-3);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 0;
+  padding: 0;
 }
 
 .ui-tour-mode-toggle button {
   background: none;
   border: none;
-  color: var(--ink-600);
-  font-size: 13px;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  margin-bottom: -1px;
+  color: var(--ink-3, #5E6A74);
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
   font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 999px;
+  min-height: 44px;
+  padding: 8px 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .ui-tour-mode-toggle button.active {
-  background: var(--copper-500);
-  color: #FFFFFF;
+  background: transparent;
+  color: var(--ink, #141414);
+  border-bottom-color: var(--accent, #8A3324);
 }
 
 .ui-tour-restart {
   background: transparent;
-  color: var(--copper-700);
-  border: 1px solid var(--copper-300);
+  color: var(--ink, #141414);
+  border: 1px solid var(--ink, #141414);
+  min-height: 44px;
   padding: 8px 16px;
-  border-radius: 999px;
+  border-radius: 4px;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .ui-tour-restart:hover {
-  background: var(--copper-50);
-  border-color: var(--copper-500);
+  background: #F4EBE6;
+  border-color: var(--ink, #141414);
 }
 
-/* Live-app launch link in controls */
+/* Live-app launch link in controls — flat fill, no colored shadow.
+   Landing chrome, so it takes the house umber, NOT --ui-tour-accent: the
+   toured app's identity color stays inside the phone frame (green is
+   reserved for clinical semantics fleet-wide). */
 .ui-tour-launch {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: #FFFFFF;
-  background: var(--ui-tour-accent, var(--copper-500));
+  background: var(--accent, #8A3324);
   padding: 8px 16px;
-  border-radius: 999px;
+  border-radius: 4px;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--ui-tour-accent, #B87333) 35%, transparent);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none;
+  transition: background 0.2s ease;
 }
 
 .ui-tour-launch:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--ui-tour-accent, #B87333) 45%, transparent);
+  transform: none;
+  box-shadow: none;
+  background: var(--accent-hover, #7A2D1F);
 }
 
-/* Breadcrumb */
+.ui-tour-launch:active {
+  background: var(--accent-press, #5E2418);
+}
+
+/* Breadcrumb — mono metadata */
 .ui-tour-breadcrumb {
   text-align: center;
-  font-size: 12px;
-  color: var(--ink-500);
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--meta, #737373);
   margin-bottom: var(--space-3);
-  letter-spacing: 0.04em;
 }
 
 .ui-tour-breadcrumb strong {
-  color: var(--ink-800);
-  font-weight: 600;
+  color: var(--ink, #141414);
+  font-weight: 500;
 }
 
 /* Phone frame */
@@ -141,6 +170,8 @@
   position: relative;
   width: 375px;
   height: 812px;
+  /* brand-audit-exempt: this gradient + shadow stack renders a physical
+     phone bezel (device illustration), not landing-chrome decoration. */
   background: linear-gradient(160deg, #3a3a3c 0%, #1c1c1e 30%, #000000 100%);
   border-radius: 54px;
   padding: 12px;
@@ -224,15 +255,15 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--ui-tour-accent, #3CB371);
+  background: var(--ui-tour-accent, var(--accent, #8A3324));
   border: 2px solid #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
   font-size: 12px;
-  font-weight: 700;
-  font-family: var(--font-text);
+  font-weight: 500;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   animation: hotspot-pulse 2s ease-in-out infinite;
   transition: transform 0.15s ease;
@@ -252,31 +283,32 @@
 .ui-tour-hotspot.active .ui-tour-hotspot-dot {
   animation: none;
   transform: scale(1.2);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--ui-tour-accent, #3CB371) 30%, transparent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--ui-tour-accent, #8A3324) 30%, transparent);
 }
 
 @keyframes hotspot-pulse {
   0%, 100% {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
-                0 0 0 0 color-mix(in srgb, var(--ui-tour-accent, #3CB371) 50%, transparent);
+                0 0 0 0 color-mix(in srgb, var(--ui-tour-accent, #8A3324) 50%, transparent);
   }
   50% {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
-                0 0 0 12px color-mix(in srgb, var(--ui-tour-accent, #3CB371) 0%, transparent);
+                0 0 0 12px color-mix(in srgb, var(--ui-tour-accent, #8A3324) 0%, transparent);
   }
 }
 
-/* Popover */
+/* Popover — the one surface allowed a dialog shadow */
 .ui-tour-popover {
   position: absolute;
   z-index: 600;
   width: 280px;
   max-width: calc(100vw - 32px);
-  background: #FFFFFF;
-  border-radius: 12px;
+  background: var(--paper, #FFFFFF);
+  border: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 4px;
   padding: 16px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-  border-left: 3px solid var(--ui-tour-accent, #3CB371);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-left: 3px solid var(--ui-tour-accent, var(--accent, #8A3324));
   pointer-events: auto;
   animation: popover-in 0.18s ease-out;
 }
@@ -287,16 +319,17 @@
 }
 
 .ui-tour-popover-title {
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 15px;
-  font-weight: 700;
-  color: var(--ink-900);
+  font-weight: 600;
+  color: var(--ink, #141414);
   margin-bottom: 6px;
   line-height: 1.3;
 }
 
 .ui-tour-popover-body {
   font-size: 13px;
-  color: var(--ink-600);
+  color: var(--ink-2, #39434B);
   line-height: 1.5;
   margin-bottom: 12px;
 }
@@ -309,36 +342,45 @@
 }
 
 .ui-tour-popover-step {
-  font-size: 11px;
-  color: var(--ink-500);
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
+  color: var(--meta, #737373);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .ui-tour-popover-next {
-  background: var(--copper-500);
+  background: var(--accent, #8A3324);
   color: #FFFFFF;
   border: none;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 13px;
   font-weight: 600;
   padding: 6px 12px;
-  border-radius: 6px;
+  min-height: 36px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .ui-tour-popover-next:hover {
-  background: var(--copper-600);
+  background: var(--accent-hover, #7A2D1F);
+}
+
+.ui-tour-popover-next:active {
+  background: var(--accent-press, #5E2418);
 }
 
 /* Final-step launch CTA inside the popover */
 .ui-tour-popover-launch {
-  background: var(--ui-tour-accent, var(--copper-500));
+  background: var(--ui-tour-accent, var(--accent, #8A3324));
   color: #FFFFFF;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   padding: 7px 14px;
-  border-radius: 999px;
+  border-radius: 4px;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -350,28 +392,29 @@
 .ui-tour-popover-close {
   background: none;
   border: none;
-  color: var(--ink-400);
+  color: var(--ink-3, #5E6A74);
   font-size: 18px;
   cursor: pointer;
   padding: 0;
   line-height: 1;
 }
 
-/* Side panel summary (desktop) */
+/* Side panel summary (desktop) — hairline-ruled rows, no box fill */
 .ui-tour-summary {
   width: 280px;
   flex-shrink: 0;
-  background: var(--bg-cream-deep);
-  border-radius: 12px;
+  background: var(--paper, #FFFFFF);
+  border-radius: 2px;
   padding: var(--space-4);
-  border: 1px solid var(--border-cream);
+  border: 1px solid var(--hairline, #E5E5E5);
 }
 
 .ui-tour-summary h4 {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--ink-500);
-  letter-spacing: 0.08em;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink, #141414);
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   margin-bottom: 12px;
 }
@@ -385,30 +428,32 @@
 .ui-tour-summary li {
   padding: 8px 10px;
   margin: 0 -10px;
-  border-bottom: 1px solid var(--border-cream);
-  color: var(--ink-800);
+  border-bottom: 1px solid var(--hairline, #E5E5E5);
+  color: var(--ink, #141414);
   font-size: 13px;
   line-height: 1.4;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 0;
   transition: background 0.15s ease;
 }
 
 .ui-tour-summary li:hover {
-  background: color-mix(in srgb, var(--ui-tour-accent, #B87333) 8%, transparent);
+  background: color-mix(in srgb, var(--ui-tour-accent, #8A3324) 8%, transparent);
 }
 
 .ui-tour-summary li.active {
-  background: color-mix(in srgb, var(--ui-tour-accent, #B87333) 12%, transparent);
+  background: color-mix(in srgb, var(--ui-tour-accent, #8A3324) 12%, transparent);
 }
 
 .ui-tour-summary li:last-child { border-bottom: none; }
 
 .ui-tour-summary li strong {
-  color: var(--copper-700);
+  color: var(--accent, #8A3324);
   display: block;
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 2px;
 }

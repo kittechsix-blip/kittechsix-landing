@@ -8,7 +8,7 @@ export function renderPrivacy(parent: HTMLElement): void {
 
   section.innerHTML = `
     <div class="section-content privacy-content">
-      <p class="eyebrow eyebrow--green">Privacy</p>
+      <p class="eyebrow">Privacy</p>
       <h2 class="text-heading privacy-headline">Your data stays on your device. Full stop.</h2>
       <div class="privacy-grid">
         <div class="privacy-card">

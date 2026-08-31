@@ -17,10 +17,10 @@ export function renderAbout(parent: HTMLElement): void {
         </svg>
         <p class="eyebrow about-eyebrow">The studio</p>
         <h2 class="text-accent about-headline">Twenty-five years at the bedside, translated into software.</h2>
-        <p class="text-body about-text reading-body">Founded by a physician who got tired of clunky clinical tools designed by people who've never stood at a bedside. Every feature in our apps comes from real shifts, real patients, and real frustration with what's available.</p>
-        <p class="text-body about-text reading-body">We're building software that solves real problems encountered on shift — fast, offline-first tools for the phone in your scrub pocket. No login walls, and the core clinical references stay open to everyone. A Pro tier (coming soon) funds the deeper tooling — but the information you need at the bedside is always there when you need it.</p>
+        <p class="text-body about-text reading-body">Founded by a physician who got tired of clunky clinical tools designed by people who’ve never stood at a bedside. Every feature in our apps comes from real shifts, real patients, and real frustration with what’s available.</p>
+        <p class="text-body about-text reading-body">We’re building software that solves real problems encountered on shift — fast, offline-first tools for the phone in your scrub pocket. No login walls, and the core clinical references stay open to everyone. A Pro tier (coming soon) funds the deeper tooling — but the information you need at the bedside is always there when you need it.</p>
         <p class="text-accent about-pullquote">“The interface should disappear before the decision does.”</p>
-        <p class="text-body about-text reading-body">We're also building consumer health tools for travelers, families, and anyone who wants better access to medical knowledge.</p>
+        <p class="text-body about-text reading-body">We’re also building consumer health tools for travelers, families, and anyone who wants better access to medical knowledge.</p>
         <div class="about-tags">
           <span class="tag tag--clinical">Emergency Medicine</span>
           <span class="tag tag--clinical">15+ yrs teaching &amp; simulation</span>

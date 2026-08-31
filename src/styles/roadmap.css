@@ -1,8 +1,19 @@
-/* Roadmap — honest build log for work still in development.
-   Per-app accent arrives as --app-accent / --app-accent-soft / --app-accent-deep
-   on .roadmap-item (see src/components/roadmap.ts). */
+/* Roadmap — honest build log for work still in development (v3 Atlantic ×
+   burnt umber). Flat paper, hairline ledger, Playfair names, EB Garamond
+   statements, IBM Plex Mono metadata. Per-app accent arrives as
+   --app-accent / --app-accent-soft / --app-accent-deep on .roadmap-item
+   (see src/components/roadmap.ts). */
 
-.roadmap-section { background: var(--bg-cream); }
+.roadmap-section {
+  --v3-accent: var(--accent, #8A3324);
+  --v3-hairline: var(--hairline, #E5E5E5);
+  --v3-meta: var(--meta, #737373);
+  --v3-display: 'Playfair Display', Georgia, serif;
+  --v3-serif: 'EB Garamond', 'Adobe Garamond Pro', Garamond, Georgia, serif;
+  --v3-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  background: var(--bg-white);
+}
 .roadmap-content { max-width: var(--content-max); }
 
 /* ---------- Header ---------- */
@@ -22,12 +33,12 @@
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
-  border-top: 1px solid var(--border-strong);
+  border-top: 1px solid var(--v3-hairline);
 }
 
 .roadmap-item {
   padding: 42px 0 46px;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--v3-hairline);
 }
 
 /* ---------- Item head ---------- */
@@ -41,47 +52,50 @@
 .roadmap-index {
   align-self: start;
   padding-top: 6px;
-  font-family: var(--font-geist-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: var(--app-accent-deep, var(--copper-700));
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--app-accent-deep, var(--v3-accent));
 }
 .roadmap-name {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 580;
-  line-height: 1.04;
-  letter-spacing: -0.04em;
+  font-family: var(--v3-display);
+  font-size: clamp(23px, 2.9vw, 30px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: 0;
   color: var(--ink-900);
 }
 .roadmap-discipline {
   margin-top: 6px;
-  font-size: 10px;
-  font-weight: 650;
-  letter-spacing: 0.1em;
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-500);
+  color: var(--v3-meta);
 }
+/* Hairline-outline capsule, mono caps — never a filled blob. */
 .roadmap-stage {
   justify-self: end;
   padding: 6px 12px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-geist-mono);
-  font-size: 8px;
-  font-weight: 700;
+  border: 1px solid var(--v3-hairline);
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: var(--app-accent-deep, var(--ink-600));
-  background: var(--app-accent-soft, var(--bg-cream-deep));
+  color: var(--v3-meta);
+  background: transparent;
 }
 
 .roadmap-statement {
   max-width: 62ch;
   margin-bottom: 30px;
   padding-left: 16px;
-  border-left: 2px solid var(--app-accent, var(--border-strong));
-  font-family: var(--font-accent);
+  border-left: 2px solid var(--app-accent, var(--v3-accent));
+  font-family: var(--v3-serif);
   font-size: clamp(18px, 2vw, 23px);
   font-style: italic;
   line-height: 1.34;
@@ -95,18 +109,18 @@
   gap: clamp(28px, 5vw, 72px);
   align-items: start;
 }
-.roadmap-col--remains { padding-left: clamp(20px, 3vw, 40px); border-left: 1px solid var(--border-cream); }
+.roadmap-col--remains { padding-left: clamp(20px, 3vw, 40px); border-left: 1px solid var(--v3-hairline); }
 
 .roadmap-col-label {
   margin-bottom: 14px;
-  font-family: var(--font-geist-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--v3-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
-.roadmap-col--built .roadmap-col-label { color: var(--app-accent-deep, var(--green-700)); }
-.roadmap-col--remains .roadmap-col-label { color: var(--ink-500); }
+.roadmap-col--built .roadmap-col-label { color: var(--app-accent-deep, var(--v3-accent)); }
+.roadmap-col--remains .roadmap-col-label { color: var(--v3-meta); }
 
 .roadmap-lines { list-style: none; display: grid; gap: 10px; }
 .roadmap-line {
@@ -125,8 +139,8 @@
   height: 7px;
   border-radius: 50%;
 }
-.roadmap-col--built .roadmap-line::before { background: var(--app-accent, var(--green-500)); }
-.roadmap-col--remains .roadmap-line::before { background: transparent; border: 1px solid var(--ink-400); }
+.roadmap-col--built .roadmap-line::before { background: var(--app-accent, var(--v3-accent)); }
+.roadmap-col--remains .roadmap-line::before { background: transparent; border: 1px solid var(--v3-meta); }
 
 /* ---------- Lab note ---------- */
 .roadmap-labnote {
@@ -159,7 +173,7 @@
     padding-left: 0;
     padding-top: 22px;
     border-left: 0;
-    border-top: 1px solid var(--border-cream);
+    border-top: 1px solid var(--v3-hairline);
   }
 }
 

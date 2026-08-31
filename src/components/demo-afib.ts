@@ -32,7 +32,7 @@ export function renderAfibDemo(parent: HTMLElement): void {
 
   section.innerHTML = `
     <div class="section-content">
-      <div class="demo-eyebrow"><span class="eyebrow eyebrow--green">Live demo &middot; myMedKitt</span></div>
+      <div class="demo-eyebrow"><span class="eyebrow">Live demo &middot; myMedKitt</span></div>
       <h2 class="text-heading demo-header">Work a real case: A-Fib with RVR</h2>
       <p class="text-subhead" style="text-align: center; margin-bottom: var(--space-5)">The same decision tree an ER clinician taps through at the bedside.</p>
       <div class="demo-toggle">

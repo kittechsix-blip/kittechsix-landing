@@ -1,3 +1,5 @@
+// brand-audit-exempt: pixel-faithful clone of the real app's UI shown inside
+// the tour phone frame. Colors/typography here are the app's own, not landing chrome.
 // AcidBase — pixel-faithful clone for the UI tour.
 // Faithful to ~/Desktop/AcidBase-App (Next.js 16, Tailwind v4, Geist, lucide-react).
 // Design system: Clinical Teal #0E7490 + glassmorphism over a teal/violet aurora,
@@ -477,3 +479,4 @@ export function renderABReference(): HTMLElement {
   `;
   return el;
 }
+

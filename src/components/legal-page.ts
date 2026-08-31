@@ -26,7 +26,7 @@ export function renderLegalPage(parent: HTMLElement): void {
     <div class="page-head-inner">
       <p class="eyebrow">Legal</p>
       <h1 class="text-heading page-title">Privacy, disclaimer, and terms.</h1>
-      <p class="text-subhead page-lede">One document in three parts: what happens to what you enter, what these tools are and are not, and the terms you accept by using them.</p>
+      <p class="page-lede legal-dek">One document in three parts: what happens to what you enter, what these tools are and are not, and the terms you accept by using them.</p>
     </div>
   `;
   parent.appendChild(head);

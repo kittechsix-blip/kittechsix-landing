@@ -1,3 +1,5 @@
+// brand-audit-exempt: tour metadata mirroring the toured app's own accents and
+// screen chrome (app-identity data, not landing chrome).
 import type { UITourConfig } from '../../components/ui-tour.js';
 import {
   renderRxDisclaimer,
@@ -162,3 +164,4 @@ export const rxTour: UITourConfig = {
     },
   ],
 };
+

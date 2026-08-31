@@ -1,3 +1,5 @@
+// brand-audit-exempt: pixel-faithful clone of the real app's UI shown inside
+// the tour phone frame. Colors/typography here are the app's own, not landing chrome.
 // Antibiotic Rx — pixel-faithful clone (Next.js 16 PWA, mocked in static HTML).
 // Faithful to ~/Desktop/Antibiotic-Rx/src/app/globals.css tokens + real clinical content.
 // Clinical Indigo #4338CA (empiric/primary), Emerald #047857 (culture-directed),
@@ -511,3 +513,4 @@ export function renderRxCalc(): HTMLElement {
   `;
   return el;
 }
+

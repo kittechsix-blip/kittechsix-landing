@@ -19,7 +19,7 @@ function buildModal(): HTMLElement {
   el.innerHTML = `
     <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
       <button class="contact-modal-close" type="button" aria-label="Close contact form">&times;</button>
-      <p class="eyebrow eyebrow--green contact-modal-eyebrow">Get in touch</p>
+      <p class="eyebrow contact-modal-eyebrow">Get in touch</p>
       <h2 class="contact-modal-title" id="contact-modal-title">Contact Dr. Kitlowski</h2>
       <p class="contact-modal-lede">Questions, feedback, or partnership ideas? Send a note and it opens in your email app, pre-addressed to <strong>${CONTACT_EMAIL}</strong>.</p>
       <form class="contact-modal-form" id="contact-modal-form" novalidate>

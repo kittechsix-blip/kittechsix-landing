@@ -1,4 +1,5 @@
-/* Contact Modal — mailto composer overlay */
+/* Contact Modal — mailto composer overlay, v3 "Atlantic × Burnt Umber".
+   Dialogs are the one surface allowed a shadow; backdrop blur is retired. */
 
 .contact-modal-backdrop {
   position: fixed;
@@ -8,9 +9,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-4);
-  background: rgba(30, 22, 14, 0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.45);
   animation: contact-fade 0.18s ease-out;
 }
 
@@ -29,19 +28,19 @@
   max-width: 480px;
   max-height: 90vh;
   overflow-y: auto;
-  background: var(--bg-white);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 24px 60px rgba(40, 28, 16, 0.35);
+  background: var(--paper, #FFFFFF);
+  border-radius: 4px;
+  border: 1px solid var(--hairline, #E5E5E5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   padding: var(--space-6);
 }
 
 .contact-modal-close {
   position: absolute;
-  top: 12px;
-  right: 14px;
-  width: 36px;
-  height: 36px;
+  top: 8px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   border: none;
@@ -49,14 +48,14 @@
   border-radius: 50%;
   font-size: 24px;
   line-height: 1;
-  color: var(--ink-500);
+  color: var(--ink-3, #5E6A74);
   cursor: pointer;
-  transition: background var(--transition-default), color var(--transition-default);
+  transition: color var(--transition-default);
 }
 
 .contact-modal-close:hover {
-  background: var(--bg-cream);
-  color: var(--ink-800);
+  background: transparent;
+  color: var(--ink, #141414);
 }
 
 .contact-modal-eyebrow {
@@ -64,17 +63,18 @@
 }
 
 .contact-modal-title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(22px, 4vw, 28px);
-  color: var(--ink-800);
+  font-family: 'Playfair Display', 'EB Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(22px, 4vw, 26px);
+  letter-spacing: 0.01em;
+  color: var(--ink, #141414);
   margin: 0 0 var(--space-2);
 }
 
 .contact-modal-lede {
   font-size: 14px;
   line-height: 1.55;
-  color: var(--ink-600);
+  color: var(--ink-2, #39434B);
   margin: 0 0 var(--space-4);
 }
 
@@ -91,28 +91,31 @@
 }
 
 .contact-field-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  color: var(--ink-700);
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink, #141414);
 }
 
 .contact-field-input {
   width: 100%;
   padding: 11px 13px;
-  font-family: var(--font-text);
+  min-height: 44px;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 15px;
-  color: var(--ink-800);
-  background: var(--bg-cream);
-  border: 1px solid var(--border-soft, rgba(60, 42, 24, 0.16));
-  border-radius: 10px;
+  color: var(--ink, #141414);
+  background: var(--paper, #FFFFFF);
+  border: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 2px;
   transition: border-color var(--transition-default), box-shadow var(--transition-default);
 }
 
 .contact-field-input:focus {
   outline: none;
-  border-color: var(--copper-500);
-  box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.14);
+  border-color: var(--accent, #8A3324);
+  box-shadow: 0 0 0 3px #F4EBE6;
 }
 
 .contact-field-textarea {
@@ -123,7 +126,7 @@
 .contact-modal-error {
   margin: 0;
   font-size: 13px;
-  color: #b42318;
+  color: var(--accent-press, #5E2418);
 }
 
 .contact-modal-actions {

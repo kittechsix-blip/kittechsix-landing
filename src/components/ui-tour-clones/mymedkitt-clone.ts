@@ -1,3 +1,5 @@
+// brand-audit-exempt: pixel-faithful clone of the real app's UI shown inside
+// the tour phone frame. Colors/typography here are the app's own, not landing chrome.
 // myMedKitt — pixel-faithful clone for the UI tour.
 // Source of truth: recon/mymedkitt.md + ~/Desktop/myMedKitt/docs/ (production).
 // Pearl White + 3D Metallic design system. All clinical content is REAL app content
@@ -634,3 +636,4 @@ export function renderMKVisual(): HTMLElement {
     </div>
   `);
 }
+

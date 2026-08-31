@@ -1,6 +1,17 @@
-/* Selected work — editorial index */
+/* Selected work — editorial index (v3 Atlantic × burnt umber).
+   Flat paper, hairline-separated rows, Playfair titles, EB Garamond
+   statements, IBM Plex Mono indices. Per-app accents arrive as
+   --app-accent / --app-accent-soft / --app-accent-deep from the registry. */
 
 .featured-row {
+  --v3-accent: var(--accent, #8A3324);
+  --v3-hairline: var(--hairline, #E5E5E5);
+  --v3-meta: var(--meta, #737373);
+  --v3-paper-warm: var(--paper-warm, #FAF4EB);
+  --v3-display: 'Playfair Display', Georgia, serif;
+  --v3-serif: 'EB Garamond', 'Adobe Garamond Pro', Garamond, Georgia, serif;
+  --v3-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
   position: relative;
   color: var(--ink-900);
   background: var(--bg-white);
@@ -17,9 +28,15 @@
 }
 
 .featured-header .text-heading { max-width: 12ch; }
-.featured-lede { max-width: 38ch; font-size: 17px; line-height: 1.6; color: var(--ink-600); }
+.featured-lede {
+  max-width: 38ch;
+  font-family: var(--v3-serif);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink-600);
+}
 
-.featured-projects { border-top: 1px solid var(--border-strong); }
+.featured-projects { border-top: 1px solid var(--v3-hairline); }
 
 .featured-project {
   position: relative;
@@ -29,7 +46,7 @@
   gap: clamp(18px, 2.5vw, 42px);
   min-height: 152px;
   padding: 26px 4px;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--v3-hairline);
   isolation: isolate;
 }
 
@@ -38,7 +55,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--app-accent-soft, var(--copper-50));
+  background: var(--v3-paper-warm);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 380ms cubic-bezier(0.2,0.7,0.2,1);
@@ -50,17 +67,37 @@
 .featured-project-index {
   align-self: start;
   padding-top: 4px;
-  font-family: var(--font-geist-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--app-accent-deep, var(--copper-700));
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--v3-accent);
 }
 
 .featured-project-title { display: grid; gap: 5px; }
-.featured-project-category { font-size: 10px; font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-500); }
-.featured-project-title strong { font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 34px); font-weight: 580; letter-spacing: -0.045em; color: var(--ink-900); }
-.featured-project-statement { max-width: 34ch; font-family: var(--font-accent); font-size: clamp(21px, 2vw, 29px); font-style: italic; line-height: 1.12; color: var(--ink-800); }
-.featured-project-proof { max-width: 28ch; font-size: 12px; font-weight: 560; line-height: 1.45; color: var(--ink-500); }
+.featured-project-category {
+  font-family: var(--v3-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v3-meta);
+}
+.featured-project-title strong {
+  font-family: var(--v3-display);
+  font-size: clamp(23px, 2.3vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink-900);
+}
+.featured-project-statement {
+  max-width: 34ch;
+  font-family: var(--v3-serif);
+  font-size: clamp(20px, 1.9vw, 27px);
+  font-style: italic;
+  line-height: 1.18;
+  color: var(--ink-800);
+}
+.featured-project-proof { max-width: 28ch; font-size: 12px; font-weight: 500; line-height: 1.45; color: var(--ink-500); }
 
 .featured-project-media {
   position: absolute;
@@ -70,39 +107,40 @@
   width: 116px;
   height: 116px;
   padding: 12px;
-  border-radius: 28px;
+  border-radius: 2px;
   background: #fff;
-  box-shadow: var(--shadow-lift);
+  border: 1px solid var(--v3-hairline);
   opacity: 0;
-  transform: translateY(-44%) rotate(4deg) scale(0.9);
+  transform: translateY(-46%);
   pointer-events: none;
   transition: opacity 260ms ease, transform 360ms cubic-bezier(0.2,0.7,0.2,1);
 }
-.featured-project-media img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+.featured-project-media img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
 .featured-project:hover .featured-project-media,
-.featured-project:focus-visible .featured-project-media { opacity: 1; transform: translateY(-50%) rotate(-2deg) scale(1); }
+.featured-project:focus-visible .featured-project-media { opacity: 1; transform: translateY(-50%); }
 
 .featured-project-arrow {
   justify-self: end;
   font-size: 22px;
-  color: var(--ink-500);
+  color: var(--v3-meta);
   transition: transform 240ms ease, color 240ms ease;
 }
 .featured-project:hover .featured-project-arrow,
-.featured-project:focus-visible .featured-project-arrow { transform: translate(3px,3px); color: var(--app-accent-deep, var(--copper-700)); }
+.featured-project:focus-visible .featured-project-arrow { transform: translate(3px,3px); color: var(--app-accent-deep, var(--v3-accent)); }
 
 .featured-index-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 24px;
+  font-family: var(--v3-mono);
   font-size: 11px;
-  font-weight: 650;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-500);
+  color: var(--v3-meta);
 }
-.featured-index-footer .link-arrow { font-size: 12px; text-transform: none; letter-spacing: 0; }
+.featured-index-footer .link-arrow { font-family: inherit; font-size: 12px; text-transform: none; letter-spacing: 0; }
 
 @media (max-width: 980px) {
   .featured-project { grid-template-columns: 42px minmax(150px,0.65fr) minmax(270px,1.2fr) 32px; }
@@ -120,7 +158,7 @@
     padding: 28px 0;
   }
   .featured-project-title { grid-column: 2; }
-  .featured-project-statement { grid-column: 2; margin-top: 10px; font-size: 21px; }
+  .featured-project-statement { grid-column: 2; margin-top: 10px; font-size: 20px; }
   .featured-project-arrow { grid-column: 3; grid-row: 1 / span 2; }
   .featured-project-media, .featured-project-proof { display: none; }
   .featured-index-footer { align-items: flex-start; gap: 22px; }
@@ -128,7 +166,7 @@
 
 @media (max-width: 480px) {
   .featured-row { padding-inline: 18px; }
-  .featured-project-title strong { font-size: 27px; }
+  .featured-project-title strong { font-size: 26px; }
   .featured-index-footer { flex-direction: column; }
 }
 

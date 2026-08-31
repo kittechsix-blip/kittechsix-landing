@@ -1,3 +1,5 @@
+// brand-audit-exempt: tour metadata mirroring the toured app's own accents and
+// screen chrome (app-identity data, not landing chrome).
 // myMedKitt UI tour — walks one real DKA resuscitation end-to-end:
 // Dashboard → decision tree → weight-based insulin dosing → evidence-graded
 // result → Steps Summary (Ischemic Stroke) → 📊 Visual infographic overlay.
@@ -102,14 +104,14 @@ export const mkTour: UITourConfig = {
           anchorSelector: '[data-mk="tool-insulin"]',
           title: 'The consult’s own toolkit',
           description:
-            'Every consult carries a contextual toolbar: 📊 Visual, anion-gap calc, IV and SC insulin, K repletion, fluids, and a 🛑 Do-NOT list. Tap IV Insulin to pull the drug card without leaving the tree.',
+            'Every consult carries a contextual toolbar: Visual, anion-gap calc, IV and SC insulin, K repletion, fluids, and a Do-NOT list. Tap IV Insulin to pull the drug card without leaving the tree.',
           navigateTo: 'drug',
           guidedOrder: 5,
         },
         {
           id: 'tool-stop',
           anchorSelector: '[data-mk="tool-stop"]',
-          title: '🛑 The Do-NOT list',
+          title: 'The Do-NOT list',
           description:
             'One tap opens the pitfalls for this exact diagnosis — like never starting insulin while K is below 3.3 mEq/L. Check it before you order, not after.',
         },
@@ -198,7 +200,7 @@ export const mkTour: UITourConfig = {
 
     {
       id: 'visual',
-      title: '📊 Visual — Interactive Infographic',
+      title: 'Visual — Interactive Infographic',
       renderClone: renderMKVisual,
       hotspots: [
         {
@@ -206,7 +208,7 @@ export const mkTour: UITourConfig = {
           anchorSelector: '[data-mk="ig-title"]',
           title: 'One tap to teach',
           description:
-            'The 📊 Visual button opens an interactive infographic — the diagnostic triad, the three treatment pillars, live weight-based doses — wired across 73 consults and counting. That’s the tour: open the real app and run a consult on your next shift.',
+            'The Visual button opens an interactive infographic — the diagnostic triad, the three treatment pillars, live weight-based doses — wired across 73 consults and counting. That’s the tour: open the real app and run a consult on your next shift.',
           guidedOrder: 10,
         },
       ],
@@ -216,3 +218,4 @@ export const mkTour: UITourConfig = {
 
 // Back-compat alias — src/main.ts imports { myMedKittTour }.
 export const myMedKittTour = mkTour;
+

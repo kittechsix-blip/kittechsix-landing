@@ -1,3 +1,6 @@
+/* brand-audit-exempt: pixel-faithful clone of the toured app's OWN design
+   system, rendered inside the tour phone frame. Its colors, gradients, and
+   blurs are the app's identity, not landing chrome — do not re-pigment. */
 /* ============================================================================
    Antibiotic Rx — UI-tour clone styles.  Namespace: .rx-
    Pixel-faithful to ~/Desktop/Antibiotic-Rx (Clinical Indigo #4338CA, Emerald
@@ -552,3 +555,4 @@
 }
 .rx-renal__range { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--rx-fg); min-width: 60px; }
 .rx-renal__dose { color: var(--rx-text-secondary); }
+

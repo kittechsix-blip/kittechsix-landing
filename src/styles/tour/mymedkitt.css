@@ -1,3 +1,6 @@
+/* brand-audit-exempt: pixel-faithful clone of the toured app's OWN design
+   system, rendered inside the tour phone frame. Its colors, gradients, and
+   blurs are the app's identity, not landing chrome — do not re-pigment. */
 /* ============================================================================
    myMedKitt — UI-tour clone styles.  Namespace: .mk-
    Pixel-faithful to ~/Desktop/myMedKitt/docs/style.css (production).
@@ -1362,3 +1365,4 @@
   color: var(--mk-text-muted);
   line-height: 1.5;
 }
+

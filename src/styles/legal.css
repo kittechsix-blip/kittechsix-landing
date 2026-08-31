@@ -1,8 +1,20 @@
-/* Terms of Service + Refund Policy — quiet legal band, mirrors the disclaimer register */
+/* Terms of Service + Refund Policy — v3 quiet legal band.
+   Reading prose is EB Garamond; block headers are mono labels. Words untouched. */
+
+/* Hero dek in the v3 dek voice — EB Garamond 17–19px (.at-dek metrics),
+   not the Hanken UI subhead. Words untouched. */
+.legal-dek {
+  font-family: var(--font-reading, 'EB Garamond', Georgia, serif);
+  font-size: clamp(17px, 1.6vw, 19px);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--ink-600, #39434B);
+}
 
 .legal-section .legal-content {
   max-width: var(--content-narrow);
-  border-top: 1px solid var(--border-soft);
+  border-top: 1px solid var(--hairline, #E5E5E5);
   padding-top: var(--space-6);
 }
 
@@ -15,7 +27,7 @@
   text-align: center;
   margin-bottom: var(--space-5);
   font-weight: 600;
-  color: var(--ink-900);
+  color: var(--ink, #141414);
 }
 
 .legal-blocks {
@@ -25,19 +37,24 @@
 }
 
 .legal-block h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink-800);
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink, #141414);
   margin-bottom: var(--space-1);
 }
 
 .legal-block p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--ink-600, inherit);
+  font-family: var(--font-reading, 'EB Garamond', Georgia, serif);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink, #141414);
 }
 
 .legal-block a {
-  color: inherit;
+  color: var(--accent, #8A3324);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }

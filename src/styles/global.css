@@ -47,55 +47,54 @@ button {
 }
 
 /* ========== Typography Scale ========== */
-/* HERO headline */
+/* HERO headline — Playfair Display (v3 display voice) */
 .text-hero {
   font-family: var(--font-display);
-  font-size: clamp(48px, 7vw, 88px);
+  font-size: clamp(44px, 6.4vw, 80px);
   font-weight: 600;
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
   color: var(--ink-900);
 }
 
 /* Section headline */
 .text-heading {
   font-family: var(--font-display);
-  font-size: clamp(38px, 5vw, 66px);
-  font-weight: 560;
-  line-height: 1;
-  letter-spacing: -0.045em;
+  font-size: clamp(34px, 4.6vw, 58px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.005em;
   color: var(--ink-900);
 }
 
-/* Subhead / lead paragraph */
+/* Subhead / lead paragraph — Hanken UI voice */
 .text-subhead {
-  font-family: var(--font-display);
+  font-family: var(--font-text);
   font-size: clamp(17px, 1.8vw, 21px);
   font-weight: 400;
   line-height: 1.5;
-  letter-spacing: -0.018em;
+  letter-spacing: 0;
   color: var(--ink-600);
 }
 
-/* EYEBROW — uppercase tracked label with leading copper rule */
+/* EYEBROW / KICKER — IBM Plex Mono metadata voice, umber, leading hairline rule */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-text);
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 650;
+  font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.19em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: var(--copper-700);
+  color: var(--accent);
   margin-bottom: 16px;
 }
 .eyebrow::before {
   content: "";
   width: 34px; height: 1px;
-  background: var(--metal-copper);
-  border-radius: 2px;
+  background: var(--accent);
   display: inline-block;
 }
 /* clinical-trust variant — forest green */
@@ -170,12 +169,12 @@ button {
   font-kerning: normal;
 }
 
-/* metallic copper foil text — wordmark accents ONLY */
+/* former metallic foil text — v3: flat umber, wordmark accents ONLY */
 .metal-text {
-  background: var(--metal-copper-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--accent);
 }
 
 /* ========== Section Base Classes ========== */
@@ -213,43 +212,36 @@ button {
   transform: translateY(0);
 }
 
-/* ========== CTA Buttons ========== */
-/* PRIMARY — solid copper fill, white text, darken on hover, subtle metallic top highlight */
+/* ========== CTA Buttons (v3: flat umber fill / ink outline, radius 4) ========== */
+/* PRIMARY — flat umber fill, white Hanken 600 label */
 .cta-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--copper-500);
+  background: var(--accent);
   color: #FFFFFF;
   font-family: var(--font-text);
-  font-size: 14px; font-weight: 650; letter-spacing: -0.01em;
+  font-size: 14px; font-weight: 600; letter-spacing: 0;
   min-height: 50px;
   padding: 14px 24px;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-copper), var(--shadow-inset-copper);
-  position: relative; overflow: hidden;
-  transition: background var(--transition-default), transform var(--transition-default), box-shadow var(--transition-default);
+  border-radius: 4px;
+  transition: background var(--transition-default);
 }
-.cta-primary::after {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 50%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
-  pointer-events: none;
-}
-.cta-primary:hover { background: var(--copper-600); transform: translateY(-1px); box-shadow: 0 10px 28px rgba(184,115,51,0.32), var(--shadow-inset-copper); }
-.cta-primary:active { background: var(--copper-700); transform: translateY(0); }
+.cta-primary:hover { background: var(--accent-hover); }
+.cta-primary:active { background: var(--accent-press); }
 
-/* SECONDARY — ghost/outline, charcoal text, copper wash on hover */
+/* SECONDARY — 1px ink outline */
 .cta-secondary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   background: transparent;
   color: var(--ink-800);
   font-family: var(--font-text);
-  font-size: 14px; font-weight: 650; letter-spacing: -0.01em;
+  font-size: 14px; font-weight: 600; letter-spacing: 0;
   min-height: 50px;
   padding: 13px 24px;
-  border: 1.5px solid var(--border-strong);
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--ink-800);
+  border-radius: 4px;
   transition: border-color var(--transition-default), background var(--transition-default), color var(--transition-default);
 }
-.cta-secondary:hover { border-color: var(--copper-500); color: var(--copper-700); background: var(--copper-50); }
+.cta-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
 /* GHOST — neutral outline on white (hero 2nd CTA) / white outline on dark bands */
 .cta-ghost {
@@ -257,14 +249,14 @@ button {
   background: transparent;
   color: var(--ink-800);
   font-family: var(--font-text);
-  font-size: 14px; font-weight: 650;
+  font-size: 14px; font-weight: 600;
   min-height: 50px;
   padding: 13px 24px;
-  border: 1.5px solid var(--border-strong);
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--ink-800);
+  border-radius: 4px;
   transition: background var(--transition-default), border-color var(--transition-default), color var(--transition-default);
 }
-.cta-ghost:hover { border-color: var(--copper-500); color: var(--copper-700); background: var(--copper-50); }
+.cta-ghost:hover { border-color: var(--accent); color: var(--accent); }
 /* on dark founder/footer bands */
 .section-ink .cta-ghost, .footer .cta-ghost {
   color: #FFFFFF; border-color: rgba(255,255,255,0.45);
@@ -273,7 +265,10 @@ button {
   background: rgba(255,255,255,0.12); border-color: #FFFFFF; color: #FFFFFF;
 }
 
-/* LINK — copper text with animated underline + arrow nudge */
+/* LINK — umber text with animated underline + arrow nudge.
+   brand-audit-exempt: the linear-gradient below is a single-color image used
+   as an animatable underline (background-size sweep) — a technique, not a
+   decorative gradient. No other gradient belongs in this file. */
 .cta-link, .link-arrow {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-text); font-weight: 600; font-size: 16px;
@@ -286,18 +281,22 @@ button {
 .cta-link svg, .link-arrow svg { transition: transform var(--transition-default); }
 .cta-link:hover svg, .link-arrow:hover svg { transform: translateX(3px); }
 
-/* TRUST/STATUS TAGS — green = clinical trust, copper = action/status */
+/* TRUST/STATUS TAGS — v3 pills: hairline-outline capsule, IBM Plex Mono caps.
+   Green stays clinical data semantics; umber = status/wayfinding. */
 .tag {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--font-text); font-size: 12px; font-weight: 600;
-  letter-spacing: 0.04em; text-transform: uppercase;
-  padding: 5px 12px; border-radius: var(--radius-pill);
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: transparent;
 }
-.tag--clinical { background: var(--green-50);  color: var(--green-700); }
+.tag--clinical { color: var(--green-700); }
 .tag--clinical::before { content:""; width:6px; height:6px; border-radius:50%; background: var(--green-500); }
-.tag--live     { background: var(--copper-50); color: var(--copper-900); }
-.tag--live::before { content:""; width:6px; height:6px; border-radius:50%; background: var(--copper-500); }
-.tag--soon     { background: #F2EEE8; color: var(--ink-500); }
+.tag--live     { color: var(--accent); }
+.tag--live::before { content:""; width:6px; height:6px; border-radius:50%; background: var(--accent); }
+.tag--soon     { color: var(--ink-500); }
 .tag--soon::before { content:""; width:6px; height:6px; border-radius:50%; background: var(--ink-400); }
 
 /* ========== Keyword Ticker (signature motion) ========== */
@@ -317,9 +316,9 @@ button {
 }
 .ticker:hover .ticker-track { animation-play-state: paused; }
 .ticker-item {
-  font-family: var(--font-text);
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.16em;
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: rgba(244,240,233,0.56);
   display: inline-flex; align-items: center; gap: 40px;
@@ -408,3 +407,100 @@ button {
     padding: var(--section-pad-xs) var(--space-2);
   }
 }
+
+/* ============================================================================
+   FLEET CONTRACT UTILITIES (kittech-brand v3 canonical shapes)
+   Kept here so cross-app tooling finds the same class vocabulary as the rest
+   of the fleet, whether or not a given page composes them yet.
+   ========================================================================== */
+
+/* Hairline-outline capsule, IBM Plex Mono caps — the v3 pill. */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+}
+
+/* Safe-area (notch) spacers. */
+.safe-top    { padding-top: env(safe-area-inset-top, 0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Scrollable rows that hide their scrollbar. */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* Entrance-only motion — the one animation the brand allows. */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.animate-slide-up { animation: slide-up 0.35s cubic-bezier(0.4, 0, 0.2, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-up { animation: none; opacity: 1; }
+}
+
+/* ============================================================================
+   FLEET CONTRACT COMPONENTS — legacy names, v3 FLAT skins (canonical
+   definitions from the kittech-brand skill's brand.css). Defined so cross-app
+   markup and tooling meet the same contract here; the landing's own chrome
+   composes its bespoke classes above.
+   ========================================================================== */
+
+/* Flat card: paper, hairline border, square corners. */
+.glass-card {
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 24px;
+}
+
+/* Header / toolbar chrome: solid paper, no blur, no lift. */
+.glass-panel {
+  background: var(--paper);
+  border: none;
+  box-shadow: none;
+}
+
+/* Buttons — legacy .btn-3d* names, re-skinned flat. Safe/danger keep their
+   CLINICAL fills (data semantics); press is a flat color drop, no transform. */
+.btn-3d {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  min-height: 48px;
+  border: none;
+  text-decoration: none;
+}
+.btn-3d-block { width: 100%; }
+.btn-3d-primary { background: var(--color-primary); color: #FFFFFF; }
+.btn-3d-primary:hover { background: var(--accent-hover); }
+.btn-3d-primary:active { background: var(--accent-press); }
+.btn-3d-safe { background: var(--color-safe); color: #FFFFFF; }
+.btn-3d-safe:active { background: #1B6E1B; }
+.btn-3d-danger { background: var(--color-danger); color: #FFFFFF; }
+.btn-3d-danger:active { background: #8B1A1A; }
+.btn-3d-neutral { background: var(--paper); color: var(--ink); border: 1px solid var(--ink); }
+.btn-3d-neutral:active { background: rgba(0, 0, 0, 0.05); }
+
+/* Clinical signal backgrounds — DATA semantics, kept exactly. */
+.signal-safe { background: var(--color-safe-bg); border-left: 4px solid var(--color-safe); }
+.signal-danger { background: var(--color-danger-bg); border-left: 4px solid var(--color-danger); }
+.signal-danger-full { background: var(--color-danger); color: white; }
+.signal-safe-full { background: var(--color-safe); color: white; }

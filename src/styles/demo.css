@@ -1,4 +1,5 @@
-/* Demo Styles — Phase 3 (light: white cards on cream/white) */
+/* Demo chrome — v3 "Atlantic × Burnt Umber": flat paper, hairlines, umber
+   wayfinding. Clinical text and the green result semantic are untouched. */
 .demo-section {
   padding: var(--section-pad) var(--space-3);
   background: transparent;
@@ -16,13 +17,15 @@
 
 .demo-disclaimer {
   text-align: center;
-  font-size: 12px;
-  color: var(--ink-500);
-  letter-spacing: -0.12px;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--meta, #737373);
   margin-top: var(--space-4);
 }
 
-/* Mode Toggle */
+/* Mode Toggle — segmented tabs: ink text, 3px umber underline on a hairline */
 .demo-toggle {
   display: flex;
   justify-content: center;
@@ -31,28 +34,36 @@
 
 .demo-toggle-container {
   display: inline-flex;
-  background: var(--bg-cream-deep);
-  border-radius: 980px;
-  padding: 3px;
-  border: 1px solid var(--border-cream);
+  gap: var(--space-3);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 0;
+  padding: 0;
 }
 
 .demo-toggle-btn {
-  padding: 8px 20px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink-600);
-  border-radius: 980px;
-  transition: all var(--transition-default);
-  letter-spacing: -0.17px;
+  min-height: 44px;
+  padding: 10px 4px;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-3, #5E6A74);
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  transition: color var(--transition-default);
+  letter-spacing: 0;
 }
 
 .demo-toggle-btn.active {
-  background: var(--copper-500);
-  color: var(--bg-white);
+  background: transparent;
+  color: var(--ink, #141414);
+  border-bottom-color: var(--accent, #8A3324);
 }
 
-/* Demo Cards */
+/* Demo Cards — flat paper, 1px hairline, radius 2px, no shadow */
 .demo-cards {
   max-width: 640px;
   margin: 0 auto;
@@ -62,25 +73,26 @@
 }
 
 .demo-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border-soft);
-  border-radius: 12px;
+  background: var(--paper, #FFFFFF);
+  border: 1px solid var(--hairline, #E5E5E5);
+  border-radius: 2px;
   padding: var(--space-4);
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
   animation: fadeInUp 0.3s ease forwards;
 }
 
 .demo-card-title {
   font-size: 17px;
   font-weight: 600;
-  color: var(--ink-800);
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink, #141414);
   margin-bottom: var(--space-1);
 }
 
 .demo-card-body {
   font-size: 14px;
   font-weight: 400;
-  color: var(--ink-700);
+  color: var(--ink-2, #39434B);
   line-height: 1.5;
   margin-bottom: var(--space-2);
   white-space: pre-line;
@@ -93,21 +105,23 @@
 }
 
 .demo-option-btn {
-  background: var(--bg-white);
-  border: 1px solid var(--border-soft);
-  color: var(--ink-800);
-  border-radius: 8px;
+  background: var(--paper, #FFFFFF);
+  border: 1px solid var(--hairline, #E5E5E5);
+  color: var(--ink, #141414);
+  border-radius: 4px;
   padding: 12px 16px;
+  min-height: 44px;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   text-align: left;
   transition: background var(--transition-default), border-color var(--transition-default), color var(--transition-default);
-  letter-spacing: -0.17px;
+  letter-spacing: 0;
 }
 
 .demo-option-btn:hover:not(:disabled) {
-  background: var(--copper-50);
-  border-color: var(--copper-500);
+  background: #F4EBE6;
+  border-color: var(--accent, #8A3324);
 }
 
 .demo-option-btn:disabled {
@@ -118,48 +132,46 @@
 .demo-toggle-btn:focus-visible,
 .demo-next-btn:focus-visible,
 .trip-card:focus-visible {
-  outline: 2px solid var(--copper-500);
+  outline: 2px solid var(--accent, #8A3324);
   outline-offset: 2px;
 }
 
-.demo-option-btn.selected {
-  background: var(--copper-50);
-  border-color: var(--copper-500);
-  color: var(--copper-700);
-}
-
+.demo-option-btn.selected,
 .demo-option-btn.preselected {
-  background: var(--copper-50);
-  border-color: var(--copper-500);
-  color: var(--copper-700);
+  background: #F4EBE6;
+  border-color: var(--accent, #8A3324);
+  color: var(--accent-press, #5E2418);
+  font-weight: 600;
 }
 
-/* Annotation */
+/* Annotation — umber left rule on the warm tint */
 .demo-annotation {
-  background: rgba(184, 115, 51, 0.08);
-  border-left: 3px solid var(--copper-500);
+  background: #F4EBE6;
+  border-left: 3px solid var(--accent, #8A3324);
   padding: 12px 16px;
   margin-top: var(--space-2);
-  border-radius: 0 8px 8px 0;
+  border-radius: 0;
 }
 
 .demo-annotation-text {
   font-size: 14px;
-  color: var(--ink-800);
+  color: var(--ink, #141414);
   line-height: 1.5;
 }
 
 .demo-patient-context {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-600);
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--meta, #737373);
   margin-top: var(--space-1);
-  letter-spacing: -0.12px;
 }
 
-/* Result Card */
+/* Result Card — forest green is a CLINICAL data color; untouched */
 .demo-card.result {
-  border-left: 3px solid var(--green-500);
+  border-left: 3px solid var(--green-500, #2F7D50);
 }
 
 /* Navigation */
@@ -170,26 +182,33 @@
 }
 
 .demo-next-btn {
-  background: var(--copper-500);
-  color: var(--bg-white);
+  background: var(--accent, #8A3324);
+  color: #FFFFFF;
   padding: 12px 32px;
-  border-radius: 980px;
+  min-height: 44px;
+  border-radius: 4px;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 15px;
-  font-weight: 500;
-  box-shadow: var(--shadow-copper);
+  font-weight: 600;
+  box-shadow: none;
   transition: background var(--transition-default);
 }
 
 .demo-next-btn:hover {
-  background: var(--copper-600);
+  background: var(--accent-hover, #7A2D1F);
+}
+
+.demo-next-btn:active {
+  background: var(--accent-press, #5E2418);
 }
 
 .demo-restart-btn {
   background: transparent;
-  color: var(--copper-600);
+  color: var(--accent, #8A3324);
   padding: 12px 24px;
+  min-height: 44px;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Trip Builder */
@@ -204,12 +223,12 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--border-strong);
+  background: var(--hairline, #E5E5E5);
   transition: background var(--transition-default);
 }
 
 .trip-dot.active {
-  background: var(--copper-500);
+  background: var(--accent, #8A3324);
 }
 
 .trip-grid {
@@ -221,26 +240,24 @@
 }
 
 .trip-card {
-  background: var(--bg-white);
-  border-radius: 12px;
+  background: var(--paper, #FFFFFF);
+  border-radius: 2px;
   padding: var(--space-3);
   text-align: center;
   cursor: pointer;
-  transition: all var(--transition-default);
-  border: 2px solid var(--border-soft);
-  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-default), background var(--transition-default);
+  border: 1px solid var(--hairline, #E5E5E5);
+  box-shadow: none;
 }
 
 .trip-card:hover {
-  border-color: var(--copper-500);
-  background: var(--copper-50);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
+  border-color: var(--accent, #8A3324);
+  background: #F4EBE6;
 }
 
 .trip-card.selected {
-  border-color: var(--copper-500);
-  background: var(--copper-50);
+  border-color: var(--accent, #8A3324);
+  background: #F4EBE6;
 }
 
 .trip-card-icon {
@@ -251,14 +268,16 @@
 .trip-card-name {
   font-size: 15px;
   font-weight: 600;
-  color: var(--ink-800);
-  letter-spacing: -0.17px;
+  color: var(--ink, #141414);
+  letter-spacing: 0;
 }
 
 .trip-card-region {
-  font-size: 12px;
-  color: var(--ink-500);
-  letter-spacing: -0.12px;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--meta, #737373);
 }
 
 /* Kit Results */
@@ -272,7 +291,7 @@
   align-items: flex-start;
   gap: var(--space-2);
   padding: var(--space-2) 0;
-  border-bottom: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--hairline, #E5E5E5);
   animation: fadeInUp 0.3s ease forwards;
   opacity: 0;
 }
@@ -280,24 +299,33 @@
 .kit-item-name {
   font-size: 15px;
   font-weight: 600;
-  color: var(--ink-800);
+  color: var(--ink, #141414);
 }
 
 .kit-item-purpose {
   font-size: 14px;
-  color: var(--ink-600);
+  color: var(--ink-2, #39434B);
 }
 
 .kit-item-notes {
   font-size: 12px;
-  color: var(--ink-500);
+  color: var(--ink-3, #5E6A74);
   margin-top: 2px;
 }
 
 .trip-back-btn {
   background: transparent;
-  color: var(--copper-600);
+  color: var(--accent, #8A3324);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
+  min-height: 44px;
   margin-bottom: var(--space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-card,
+  .kit-item {
+    animation: none;
+    opacity: 1;
+  }
 }

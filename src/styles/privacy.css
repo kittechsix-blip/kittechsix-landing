@@ -1,24 +1,25 @@
-/* Privacy — product principle, not a compliance card grid */
+/* Privacy — product principle, not a compliance card grid. v3: flat paper,
+   hairline rules, Playfair card titles, EB Garamond card prose. */
 
-.privacy-section { background:var(--bg-cream); }
-.privacy-content { max-width:1240px; }
-.privacy-headline { max-width:12ch; margin-bottom:70px; }
-.privacy-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--border-strong); }
-.privacy-card { min-height:260px; padding:28px 26px 24px 0; border-bottom:1px solid var(--border-strong); background:transparent; }
-.privacy-card + .privacy-card { padding-left:26px; border-left:1px solid var(--border-strong); }
-.privacy-card h3 { margin-bottom:18px; font-family:var(--font-display); font-size:21px; font-weight:580; letter-spacing:-.035em; color:var(--ink-900); }
-.privacy-card p { font-size:13px; line-height:1.6; color:var(--ink-600); }
-.privacy-fineprint { margin-top:24px; font-size:11px; color:var(--ink-500); }
-.privacy-fineprint a { color:var(--copper-700); text-decoration:underline; text-underline-offset:3px; }
+.privacy-section { background: var(--paper, #FFFFFF); }
+.privacy-content { max-width: 1240px; }
+.privacy-headline { max-width: 12ch; margin-bottom: 70px; }
+.privacy-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline, #E5E5E5); }
+.privacy-card { min-height: 260px; padding: 28px 26px 24px 0; border-bottom: 1px solid var(--hairline, #E5E5E5); background: transparent; }
+.privacy-card + .privacy-card { padding-left: 26px; border-left: 1px solid var(--hairline, #E5E5E5); }
+.privacy-card h3 { margin-bottom: 18px; font-family: 'Playfair Display', 'EB Garamond', Georgia, serif; font-size: 21px; font-weight: 600; letter-spacing: 0; color: var(--ink, #141414); }
+.privacy-card p { font-family: var(--font-reading, 'EB Garamond', Georgia, serif); font-size: 15px; line-height: 1.55; color: var(--ink-2, #39434B); }
+.privacy-fineprint { margin-top: 24px; font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-size: 10.5px; letter-spacing: 0.04em; color: var(--meta, #737373); }
+.privacy-fineprint a { color: var(--accent, #8A3324); text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 900px) {
-  .privacy-grid { grid-template-columns:1fr 1fr; }
-  .privacy-card:nth-child(3) { padding-left:0; border-left:0; }
+  .privacy-grid { grid-template-columns: 1fr 1fr; }
+  .privacy-card:nth-child(3) { padding-left: 0; border-left: 0; }
 }
 
 @media (max-width: 560px) {
-  .privacy-section { padding-inline:18px; }
-  .privacy-headline { margin-bottom:44px; }
-  .privacy-grid { grid-template-columns:1fr; }
-  .privacy-card, .privacy-card + .privacy-card { min-height:0; padding:24px 0; border-left:0; }
+  .privacy-section { padding-inline: 18px; }
+  .privacy-headline { margin-bottom: 44px; }
+  .privacy-grid { grid-template-columns: 1fr; }
+  .privacy-card, .privacy-card + .privacy-card { min-height: 0; padding: 24px 0; border-left: 0; }
 }

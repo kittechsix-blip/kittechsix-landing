@@ -5,55 +5,69 @@
   --bg-cream-deep:   rgba(0,0,0,0.05);
   --bg-ink:          #000000;
 
-  /* ===== INK TEXT SCALE (Atlantic v2: pure black + brand secondary) ===== */
+  /* ===== INK TEXT SCALE (v3 Atlantic × umber: black display, #141414 body) ===== */
   --ink-900: #000000;
-  --ink-800: #000000;
-  --ink-700: #000000;
-  --ink-600: #5E6A74;
+  --ink-800: #141414;
+  --ink-700: #141414;
+  --ink-600: #39434B;
   --ink-500: #5E6A74;
-  --ink-400: #9CA3AF;
+  --ink-400: #737373;
   --ink-on-dark:     #FFFFFF;
   --ink-on-dark-mut: rgba(255,255,255,0.68);
 
-  /* ===== COPPER SCALE (PRIMARY accent + CTA + brand) ===== */
-  --copper-50:  #F8EEE5;
-  --copper-100: #EED6C1;
-  --copper-300: #D89B68;
-  --copper-500: #B8733E;
-  --copper-600: #9E5E2F;
-  --copper-700: #794621;
-  --copper-900: #4C2D18;
+  /* ===== v3 CANONICAL NAMES (decree 2026-08-30) ===== */
+  --paper:        #FFFFFF;
+  --paper-warm:   #FAF4EB;
+  --ink:          #141414;
+  --ink-2:        #39434B;
+  --ink-3:        #5E6A74;
+  --meta:         #737373;
+  --hairline:     #E5E5E5;
+  --accent:       #8A3324;
+  --accent-hover: #7A2D1F;
+  --accent-press: #5E2418;
+  --accent-dark:  #D98E62;
 
-  /* ===== FOREST GREEN SCALE (SECONDARY accent = clinical trust) ===== */
+  /* ===== BURNT UMBER LADDER (was copper — aliases repaint downstream sheets) ===== */
+  --copper-50:  #F6EEEB;
+  --copper-100: #E9D5CD;
+  --copper-300: var(--accent-dark);
+  --copper-500: var(--accent);
+  --copper-600: var(--accent-hover);
+  --copper-700: var(--accent-press);
+  --copper-900: #4A1C13;
+
+  /* ===== FOREST GREEN SCALE (clinical data semantics — never wayfinding) ===== */
   --green-50:  #E7F1EB;
   --green-300: #63C08A;
-  --green-500: #2F7D50;
+  --green-500: #228B22;
   --green-700: #245E3D;
   --green-900: #163A28;
 
-  /* ===== BORDERS & LINES ===== */
-  --border-soft:   #DFDDD7;
-  --border-cream:  #D7D2C9;
-  --border-strong: #C5BFB5;
+  /* ===== BORDERS & LINES (hairline does all separation work) ===== */
+  --border-soft:   var(--hairline);
+  --border-cream:  var(--hairline);
+  --border-strong: #D4D4D4;
 
-  /* ===== SHADOWS (warm-tinted, soft, premium) ===== */
-  --shadow-xs:    0 1px 2px rgba(40,28,16,0.04);
-  --shadow-sm:    0 2px 8px rgba(40,28,16,0.06);
-  --shadow-card:  0 1px 2px rgba(12,16,18,0.04), 0 12px 32px rgba(12,16,18,0.07);
-  --shadow-lift:  0 8px 18px rgba(12,16,18,0.08), 0 30px 70px rgba(12,16,18,0.15);
-  --shadow-copper:0 8px 24px rgba(184,115,51,0.24);
-  --shadow-nav:   0 1px 0 rgba(40,28,16,0.06);
-  --shadow-inset-copper: inset 0 1px 0 rgba(255,255,255,0.32);
+  /* ===== SHADOWS (v3: flat paper — none. Dialogs alone may lift.) ===== */
+  --shadow-xs:    none;
+  --shadow-sm:    none;
+  --shadow-card:  none;
+  --shadow-lift:  0 8px 24px rgba(0,0,0,0.08); /* dialog-only allowance */
+  --shadow-copper: none;
+  --shadow-nav:   none;
+  --shadow-inset-copper: none;
 
-  /* ===== METALLIC COPPER GRADIENTS (signature, echoes the brain logo) ===== */
-  --metal-copper:      linear-gradient(135deg, #D89B6A 0%, #B87333 42%, #8A5524 78%, #B87333 100%);
-  --metal-copper-text: linear-gradient(180deg, #D89B6A 0%, #B87333 55%, #8A5524 100%);
-  --sheen-line:        linear-gradient(90deg, transparent, var(--copper-300), transparent);
+  /* ===== FORMER METALLIC GRADIENTS (v3: flat — solid umber / hairline) ===== */
+  --metal-copper:      var(--accent);
+  --metal-copper-text: var(--accent);
+  --sheen-line:        rgba(255,255,255,0.16);
 
-  /* ===== TYPOGRAPHY FAMILIES ===== */
-  --font-display: 'Instrument Sans', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-text:    'Instrument Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-accent:  'Instrument Serif', 'Fraunces', Georgia, 'Times New Roman', serif;
+  /* ===== TYPOGRAPHY FAMILIES (v3 four voices) ===== */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-text:    'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-accent:  'EB Garamond', 'Adobe Garamond Pro', Garamond, Georgia, serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
   /* Atlantic v2 reading serif — long-form editorial prose only */
   --font-reading: 'EB Garamond', 'Adobe Garamond Pro', Garamond, Georgia, serif;
   /* app-fidelity fonts used inside the UI tour clones (real apps ship Geist) */
@@ -72,15 +86,29 @@
   --content-max: 1240px;
   --content-narrow: 720px;    /* prose / founder column */
   --nav-height: 72px;
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 30px;
-  --radius-pill: 999px;
+  /* v3: radius capped at 6px (capsule pills exempt) */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 6px;
+  --radius-xl: 6px;
+  --radius-pill: 9999px;
 
   /* ===== MOTION ===== */
   --transition-default: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow:    0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===== FLEET CONTRACT NAMES (kittech-brand audit shape) =====
+     Aliased onto the v3 values so cross-app tooling can read this app with
+     the same token vocabulary as the rest of the fleet. Green/red are
+     CLINICAL DATA semantics (safe / dangerous) — never wayfinding. */
+  --color-primary: #8A3324;
+  --color-primary-dark: var(--accent-hover);
+  --color-safe: #228B22;
+  --color-safe-bg: #F0FFF0;
+  --color-danger: #B22222;
+  --color-danger-bg: #FDF2F2;
+  --shadow-dialog: 0 8px 24px rgba(0,0,0,0.08); /* dialogs only */
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
   /* ===== LEGACY ALIASES (keep existing components working during migration) ===== */
   --color-white:      var(--bg-white);

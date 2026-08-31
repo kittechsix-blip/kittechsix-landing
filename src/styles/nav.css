@@ -1,6 +1,7 @@
 /* Studio navigation — one solid bar. No hero sits underneath it any more, so
    the transparent-over-hero variant and its scroll listener are gone. */
 
+/* v3: flat paper bar + hairline — no glass, no blur, no shadow */
 .glass-nav {
   position: sticky;
   top: 0;
@@ -8,11 +9,8 @@
   width: 100%;
   height: var(--nav-height);
   color: var(--ink-900);
-  background: rgba(248,247,243,0.9);
-  border-bottom: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-nav);
-  backdrop-filter: blur(18px) saturate(130%);
-  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  background: var(--paper);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .nav-content {
@@ -36,9 +34,9 @@
 .nav-logo-glyph {
   width: 30px;
   height: 30px;
-  border-radius: 9px;
+  border-radius: 6px;
   object-fit: cover;
-  border: 1px solid rgba(184,115,62,0.42);
+  border: 1px solid var(--hairline);
 }
 
 .nav-logo-mark {
@@ -82,7 +80,7 @@
   right: 0;
   bottom: 1px;
   height: 1px;
-  background: var(--copper-300);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 220ms ease;
@@ -90,10 +88,10 @@
 
 .nav-links a:hover,
 .nav-links a.active { opacity: 1; }
-.nav-links a.active { color: var(--copper-700); }
+.nav-links a.active { color: var(--ink-900); }
 .nav-links a:hover::after,
 .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
-.nav-links a.active::after { background: var(--copper-500); height: 2px; }
+.nav-links a.active::after { background: var(--accent); height: 3px; }
 
 .nav-product-cta {
   justify-self: end;
@@ -103,9 +101,9 @@
   min-height: 38px;
   padding: 0 16px;
   border: 1px solid currentColor;
-  border-radius: var(--radius-pill);
+  border-radius: 4px;
   font-size: 12px;
-  font-weight: 650;
+  font-weight: 600;
   transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
@@ -147,7 +145,7 @@
   justify-content: center;
   padding: 100px 28px 40px;
   color: var(--ink-on-dark);
-  background: rgba(12,16,18,0.98);
+  background: var(--bg-ink);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);
@@ -157,10 +155,11 @@
 .nav-overlay.open { opacity: 1; visibility: visible; transform: translateY(0); }
 .nav-overlay-meta {
   margin-bottom: 28px;
-  color: var(--copper-300);
+  color: var(--accent-dark);
+  font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
 }
 
@@ -177,20 +176,20 @@
 }
 
 .nav-overlay > a:not(.nav-overlay-primary) span {
-  font-family: var(--font-text);
+  font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--copper-300);
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  color: var(--accent-dark);
 }
 
-.nav-overlay > a.active:not(.nav-overlay-primary) { color: var(--copper-300); }
+.nav-overlay > a.active:not(.nav-overlay-primary) { color: var(--accent-dark); }
 
 .nav-overlay-primary {
   align-self: flex-start;
   margin-top: 32px;
   padding: 14px 20px;
-  border-radius: var(--radius-pill);
+  border-radius: 4px;
   color: var(--bg-ink);
   background: var(--ink-on-dark);
   font-size: 13px;

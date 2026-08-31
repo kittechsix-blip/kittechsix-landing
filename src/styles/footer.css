@@ -4,7 +4,7 @@
   padding: var(--space-12) var(--space-3) var(--space-6);
 }
 
-/* Full-bleed copper sheen on the top edge */
+/* v3: flat hairline on the top edge (former copper sheen token, now solid) */
 .footer::before {
   content: "";
   position: absolute;
@@ -60,9 +60,9 @@
 
 .footer-wordmark {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20px;
-  letter-spacing: -0.2px;
+  letter-spacing: 0;
   color: var(--ink-on-dark);
 }
 
@@ -79,23 +79,23 @@
   align-self: flex-start;
   margin-top: var(--space-3);
   padding: 7px 14px;
-  border: 1px solid var(--copper-300);
+  border: 1px solid var(--accent-dark);
   border-radius: 999px;
-  background: rgba(184, 115, 51, 0.12);
-  color: var(--copper-300);
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1px;
+  background: transparent;
+  color: var(--accent-dark);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background var(--transition-default), color var(--transition-default), transform var(--transition-default);
+  transition: background var(--transition-default), color var(--transition-default), border-color var(--transition-default);
 }
 
 .footer-pro-link:hover {
-  background: var(--copper-500);
-  border-color: var(--copper-500);
+  background: var(--accent);
+  border-color: var(--accent);
   color: #fff;
-  transform: translateY(-1px);
 }
 
 /* Contact renders as a link but keep it visually identical to siblings */
@@ -130,15 +130,15 @@
   fill: currentColor;
 }
 
-/* ===== COLUMN HEADERS (eyebrow grammar, copper) ===== */
+/* ===== COLUMN HEADERS (mono metadata voice, umber-on-dark) ===== */
 .footer-col-head {
   margin: 0 0 var(--space-2);
-  font-family: var(--font-text);
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1.4px;
-  color: var(--copper-300);
+  letter-spacing: 0.10em;
+  color: var(--accent-dark);
 }
 
 /* ===== LINK LISTS ===== */
@@ -165,13 +165,14 @@
   display: inline-block;
   margin-left: 6px;
   padding: 1px 6px;
-  border: 1px solid rgba(216, 155, 104, 0.4);
+  border: 1px solid rgba(217, 142, 98, 0.4);
   border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--copper-300);
+  color: var(--accent-dark);
   vertical-align: middle;
 }
 

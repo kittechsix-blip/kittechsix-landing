@@ -4,7 +4,7 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#BF5700",
+  "theme_color": "#FFFFFF",
   "icons": [
     { "src": "assets/icons/kittech-brain.png", "sizes": "512x512", "type": "image/png" }
   ]

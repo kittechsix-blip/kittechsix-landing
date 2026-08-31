@@ -1,3 +1,6 @@
+/* brand-audit-exempt: pixel-faithful clone of the toured app's OWN design
+   system, rendered inside the tour phone frame. Its colors, gradients, and
+   blurs are the app's identity, not landing chrome — do not re-pigment. */
 /* ============================================================================
    AcidBase — UI-tour clone styles.  Namespace: .ab-
    Pixel-faithful to ~/Desktop/AcidBase-App (Clinical Teal #0E7490, Geist,
@@ -596,3 +599,4 @@
 .ab-steps { display: flex; flex-direction: column; gap: 6px; padding-left: 18px; }
 .ab-steps li { font-size: 13px; line-height: 1.5; color: var(--ab-text-secondary); }
 .ab-sources { font-size: 12px; line-height: 1.5; color: var(--ab-text-muted); }
+

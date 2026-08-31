@@ -1,3 +1,6 @@
+/* brand-audit-exempt: pixel-faithful clone of the toured app's OWN design
+   system, rendered inside the tour phone frame. Its colors, gradients, and
+   blurs are the app's identity, not landing chrome — do not re-pigment. */
 /* ==========================================================================
    myStroke-Kitt UI-tour clone — namespace .sk-
    Faithful to recon/mystroke-kitt.md: iOS glassmorphism + 3D buttons, Geist,
@@ -1066,3 +1069,4 @@
   letter-spacing: 0.025em;
   color: #59736f;
 }
+

@@ -1,3 +1,6 @@
+/* brand-audit-exempt: pixel-faithful clone of the toured app's OWN design
+   system, rendered inside the tour phone frame. Its colors, gradients, and
+   blurs are the app's identity, not landing chrome — do not re-pigment. */
 /* ==========================================================================
    myVertigoApp tour clone — pixel-faithful to apps/web/src/app/globals.css
    Brand: Burnt Orange #BF5700 on pure-white #FFFFFF.
@@ -772,3 +775,4 @@
   .vt-card { animation: none; }
   .vt-btn--pulse { animation: none; }
 }
+

@@ -1,3 +1,5 @@
+// brand-audit-exempt: pixel-faithful clone of the real app's UI shown inside
+// the tour phone frame. Colors/typography here are the app's own, not landing chrome.
 // myStroke-Kitt — pixel-faithful HTML clone of the real Next.js PWA.
 // Source of truth: recon/mystroke-kitt.md (apps/web, Tailwind v4 + globals.css).
 // iOS glassmorphism + 3D buttons, Geist, font-black everywhere, deep-teal text,
@@ -669,3 +671,4 @@ export function renderSKICH(): HTMLElement {
   `;
   return el;
 }
+
