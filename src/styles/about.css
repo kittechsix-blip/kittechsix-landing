@@ -17,7 +17,7 @@
 /* brand-audit-exempt: the linear-gradient below is a photographic caption
    scrim over the portrait (legibility technique), not chrome decoration. */
 .about-portrait::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.72)); pointer-events:none; }
-.about-portrait-img { width:100%; height:100%; object-fit:cover; object-position:50% 18%; filter:grayscale(1) contrast(1.04); }
+.about-portrait-img { width:100%; height:100%; object-fit:cover; object-position:50% 18%; filter:none; }
 .about-portrait-caption { position:absolute; z-index:2; left:18px; bottom:16px; font-family:var(--v3-mono); font-size:10px; line-height:1.5; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.7); }
 
 .about-body { position:relative; max-width:700px; }
