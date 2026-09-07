@@ -21,7 +21,8 @@
 // one.
 
 import { openContactModal } from './contact-modal.js';
-import { WORK_ORDER } from '../data/app-registry.js';
+import { PROJECTS } from '../data/studio-catalog.js';
+import { SKILLS } from '../data/skill-library.js';
 
 const CONTACT_EMAIL = 'kittechsix@gmail.com';
 
@@ -91,78 +92,19 @@ interface Node {
   kids?: Kid[];
 }
 
-// Index-style branches lead with their overview route. Work links to each
-// portfolio detail page; the live app remains one deliberate click deeper.
-const WORK_APP_COUNT = WORK_ORDER.length;
-const CORE_WORK_APP_COUNT = 5;
-
+// Keep the original quiet contents page; the collection lives one click deeper.
 const NODES: ReadonlyArray<Node> = [
-  {
-    num: '01',
-    key: 'work',
-    title: 'Work',
-    note: 'all clinical apps',
-    count: `${WORK_APP_COUNT} apps`,
-    path: '#/work',
-    kids: [
-      { iconSrc: 'assets/icons/mymedkitt.png', name: 'myMedKitt', desc: '353 evidence-based ED consults', status: 'View →', kind: 'open', href: '#/work/mymedkitt' },
-      { iconSrc: 'assets/icons/myvertigoapp.png', name: 'my-vertigo-app', desc: 'HINTS+, all three canals', status: 'View →', kind: 'open', href: '#/work/myvertigoapp' },
-      { iconSrc: 'assets/icons/mystroke-kitt.png', name: 'myStroke-Kitt', desc: 'NIHSS, TNK dosing, hard stops', status: 'View →', kind: 'open', href: '#/work/mystroke-kitt' },
-      { iconSrc: 'assets/icons/acidbase.png', name: 'AcidBase', desc: 'one blood gas to the disorder', status: 'View →', kind: 'open', href: '#/work/acidbase' },
-      { iconSrc: 'assets/icons/antibiotic-rx.png', name: 'Antibiotic-Rx', desc: '~130 infection syndromes', status: 'View →', kind: 'open', href: '#/work/antibiotic-rx' },
-      { name: 'More', desc: 'other applications', status: 'Open', kind: 'more', href: '#/work', count: `${WORK_APP_COUNT - CORE_WORK_APP_COUNT} apps`, kids: [
-        { iconSrc: 'assets/icons/electrokitt.png', name: 'ElectroKitt', desc: 'five electrolytes, one coupled panel', status: 'View →', kind: 'open', href: '#/work/electrokitt' },
-        { iconSrc: 'assets/icons/myventkitt.png', name: 'myVentKitt', desc: 'PB980 simulator, two strategies', status: 'View →', kind: 'open', href: '#/work/myventkitt' },
-        { iconSrc: 'assets/icons/endocrinekitt.png', name: 'EndocrineKitt', desc: 'five axes, care in the right order', status: 'View →', kind: 'open', href: '#/work/endocrinekitt' },
-        { iconSrc: 'assets/icons/acute-vision-loss.png', name: 'Acute Vision Loss', desc: 'the acute eye complaint, organized', status: 'View →', kind: 'open', href: '#/work/acute-vision-loss' },
-      ] },
-    ],
-  },
-  {
-    num: '02',
-    key: 'consulting',
-    title: 'Consulting',
-    note: 'clinical software, scoped',
-    href: '#/consulting',
-    path: '#/consulting',
-  },
-  {
-    num: '03',
-    key: 'studio',
-    title: 'Studio',
-    note: 'how the work is held',
-    count: '4 bands',
-    path: '#/studio',
-    kids: [
-      { idx: '03.0', name: 'Open the studio', desc: 'all four bands, one page', status: 'Index', kind: 'index', href: '#/studio' },
-      { idx: '03.1', name: 'About', desc: 'Andy Kitlowski, MD — 25 years at the bedside', status: 'Band', kind: 'plain', href: '#/studio', band: 'about' },
-      { idx: '03.2', name: 'Standards', desc: 'the scheduled review offices', status: 'Band', kind: 'plain', href: '#/studio', band: 'standards' },
-      { idx: '03.3', name: 'Roadmap', desc: 'what is on the bench right now', status: 'Band', kind: 'plain', href: '#/studio', band: 'roadmap' },
-      { idx: '03.4', name: 'Feedback', desc: 'you decide what ships next', status: 'Band', kind: 'plain', href: '#/studio', band: 'feedback' },
-    ],
-  },
-  {
-    num: '04',
-    key: 'legal',
-    title: 'Legal',
-    note: 'education only',
-    count: '3 docs',
-    path: '#/legal',
-    kids: [
-      { idx: '04.0', name: 'All three documents', desc: 'privacy, disclaimer, terms', status: 'Index', kind: 'index', href: '#/legal' },
-      { idx: '04.1', name: 'Medical Disclaimer', desc: 'in an emergency, call 911', status: 'Doc', kind: 'plain', href: '#/legal', band: 'disclaimer' },
-      { idx: '04.2', name: 'Privacy', desc: 'on-device, no account required', status: 'Doc', kind: 'plain', href: '#/legal', band: 'privacy' },
-      { idx: '04.3', name: 'Terms & Refunds', desc: 'plain-language terms of use', status: 'Doc', kind: 'plain', href: '#/legal', band: 'terms' },
-    ],
-  },
-  {
-    num: '05',
-    key: 'contact',
-    title: 'Contact',
-    note: 'one physician reads it',
-    action: 'contact',
-    path: `mailto:${CONTACT_EMAIL}`,
-  },
+  { num: '01', key: 'work', title: 'Projects', note: `${PROJECTS.length} projects, one collection`, href: '#/projects', path: '#/projects' },
+  { num: '02', key: 'learn', title: 'Learn', note: 'lectures, courses & practice', href: '#/learn', path: '#/learn' },
+  { num: '03', key: 'workflows', title: 'Workflows', note: 'skills & prompts to borrow', href: '#/workflows', path: '#/workflows' },
+  { num: '04', key: 'studio', title: 'Studio', note: 'the person & the process', count: '5 paths', path: '#/about', kids: [
+    { name: 'About Andy', desc: 'physician, educator, builder', status: 'View →', kind: 'open', href: '#/about' },
+    { name: 'How I build', desc: 'the reusable system behind the work', status: 'View →', kind: 'open', href: '#/how-i-build' },
+    { name: 'Consulting', desc: 'work with me', status: 'View →', kind: 'open', href: '#/consulting' },
+    { name: 'Inside the studio', desc: 'standards, roadmap & feedback', status: 'View →', kind: 'open', href: '#/studio' },
+    { name: 'Legal', desc: 'privacy, terms & medical disclaimer', status: 'View →', kind: 'open', href: '#/legal' },
+  ] },
+  { num: '05', key: 'contact', title: 'Contact', note: 'one physician reads it', action: 'contact', path: `mailto:${CONTACT_EMAIL}` },
 ];
 
 const IDLE_PATH = '#/';
@@ -171,6 +113,7 @@ const IDLE_PATH = '#/';
 let teardown: (() => void) | null = null;
 
 export function renderHero(parent: HTMLElement): void {
+  document.title = 'Kittech-Six — Medicine, teaching & AI';
   teardown?.();
   teardown = null;
 
@@ -299,7 +242,7 @@ function markup(): string {
       <header class="hx-rail">
         <span class="hx-rail-mark">${HEX_MARK}<span>Kittech-Six LLC</span></span>
         <span class="hx-rail-right">
-          <span class="hx-live"><span class="hx-live-dot" aria-hidden="true"></span>Six apps online</span>
+          <span class="hx-live"><span class="hx-live-dot" aria-hidden="true"></span>${PROJECTS.length} projects &middot; ${SKILLS.length} AI guides</span>
         </span>
       </header>
 
@@ -313,8 +256,8 @@ function markup(): string {
           </h1>
 
           <p class="hx-positioning">
-            A physician-run software studio. We build <em>clinical decision tools</em>
-            at the bedside &mdash; and use them there the same night.
+            A physician’s growing collection of <em>useful things.</em>
+            Software, teaching, and AI workflows &mdash; built to be used, shared, and borrowed.
           </p>
         </section>
 
@@ -323,7 +266,7 @@ function markup(): string {
         <nav class="hx-index" aria-label="Site index">
           <div class="hx-index-head">
             <span>Contents</span>
-          <span aria-hidden="true">Five sections &middot; ${WORK_APP_COUNT} apps</span>
+          <span aria-hidden="true">Five sections &middot; ${PROJECTS.length} projects</span>
           </div>
 
           <div class="hx-tree-wrap">

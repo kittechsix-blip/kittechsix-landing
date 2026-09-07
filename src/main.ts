@@ -3,6 +3,7 @@
 // Public collection routes share navigation and footer. Legacy app tours remain available.
 
 import { router } from './utils/router.js';
+import { renderHero } from './components/hero.js';
 import { renderNav } from './components/nav.js';
 import { renderFooter } from './components/footer.js';
 import { renderHub, renderDirectory, renderProject, renderLearning, renderWorkflows, renderProcess, renderProfile } from './components/hub.js';
@@ -31,7 +32,14 @@ function page(render: (app: HTMLElement) => void): void {
   requestAnimationFrame(() => setupScrollAnimations());
 }
 
-router.on('/', () => page(renderHub));
+router.on('/', () => {
+  const app = mount();
+  if (!app) return;
+  document.body.style.overflow = '';
+  renderHero(app);
+  window.scrollTo(0, 0);
+});
+router.on('/collection', () => page(renderHub));
 router.on('/projects', () => page(renderDirectory));
 router.on('/projects/category/:category', p => page(app => renderDirectory(app, p['category'])));
 router.on('/projects/search/:query', p => page(app => renderDirectory(app, 'All projects', p['query'])));
