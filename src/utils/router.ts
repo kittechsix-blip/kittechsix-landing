@@ -76,7 +76,8 @@ class Router {
 
       if (routeSeg.startsWith(':')) {
         const paramName = routeSeg.slice(1);
-        params[paramName] = decodeURIComponent(pathSeg);
+        try { params[paramName] = decodeURIComponent(pathSeg); }
+        catch { return null; }
       } else if (routeSeg !== pathSeg) {
         return null;
       }

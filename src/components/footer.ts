@@ -41,18 +41,21 @@ export function renderFooter(parent: HTMLElement): void {
             <a href="#/work/myventkitt">myVentKitt</a>
             <a href="#/work/endocrinekitt">EndocrineKitt</a>
             <a href="#/work/acute-vision-loss">Acute Vision Loss</a>
-            <a href="#/studio">MyTravelMedKitt <span class="footer-link-tag">In build</span></a>
-            <a href="#/studio">PowerKitt <span class="footer-link-tag">In build</span></a>
+            <a href="#/projects/mytravelmedkitt">MyTravelMedKitt <span class="footer-link-tag">In build</span></a>
+            <a href="#/projects/powerkitt">PowerKitt <span class="footer-link-tag">In build</span></a>
           </div>
         </div>
         <div class="footer-col">
           <h2 class="footer-col-head">The Lab</h2>
           <div class="footer-links">
-            <a href="#/work">Selected work</a>
+            <a href="#/projects">All projects</a>
             <a href="#/consulting">Consulting</a>
             <a href="#/studio">Standards</a>
             <a href="#/studio">Roadmap</a>
-            <a href="#/studio">About the studio</a>
+            <a href="#/about">About Andy</a>
+            <a href="#/learn">Lectures & learning</a>
+            <a href="#/workflows">Skills & workflows</a>
+            <a href="#/how-i-build">How I build</a>
           </div>
         </div>
         <div class="footer-col">

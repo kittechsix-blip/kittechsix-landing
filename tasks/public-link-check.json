@@ -1,0 +1,349 @@
+{
+  "checkedAt": "2026-09-07T14:52:29.183Z",
+  "results": [
+    {
+      "url": "https://acidbase.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://acute-vision-loss.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://ai-investment-terminal.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://ai-investor-dashboard.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://antibiotic-rx.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://cardiac-toxicology-show-deck.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://chest-tube.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://electrokitt.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://endocrinekitt.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/10x",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/agent-safe-codebase",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/agent-safe-commands",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/agent-skills",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/ask-my-apps",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/blindspots",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/brutal",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/build-gate",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/checkpointing-rewind",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/claude-md",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/claudex-plan",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/connections",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/context-management",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/critique",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/curriculum-builder-skill",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/custom-slash-commands",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/deploy",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/devil",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/eli5",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/extended-thinking",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/few-shot-prompting",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/frontend-design",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/gamified-habit-dashboard",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/ghost",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/git-worktrees-parallel",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/godmode",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/headless-mode",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/hooks",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/infographic",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/infographic-command",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/kittech-brand",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/l99",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/legal-audit",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/live-progress-page",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/llm-council",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/loops",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/mcp-servers",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/noyap",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/ooda",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/output-styles",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/permission-modes",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/persistent-memory",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/persona",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/pitch",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/plan-mode",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/plugins",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/premortem",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/prompt-forge",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/punch",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/review",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/safeguard",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/save-plan-implement",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/scheduled-agents",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/scout",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/security-audit",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/self-verifying-loop",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/skeptic",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/steelman",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/structured-build-prompt",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/subagents",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/sync-context",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/teach",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/teach-review-loop",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/travel-audit",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/uda",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/ultracode-workflows",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/ultrathink",
+      "status": 200
+    },
+    {
+      "url": "https://instar-kb.vercel.app/c/xml-tags",
+      "status": 200
+    },
+    {
+      "url": "https://kittechsix-blip.github.io/ai-eng-learn/",
+      "status": 200
+    },
+    {
+      "url": "https://kittechsix-blip.github.io/mymedkitt/app.html",
+      "status": 200
+    },
+    {
+      "url": "https://my-vertigo-app.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://mystroke-kitt.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://myventkitt-cc.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://pinstashio-app.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://usgiv-academy.vercel.app",
+      "status": 200
+    },
+    {
+      "url": "https://vision-loss-show-deck.vercel.app",
+      "status": 200
+    }
+  ]
+}

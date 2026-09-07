@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v32';
+const CACHE_NAME = 'kittechsix-v33';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -16,6 +16,11 @@ const ASSETS_TO_CACHE = [
   '/styles/work.css',
   '/styles/page.css',
   '/styles/frame.css',
+  '/styles/hub.css',
+  '/components/hub.js',
+  '/data/studio-catalog.js',
+  '/data/skill-library.js',
+  '/data/workflows.js',
   '/styles/featured.css',
   '/styles/showcase.css',
   '/styles/demo.css',

@@ -107,7 +107,10 @@
      the same token vocabulary as the rest of the fleet. Green/red are
      CLINICAL DATA semantics (safe / dangerous) — never wayfinding. */
   --color-primary: #8A3324;
-  --color-primary-dark: var(--accent-hover);
+  /* Canonical fleet contract, copied from kittech-brand/assets/brand.css.
+     Marketing surfaces continue using the approved --accent copper ladder. */
+  --color-primary-light: #7A2D1F;
+  --color-primary-dark: #5E2418;
   --color-safe: #228B22;
   --color-safe-bg: #F0FFF0;
   --color-danger: #B22222;

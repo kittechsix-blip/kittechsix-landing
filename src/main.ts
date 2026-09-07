@@ -1,14 +1,11 @@
 // kittechsix Landing Page — Router shell
 //
-// The site is compartmentalized: '/' is the hero landing and nothing else, and every
-// other destination is its own route rendered into #app. Shared chrome (nav + footer)
-// mounts on every route EXCEPT the hero, which is deliberately bare.
+// Public collection routes share navigation and footer. Legacy app tours remain available.
 
 import { router } from './utils/router.js';
 import { renderNav } from './components/nav.js';
 import { renderFooter } from './components/footer.js';
-import { renderHero } from './components/hero.js';
-import { renderWorkIndex } from './components/work-index.js';
+import { renderHub, renderDirectory, renderProject, renderLearning, renderWorkflows, renderProcess, renderProfile } from './components/hub.js';
 import { renderWorkDetail } from './components/work-detail.js';
 import { renderConsulting } from './components/consulting.js';
 import { renderStudio } from './components/studio.js';
@@ -23,7 +20,7 @@ function mount(): HTMLElement | null {
   return app;
 }
 
-/** Every route except the hero gets nav + footer around its content. */
+/** Shared navigation and footer for every destination. */
 function page(render: (app: HTMLElement) => void): void {
   const app = mount();
   if (!app) return;
@@ -34,13 +31,17 @@ function page(render: (app: HTMLElement) => void): void {
   requestAnimationFrame(() => setupScrollAnimations());
 }
 
-router.on('/', () => {
-  const app = mount();
-  if (!app) return;
-  renderHero(app);
-});
-
-router.on('/work', () => page(renderWorkIndex));
+router.on('/', () => page(renderHub));
+router.on('/projects', () => page(renderDirectory));
+router.on('/projects/category/:category', p => page(app => renderDirectory(app, p['category'])));
+router.on('/projects/search/:query', p => page(app => renderDirectory(app, 'All projects', p['query'])));
+router.on('/projects/:id', p => page(app => renderProject(app, p['id'])));
+router.on('/learn', () => page(renderLearning));
+router.on('/workflows', () => page(renderWorkflows));
+router.on('/workflows/:id', p => page(app => renderWorkflows(app, p['id'])));
+router.on('/how-i-build', () => page(renderProcess));
+router.on('/about', () => page(renderProfile));
+router.on('/work', () => page(renderDirectory));
 router.on('/work/:id', (params) => page((app) => renderWorkDetail(app, params['id'] ?? '')));
 router.on('/consulting', () => page(renderConsulting));
 router.on('/studio', () => page(renderStudio));
@@ -50,7 +51,7 @@ router.on('/legal', () => page(renderLegalPage));
 // about what is on screen. Guarded against a redirect loop.
 router.onNotFound(() => {
   if (router.currentPath() === '/work') {
-    page(renderWorkIndex);
+    page(renderDirectory);
     return;
   }
   router.navigate('/work');

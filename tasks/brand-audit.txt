@@ -1,0 +1,121 @@
+[1mKittech Brand audit[0m — /Users/kittechsix/Developer/kittechsix-landing
+tier: C   web: /Users/kittechsix/Developer/kittechsix-landing   css: /Users/kittechsix/Developer/kittechsix-landing/src/styles/about.css (23 stylesheet(s) after @import)
+
+[1m1. Token contract[0m
+  [32mPASS[0m  --color-primary: #8A3324 (burnt umber)
+  [32mPASS[0m  hover stop #7A2D1F
+  [32mPASS[0m  press stop #5E2418
+  [32mPASS[0m  burnt umber #8A3324 present
+  [32mPASS[0m  --color-safe: #228B22
+  [32mPASS[0m  --color-danger: #B22222
+  [32mPASS[0m  --shadow-dialog:
+  [32mPASS[0m  --ink: #141414
+  [32mPASS[0m  --hairline: #E5E5E5
+  [32mPASS[0m  canvas is flat white #FFFFFF (--paper)
+  [32mPASS[0m  --radius-xl: 6px (flat editorial ceiling)
+  [32mPASS[0m  --radius-pill: 9999px
+  [32mPASS[0m  card/button shadows are none (shadow-dialog only)
+
+[1m2. Brand utilities[0m
+  [32mPASS[0m  .glass-card defined
+  [32mPASS[0m  .glass-panel defined
+  [32mPASS[0m  .btn-3d defined
+  [32mPASS[0m  .btn-3d-primary defined
+  [32mPASS[0m  .btn-3d-safe defined
+  [32mPASS[0m  .btn-3d-danger defined
+  [32mPASS[0m  .btn-3d-neutral defined
+  [32mPASS[0m  .pill defined
+  [32mPASS[0m  .signal-danger defined
+  [32mPASS[0m  .safe-top defined
+  [32mPASS[0m  .safe-bottom defined
+  [32mPASS[0m  .scrollbar-hide defined
+  [32mPASS[0m  .animate-slide-up defined
+  [32mPASS[0m  .reading-body defined
+  [32mPASS[0m  .reading-heading defined
+  [32mPASS[0m  global 44px touch-target floor
+  [32mPASS[0m  flat button press (:active drops to the press stop)
+  [32mPASS[0m  no retired translateY(1px) press
+
+[1m3. Typography[0m
+  [32mPASS[0m  Hanken Grotesk in the loaded stylesheets
+  [32mPASS[0m  IBM Plex Mono in the loaded stylesheets
+  [32mPASS[0m  Playfair Display in the loaded stylesheets
+  [32mPASS[0m  EB Garamond in the loaded stylesheets
+  [32mPASS[0m  Geist not loaded (removed in v3)
+  [32mPASS[0m  no Google Fonts <link> (fonts self-hosted)
+  [32mPASS[0m  antialiased rendering
+
+[1m4. Metadata[0m
+  [90mSKIP[0m  layout metadata (not a Next app)
+  [32mPASS[0m  manifest theme_color #FFFFFF (v3 paper)
+  [32mPASS[0m  manifest background_color
+  [32mPASS[0m  display: standalone
+
+[1m5. Stack[0m
+  [90mSKIP[0m  stack checks (static/plain-CSS app)
+
+[1m6. Shell geometry[0m
+  [32mPASS[0m  max-w-lg content column
+  [32mPASS[0m  glass-panel chrome in use
+  [32mPASS[0m  safe-area classes in use
+  [32mPASS[0m  btn-3d used for actions
+  [32mPASS[0m  cards enter with animate-slide-up
+
+[1m6b. Retired glass/3D/orange drift[0m
+  [90mNOTE[0m  brand-audit-exempt marker honored in 21 file(s):
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/ui-tour.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/global.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/hero.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/tokens.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/frame.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/about.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/tour/antibiotic-rx.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/tour/my-vertigo-app.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/tour/mymedkitt.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/tour/acidbase.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/styles/tour/mystroke-kitt.css
+          /Users/kittechsix/Developer/kittechsix-landing/src/components/ui-tour-clones/mymedkitt-clone.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/components/ui-tour-clones/my-vertigo-app-clone.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/components/ui-tour-clones/antibiotic-rx-clone.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/components/ui-tour-clones/acidbase-clone.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/components/ui-tour-clones/mystroke-kitt-clone.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/data/ui-tour/mymedkitt-tour.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/data/ui-tour/antibiotic-rx-tour.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/data/ui-tour/mystroke-kitt-tour.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/data/ui-tour/my-vertigo-app-tour.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/data/ui-tour/acidbase-tour.ts
+  [32mPASS[0m  no retired #BF5700/#E87511 accent
+  [32mPASS[0m  no backdrop-filter blur glass
+  [32mPASS[0m  no gradient fills in stylesheets
+
+[1m7. Stray colors[0m
+  [90mNOTE[0m  hex scan skipped 2 file(s) containing real SVG fill/stroke:
+          /Users/kittechsix/Developer/kittechsix-landing/src/components/ui-tour-clones/mymedkitt-clone.ts
+          /Users/kittechsix/Developer/kittechsix-landing/src/components/ui-tour-clones/mystroke-kitt-clone.ts
+        ↳ illustration colour is exempt; UI chrome in these files is NOT — review by hand
+  [33mWARN[0m  off-palette hex values found (top 12 by count)
+          #  17 F4EBE6
+          #  16 BF5700
+          #  10 073C3A
+          #   9 B45309
+          #   7 59736F
+          #   7 4338CA
+          #   6 0F8F84
+          #   5 E87511
+          #   5 B87333
+          #   5 3CB371
+          #   5 0F3F3B
+          #   5 0E7490
+        ↳ every hex must be in references/tokens.md; use primary/10, black/5, white/70 for opacity
+  [32mPASS[0m  no Tailwind palette color classes
+
+[1m8. Severity encoding[0m
+  [32mPASS[0m  no mid-tone-on-wash contrast traps
+  [32mPASS[0m  danger ladder has both a solid and a wash tier
+
+[1m9. Clinical chrome[0m
+  [32mPASS[0m  disclaimer gate present
+  [32mPASS[0m  no video iframes
+
+[1msummary[0m  54 pass · 0 fail · 1 warn · 2 skip
+Mechanical checks clear. Now walk the flow checklist in references/flow.md by hand.

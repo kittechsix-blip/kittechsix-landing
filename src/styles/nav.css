@@ -212,3 +212,8 @@
 @media (prefers-reduced-motion: reduce) {
   .nav-overlay, .nav-hamburger span, .nav-links a::after { transition: none; }
 }
+
+/* Collection navigation stays readable as destinations expand. */
+.nav-links a { font-size: 14px; }
+.nav-logo-by { font-size: 12px; letter-spacing: .09em; }
+@media (max-width: 1200px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .nav-content { grid-template-columns: 1fr auto auto; } }

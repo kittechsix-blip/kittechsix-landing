@@ -1,7 +1,4 @@
-// Studio navigation — a solid bar shared by every route except the hero.
-// Four destinations, one CTA. No scroll machinery: there is no long scroll and
-// no hero underneath the bar any more, so the transparent-over-hero variant and
-// the scroll-spy are gone. Active state comes from the router, at render time.
+// Shared collection navigation. Active state follows the current route.
 
 import { router } from '../utils/router.js';
 import { APP_REGISTRY } from '../data/app-registry.js';
@@ -15,15 +12,16 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Work', ordinal: '01', overlayLabel: 'Selected work', route: '/work' },
-  { label: 'Consulting', ordinal: '02', overlayLabel: 'Consulting', route: '/consulting' },
-  { label: 'Studio', ordinal: '03', overlayLabel: 'The studio', route: '/studio' },
-  { label: 'Legal', ordinal: '04', overlayLabel: 'Legal', route: '/legal' },
+  { label: 'Projects', ordinal: '01', overlayLabel: 'All projects', route: '/projects' },
+  { label: 'Learn', ordinal: '02', overlayLabel: 'Lectures & learning', route: '/learn' },
+  { label: 'Workflows', ordinal: '03', overlayLabel: 'Skills & workflows', route: '/workflows' },
+  { label: 'How I build', ordinal: '04', overlayLabel: 'How I build', route: '/how-i-build' },
+  { label: 'About', ordinal: '05', overlayLabel: 'About Andy', route: '/about' },
 ];
 
-/** '/work' stays lit while you are on '/work/mymedkitt'. */
+/** Clinical legacy detail routes still belong to Projects. */
 function isActive(route: string, path: string): boolean {
-  return path === route || path.startsWith(route + '/');
+  return (route === '/projects' && (path === '/work' || path.startsWith('/work/'))) || path === route || path.startsWith(route + '/');
 }
 
 /** myMedKitt CTA target — verified against the registry, never hardcoded here. */
@@ -53,6 +51,7 @@ function closeMenu(): void {
   hamburger?.setAttribute('aria-expanded', 'false');
   hamburger?.setAttribute('aria-label', 'Open menu');
   document.body.style.overflow = '';
+  document.querySelectorAll<HTMLElement>('#app > [data-menu-inert]').forEach(el => { el.inert = false; delete el.dataset.menuInert; });
 }
 
 let globalListenersAttached = false;
@@ -66,6 +65,13 @@ function attachGlobalListenersOnce(): void {
   window.addEventListener('hashchange', closeMenu);
 
   document.addEventListener('keydown', (event) => {
+    const openOverlay = document.getElementById('nav-overlay');
+    if (event.key === 'Tab' && openOverlay?.classList.contains('open')) {
+      const items = [document.getElementById('nav-hamburger'), ...openOverlay.querySelectorAll<HTMLAnchorElement>('a')].filter(Boolean) as HTMLElement[];
+      const at = items.indexOf(document.activeElement as HTMLElement);
+      if (event.shiftKey && at <= 0) { event.preventDefault(); items[items.length - 1]?.focus(); }
+      else if (!event.shiftKey && (at === items.length - 1 || at === -1)) { event.preventDefault(); items[0]?.focus(); }
+    }
     if (event.key !== 'Escape') return;
     const overlay = document.getElementById('nav-overlay');
     if (!overlay?.classList.contains('open')) return;
@@ -95,7 +101,7 @@ export function renderNav(parent: HTMLElement): void {
       <a class="nav-logo" href="#/" aria-label="Kittech-Six — home">
         <img class="nav-logo-glyph" src="assets/icons/kittech-brain.png" alt="" aria-hidden="true" />
         <span class="nav-logo-mark">Kittech-Six</span>
-        <span class="nav-logo-by">Medical software lab</span>
+        <span class="nav-logo-by">The building collection</span>
       </a>
 
       <div class="nav-links" id="nav-links">
@@ -138,7 +144,10 @@ export function renderNav(parent: HTMLElement): void {
     hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     overlay.setAttribute('aria-hidden', String(!isOpen));
     document.body.style.overflow = isOpen ? 'hidden' : '';
-    if (isOpen) overlay.querySelector<HTMLAnchorElement>('a')?.focus();
+    if (isOpen) {
+      parent.querySelectorAll<HTMLElement>(':scope > section, :scope > footer, :scope > header, :scope > .studio-page').forEach(el => { el.inert = true; el.dataset.menuInert = ''; });
+      overlay.querySelector<HTMLAnchorElement>('a')?.focus();
+    } else closeMenu();
   });
 
   // Tapping the link you are already on produces no hashchange, so close here too.
