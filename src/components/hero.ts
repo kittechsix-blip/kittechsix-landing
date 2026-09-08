@@ -50,7 +50,15 @@ const ICON_TIKTOK = `
   <path d="M15.2 5.9a6 6 0 0 0 5.4 4"/>
 </svg>`;
 
+const ICON_LINKEDIN = `
+<svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+</svg>`;
+
 const SOCIALS: ReadonlyArray<{ label: string; href: string; icon: string }> = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andrew-kitlowski-059266197/', icon: ICON_LINKEDIN },
   { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61591723356651', icon: ICON_FACEBOOK },
   { label: 'Instagram', href: 'https://instagram.com/kittechsix', icon: ICON_INSTAGRAM },
   { label: 'TikTok', href: 'https://tiktok.com/@kittechsix', icon: ICON_TIKTOK },
