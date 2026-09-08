@@ -1,4 +1,13 @@
 export const WORKFLOWS = [
+  { id: 'short-video', name: 'Turn one teaching idea into a short video', audience: 'Teaching · Beginner', outcome: 'A 15–30 second explainer with a clear script, editable visuals, and a checked export.', source: 'short-educational-video', prompt: `Help me make a 24-second educational video about [TOPIC] for [AUDIENCE].
+Use one learning objective, a short script, and four timed visual beats. Keep the main point clear without sound.
+Prefer editable text and diagrams in Remotion; use 3D only when it helps explain the idea.
+Inspect the tools available in my environment. Use Astra if available, and verify any MCP connection before claiming it works.
+Build one small scene first, then extend it. Keep the design consistent and make targeted corrections.
+Preserve factual sources and asset credits. Medical or other high-stakes claims need qualified review.
+Render and inspect the exported video. Deliver the MP4, editable project, script, cover, and draft social caption; state any checks you could not perform.
+If tools are missing, finish the brief and propose the smallest setup. Ask before installing software, new charges, account connections, or publication.
+Full method and downloadable skill: https://instar-kb.vercel.app/c/short-educational-video` },
   { id: 'first-app', name: 'Turn an idea into a first app', audience: 'Start here · Beginner', outcome: 'A small, testable brief before you start building.', source: 'structured-build-prompt', prompt: `Help me turn this idea into a small, useful app: [YOUR IDEA].
 The person using it is [AUDIENCE]. Their main problem is [PROBLEM].
 Ask me one question at a time to clarify the outcome and the most important interaction.

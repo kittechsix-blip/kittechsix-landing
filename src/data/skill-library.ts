@@ -1,6 +1,15 @@
 // Curated metadata from the existing Instar library; source files remain in Instar.
 export const SKILLS = [
   {
+    "id": "short-educational-video",
+    "name": "Short Educational Video Skill",
+    "summary": "Turn one teaching idea into a 15–30 second video with a clear script, editable visuals, and an export checklist.",
+    "detail": "Tell your assistant what to teach and who it is for. A workflow distilled from 20 tutorial reviews guides the script, storyboard, tool check, scene revisions, and export. The Instar guide includes a copyable prompt, downloadable skill, and a ready-to-build 24-second example; video tools are set up separately.",
+    "type": "skill",
+    "level": "beginner",
+    "url": "https://instar-kb.vercel.app/c/short-educational-video"
+  },
+  {
     "id": "10x",
     "name": "/10x",
     "summary": "Takes anything you've written and rewrites it to be ten times sharper and clearer.",
