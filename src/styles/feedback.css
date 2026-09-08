@@ -66,6 +66,31 @@
   align-self: flex-end;
 }
 
+.feedback-note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-3, #5E6A74);
+  margin: 0;
+}
+
+.feedback-status {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2, #39434B);
+  margin: 0;
+  text-align: right;
+}
+
+/* Honeypot — off-canvas, never display:none (some bots skip hidden inputs). */
+.feedback-hp {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* Sort/Filter — hairline-outline capsules, mono caps; active = umber */
 .feedback-controls {
   display: flex;

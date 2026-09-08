@@ -73,3 +73,22 @@ Potential later work, not silently enabled: verify and redirect the unhyphenated
 Final browser sweep: 63 routes at 390 px, no missing H1 or horizontal overflow; browser runtime-error list empty. Clipboard write confirmation verified; the automation browser disallows clipboard reads, so clipboard readback is not claimed.
 
 Accessibility follow-up: 200% root text sizing on the early-pregnancy project did not cause horizontal overflow. Mobile menu makes the background inert, traps keyboard focus, and restores the background on Escape.
+
+## Published result
+
+Live: https://kittech-six.org/
+Source: e2f35dd, pushed to origin/main. Hosted preview was verified byte-for-byte against the local hub module before promotion. Public production serves the same SHA-256 module and service-worker cache v33. Production mobile homepage title, H1, project count, and horizontal layout verified.
+
+The site remains a curated public directory. Local-only projects need their own release work before they can be opened remotely; this rebuild does not expose a workstation or deploy every private app. The unhyphenated domain remains unresolved. Shared-brain project records were not changed during this release.
+
+## Landing-page refinement — September 7, 2026
+
+Andy prefers the original elegant, single-screen Contents Page as the front door. Restored that hero and its copper frame, with five destinations: Projects, Learn, Workflows, Studio, Contact. Studio expands to About Andy, How I Build, Consulting, the original Studio, and Legal. The expanded editorial collection remains at /#/collection; all new collection routes are preserved. The homepage uses no portrait. A replacement real photograph is pending from Andy.
+
+Design lesson: a request to broaden the catalog does not imply replacing a valued landing-page composition. Preserve the simple entry surface and place deeper content behind its navigation.
+
+Portrait follow-up: replaced the previous synthetic headshot throughout the site with an identity-preserving edited portrait based on Andy’s supplied photograph. The room background was removed, framing tightened, and the gray shirt and natural skin texture retained. Displayed in color. Source photo remains untouched and is not published. New versioned JPEG asset prevents stale cache reuse; offline cache advanced to v35. TypeScript and catalog checks pass; desktop and phone profile layout verified. Source commit 50d93d5 pushed to main.
+
+Portrait refinement: at Andy’s request, used the approved real-photo-based face with the earlier white coat, embroidered name, copper tie, and stethoscope, seated on a stretcher in an empty generated trauma-room scene. Saved a separate versioned asset; earlier portraits and original photo remain unchanged. Site references updated together; cache v36. Commit 811ad10.
+
+Close-up correction: Andy rejected the wider seated portrait. Restored the approved close-up’s framing and head scale, with clinical clothing and a blurred treatment-room background. New asset `andy-kitlowski-clinical-closeup.jpg`; no widened body composition. Site references updated; cache v37; source commit ba98e47.

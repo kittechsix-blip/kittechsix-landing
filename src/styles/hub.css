@@ -49,6 +49,15 @@
 .hub-card-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px; margin-top: auto; font-size: .875rem; }
 .hub-card-bottom a { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; color: var(--accent-press); font-weight: 600; }
 .hub-card-bottom > span { color: var(--ink-3); font-size: .8rem; }
+.hub-more { margin: -10px 0 18px; }
+.hub-more summary { display: inline-flex; align-items: center; gap: 6px; list-style: none; cursor: pointer; min-height: 32px; font: 600 .85rem/1.4 var(--font-text); color: var(--accent-press); }
+.hub-more summary::-webkit-details-marker { display: none; }
+.hub-more summary:focus-visible { outline: 2px solid var(--accent-press); outline-offset: 3px; }
+.hub-more .hub-more-plus { font-size: 1.05rem; color: var(--accent-press); transition: transform .15s ease; }
+.hub-more[open] .hub-more-plus { transform: rotate(45deg); }
+.hub-more p { margin-top: 10px; color: var(--ink-2); font-size: .92rem; line-height: 1.6; }
+.hub-skill .hub-more { margin: 8px 0 4px; }
+.hub-skill-open { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 10px; font-weight: 600; color: var(--accent-press); }
 .hub-process-tease { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 60px; margin-top: 60px; padding: 36px; background: var(--paper-warm); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
 .hub-process-tease > .hub-kicker { grid-column: 1/-1; }
 .hub-process-tease p { margin-bottom: 16px; }

@@ -21,4 +21,4 @@
 - [x] Build homepage, search/filter directory, learning collection, copyable workflows, process, and profile.
 - [x] Preserve existing app details, demos, consulting, contact, and legal routes.
 - [x] Verify build, catalog coverage, links, escaping, offline assets, and brand checks.
-- [ ] Prepare hosted review and report findings / remaining publication decisions.
+- [x] Prepare hosted review and publish verified production at https://kittech-six.org/.

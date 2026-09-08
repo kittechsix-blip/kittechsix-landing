@@ -14,6 +14,7 @@
 
 // Origins allowed to call this endpoint from the browser (the apps' homes).
 const ALLOWED_ORIGINS = new Set([
+  'https://kittech-six.org',
   'https://kittechsix-blip.github.io',
   'https://mystroke-kitt.vercel.app',
   'https://antibiotic-rx.vercel.app',

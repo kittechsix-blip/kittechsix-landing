@@ -67,17 +67,19 @@ export async function supabaseInsert<T>(
 
   try {
     const url = `${SUPABASE_URL}/rest/v1/${table}`;
+    // return=minimal: the insert never needs a SELECT policy to succeed, so the
+    // public role can be write-only on these tables (no reading back emails,
+    // no reading unreviewed suggestions). Callers key off status 201.
     const res = await fetch(url, {
       method: 'POST',
-      headers: headers({ 'Prefer': 'return=representation' }),
+      headers: headers({ 'Prefer': 'return=minimal' }),
       body: JSON.stringify(data),
     });
     if (!res.ok) {
-      const errText = await res.text();
-      return { data: null, error: errText || `Request failed: ${res.status}`, status: res.status };
+      // Keep the raw body out of the UI; expose only a coarse code the callers map.
+      return { data: null, error: res.status === 409 ? 'duplicate' : `Request failed: ${res.status}`, status: res.status };
     }
-    const result = await res.json() as T;
-    return { data: result, error: null, status: res.status };
+    return { data: null, error: null, status: res.status };
   } catch {
     return { data: null, error: 'Network error.', status: 0 };
   }

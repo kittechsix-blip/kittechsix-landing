@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v37';
+const CACHE_NAME = 'kittechsix-v39';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -134,6 +134,10 @@ sw.addEventListener('activate', (event: any) => {
 
 sw.addEventListener('fetch', (event: any) => {
   const url = new URL(event.request.url);
+
+  // Never intercept or cache cross-origin (Supabase API, analytics) or non-GET
+  // requests. Cache Storage is for this site's own shell and assets only.
+  if (url.origin !== sw.location.origin || event.request.method !== 'GET') return;
 
   // Images: cache-first
   if (url.pathname.startsWith('/assets/')) {

@@ -97,10 +97,10 @@ const additional: Project[] = [
     "id": "wingman",
     "name": "Kittech Wingman",
     "category": "AI & automation",
-    "summary": "Help an assistant understand the real structure of an app.",
+    "summary": "Keep an AI assistant's answers grounded in what an app actually does.",
     "status": "Local tool",
     "url": "",
-    "description": "Shared standards and app guides that keep assistant answers grounded in product content."
+    "description": "A shared reference guide for each app, so when an assistant is asked about it, the answer comes from the app's real structure and content instead of a guess."
   },
   {
     "id": "ask-apps",
@@ -115,46 +115,46 @@ const additional: Project[] = [
     "id": "claudeclaw",
     "name": "ClaudeClaw",
     "category": "AI & automation",
-    "summary": "Connect an AI assistant to repeatable tasks and remembered context.",
+    "summary": "The assistant that runs my personal automation day to day.",
     "status": "Internal",
     "url": "",
-    "description": "An assistant runtime used in my own automation system. Public overview only."
+    "description": "An always-available AI assistant, reachable from my phone, that runs scheduled tasks and remembers context between them. An internal tool; no public access."
   },
   {
     "id": "codexclaw",
     "name": "CodexClaw",
     "category": "AI & automation",
-    "summary": "Bring coding tasks and recurring automation into one assistant workflow.",
+    "summary": "A second assistant focused specifically on coding tasks.",
     "status": "Internal",
     "url": "",
-    "description": "Part of my personal agent infrastructure. Public overview only."
+    "description": "Works alongside ClaudeClaw as part of the same personal automation system, specializing in coding and technical follow-through. An internal tool; no public access."
   },
   {
     "id": "openclaw",
     "name": "OpenClaw",
     "category": "AI & automation",
-    "summary": "Explore another route to assistant orchestration.",
+    "summary": "An early experiment in coordinating several AI assistants as a team.",
     "status": "Research",
     "url": "",
-    "description": "An orchestration tool in the broader workflow collection; no public Kittech release is listed."
+    "description": "A different approach to running multiple AI assistants together on the same problem. Still exploratory; no public release yet."
   },
   {
     "id": "hermes",
     "name": "Hermes Automations",
     "category": "AI & automation",
-    "summary": "Run scheduled tasks with a visible queue and repeatable procedures.",
+    "summary": "The scheduler behind every recurring task in my workflow.",
     "status": "Internal",
     "url": "",
-    "description": "The operational layer for recurring jobs and task management in my workflow."
+    "description": "Keeps a visible queue of recurring jobs — like the daily morning briefing — and tracks whether each one actually ran, so scheduled work doesn't silently stop."
   },
   {
     "id": "shared-brain",
     "name": "Shared Brain",
     "category": "AI & automation",
-    "summary": "Keep project context and decisions available across AI sessions.",
+    "summary": "One memory that every AI assistant I use can read from.",
     "status": "Internal",
     "url": "",
-    "description": "A markdown-based knowledge system. The public site contains curated summaries, never the private brain."
+    "description": "A personal notes system of projects, decisions, and context, so nothing has to be re-explained from scratch every time a new AI session starts. Kept private; the public site only shows curated summaries."
   },
   {
     "id": "kittech-cabinet",
@@ -163,7 +163,7 @@ const additional: Project[] = [
     "summary": "Find the right project without hunting through folders.",
     "status": "Local tool",
     "url": "",
-    "description": "A generated project directory linking workspaces and project notes."
+    "description": "An auto-generated directory of every project in the collection, kept in sync automatically so a specific piece of work is always easy to locate."
   },
   {
     "id": "cowork",
@@ -187,28 +187,28 @@ const additional: Project[] = [
     "id": "bench-studio",
     "name": "Bench Studio",
     "category": "AI & automation",
-    "summary": "Bring image and video generation into a single local workspace.",
+    "summary": "Generate images and video from a single personal workspace.",
     "status": "Local tool",
     "url": "",
-    "description": "A locally configured media studio adapted from an existing project, with model routing and cost tracking."
+    "description": "A personal media studio that picks the right AI model for the job automatically and keeps a running tally of what each generation costs."
   },
   {
     "id": "x-monitor",
     "name": "Opportunity Monitor",
     "category": "AI & automation",
-    "summary": "Collect public signals into a recurring research digest.",
+    "summary": "Watch for new AI tools and ideas worth building on, automatically.",
     "status": "Prototype",
     "url": "",
-    "description": "A read-only experiment in scheduled opportunity research."
+    "description": "A background research project that scans public sources on a schedule and produces a periodic digest, instead of requiring a manual search every time."
   },
   {
     "id": "prompt-architect",
     "name": "Prompt Architect",
     "category": "AI & automation",
-    "summary": "Turn a request into a structured prompt with clear constraints.",
+    "summary": "Turn a loose request into precise, unambiguous instructions.",
     "status": "Project",
     "url": "",
-    "description": "An XML prompt builder for more deliberate AI instructions."
+    "description": "A tool that carefully labels each part of an instruction to an AI assistant — the task, the constraints, the examples — so its answer matches what was actually meant."
   },
   {
     "id": "mytravelmedkitt",
@@ -250,10 +250,10 @@ const additional: Project[] = [
     "id": "just-do-it",
     "name": "Just Do It",
     "category": "Everyday tools",
-    "summary": "Reduce the distance between a task and taking action.",
+    "summary": "Shrink the gap between deciding to do something and starting it.",
     "status": "Project",
     "url": "",
-    "description": "A task-management project in the broader Kittech collection."
+    "description": "A task-management experiment focused on the moment a task gets stuck between the to-do list and actually getting done."
   },
   {
     "id": "ai-investment-terminal",
@@ -277,28 +277,28 @@ const additional: Project[] = [
     "id": "dell-seton-ops",
     "name": "Dell Seton Ops",
     "category": "Systems & experiments",
-    "summary": "Make repeatable operational work easier to find and follow.",
+    "summary": "The everyday operations tool for an emergency department team.",
     "status": "Internal",
     "url": "",
-    "description": "An internal operations project. Operational records and access links are not published here."
+    "description": "Organizes an ED's day-to-day checklists and procedures so the team can find the right one quickly, instead of digging through folders or binders. Shared internally with the department; no public access."
   },
   {
     "id": "mymedkitt-v2",
     "name": "myMedKitt v2",
     "category": "Clinical tools",
-    "summary": "Develop the next generation of the myMedKitt experience.",
+    "summary": "A ground-up rebuild of myMedKitt for easier growth over time.",
     "status": "In development",
     "url": "",
-    "description": "A separate next-generation application with a modular clinical consult architecture."
+    "description": "The next generation of myMedKitt, with each clinical topic built as its own self-contained module — easier to review, update, and trust as the collection keeps growing."
   },
   {
     "id": "powerkitt",
     "name": "PowerKitt",
     "category": "Clinical tools",
-    "summary": "Explore a focused approach to weakness and localization.",
+    "summary": "A bedside guide for working up sudden weakness.",
     "status": "In development",
     "url": "",
-    "description": "A weakness-workup project with reference tools and explicit safety gates."
+    "description": "Helps a clinician tell apart the different possible causes of new weakness, with built-in checkpoints for the causes that can't be missed."
   },
   {
     "id": "early-pregnancy",
@@ -349,55 +349,55 @@ const additional: Project[] = [
     "id": "em-mdm",
     "name": "EM-MDM",
     "category": "Clinical tools",
-    "summary": "Organize medical decision-making documentation by complaint.",
+    "summary": "A reference for writing thorough medical-decision-making notes, faster.",
     "status": "Local tool",
     "url": "",
-    "description": "A personal reference project for structured emergency department documentation."
+    "description": "A personal reference tool that organizes the documentation language for medical decision-making by chief complaint, so writing a complete note takes less time."
   },
   {
     "id": "in-range",
     "name": "In-Range",
     "category": "Clinical tools",
-    "summary": "Explore another clinical application in the Kittech collection.",
+    "summary": "Build better blood-pressure habits, without fixating on the number.",
     "status": "Prototype",
     "url": "",
-    "description": "A project under development; the public product description is not yet finalized."
+    "description": "A habit tracker for cardiovascular health that rewards the behaviors known to help — sleep, movement, salt, stress — rather than rewarding or shaming any single reading."
   },
   {
     "id": "cure-the-spins",
     "name": "Cure the Spins",
     "category": "Systems & experiments",
-    "summary": "Explore a broader vertigo-focused product initiative.",
+    "summary": "A bedside device to help tell dangerous dizziness from harmless dizziness.",
     "status": "Research",
     "url": "",
-    "description": "A companion initiative in the vertigo project family."
+    "description": "A physical device I'm building that pairs eye-movement recording with AI-assisted interpretation, so a clinician at the bedside can work through the same eye exam a dizziness specialist would — with a person always making the final call, not the device. My primary project right now."
   },
   {
     "id": "spins-dataset",
     "name": "SPINS Dataset",
     "category": "Systems & experiments",
-    "summary": "Support the research behind the vertigo project family.",
+    "summary": "The research work behind the Cure the Spins device.",
     "status": "Research",
     "url": "",
-    "description": "A research project overview. No dataset or records are published through this directory."
+    "description": "The underlying research collection used to validate how the vertigo device interprets eye movement. No dataset or patient records are published through this directory."
   },
   {
     "id": "vertigo-video",
     "name": "Vertigo Video",
     "category": "Lectures & learning",
-    "summary": "Bring vertigo teaching into a video format.",
+    "summary": "Turn vertigo teaching into short, narrated videos.",
     "status": "In development",
     "url": "",
-    "description": "An educational media project connected to the vertigo tool collection."
+    "description": "An automated pipeline that produces a narrated teaching video for a dizziness topic from a single script, connected to the broader vertigo project."
   },
   {
     "id": "kittech-voice",
     "name": "Kittech Voice",
     "category": "Systems & experiments",
-    "summary": "Explore voice as part of the teaching and media workflow.",
+    "summary": "A cloned narrator voice for teaching videos.",
     "status": "Local tool",
     "url": "",
-    "description": "A supporting production project in the studio collection."
+    "description": "A voice-cloning tool used to narrate teaching videos in my own voice, so new material doesn't need a fresh recording session every time."
   }
 ];
 export const PROJECTS: Project[] = [...listWorkApps().map(app => ({

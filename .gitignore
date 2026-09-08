@@ -8,3 +8,4 @@ dist/
 .playwright-mcp/
 recon/
 .playwright-cli/
+supabase/.temp/

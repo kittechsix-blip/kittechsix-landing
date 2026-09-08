@@ -1,9 +1,11 @@
 # Security Audit Report
 
-**Project:** kittechsix-landing
-**Date:** 2026-04-05
-**Stack:** Vanilla TypeScript, Supabase (REST API), Vercel static hosting, Service Worker
+**Project:** kittechsix-landing (https://kittech-six.org)
+**Date:** 2026-09-08 (supersedes the 2026-04-05 audit)
+**Stack:** Vanilla TypeScript (zero runtime deps), Vercel static hosting + one Node serverless function (`api/validate-license.mjs`), Supabase REST (anon key), service worker, Vercel Web Analytics
 **Auditor:** Claude Security Audit Skill
+
+This pass inspected source **and** probed the live deployment: response headers on kittech-six.org, and the Supabase REST API using the same public anon key the browser ships. Probes were read-only except one deliberate no-op (`PATCH votes=<current value>` on one suggestion) used to test whether anon can UPDATE. No rows were created, changed, or deleted.
 
 ---
 
@@ -11,17 +13,19 @@
 
 | # | Check | Grade | Details |
 |---|-------|-------|---------|
-| 1 | Row Level Security / DB Access Control | WARN | Anon key is fine, but RLS policies cannot be verified from client code alone |
-| 2 | Auth Flow Testing | N/A | No authentication system — intentional for a public landing page |
-| 3 | Rate Limiting | WARN | Client-side rate limiter only (10 req / 30s) — easily bypassed |
-| 4 | Server-Side Validation | WARN | Client-side email regex and maxlength; no server-side validation layer |
-| 5 | Environment Variables | PASS | No secrets in code or git history; anon key is intentionally public |
-| 6 | CAPTCHA on Public Forms | FAIL | No CAPTCHA on suggestion form or email signup — open to bot spam |
-| 7 | CORS / CSP Restrictions | WARN | No CSP headers configured; Vercel defaults only |
-| 8 | Error Handling (No Leakage) | PASS | Error messages are generic; Supabase errors not exposed to users |
-| 9 | Dependency & Code Scan | PASS | Zero runtime dependencies; XSS mitigated with escapeHtml |
+| 1 | Row Level Security / DB Access Control | WARN | anon UPDATE is blocked (verified live); anon SELECT on `landing_emails` returned 0 rows but that is ambiguous (empty vs. hidden); vote RPC is anon-callable with no server-side throttle |
+| 2 | Auth Flow Testing | N/A | No auth by design — public site |
+| 3 | Rate Limiting | WARN | Browser-side limiter only for Supabase (bypassable); in-memory per-IP limiter on `/api/validate-license` resets on every cold start |
+| 4 | Server-Side Validation | WARN | Title/description length and category are enforced only by HTML attributes; a direct REST caller can post anything. Output is HTML-escaped, so no XSS |
+| 5 | Environment Variables | PASS | `.env` ignored, nothing secret ever committed, Polar org ID lives only in Vercel env, anon key is public by design |
+| 6 | CAPTCHA on Public Forms | **FAIL** | Suggestion form and email signup have no bot protection, and suggestions render publicly and unmoderated |
+| 7 | CORS / CSP Restrictions | PASS | Strict CSP + HSTS + nosniff + DENY framing, all verified on the live domain |
+| 8 | Error Handling (No Leakage) | PASS | Users only ever see generic messages; raw Supabase text stays in the return value |
+| 9 | Dependency & Code Scan | PASS | Zero dependencies, no `eval`/`Function`, strict TS, pre-push build gate |
 
-**Overall: 3 PASS / 1 FAIL / 3 WARN / 1 N/A (out of 8 applicable)**
+**Overall: 4 PASS / 1 FAIL / 3 WARN / 1 N/A**
+
+Since April: CSP went from missing to strong (WARN → PASS), and RLS is now partially verified live. The CAPTCHA gap is unchanged and is the one item that matters before promoting the site to a wider audience.
 
 ---
 
@@ -30,286 +34,191 @@
 ### 1. Row Level Security / DB Access Control — WARN
 
 **What was checked:**
-Reviewed the Supabase client setup in `src/utils/supabase.ts`. Checked which tables are accessed, what operations are performed, and whether the anon key is the only credential in use.
+`src/utils/supabase.ts` (client wrapper), `src/components/feedback-board.ts`, `src/components/email-signup.ts`, and live REST probes against `https://kzzqloklnxlqbccxbxgr.supabase.co/rest/v1` using the shipped anon key. No `supabase/migrations/` exist in this repo (the project is shared with myMedKitt), so policies could not be read from source.
 
 **Findings:**
-- The anon key is hardcoded in `src/utils/supabase.ts:4` — this is correct and intentional for a client-side app. Supabase anon keys are designed to be public.
-- Two tables are accessed: `landing_suggestions` and `landing_emails`. An `ALLOWED_TABLES` set (line 6) prevents the client wrapper from touching other tables.
-- One RPC function is called: `increment_suggestion_vote` (line 174 in feedback-board.ts).
-- **Cannot verify RLS from client code alone.** The actual policies on `landing_suggestions` and `landing_emails` must be checked in the Supabase dashboard.
+- Client wrapper restricts itself to `landing_suggestions` and `landing_emails` (`ALLOWED_TABLES`, line 6). Good hygiene, but it is a client-side allowlist — it does not bind an attacker who calls REST directly.
+- **`landing_suggestions` anon SELECT → 206, 5 rows.** Exposed columns: `id, title, description, category, votes, created_at`. No PII. Public by design.
+- **`landing_suggestions` anon UPDATE → blocked.** A no-op PATCH on a real row returned `[]` with `Prefer: return=representation`, which is PostgREST's RLS-filtered response. Anon cannot edit or zero-out suggestions.
+- **`landing_emails` anon SELECT → 200, `content-range: */0`.** Zero rows is *either* "RLS hides them" *or* "nobody has signed up yet." PostgREST returns 200 in both cases. This is the single most important thing to confirm in the dashboard (see below) because if it is wrong, every colleague who signs up has their email readable by anyone with the anon key.
+- **DELETE** was not tested on real rows (destructive). Impossible-filter DELETEs returned 200/`[]`, which is likewise ambiguous.
+- **`increment_suggestion_vote` RPC → 204** for any UUID, including nonexistent ones. Anon can call it in a loop. The only dedupe is `localStorage` in the caller's own browser.
+- OpenAPI root (`GET /rest/v1/`) returns no paths for anon — schema introspection is not leaking table names.
+- Anon JWT: `role=anon`, expires 2036-03-02.
 
 **Evidence:**
-```ts
-// src/utils/supabase.ts:6
-const ALLOWED_TABLES = new Set(['landing_suggestions', 'landing_emails']);
+```
+GET  /landing_suggestions?select=id&limit=0   → 206  content-range: */5
+GET  /landing_emails?select=id&limit=0        → 200  content-range: */0   (ambiguous)
+PATCH /landing_suggestions?id=eq.<real id> {"votes":<same>} → 200  []    (RLS blocked)
+POST /rpc/increment_suggestion_vote {"suggestion_id":"0000…"} → 204   (anon-callable)
 ```
 
 **Recommendation:**
-Verify in the Supabase dashboard that these RLS policies exist:
-- `landing_suggestions`: SELECT for anon, INSERT for anon (with field restrictions), no UPDATE/DELETE for anon
-- `landing_emails`: INSERT only for anon, no SELECT/UPDATE/DELETE for anon (emails should never be readable from client)
-- `increment_suggestion_vote` RPC: should have its own rate limiting or abuse prevention (e.g., limit to +1 per IP or session)
+Run this in the Supabase SQL editor and paste the result back if anything looks off:
+```sql
+select tablename, rowsecurity from pg_tables
+ where schemaname='public' and tablename in ('landing_suggestions','landing_emails');
+select tablename, policyname, cmd, roles, qual, with_check from pg_policies
+ where tablename in ('landing_suggestions','landing_emails');
+```
+Expected: `rowsecurity = true` on both; `landing_emails` has **INSERT only** for `anon` (no SELECT policy at all); `landing_suggestions` has SELECT + INSERT for anon, no UPDATE/DELETE. For the RPC, either add a per-IP throttle table inside the function or accept that vote counts are advisory.
 
 ---
 
 ### 2. Auth Flow Testing — N/A
 
-**What was checked:**
-Scanned all source files for auth-related code, login forms, tokens, or session management.
-
-**Findings:**
-No authentication system exists. This is a public landing page with anonymous form submissions. This is intentional and appropriate for the use case.
-
-**Recommendation:**
-None — looking good.
+No login, signup, or session logic anywhere in `src/` or `api/`. The license endpoint validates keys against Polar but does not authenticate the caller — appropriate, since a license key is itself the credential and the response reveals nothing beyond valid/invalid.
 
 ---
 
 ### 3. Rate Limiting — WARN
 
-**What was checked:**
-Reviewed the rate limiting implementation in `src/utils/supabase.ts:15-22`.
+**What was checked:** `src/utils/supabase.ts:14-22`, `api/validate-license.mjs:26-40`.
 
 **Findings:**
-- Client-side rate limiter exists: max 10 requests per 30-second sliding window. This is a nice UX guard but provides zero security.
-- Any attacker can bypass this by calling the Supabase REST API directly with the public anon key, skipping the client code entirely.
-- No server-side rate limiting is configured. Vercel does not provide built-in request rate limiting for static sites. Supabase has some built-in protections but they are generous.
+- Supabase calls: 10 requests / 30 s, tracked in an in-page array. Disappears on reload and does not exist for anyone calling REST directly with the anon key (which is in the public repo and in every browser's network tab).
+- `/api/validate-license`: 20 / min per IP from `x-forwarded-for`, stored in a `Map` inside the lambda. Vercel spins up fresh instances constantly, so the counter resets and multiple instances don't share state. It stops a naive script; it does not stop a determined one. Polar's own rate limits are the real backstop.
+- No Vercel Firewall rules configured.
 
-**Evidence:**
-```ts
-// src/utils/supabase.ts:15-22
-let requestTimestamps: number[] = [];
-function isRateLimited(): boolean {
-  const now = Date.now();
-  requestTimestamps = requestTimestamps.filter(t => now - t < 30000);
-  if (requestTimestamps.length >= 10) return true;
-  requestTimestamps.push(now);
-  return false;
-}
-```
-
-**Recommendation:**
-For a landing page with low traffic, this is acceptable risk. If spam becomes a problem:
-1. Add a Supabase Edge Function as a proxy with server-side rate limiting (IP-based)
-2. Or use Supabase's built-in rate limiting on the RPC function
-3. Or add CAPTCHA (see point 6) which solves both bot spam and rate abuse
+**Recommendation:** The cheap, effective fix is the same as Check 6 — put Cloudflare Turnstile in front of the two Supabase inserts via a small Vercel function. That gives you real server-side gating. For the license endpoint, Vercel Firewall rate-limit rules (dashboard → Firewall) are a two-minute setting if abuse ever appears.
 
 ---
 
-### 4. Server-Side Validation / Input Sanitization — WARN
+### 4. Server-Side Validation — WARN
 
-**What was checked:**
-Reviewed all form inputs and their validation in `email-signup.ts` and `feedback-board.ts`.
+**What was checked:** Form handlers in `feedback-board.ts:65-93` and `email-signup.ts:25-50`; every `innerHTML` sink that touches user-controlled or route-controlled data (`hub.ts`, `feedback-board.ts`, `work-detail.ts`, router params).
 
 **Findings:**
-- **Email signup** (`email-signup.ts:29`): Client-side regex validation `^[^\s@]+@[^\s@]+\.[^\s@]+$` — basic but functional. No server-side validation.
-- **Feedback form** (`feedback-board.ts:37-38`): HTML `maxlength="100"` on title, `maxlength="500"` on description, `required` on title. All client-side only.
-- **XSS protection**: `escapeHtml()` function (feedback-board.ts:195-198) properly sanitizes user content before rendering. Uses the safe `div.textContent = str; return div.innerHTML` pattern. This is correct.
-- **Category selection**: Uses a `<select>` dropdown, but the value is not validated server-side — an attacker could POST any category string to Supabase directly.
+- Title `maxlength="100"`, description `maxlength="500"`, category from a `<select>` — all enforced by the browser only. Direct REST callers can post a 1 MB description or `category: "<anything>"`. Unless the table has CHECK constraints (not visible from here), the board will render it.
+- Email: client regex only. Duplicates handled by a DB unique constraint (the 409 path in `email-signup.ts:42`), which is good.
+- **XSS: mitigated.** `feedback-board.ts:205-209 escapeHtml()` wraps title, description, category. `hub.ts:5 esc()` wraps every catalog string and the search-box echo. Route params go through `decodeURIComponent` then either a registry lookup or `esc()`; unknown IDs fall to a not-found branch. `data-id="${s.id}"` in `feedback-board.ts:173` is unescaped but is a DB-generated UUID.
+- No `eval`, `new Function`, `document.write`, or `javascript:` URLs anywhere in `src/` or `src/data/`.
 
-**Evidence:**
-```ts
-// feedback-board.ts:195-198 — XSS protection is solid
-function escapeHtml(str: string): string {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
+**Recommendation:** Add CHECK constraints so the database enforces what the form promises:
+```sql
+alter table landing_suggestions
+  add constraint title_len  check (char_length(title) between 1 and 100),
+  add constraint desc_len   check (description is null or char_length(description) <= 500),
+  add constraint cat_enum   check (category in ('myMedKitt','myStroke-Kitt','my-vertigo-app','AcidBase','Antibiotic Rx','MyTravelMedKitt','PowerKitt','Consulting','General'));
+alter table landing_emails
+  add constraint email_shape check (email ~* '^[^\s@]+@[^\s@]+\.[^\s@]+$' and char_length(email) <= 254);
 ```
-
-**Recommendation:**
-- Add a Supabase CHECK constraint on `landing_suggestions.category` to restrict values to the allowed enum: `CHECK (category IN ('myMedKitt', 'MyTravelMedKitt', 'MyToolKitt', 'General'))`
-- Add a CHECK constraint on `landing_suggestions.title` for max length: `CHECK (char_length(title) <= 100)`
-- Add a CHECK constraint on `landing_emails.email` for basic format validation
-- These database-level constraints are the real security boundary since all client-side checks can be bypassed
 
 ---
 
 ### 5. Environment Variables — PASS
 
-**What was checked:**
-- Scanned all source files for secrets (service_role keys, API secrets, private keys, passwords)
-- Checked `.gitignore` for proper exclusions
-- Reviewed full git history for previously committed secrets
-- Checked for `.env` files on disk
+**What was checked:** `.gitignore`, `git log --all --diff-filter=A -- '*.env' '*.key' '*.pem' '*.secret'`, grep of `src/`, `api/`, `index.html` for key-like strings, `git ls-files` for accidental inclusions.
 
 **Findings:**
-- `.gitignore` correctly excludes `node_modules/`, `dist/`, `.env`, `.vercel/` (lines 1-5)
-- No `.env` files exist on disk
-- Git history (2 commits) contains no secrets — only the Supabase anon key, which is intentionally public
-- The Supabase anon key in `src/utils/supabase.ts:4` is a JWT with role `anon` — this is the correct key to expose in client code
-- No service_role key found anywhere in the codebase or history
+- `.env`, `.vercel/`, `recon/`, `.shots/`, `.playwright-cli/`, `.claude/` all ignored. Nothing matching a secret pattern was ever added to history.
+- The only credential in source is the Supabase **anon** key (`supabase.ts:4`) — public by design, `role=anon`, safe *provided* RLS holds (Check 1).
+- `POLAR_ORGANIZATION_ID` / `POLAR_SERVER` are read from `process.env` only; the function returns 503 rather than falling back to a hardcoded value.
+- The GitHub repo is **public**. Tracked non-code files are `tasks/*.md`, `DESIGN.md`, `CLAUDE.md`, this file. They contain process notes (portrait iterations, audit logs), not secrets — but be aware that anything committed to `tasks/` is world-readable.
+- No `.env.example` — acceptable here since the only env vars are the two documented at the top of `api/validate-license.mjs`.
 
-**Evidence:**
-```
-# .gitignore
-node_modules/
-dist/
-.env
-.vercel/
-.vercel
-```
-
-**Recommendation:**
-None — looking good.
+**Recommendation:** None required. Optional: keep `tasks/` out of the public repo if you'd rather your working notes not be indexed.
 
 ---
 
 ### 6. CAPTCHA on Public Forms — FAIL
 
-**What was checked:**
-Reviewed both public forms for bot protection: the suggestion submission form and the email signup form.
+**What was checked:** Both public write paths — the suggestion form (`feedback-board.ts:37-52`, mounted on `#/studio`) and the email signup (`email-signup.ts`, present in the bundle).
 
 **Findings:**
-- **Suggestion form** (`feedback-board.ts`): No CAPTCHA, no honeypot field, no bot protection of any kind. Anyone (or any script) can submit unlimited suggestions.
-- **Email signup** (`email-signup.ts`): Same — no CAPTCHA or bot protection. An attacker could flood the `landing_emails` table with junk addresses.
-- **Vote function** (`increment_suggestion_vote` RPC): No protection against automated vote manipulation. The client-side `votedIds` localStorage check is trivially bypassed.
+- No reCAPTCHA / Turnstile / hCaptcha, no honeypot field, no server-side token check on either form.
+- Suggestions are **rendered to every visitor immediately** after insert, with no approval step. Anything a bot or a bored visitor posts — spam, links, offensive text — is live on your site until you delete it in the Supabase dashboard. This is the concrete risk of pointing residents at the site today.
+- The email list is a spam sink: bots will fill it with junk addresses, and if Check 1's ambiguity resolves the wrong way, real addresses are readable.
 
-**Evidence:**
-Both forms submit directly to Supabase with no intermediate verification:
-```ts
-// feedback-board.ts:72 — direct insert, no CAPTCHA
-const result = await supabaseInsert<Suggestion[]>('landing_suggestions', {
-  title,
-  description: descInput.value.trim() || null,
-  category: catSelect.value,
-});
+**Recommendation (pick one; both are small):**
+1. **Moderation gate (no third party, ~20 lines):** add `approved boolean default false` to `landing_suggestions`; change the anon SELECT policy to `using (approved = true)`; approve rows in the dashboard. The board stays open; nothing shows until you nod. Client change: show the submitter a "Thanks — it'll appear once reviewed" message instead of prepending the row.
+2. **Cloudflare Turnstile:** free, no puzzle for humans. Move both inserts behind `api/submit.mjs` that verifies the Turnstile token server-side then inserts with the **service-role key** (kept in Vercel env, never shipped). Then revoke anon INSERT entirely.
 
-// email-signup.ts:37 — direct insert, no CAPTCHA
-const result = await supabaseInsert('landing_emails', { email, source });
-```
-
-**Recommendation:**
-Add Cloudflare Turnstile (free) or hCaptcha to both forms. Turnstile is invisible and lightweight:
-1. Add the Turnstile script to `index.html`
-2. Embed the widget in each form
-3. Validate the token server-side via a Supabase Edge Function before inserting
-4. As a quick interim fix, add a honeypot hidden field — bots fill it, humans don't
+Either way, add a one-line notice under the form: *"Please don't include patient information."* A physician audience will otherwise paste case details into a free-text box that lands in a third-party database.
 
 ---
 
-### 7. CORS / CSP Restrictions — WARN
+### 7. CORS / CSP Restrictions — PASS
 
-**What was checked:**
-Reviewed `vercel.json`, `index.html`, and service worker for security headers configuration.
+**What was checked:** `vercel.json` headers and the actual response from `https://kittech-six.org/`.
+
+**Evidence (live):**
+```
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';
+  img-src 'self' data:; connect-src 'self' https://kzzqloklnxlqbccxbxgr.supabase.co;
+  frame-ancestors 'none'; form-action 'self'; object-src 'none'; base-uri 'self'
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-frame-options: DENY
+referrer-policy: strict-origin-when-cross-origin
+permissions-policy: geolocation=(), camera=(), microphone=(), payment=(), usb=()
+```
 
 **Findings:**
-- **No CSP (Content Security Policy)** headers are configured anywhere. No `<meta>` tag in HTML, no headers in `vercel.json`.
-- **No security headers** in `vercel.json` — the config only has `outputDirectory` and a rewrite rule.
-- **Vercel provides some defaults** (X-Frame-Options, etc.) but does not add CSP automatically.
-- **CORS**: Not directly applicable since the site makes requests to Supabase (a different origin), and Supabase handles CORS on its end. No API endpoints are served from this site.
-- **Service worker** caches aggressively but this is a performance concern, not a security one.
+- `script-src 'self'` with no `unsafe-inline`/`unsafe-eval` — inline-script XSS is dead on arrival. Fonts and the analytics script are same-origin, so nothing third-party executes.
+- `style-src 'unsafe-inline'` is present. Acceptable for a static site with no user-controlled styles; it is the only relaxation.
+- `connect-src` is pinned to one Supabase host — no wildcard.
+- `/api/validate-license` uses an explicit origin allowlist and echoes only matching origins with `Vary: Origin`. Note the list contains `kittechsix-landing.vercel.app` but **not `kittech-six.org`**; harmless today (the landing page doesn't call it) but will bite the first time it does.
 
-**Evidence:**
-```json
-// vercel.json — no security headers
-{
-  "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
-```
-
-**Recommendation:**
-Add security headers to `vercel.json`:
-```json
-{
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; connect-src 'self' https://kzzqloklnxlqbccxbxgr.supabase.co; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
-      ]
-    }
-  ]
-}
-```
+**Recommendation:** None for security. Add `https://kittech-six.org` to `ALLOWED_ORIGINS` when convenient.
 
 ---
 
 ### 8. Error Handling (No Leakage) — PASS
 
-**What was checked:**
-Reviewed all error handling paths in `supabase.ts`, `feedback-board.ts`, `email-signup.ts`, `storage.ts`, and `main.ts`.
+**What was checked:** Every `catch` and every `result.error` consumer.
 
 **Findings:**
-- **Supabase errors**: Generic messages returned to the UI (`'Network error.'`, `'Request failed: {status}'`). The raw Supabase error is captured in `supabaseInsert` (line 77: `errText`) but only stored in the response object — never displayed to users.
-- **Email signup** (line 45): Shows `'Something went wrong. Please try again.'` — no internal details leaked.
-- **Feedback board**: On vote failure, the button simply re-enables. No error message shown.
-- **localStorage errors**: Caught and swallowed silently (`storage.ts`).
-- **Service worker registration**: Failure caught with empty callback (`main.ts:60`).
-- **No `console.error` calls** that might leak sensitive information in production.
+- `supabaseInsert` returns Supabase's raw error text in `result.error` (`supabase.ts:76-77`), but the only consumer that reads it (`email-signup.ts:42-46`) uses it for a `duplicate` check and shows a fixed string. The feedback form shows nothing at all on failure — a UX gap, not a leak.
+- The license endpoint maps every failure to a fixed code (`not_configured`, `rate_limited`, `upstream_error`, `upstream_unreachable`) and never forwards Polar's body.
+- Network errors degrade to `'Network error.'`; the service worker serves cached pages offline.
 
-**Evidence:**
-```ts
-// email-signup.ts:45 — generic error message
-showError(wrapper, 'Something went wrong. Please try again.');
-
-// supabase.ts:53 — generic network error
-return { data: null, error: 'Network error.', status: 0 };
-```
-
-**Recommendation:**
-None — looking good.
+**Recommendation:** Give the suggestion form a visible failure message ("Couldn't submit — try again"). Not a security item.
 
 ---
 
 ### 9. Dependency & Code Scan — PASS
 
-**What was checked:**
-- Reviewed `package.json` for dependencies
-- Checked for lock files
-- Scanned for XSS vulnerabilities in innerHTML usage
-- Reviewed the codebase for common vulnerability patterns
-
 **Findings:**
-- **Zero runtime dependencies.** `package.json` has no `dependencies` or `devDependencies`. The only tool used is `bunx tsc` for compilation. This is an excellent security posture.
-- **No lock files** exist (no `bun.lock`, `package-lock.json`, or `yarn.lock`), which is fine given zero dependencies.
-- **XSS**: All user-generated content in the feedback board goes through `escapeHtml()` before rendering. The 17 other `innerHTML` assignments use hardcoded template literals with no user input — safe.
-- **No `eval()`, `Function()`, or `document.write()`** found in the codebase.
-- **`supabaseRpc`** does not validate the function name against an allowlist (unlike `supabaseFetch`/`supabaseInsert` which check `ALLOWED_TABLES`). Currently only `increment_suggestion_vote` is called, but the function could be used to call any Supabase RPC. Low risk since the call site is controlled, but worth noting.
-
-**Evidence:**
-```json
-// package.json — zero dependencies
-{
-  "name": "kittechsix-landing",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "build": "bunx tsc && cp index.html dist/ && ...",
-    "dev": "bunx tsc --watch"
-  }
-}
-```
-
-**Recommendation:**
-Consider adding an `ALLOWED_RPCS` set in `supabase.ts` to match the `ALLOWED_TABLES` pattern:
-```ts
-const ALLOWED_RPCS = new Set(['increment_suggestion_vote']);
-```
+- `package.json` has **no dependencies or devDependencies**; `bunx tsc` is fetched at build time. `npm audit` is N/A — there is no supply chain to audit.
+- No `eval`, `Function`, `child_process`, or dynamic `import()` of user input.
+- TypeScript strict mode; `.githooks/pre-push` refuses to push on type errors.
+- Minor: `src/sw.ts` "network-first" branch caches **every** GET including cross-origin Supabase responses. Only public suggestion data flows through it today. Scope it to `url.origin === location.origin` so a future authenticated fetch never lands in Cache Storage.
 
 ---
 
-## Action Items
+## Action Items — status as of 2026-09-08 (same day)
 
-### Critical (Fix Before Launch)
-- [ ] **Verify Supabase RLS policies** in the dashboard for `landing_suggestions` and `landing_emails` — especially confirm `landing_emails` has no SELECT policy for anon (emails must not be readable from the client)
-- [ ] **Add CAPTCHA** (Cloudflare Turnstile recommended — free, invisible) to the suggestion form and email signup to prevent bot spam
+Everything code-side is applied and deployed. Everything database-side is written as one
+idempotent migration, `scripts/sql/2026-09-08-landing-hardening.sql`, waiting to be run
+(the audit tooling cannot execute SQL against the project; see `scripts/sql/README.md`).
 
-### Recommended (Fix Soon)
-- [ ] **Add security headers** to `vercel.json` (CSP, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
-- [ ] **Add database CHECK constraints** on `landing_suggestions.category` and field lengths to enforce validation server-side
-- [ ] **Add `ALLOWED_RPCS`** allowlist in `supabase.ts` for the RPC wrapper function
+### Critical (before promoting to residents/colleagues)
+- [x] **Migration applied 2026-09-08.** Resulting policies: `emails_public_insert`,
+      `suggestions_public_insert`, `suggestions_public_read` — nothing else. Re-probed live with
+      the anon key afterwards:
+      `SELECT landing_emails` → 401 · `SELECT landing_vote_log` → 401 · `UPDATE landing_suggestions`
+      → 42501 permission denied · `INSERT approved=true` → 401 · `INSERT bad category` → 400 ·
+      `INSERT malformed email` → 400 · public board still serves its 5 approved rows.
+      **Check 1 is now effectively PASS; Check 4 and Check 6 are resolved.**
+- [x] **Gate the public suggestion board** — client shipped (no optimistic insert; "held for
+      review" message; honeypot). Server side lands with the migration (`approved` column +
+      read policy `approved = true`; existing rows grandfathered).
+- [x] **"No patient information" notice** under the feedback form.
 
-### Nice to Have
-- [ ] Add a honeypot field to forms as a quick interim bot filter before full CAPTCHA integration
-- [ ] Consider a Supabase Edge Function proxy for inserts to enable server-side rate limiting and validation
-- [ ] Add `Strict-Transport-Security` header (Vercel serves HTTPS by default, but the header signals intent)
+### Recommended
+- [x] CHECK constraints — in the migration (`NOT VALID`, so history can't block it).
+- [x] Vote RPC — rebuilt in the migration: one vote per suggestion per client (IP-hash log),
+      approved rows only, log table unreachable except through the function.
+- [x] `https://kittech-six.org` added to the API CORS allowlist.
+- [x] Inserts now use `Prefer: return=minimal`, so the public role never needs SELECT to submit.
+
+### Nice to have
+- [x] Service worker no longer intercepts cross-origin or non-GET requests.
+- [x] Suggestion form shows success / rate-limited / failure states.
+- [ ] `tasks/` remains in the public repo — your call; contents are process notes, not secrets.
+- [ ] Vercel Firewall rate-limit rule on `/api/validate-license` if abuse ever appears (dashboard only).
 
 ---
 
@@ -318,8 +227,6 @@ const ALLOWED_RPCS = new Set(['increment_suggestion_vote']);
 ```bash
 # In Claude Code:
 claude -p "Run /security-audit on this project"
-
-# Or as a pre-push hook (see setup instructions in the audit skill)
 ```
 
 *Generated by the Security Audit skill*

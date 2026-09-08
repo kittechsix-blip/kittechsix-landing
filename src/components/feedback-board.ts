@@ -37,6 +37,8 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
       <form class="feedback-form" id="feedback-form">
         <input class="feedback-input" type="text" placeholder="What should we build or improve?" required maxlength="100" aria-label="Feature title">
         <textarea class="feedback-textarea" placeholder="What problem would this solve? Who would use it?" maxlength="500" aria-label="Description"></textarea>
+        <p class="feedback-note">Please don’t include patient information — no names, dates of birth, record numbers, or case details. Suggestions are reviewed before they appear.</p>
+        <div class="feedback-hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <select class="feedback-select" aria-label="Category">
           <option value="myMedKitt">myMedKitt</option>
           <option value="myStroke-Kitt">myStroke-Kitt</option>
@@ -49,6 +51,7 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
           <option value="General">General</option>
         </select>
         <button type="submit" class="cta-primary feedback-submit">Submit Suggestion</button>
+        <p class="feedback-status" id="feedback-status" role="status" aria-live="polite" hidden></p>
       </form>
       <div class="feedback-controls" id="feedback-controls"></div>
       <div class="feedback-grid" id="feedback-grid"></div>
@@ -69,8 +72,21 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
     const catSelect = form.querySelector('select') as HTMLSelectElement;
     const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
 
+    const status = form.querySelector('#feedback-status') as HTMLElement;
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+    const setStatus = (msg: string): void => { status.textContent = msg; status.hidden = false; };
+
     const title = titleInput.value.trim();
     if (!title) return;
+
+    // Honeypot: real visitors never see this field. Bots that fill it get a
+    // convincing "success" and nothing is sent.
+    if (honeypot && honeypot.value) {
+      titleInput.value = '';
+      descInput.value = '';
+      setStatus('Thanks — your suggestion will appear once it has been reviewed.');
+      return;
+    }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
@@ -84,11 +100,16 @@ export function renderFeedbackBoard(parent: HTMLElement): void {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Submit Suggestion';
 
-    if (result.data && Array.isArray(result.data) && result.data.length > 0) {
-      suggestions.unshift(result.data[0]);
+    // New suggestions are held for review (approved = false) and are not
+    // returned by the public read policy, so nothing is added to the grid here.
+    if (!result.error && result.status >= 200 && result.status < 300) {
       titleInput.value = '';
       descInput.value = '';
-      renderGrid();
+      setStatus('Thanks — your suggestion will appear once it has been reviewed.');
+    } else if (result.status === 429) {
+      setStatus('Too many submissions in a row — please wait a moment and try again.');
+    } else {
+      setStatus('Couldn’t submit just now — please try again.');
     }
   });
 
