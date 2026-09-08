@@ -8,7 +8,7 @@ export function renderAbout(parent: HTMLElement): void {
   section.innerHTML = `
     <div class="section-content about-grid">
       <div class="about-portrait">
-        <img src="assets/andy-kitlowski-clinical-closeup.jpg" alt="Dr. Andy Kitlowski, emergency physician and founder of Kittech-Six" class="about-portrait-img" />
+        <img src="assets/andy-kitlowski-profile-20260908.jpg" alt="Dr. Andy Kitlowski, emergency physician and founder of Kittech-Six" class="about-portrait-img" />
         <span class="about-portrait-caption">Andy Kitlowski, MD<br>Emergency physician / founder</span>
       </div>
       <div class="about-body">
