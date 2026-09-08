@@ -239,12 +239,12 @@ const additional: Project[] = [
   },
   {
     "id": "medvox",
-    "name": "MedVox / Spanish Translator",
-    "category": "Everyday tools",
-    "summary": "Explore continuous English–Spanish speech translation.",
-    "status": "In development",
+    "name": "MedVox",
+    "category": "Clinical tools",
+    "summary": "A bedside English–Spanish bridge that runs entirely on the phone.",
+    "status": "Prototype",
     "url": "",
-    "description": "A SwiftUI interpreter project for iPhone."
+    "description": "Hold a control while one person speaks, release, and the translation is spoken in the other language. Everything runs on the iPhone using Apple's on-device speech and translation, so nothing said at the bedside leaves the device. Anything involving numbers, medications, left or right, or a consequential decision is held on screen for the clinician to read before it is played. It is a bridge for routine communication, not a substitute for a qualified interpreter, and it can dial one."
   },
   {
     "id": "just-do-it",
