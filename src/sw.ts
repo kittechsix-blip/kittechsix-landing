@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v46-catalog-icons';
+const CACHE_NAME = 'kittechsix-v47-spin-to-win';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -22,6 +22,10 @@ const ASSETS_TO_CACHE = [
   '/data/studio-catalog.js',
   '/data/skill-library.js',
   '/data/workflows.js',
+  '/styles/spin-to-win.css',
+  '/components/spin-to-win.js',
+  '/components/spin-quiz.js',
+  '/data/spin-to-win.js',
   '/styles/featured.css',
   '/styles/showcase.css',
   '/styles/demo.css',

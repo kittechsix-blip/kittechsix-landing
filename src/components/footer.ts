@@ -63,6 +63,7 @@ export function renderFooter(parent: HTMLElement): void {
             <a href="#/about">About Andy</a>
             <a href="#/learn">Lectures & learning</a>
             <a href="#/workflows">Skills & workflows</a>
+            <a href="#/spin-to-win">Spin to Win</a>
             <a href="#/how-i-build">How I build</a>
           </div>
         </div>

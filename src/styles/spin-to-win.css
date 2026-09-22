@@ -1,0 +1,99 @@
+/* Spin to Win — course map + checkpoint quiz. Flat paper, hairlines, copper only
+   where-you-are (active row, links, primary button). No shadows. 44px touch floor. */
+.spin { max-width: var(--content-max); }
+.spin-head { border-bottom: 1px solid var(--ink); }
+.spin-disclaimer { margin-top: 18px; font: 400 .8rem/1.5 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+
+/* How-to strip */
+.spin-how { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--ink); }
+.spin-how li { display: grid; gap: 6px; padding: 22px 24px 24px 0; }
+.spin-how li + li { border-left: 1px solid var(--hairline); padding-left: 24px; }
+.spin-how-n { font: 400 .75rem/1.5 var(--font-mono); letter-spacing: .06em; color: var(--accent-press); }
+.spin-how strong { font: 500 1.3rem/1.2 var(--font-display); color: var(--ink); }
+.spin-how li > span:last-child { font-size: .95rem; line-height: 1.5; color: var(--ink-3); }
+
+/* Season */
+.spin-season { padding: 44px 0 0; }
+.spin-season-head { display: grid; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid var(--ink); }
+.spin-season-head h2 { margin-top: 4px; }
+.spin-pathway { font: 400 .8rem/1.5 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); }
+.spin-blurb { color: var(--ink-2); max-width: 720px; }
+.spin-season-head .hub-link { margin-top: 4px; }
+
+/* Episode rows */
+.spin-eps { list-style: none; margin: 0; padding: 0; }
+.spin-ep { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "head head" "title title" "who links"; gap: 8px 24px; padding: 20px 0 20px 16px; border-bottom: 1px solid var(--hairline); border-left: 3px solid transparent; margin-left: -19px; scroll-margin-top: 100px; }
+.spin-ep.is-focus { border-left-color: var(--accent); background: var(--paper-warm); }
+.spin-ep:focus-visible { outline: 2px solid var(--accent-press); outline-offset: 2px; }
+.spin-ep-head { grid-area: head; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.spin-ep-id { font: 500 .8rem/1.5 var(--font-mono); letter-spacing: .08em; color: var(--accent-press); }
+.spin-ep-title { grid-area: title; font: 500 1.35rem/1.25 var(--font-display); letter-spacing: -.01em; color: var(--ink); }
+.spin-ep-who { grid-area: who; align-self: center; font-size: .9rem; color: var(--ink-3); }
+.spin-ep-links { grid-area: links; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; }
+.spin-platform, .spin-app { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: .9rem; font-weight: 600; color: var(--accent-press); }
+.spin-tag { font: 400 .7rem/1.4 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); border-bottom: 1px solid var(--hairline); }
+
+/* Status pills: planned = muted outline, filmed = copper outline, live = copper fill. */
+.spin-pill { margin-left: auto; display: inline-flex; align-items: center; min-height: 24px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); font: 400 .7rem/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.spin-pill-filmed { border-color: var(--accent); color: var(--accent-press); }
+.spin-pill-live { border-color: var(--accent-press); background: var(--accent-press); color: var(--paper); }
+
+/* Season footer */
+.spin-season-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 20px 0 8px; }
+.spin-best { font: 400 .8rem/1.5 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); }
+.spin-muted { font-size: .9rem; color: var(--ink-3); }
+.spin-secondary { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 20px; background: var(--paper); border: 1px solid var(--ink); border-radius: 4px; color: var(--ink); font: 600 1rem/1.4 var(--font-text); cursor: pointer; }
+.spin-secondary:hover { border-color: var(--accent-press); color: var(--accent-press); }
+
+/* Quiz */
+.spin-quiz { margin: 8px 0 12px; padding: 24px; border: 1px solid var(--ink); scroll-margin-top: 100px; }
+.spin-quiz-top { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+.spin-quiz-score { font: 400 .75rem/1.5 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.spin-quiz-prompt { margin: 14px 0 18px; font: 500 1.4rem/1.3 var(--font-display); letter-spacing: -.01em; }
+.spin-quiz-choices { display: grid; gap: 8px; }
+.spin-choice { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; text-align: left; min-height: 48px; padding: 12px 14px; background: var(--paper); border: 1px solid var(--hairline); border-radius: 4px; color: var(--ink); font: 400 1rem/1.45 var(--font-text); cursor: pointer; }
+.spin-choice:hover:not(:disabled) { border-color: var(--ink); }
+.spin-choice.is-picked { border-color: var(--accent-press); border-width: 2px; padding: 11px 13px; }
+.spin-choice:disabled { cursor: default; color: var(--ink-3); }
+.spin-choice.is-right { border-color: var(--color-safe); border-width: 2px; padding: 11px 13px; color: var(--ink); }
+.spin-choice.is-wrong { border-color: var(--color-danger); border-width: 2px; padding: 11px 13px; color: var(--ink); }
+.spin-choice-key { font: 500 .8rem/1.6 var(--font-mono); color: var(--accent-press); }
+.spin-quiz-verdict:not(:empty) { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--hairline); }
+.spin-verdict-line { font-size: .95rem; line-height: 1.55; color: var(--ink-2); }
+.spin-verdict-line.is-right strong { color: var(--color-safe); }
+.spin-verdict-line.is-wrong strong { color: var(--color-danger); }
+.spin-quiz-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 20px; }
+.spin-quiz-actions [hidden] { display: none; }
+
+/* Score card */
+.spin-score { display: grid; gap: 6px; }
+.spin-score-big { font: 500 clamp(3.5rem, 12vw, 5.5rem)/1 var(--font-display); color: var(--accent-press); letter-spacing: -.03em; }
+.spin-score-big span { font-size: .45em; color: var(--ink-3); }
+.spin-score-title { font: 500 1.3rem/1.3 var(--font-display); }
+.spin-score-date { font: 400 .8rem/1.5 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.spin-badge { display: block; width: 100%; max-width: 360px; height: auto; margin-top: 16px; border: 1px solid var(--hairline); }
+
+/* Bottom */
+.spin-end { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--ink); }
+.spin-follow ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; font-size: .95rem; color: var(--ink-2); }
+
+@media (max-width: 720px) {
+  .spin-how { grid-template-columns: 1fr; }
+  .spin-how li { padding: 16px 0; }
+  .spin-how li + li { border-left: 0; border-top: 1px solid var(--hairline); padding-left: 0; }
+  .spin-ep { grid-template-columns: 1fr; grid-template-areas: "head" "title" "who" "links"; gap: 6px; padding-left: 12px; margin-left: -15px; }
+  .spin-ep-links { gap: 0 16px; }
+  .spin-quiz { padding: 16px; }
+  .spin-season-foot .hub-primary { width: 100%; }
+}
+
+@media print {
+  .spin-season-foot, .spin-quiz-host, .spin-end, .spin-platform, .glass-nav, .nav-overlay, .footer { display: none !important; }
+  .spin { padding: 0; max-width: none; }
+  .spin-ep { break-inside: avoid; page-break-inside: avoid; padding: 10px 0; margin-left: 0; border-left: 0; background: none; }
+  .spin-ep.is-focus { background: none; }
+  .spin-season { break-before: auto; }
+  .spin-app { color: var(--ink); font-weight: 400; min-height: 0; }
+  .spin-app::after { content: " " attr(href); font: 400 .7rem/1.4 var(--font-mono); color: var(--ink-3); }
+  .spin-app span { display: none; }
+}

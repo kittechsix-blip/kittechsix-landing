@@ -15,8 +15,9 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Projects', ordinal: '01', overlayLabel: 'All projects', route: '/projects' },
   { label: 'Learn', ordinal: '02', overlayLabel: 'Lectures & learning', route: '/learn' },
   { label: 'Workflows', ordinal: '03', overlayLabel: 'Skills & workflows', route: '/workflows' },
-  { label: 'How I build', ordinal: '04', overlayLabel: 'How I build', route: '/how-i-build' },
-  { label: 'About', ordinal: '05', overlayLabel: 'About Andy', route: '/about' },
+  { label: 'Spin to Win', ordinal: '04', overlayLabel: 'Spin to Win (vertigo course)', route: '/spin-to-win' },
+  { label: 'How I build', ordinal: '05', overlayLabel: 'How I build', route: '/how-i-build' },
+  { label: 'About', ordinal: '06', overlayLabel: 'About Andy', route: '/about' },
 ];
 
 /** Clinical legacy detail routes still belong to Projects. */

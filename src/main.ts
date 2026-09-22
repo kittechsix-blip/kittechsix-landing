@@ -11,6 +11,7 @@ import { renderWorkDetail } from './components/work-detail.js';
 import { renderConsulting } from './components/consulting.js';
 import { renderStudio } from './components/studio.js';
 import { renderLegalPage } from './components/legal-page.js';
+import { renderSpinToWin } from './components/spin-to-win.js';
 import { setupScrollAnimations } from './utils/intersection.js';
 import { mountFrameSheen } from './components/frame.js';
 
@@ -54,6 +55,8 @@ router.on('/work/:id', (params) => page((app) => renderWorkDetail(app, params['i
 router.on('/consulting', () => page(renderConsulting));
 router.on('/studio', () => page(renderStudio));
 router.on('/legal', () => page(renderLegalPage));
+router.on('/spin-to-win', () => page(renderSpinToWin));
+router.on('/spin-to-win/:ep', p => page(app => renderSpinToWin(app, p['ep'])));
 
 // Unknown hash → the work index, with the address corrected so the URL never lies
 // about what is on screen. Guarded against a redirect loop.
