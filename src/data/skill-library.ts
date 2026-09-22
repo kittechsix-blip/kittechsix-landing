@@ -1,6 +1,15 @@
 // Curated metadata from the existing Instar library; source files remain in Instar.
 export const SKILLS = [
   {
+    "id": "linkedin-clinician-builder",
+    "name": "LinkedIn Clinician Builder",
+    "summary": "Make your LinkedIn profile reflect the clinical, teaching and software work you actually do.",
+    "detail": "A reusable method built from 20 curated video reviews. It turns verified roles and projects into a headline, About, accurate history, Featured cards with project icons, and a professional bio. The Instar guide explains the research, offers a copyable prompt, and includes a public skill download.",
+    "type": "skill",
+    "level": "beginner",
+    "url": "https://instar-kb.vercel.app/c/linkedin-clinician-builder"
+},
+  {
     "id": "short-educational-video",
     "name": "Short Educational Video Skill",
     "summary": "Turn one teaching idea into a 15–30 second video with a clear script, editable visuals, and an export checklist.",
