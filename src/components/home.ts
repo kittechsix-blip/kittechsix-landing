@@ -62,9 +62,9 @@ function shelf(ids: string[]): string {
 }
 
 const logoLayers = `
-  <img class="kx-dim" src="assets/kittech-logo.webp" alt="" width="1120" height="886">
-  <img class="kx-lit" src="assets/kittech-logo.webp" alt="" width="1120" height="886" fetchpriority="high">
-  <img class="kx-front" src="assets/kittech-logo.webp" alt="" width="1120" height="886">
+  <img class="kx-dim" src="assets/kittech-logo.webp" alt="" width="1120" height="938">
+  <img class="kx-lit" src="assets/kittech-logo.webp" alt="" width="1120" height="938" fetchpriority="high">
+  <img class="kx-front" src="assets/kittech-logo.webp" alt="" width="1120" height="938">
   <div class="kx-ignite"></div>
   <div class="kx-sweep"></div>`;
 
@@ -76,7 +76,7 @@ export function renderHome(parent: HTMLElement): void {
   root.className = 'kx';
   root.innerHTML = `
   <header class="kx-top">
-    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="158"><span>KITTECHSIX</span></a>
+    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="167"><span>KITTECHSIX</span></a>
     <nav class="kx-nav" aria-label="Primary">
       <button type="button" data-kx-scroll="kx-tools">Tools</button>
       <button type="button" data-kx-scroll="kx-lab">Lectures</button>
@@ -180,7 +180,7 @@ export function renderHome(parent: HTMLElement): void {
   </section>
 
   <footer class="kx-foot">
-    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="158"><span>KITTECHSIX</span></a>
+    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="167"><span>KITTECHSIX</span></a>
     <span>Andy Kitlowski, MD · Austin, Texas · © 2026 Kittech-Six LLC</span>
     <nav aria-label="Footer"><a href="#/projects">Projects</a><a href="#/learn">Learn</a><a href="#/workflows">AI guides</a><a href="#/legal">Legal &amp; privacy</a></nav>
     <div class="kx-socials">${socials()}</div>
