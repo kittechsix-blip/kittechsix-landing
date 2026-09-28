@@ -87,9 +87,13 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {
     // SW registration failed — page works fine without it
   });
+  // Reload only when a new worker REPLACES an old one (a deploy). A first visit
+  // also fires controllerchange when the first worker claims the page; reloading
+  // then restarted the home page's logo animation for every new visitor.
+  const hadController = Boolean(navigator.serviceWorker.controller);
   let reloading = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (reloading) return;
+    if (!hadController || reloading) return;
     reloading = true;
     window.location.reload();
   });

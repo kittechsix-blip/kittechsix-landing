@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v49-logo-full';
+const CACHE_NAME = 'kittechsix-v50-logo-shimmer';
 
 const ASSETS_TO_CACHE = [
   '/',
