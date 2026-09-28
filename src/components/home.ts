@@ -62,9 +62,9 @@ function shelf(ids: string[]): string {
 }
 
 const logoLayers = `
-  <img class="kx-dim" src="assets/kittech-logo.webp" alt="" width="1120" height="942">
-  <img class="kx-lit" src="assets/kittech-logo.webp" alt="" width="1120" height="942" fetchpriority="high">
-  <img class="kx-front" src="assets/kittech-logo.webp" alt="" width="1120" height="942">
+  <img class="kx-dim" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
+  <img class="kx-lit" src="assets/kittech-logo.webp" alt="" width="1120" height="948" fetchpriority="high">
+  <img class="kx-front" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
   <div class="kx-ignite"></div>
   <div class="kx-sweep"></div>
   <div class="kx-shimmer"></div>`;
@@ -77,7 +77,7 @@ export function renderHome(parent: HTMLElement): void {
   root.className = 'kx';
   root.innerHTML = `
   <header class="kx-top">
-    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="168"><span>KITTECHSIX</span></a>
+    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="169"><span>KITTECHSIX</span></a>
     <nav class="kx-nav" aria-label="Primary">
       <button type="button" data-kx-scroll="kx-tools">Tools</button>
       <button type="button" data-kx-scroll="kx-lab">Lectures</button>
@@ -181,7 +181,7 @@ export function renderHome(parent: HTMLElement): void {
   </section>
 
   <footer class="kx-foot">
-    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="168"><span>KITTECHSIX</span></a>
+    <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="169"><span>KITTECHSIX</span></a>
     <span>Andy Kitlowski, MD · Austin, Texas · © 2026 Kittech-Six LLC</span>
     <nav aria-label="Footer"><a href="#/projects">Projects</a><a href="#/learn">Learn</a><a href="#/workflows">AI guides</a><a href="#/legal">Legal &amp; privacy</a></nav>
     <div class="kx-socials">${socials()}</div>

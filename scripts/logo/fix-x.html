@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>KittechSix — repaired x</title>
+<style>html,body{margin:0;background:#09090e}canvas{display:block;width:min(100%,1093px);height:auto;margin:auto}#status{color:#d8b4a0;font:14px system-ui;padding:12px}</style>
+<div id="status">Measuring and repairing the source…</div><canvas id="fixed" width="2186" height="1952"></canvas>
+<script>
+'use strict';
+window.fixDone=false;
+// Source-space geometry. The narrow rising stroke and broad curved falling
+// stroke form ONE silhouette, so no bevel seam appears at their crossing.
+const repair={x:1798,y:1465,w:320,h:255,
+ erase:'M 1895 1473 L 2075 1473 L 2110 1550 L 2110 1713 L 1807 1713 L 1807 1687 C 1847 1653 1889 1601 1914 1540 L 1902 1524 Z',
+ glyph:[
+ 'M 1873 1513 C 1882 1490 1899 1484 1917 1490 C 1944 1499 1947 1530 1954 1561 L 1974 1634 C 1980 1656 1987 1671 2000 1668 C 2026 1660 2060 1615 2080 1582 C 2083 1577 2090 1578 2087 1586 C 2068 1627 2031 1682 2003 1694 C 1975 1706 1953 1694 1943 1665 C 1932 1636 1925 1598 1916 1568 C 1907 1536 1901 1507 1888 1508 C 1882 1508 1878 1512 1873 1513 Z',
+ 'M 1828 1692 C 1856 1667 1890 1630 1924 1595 L 1996 1517 C 2019 1491 2037 1480 2052 1492 C 2057 1496 2059 1505 2054 1507 C 2034 1507 2019 1520 2004 1535 L 1941 1600 C 1904 1641 1875 1677 1862 1694 C 1854 1697 1838 1695 1828 1692 Z'
+ ]};
+function quantile(a,q){a.sort((x,y)=>x-y);return a[Math.floor((a.length-1)*q)];}
+function measure(src,W){
+ const pixel=(x,y)=>{const k=(y*W+x)*4;return [src[k],src[k+1],src[k+2]];};
+ const metal=(x,y)=>{const p=pixel(x,y);return p[0]>65&&p[0]>p[2]*1.2;};
+ const runs=[];
+ for(let y=1498;y<=1635;y++){let xs=[];for(let x=1715;x<=1845;x++)if(metal(x,y))xs.push(x);if(xs.length>25)runs.push({y,left:xs[0],right:xs[xs.length-1]});}
+ const widths=runs.map(r=>r.right-r.left+1),n=runs.length;
+ const my=runs.reduce((s,r)=>s+r.y,0)/n,mx=runs.reduce((s,r)=>s+(r.left+r.right)/2,0)/n;
+ const slope=runs.reduce((s,r)=>s+(r.y-my)*((r.left+r.right)/2-mx),0)/runs.reduce((s,r)=>s+(r.y-my)**2,0);
+ let top=2000,base=0;for(let y=1470;y<1710;y++)for(let x=1715;x<1845;x++)if(metal(x,y)){top=Math.min(top,y);base=Math.max(base,y);}
+ const faces=[[],[],[]],rims=[[],[],[]],shadows=[[],[],[]];
+ for(const r of runs){for(let x=r.left+12;x<=r.right-12;x++){const p=pixel(x,r.y);for(let c=0;c<3;c++)faces[c].push(p[c]);}for(let x=r.left;x<=r.left+9;x++){const p=pixel(x,r.y);for(let c=0;c<3;c++)rims[c].push(p[c]);}for(let x=r.right-5;x<=r.right;x++){const p=pixel(x,r.y);for(let c=0;c<3;c++)shadows[c].push(p[c]);}}
+ return {i:{top,baseline:base,xHeight:base-top,width:quantile(widths,.5),slantDegrees:Math.atan(-slope)*180/Math.PI},face:faces.map(a=>quantile(a,.5)),rim:rims.map(a=>quantile(a,.96)),shadow:shadows.map(a=>quantile(a,.2))};
+}
+function mask(path){const c=document.createElement('canvas');c.width=repair.w;c.height=repair.h;const g=c.getContext('2d');g.translate(-repair.x,-repair.y);g.fillStyle='#fff';g.fill(new Path2D(path));return g.getImageData(0,0,c.width,c.height).data;}
+function distance(alpha,w,h,inside){const d=new Float32Array(w*h);for(let i=0;i<d.length;i++)d[i]=(alpha[i*4+3]>127)===inside?1e4:0;const sq=Math.SQRT2;for(let y=1;y<h;y++)for(let x=1;x<w-1;x++){let k=y*w+x;d[k]=Math.min(d[k],d[k-1]+1,d[k-w]+1,d[k-w-1]+sq,d[k-w+1]+sq);}for(let y=h-2;y>=0;y--)for(let x=w-2;x>0;x--){let k=y*w+x;d[k]=Math.min(d[k],d[k+1]+1,d[k+w]+1,d[k+w-1]+sq,d[k+w+1]+sq);}return d;}
+async function run(){
+ const img=new Image();img.src='../../../_assets/icon\'s/kittechsix-logo-clean.png';await img.decode();
+ if(img.naturalWidth!==2186||img.naturalHeight!==1952)throw Error('Unexpected source dimensions');
+ const canvas=document.getElementById('fixed'),ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0);
+ const original=ctx.getImageData(0,0,canvas.width,canvas.height),src=original.data,W=canvas.width;
+ const measured=measure(src,W);window.fixMeasurements=measured;
+ const {x:rx,y:ry,w,h}=repair,erased=mask(repair.erase),ink=mask(repair.glyph.join(' '));
+ const inside=distance(ink,w,h,true),outside=distance(ink,w,h,false),eraseEdge=distance(erased,w,h,true);
+ const out=ctx.getImageData(rx,ry,w,h);
+ // A single, uninterrupted clean patch above the lettering, to the right of the brain supplies
+ // actual source texture. No repeating tiles, random static, or flat rectangle.
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+  const k=y*w+x,p=k*4,gx=rx+x,gy=ry+y;
+  const e=erased[p+3]/255*Math.min(1,eraseEdge[k]/7);
+  const donor=((gy-380)*W+gx)*4;
+  for(let c=0;c<3;c++){
+   let top=0,bottom=0,local=0,n=0;
+   for(let dx=-7;dx<=7;dx++){top+=src[(1467*W+gx+dx)*4+c];bottom+=src[(1726*W+gx+dx)*4+c];}
+   for(let dy=-4;dy<=4;dy+=2)for(let dx=-4;dx<=4;dx+=2){local+=src[((gy-380+dy)*W+gx+dx)*4+c];n++;}
+   const t=y/(h-1),back=top/15*(1-t)+bottom/15*t+(src[donor+c]-local/n)*.65;
+   out.data[p+c]=out.data[p+c]*(1-e)+back*e;
+  }
+ }
+ const face=measured.face,rim=measured.rim,dark=measured.shadow;
+ // Smooth the signed distance before computing normals; this eliminates
+ // chamfer-grid scalloping on shallow copper rims.
+ const field=new Float32Array(w*h);
+ for(let y=3;y<h-3;y++)for(let x=3;x<w-3;x++){let sum=0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const j=(y+dy)*w+x+dx;sum+=inside[j]-outside[j];}field[y*w+x]=sum/25;}
+ for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){
+  const k=y*w+x,p=k*4,a=ink[p+3]/255;
+  // A low, warm ambient contact shadow extends only within the repair mask.
+  if(!a&&erased[p+3]){const s=.38*Math.exp(-outside[k]/5);for(let c=0;c<3;c++)out.data[p+c]*=1-s;}
+  if(!a){
+   const offset=(y-4)*w+x+1;
+   if(offset>=0&&ink[offset*4+3]){const ea=ink[offset*4+3]/255;for(let c=0;c<3;c++)out.data[p+c]=out.data[p+c]*(1-ea)+dark[c]*.55*ea;}
+   continue;
+  }
+  const d=Math.max(.4,field[k]);let nx=(field[k+2]-field[k-2])*.25,ny=(field[k+2*w]-field[k-2*w])*.25;
+  const len=Math.hypot(nx,ny)||1;nx/=len;ny/=len;
+  const light=(nx*.6+ny*.8),bevel=Math.exp(-(((d-4.2)/2.6)**2)),ridge=Math.exp(-(((d-10.5)/1.3)**2)),shoulder=Math.exp(-d/7.5);
+  const sheen=1.06-.14*y/h+.018*Math.sin(x*.025+y*.01);
+  for(let c=0;c<3;c++){
+   let v=face[c]*sheen*1.14;
+   // polished rim on the lit edge + a fine inner ridge line, like the neighbouring i
+   const highlight=Math.min(1,Math.max(0,light)*2.3)*bevel + Math.min(.55,(0.25+Math.max(0,light))*0.6)*ridge;
+   const hl=Math.min(1,highlight); v=v*(1-hl)+rim[c]*hl;
+   const shade=Math.max(0,-light)*shoulder*.88;
+   v=v*(1-shade)+dark[c]*shade;
+   if(d<1.1)v*=.76;
+   // Reuse faint source surface variation, keeping the bevel itself smooth.
+   const texture=src[((ry+y-380)*W+rx+x)*4]-12;
+   v+=texture*.12;
+   out.data[p+c]=out.data[p+c]*(1-a)+v*a;
+  }
+ }
+ // Preserve the i and its rising connector, including their edge pixels.
+ const guard=[[1465,1868],[1518,1898],[1532,1917],[1550,1917],[1580,1901],[1610,1884],[1640,1855],[1670,1827],[1700,1802],[1720,1798]];
+ 
+ for(let y=0;y<h;y++){
+  const gy=ry+y;let j=1;while(j<guard.length-1&&guard[j][0]<gy)j++;
+  const [ya,xa]=guard[j-1],[yb,xb]=guard[j];const limit=xa+(xb-xa)*(gy-ya)/(yb-ya);
+  for(let x=0;x<w&&rx+x<=limit;x++){const p=(y*w+x)*4,q=(gy*W+rx+x)*4;if(src[q]>30&&src[q]>src[q+2]*1.2)for(let c=0;c<4;c++)out.data[p+c]=src[q+c];}
+ }
+ ctx.putImageData(out,rx,ry);
+ // Assert byte-for-byte protection outside the declared edit envelope.
+ const result=ctx.getImageData(0,0,W,canvas.height).data;let changed=0,escaped=0;
+ for(let y=0;y<canvas.height;y++)for(let x=0;x<W;x++){const p=(y*W+x)*4;if(result[p]!==src[p]||result[p+1]!==src[p+1]||result[p+2]!==src[p+2]||result[p+3]!==src[p+3]){changed++;if(x<rx||x>=rx+w||y<ry||y>=ry+h)escaped++;}}
+ if(escaped)throw Error('Repair escaped its envelope');
+ window.fixReport={width:W,height:canvas.height,changedPixels:changed,changedOutsideEnvelope:escaped,measurements:measured};
+ window.fixedCanvas=canvas;window.fixDone=true;document.getElementById('status').textContent='Ready — full-resolution canvas available as window.fixedCanvas';
+}
+run().catch(e=>{window.fixError=String(e);document.getElementById('status').textContent='Repair failed: '+e;console.error(e);});
+</script></html>

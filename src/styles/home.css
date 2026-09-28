@@ -48,7 +48,7 @@ body.kx-body { background: #0C0B0A; }
 /* The logo powers up in layers stacked on one box: dim silhouette → the chip
    ignites → a current front spreads out through the circuits → the cross
    flashes → one sweep of light crosses the metal. */
-.kx-logo { position: relative; width: min(560px, 86vw, 62vh); aspect-ratio: 1120 / 942; filter: drop-shadow(0 34px 60px rgba(0, 0, 0, .6)); }
+.kx-logo { position: relative; width: min(560px, 86vw, 62vh); aspect-ratio: 1120 / 948; filter: drop-shadow(0 34px 60px rgba(0, 0, 0, .6)); }
 .kx-logo > * { position: absolute; inset: 0; width: 100%; height: 100%; }
 .kx-logo .kx-dim { filter: brightness(.22) saturate(.6); opacity: .9; }
 .kx-logo .kx-lit { --kx-r: 0%;
