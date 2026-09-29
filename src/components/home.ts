@@ -108,8 +108,8 @@ export function renderHome(parent: HTMLElement): void {
     </div>
     <div class="kx-apps">
       <article class="kx-app">
-        <div class="kx-phone"><img src="assets/screens/mymedkitt.png" alt="myMedKitt home screen: a consult search box and entries for Chief Complaint Hubs, Tricks of the Trade and MedKitt Learn." width="390" height="844" loading="lazy"></div>
-        <div class="kx-meta"><h3><img src="assets/icons/mymedkitt.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
+        <div class="kx-phone"><video src="assets/screens/mymedkitt-burn-tbsa.mp4" poster="assets/screens/mymedkitt-burn-tbsa.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="myMedKitt burn TBSA calculator: burned skin is painted onto a body diagram, the percent of body surface area updates as you paint, and the Fluids tool then calculates the resuscitation fluid from that TBSA and the patient's weight."></video></div>
+        <div class="kx-meta"><h3><img src="assets/icons/mymedkitt.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
       </article>
       <article class="kx-app">
         <div class="kx-phone"><video src="assets/screens/my-vertigo-app-lateralize.mp4" poster="assets/screens/my-vertigo-app-lateralize.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="my-vertigo-app Lateralize tool: choose which way the nystagmus beats and the app names the affected ear, while an animated pair of eyes shows the slow drift and fast reset."></video></div>
