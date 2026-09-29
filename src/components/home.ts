@@ -112,8 +112,8 @@ export function renderHome(parent: HTMLElement): void {
         <div class="kx-meta"><h3><img src="assets/icons/mymedkitt.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
       </article>
       <article class="kx-app">
-        <div class="kx-phone"><img src="assets/screens/my-vertigo-app.png" alt="my-vertigo-app workup screen: Screen for Central Features, with tabs for Safety, Timing, BPPV, HINTS+ and Mimics." width="390" height="844" loading="lazy"></div>
-        <div class="kx-meta"><h3><img src="assets/icons/myvertigoapp.png" alt="" width="30" height="30">my-vertigo-app</h3><p>The dizzy patient, from bedside exam to disposition.</p><a class="kx-go" href="${VERTIGO_URL}" target="_blank" rel="noopener">Open my-vertigo-app →</a></div>
+        <div class="kx-phone"><video src="assets/screens/my-vertigo-app-lateralize.mp4" poster="assets/screens/my-vertigo-app-lateralize.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="my-vertigo-app Lateralize tool: choose which way the nystagmus beats and the app names the affected ear, while an animated pair of eyes shows the slow drift and fast reset."></video></div>
+        <div class="kx-meta"><h3><img src="assets/icons/myvertigoapp.png" alt="" width="30" height="30">my-vertigo-app</h3><p>The dizzy patient, from bedside exam to disposition. Watch the nystagmus, find the sick ear.</p><a class="kx-go" href="${VERTIGO_URL}" target="_blank" rel="noopener">Open my-vertigo-app →</a></div>
       </article>
     </div>
     <p class="kx-note">Educational decision support for licensed clinicians. Not FDA cleared. Not a substitute for clinical judgment.</p>
@@ -187,6 +187,11 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-socials">${socials()}</div>
   </footer>`;
   parent.appendChild(root);
+
+  // The Lateralize demo loops silently; honour reduced-motion by leaving it on the poster frame.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    root.querySelectorAll<HTMLVideoElement>('.kx-phone video').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
+  }
 
   // In-page jumps are buttons: a bare "#section" href would be read by the hash router as a route.
   root.querySelectorAll<HTMLButtonElement>('[data-kx-scroll]').forEach((btn) => {
