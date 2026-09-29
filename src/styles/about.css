@@ -11,9 +11,9 @@
   position:relative; overflow:hidden; background:#141414;
 }
 
-.about-grid { position:relative; display:grid; grid-template-columns:220px minmax(0,1fr); gap:clamp(52px,8vw,112px); align-items:start; max-width:1120px; }
+.about-grid { position:relative; display:grid; grid-template-columns:150px minmax(0,1fr); gap:clamp(52px,8vw,112px); align-items:start; max-width:1120px; }
 
-.about-portrait { position:relative; width:220px; height:292px; margin-top:74px; overflow:hidden; background:#1A1A1A; border:1px solid rgba(255,255,255,.16); }
+.about-portrait { position:relative; width:150px; height:200px; margin-top:74px; overflow:hidden; background:#1A1A1A; border:1px solid rgba(255,255,255,.16); }
 /* brand-audit-exempt: the linear-gradient below is a photographic caption
    scrim over the portrait (legibility technique), not chrome decoration. */
 .about-portrait::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(0,0,0,.72)); pointer-events:none; }
@@ -43,15 +43,15 @@
 .about-tags .tag--clinical::before { background:rgba(255,255,255,.5); }
 
 @media (max-width: 920px) {
-  .about-grid { grid-template-columns:170px minmax(0,1fr); gap:44px; }
-  .about-portrait { width:170px; height:226px; margin-top:64px; }
+  .about-grid { grid-template-columns:130px minmax(0,1fr); gap:44px; }
+  .about-portrait { width:130px; height:173px; margin-top:64px; }
   .about-body { max-width:760px; }
 }
 
 @media (max-width: 700px) {
   .about-section { padding-inline:18px; }
   .about-grid { grid-template-columns:1fr; gap:34px; }
-  .about-portrait { width:112px; height:142px; margin-top:0; }
+  .about-portrait { width:96px; height:128px; margin-top:0; }
   .about-portrait-caption { display:none; }
   .about-headline { font-size:clamp(36px,11vw,52px); }
   .about-actions { align-items:flex-start; flex-direction:column; }
