@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v56-burn-tbsa-demo';
+const CACHE_NAME = 'kittechsix-v58-echokitt';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -112,6 +112,7 @@ const ASSETS_TO_CACHE = [
   '/assets/icons/myventkitt.png',
   '/assets/icons/endocrinekitt.png',
   '/assets/icons/acute-vision-loss.png',
+  '/assets/icons/echokitt.png',
   '/assets/icons/mytravelmedkitt.png',
   '/assets/icons/myvertigoapp.png',
   '/assets/og-card-studio.png',

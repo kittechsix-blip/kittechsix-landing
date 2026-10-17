@@ -49,6 +49,7 @@ export function renderFooter(parent: HTMLElement): void {
             <a href="#/work/myventkitt">myVentKitt</a>
             <a href="#/work/endocrinekitt">EndocrineKitt</a>
             <a href="#/work/acute-vision-loss">Acute Vision Loss</a>
+            <a href="#/work/echokitt">EchoKitt</a>
             <a href="#/projects/mytravelmedkitt">MyTravelMedKitt <span class="footer-link-tag">In build</span></a>
             <a href="#/projects/powerkitt">PowerKitt <span class="footer-link-tag">In build</span></a>
           </div>

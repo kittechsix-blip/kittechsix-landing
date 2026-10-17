@@ -87,6 +87,7 @@ export const WORK_ORDER = [
   'myventkitt',
   'endocrinekitt',
   'acute-vision-loss',
+  'echokitt',
 ] as const;
 
 export type WorkAppId = (typeof WORK_ORDER)[number];
@@ -354,6 +355,34 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     status: 'Live',
     iconSrc: 'assets/icons/acute-vision-loss.png',
     liveUrl: 'https://acute-vision-loss.vercel.app',
+    checkoutUrl: null,
+    price: null,
+    forSale: false,
+    accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
+  },
+
+  echokitt: {
+    id: 'echokitt',
+    name: 'EchoKitt',
+    chapter: '10',
+    discipline: 'Bedside ultrasound learning',
+    statement: 'Learn to scan by seeing it: every view, every finding, in motion.',
+    proof: '24 cardiac & lung topics · looping clips · private study',
+    eyebrow: 'For learning bedside ultrasound',
+    domain: 'clinical',
+    description:
+      'A visual-first point-of-care ultrasound guide. Each cardiac and lung topic shows where the probe goes, what a normal image looks like, what the abnormal finding looks like, and how to measure it, mostly as short looping clips. A Scan Now mode then walks you through the scan one large step at a time at the bedside.',
+    features: [
+      { icon: '🫀', text: '13 cardiac topics, from windows to tamponade, RV strain and VTI' },
+      { icon: '🫁', text: '11 lung topics, from pneumothorax and B-lines to thoracentesis' },
+      { icon: '🎞️', text: 'Looping clips and probe-placement diagrams on every card' },
+      { icon: '🧤', text: 'Scan Now mode: one step per screen with large type, usable with gloves on' },
+    ],
+    metric: '24',
+    metricLabel: 'cardiac and lung ultrasound topics',
+    status: 'In Development',
+    iconSrc: 'assets/icons/echokitt.png',
+    liveUrl: 'https://echokitt-andy-kitlowskis-projects.vercel.app',
     checkoutUrl: null,
     price: null,
     forSale: false,
