@@ -334,14 +334,14 @@ const additional: Project[] = [
     "icon": "assets/icons/powerkitt.png"
   },
   {
-    "id": "early-pregnancy",
-    "name": "1stTriOB-Kitt",
+    "id": "obgyn-kitt",
+    "name": "Ob/Gyn-Kitt",
     "category": "Clinical tools",
-    "summary": "Organize early-pregnancy emergency care into a structured workflow.",
-    "status": "In development",
-    "url": "",
-    "description": "A controlled pre-release clinical project with source review and module-level sign-off.",
-    "icon": "assets/icons/early-pregnancy.png"
+    "summary": "Every OB/GYN emergency, searchable, with visual step-by-step maneuvers.",
+    "status": "Available",
+    "url": "https://obgyn-kitt.vercel.app",
+    "description": "A bedside OB/GYN emergency guide: 88 consults, illustrated rapid steps for shoulder dystocia, breech, cord prolapse, PPH and maternal arrest, and calculators that remember gestational age and maternal age for the current patient.",
+    "icon": "assets/icons/obgyn-kitt.png"
   },
   {
     "id": "chest-tube",
