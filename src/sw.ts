@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v59-obgyn';
+const CACHE_NAME = 'kittechsix-v60-vertigo-showcase';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -17,6 +17,10 @@ const ASSETS_TO_CACHE = [
   '/styles/hero.css',
   '/styles/home.css',
   '/components/home.js',
+  '/components/vertigo-showcase.js',
+  '/assets/screens/vertigo-v4-lateralize.png',
+  '/assets/screens/vertigo-v4-body-map.png',
+  '/assets/screens/vertigo-v4-exam-walk.png',
   '/assets/kittech-logo.webp',
   '/assets/kittech-logo-sm.webp',
   '/styles/work.css',

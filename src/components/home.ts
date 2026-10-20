@@ -1,3 +1,4 @@
+import { mountVertigoShowcase } from './vertigo-showcase.js';
 // Home — the KittechSix front door.
 //
 // Andy's own copper logo powers up at the centre of a dark, framed stage
@@ -112,8 +113,8 @@ export function renderHome(parent: HTMLElement): void {
         <div class="kx-meta"><h3><img src="assets/icons/mymedkitt.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
       </article>
       <article class="kx-app">
-        <div class="kx-phone"><video src="assets/screens/my-vertigo-app-lateralize.mp4" poster="assets/screens/my-vertigo-app-lateralize.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="my-vertigo-app Lateralize tool: choose which way the nystagmus beats and the app names the affected ear, while an animated pair of eyes shows the slow drift and fast reset."></video></div>
-        <div class="kx-meta"><h3><img src="assets/icons/myvertigoapp.png" alt="" width="30" height="30">my-vertigo-app</h3><p>The dizzy patient, from bedside exam to disposition. Watch the nystagmus, find the sick ear.</p><a class="kx-go" href="${VERTIGO_URL}" target="_blank" rel="noopener">Open my-vertigo-app →</a></div>
+        <div class="kx-vt-showcase" data-vertigo-showcase></div>
+        <div class="kx-meta"><h3><img src="assets/icons/myvertigoapp.png" alt="" width="30" height="30">my-vertigo-app</h3><p>The dizzy patient, from bedside exam to disposition. Explore the redesigned safety layouts and visual nystagmus teaching tools.</p><a class="kx-go" href="${VERTIGO_URL}" target="_blank" rel="noopener">Open my-vertigo-app →</a></div>
       </article>
     </div>
     <p class="kx-note">Educational decision support for licensed clinicians. Not FDA cleared. Not a substitute for clinical judgment.</p>
@@ -187,6 +188,8 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-socials">${socials()}</div>
   </footer>`;
   parent.appendChild(root);
+  const vertigoShowcase = root.querySelector<HTMLElement>('[data-vertigo-showcase]');
+  if (vertigoShowcase) mountVertigoShowcase(vertigoShowcase);
 
   // The Lateralize demo loops silently; honour reduced-motion by leaving it on the poster frame.
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

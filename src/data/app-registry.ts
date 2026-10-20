@@ -181,10 +181,10 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     checkoutUrl: null,
     price: null,
     forSale: false,
-    accent: { base: '#2A9D8F', soft: '#E2F2EF', deep: '#1C6E64' },
+    accent: { base: '#8A3324', soft: '#FAF4EB', deep: '#5E2418' },
     tour: vtTour,
     tourSubtitle:
-      'Six screens, one dizzy patient — Deadly D’s screen, GRACE-3 timing fork, HINTS+ with auto-dictation, the Epley walkthrough, the CVA hard stop, and the discharge builder.',
+      'Current production screens: visual BPPV lateralization, the safety body map, and the selectable examination layouts.',
   },
 
   acidbase: {

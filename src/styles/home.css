@@ -208,3 +208,12 @@ body.kx-body { background: #0C0B0A; }
   .kx-rise { animation: none; opacity: 1; }
   .kx-phone, .kx-soc { transition: none; }
 }
+
+/* Current myVertigo production screens. Manual controls respect reduced motion. */
+.kx-vt-showcase{display:flex;flex-direction:column;align-items:center;max-width:100%;gap:16px}
+.kx-vt-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.kx-vt-controls button{font:inherit;font-size:13px;min-height:44px;padding:10px 12px;border:1px solid var(--kx-cu);border-radius:8px;background:transparent;color:var(--kx-paper);cursor:pointer}
+.kx-vt-controls button[aria-pressed=true]{background:var(--kx-cu);color:var(--kx-ink)}
+.kx-vt-controls button:focus-visible{outline:2px solid var(--kx-paper);outline-offset:3px}
+.kx-vt-caption{max-width:28ch;min-height:3em;color:var(--kx-dim);font-size:15px;line-height:1.5}
+.kx-vt-note{color:var(--kx-dim);font-size:12px}
