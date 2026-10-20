@@ -1,6 +1,6 @@
 // Production screenshots captured 2026-10-20. Replaces the retired glass UI clone.
 import type { UITourConfig } from '../../components/ui-tour.js';
-import { VERTIGO_SCREENS } from '../../components/vertigo-showcase.js';
+import { VERTIGO_SCREENS, renderVertigoDemo } from '../../components/vertigo-showcase.js';
 
 export const vtTour: UITourConfig = {
   appId: 'my-vertigo-app',
@@ -9,8 +9,9 @@ export const vtTour: UITourConfig = {
   subtitle: 'Explore actual screens from the redesigned app: raised umber navigation, framed examination controls, selectable safety layouts, and visual BPPV teaching. These are annotated screenshots; open the app to use the tools.',
   accentColor: '#8A3324',
   liveUrl: 'https://my-vertigo-app.vercel.app',
-  initialScreen: 'lateralize',
-  screens: VERTIGO_SCREENS.map((screen, i) => ({
+  initialScreen: 'demo',
+  autoTour: false,
+  screens: [{id: 'demo', title: 'Watch HINTS → Lateralize', renderClone: renderVertigoDemo, hotspots: []}, ...VERTIGO_SCREENS.map((screen, i) => ({
     id: screen.id,
     title: screen.label,
     imageSrc: screen.image,
@@ -26,5 +27,5 @@ export const vtTour: UITourConfig = {
       guidedOrder: i + 1,
       ...(i < 2 ? {navigateTo: VERTIGO_SCREENS[i+1]!.id} : {}),
     }],
-  })),
+  })),],
 };

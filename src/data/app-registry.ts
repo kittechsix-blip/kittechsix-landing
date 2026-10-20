@@ -184,7 +184,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     accent: { base: '#8A3324', soft: '#FAF4EB', deep: '#5E2418' },
     tour: vtTour,
     tourSubtitle:
-      'Current production screens: visual BPPV lateralization, the safety body map, and the selectable examination layouts.',
+      'Watch HINTS → Lateralize: choose the fast-beat direction and see the moving eyes and affected ear. Then explore the current safety layouts.',
   },
 
   acidbase: {

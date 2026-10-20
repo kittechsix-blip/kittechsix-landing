@@ -29,6 +29,7 @@ export interface UITourConfig {
   subtitle: string;
   accentColor: string;
   initialScreen: string;
+  autoTour?: boolean;
   screens: ScreenDef[];
   /** Live production URL — renders "Open the real app" CTAs. */
   liveUrl?: string;
@@ -475,7 +476,7 @@ function updateBreadcrumb(state: TourState) {
 /* Attract mode: when the tour scrolls into view and the user hasn't interacted,
    auto-play the guided tour every 4.5s. First real interaction hands control over. */
 function wireAttractMode(section: HTMLElement, state: TourState) {
-  if (state.guidedSteps.length === 0) return;
+  if (state.config.autoTour === false || state.guidedSteps.length === 0) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const stop = () => {

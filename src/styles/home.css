@@ -217,3 +217,5 @@ body.kx-body { background: #0C0B0A; }
 .kx-vt-controls button:focus-visible{outline:2px solid var(--kx-paper);outline-offset:3px}
 .kx-vt-caption{max-width:28ch;min-height:3em;color:var(--kx-dim);font-size:15px;line-height:1.5}
 .kx-vt-note{color:var(--kx-dim);font-size:12px}
+
+.kx-vt-showcase [hidden]{display:none!important}
