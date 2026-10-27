@@ -237,9 +237,9 @@ function mountBoard(root: HTMLElement): void {
         ? ` · <a href="${esc(idea.built_url)}" target="_blank" rel="noopener">Open it →</a>` : '';
       const done = voted.has(idea.id);
       return `<li><button class="kx-vote" type="button" data-id="${esc(idea.id)}" aria-label="Upvote: ${esc(idea.title)}"${done ? ' disabled' : ''}>
-          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2l5 7H1z"/></svg><span>${idea.votes ?? 0}</span></button>
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2l5 7H1z"/></svg><span>${Number(idea.votes) || 0}</span></button>
         <div><div class="kx-idea-t">${esc(idea.title)}</div>
-        <div class="kx-idea-m"><i class="kx-st ${st}">${STATUS_LABEL[st] ?? 'Open'}</i><span>${esc(idea.category)}</span>${link}</div></div></li>`;
+        <div class="kx-idea-m"><i class="kx-st ${esc(st)}">${STATUS_LABEL[st] ?? 'Open'}</i><span>${esc(idea.category)}</span>${link}</div></div></li>`;
     }).join('');
   });
 
