@@ -25,7 +25,7 @@ export function renderPrivacy(parent: HTMLElement): void {
         </div>
         <div class="privacy-card">
           <h3>What we do count</h3>
-          <p>This landing page uses Vercel's cookieless, aggregate page analytics (page views only &mdash; no personal profiles, no cross-site tracking). The community feedback board stores votes and suggestions anonymously.</p>
+          <p>This landing page uses Vercel's cookieless, aggregate page analytics (page views only &mdash; no personal profiles, no cross-site tracking). The community feedback board stores votes and suggestions anonymously. Anonymous usage counts (which pages and apps are opened, never what you type) help improve this site.</p>
         </div>
       </div>
       <p class="privacy-fineprint">Questions? <a href="mailto:kittechsix@gmail.com">kittechsix@gmail.com</a></p>

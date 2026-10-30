@@ -3,6 +3,7 @@
 // Public collection routes share navigation and footer. Legacy app tours remain available.
 
 import { router } from './utils/router.js';
+import { startUsageCounting } from './utils/usage.js';
 import { renderHome, leaveHome } from './components/home.js';
 import { renderNav } from './components/nav.js';
 import { renderFooter } from './components/footer.js';
@@ -81,6 +82,7 @@ document.querySelector<HTMLButtonElement>('[data-skip-main]')?.addEventListener(
 mountFrameSheen();
 
 router.start();
+startUsageCounting();
 
 // Register service worker; auto-reload when a new SW takes over so deploys land instantly.
 if ('serviceWorker' in navigator) {
