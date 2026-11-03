@@ -41,29 +41,26 @@ export function renderFooter(parent: HTMLElement): void {
           <h2 class="footer-col-head">Apps</h2>
           <div class="footer-links">
             <a href="#/work/mymedkitt">myMedKitt</a>
-            <a href="#/work/mystroke-kitt">myStroke-Kitt</a>
             <a href="#/work/myvertigoapp">my-vertigo-app</a>
             <a href="#/work/acidbase">AcidBase</a>
+            <a href="#/work/mystroke-kitt">myStroke-Kitt</a>
             <a href="#/work/electrokitt">ElectroKitt</a>
-            <a href="#/work/antibiotic-rx">Antibiotic Rx</a>
-            <a href="#/work/myventkitt">myVentKitt</a>
             <a href="#/work/endocrinekitt">EndocrineKitt</a>
-            <a href="#/work/acute-vision-loss">Acute Vision Loss</a>
             <a href="#/work/echokitt">EchoKitt</a>
-            <a href="#/projects/mytravelmedkitt">MyTravelMedKitt <span class="footer-link-tag">In build</span></a>
             <a href="#/projects/powerkitt">PowerKitt <span class="footer-link-tag">In build</span></a>
+            <a href="#/projects/burn-kitt">Burn-Kitt <span class="footer-link-tag">In build</span></a>
+            <a href="#/projects/obgyn-kitt">Ob/Gyn-Kitt</a>
+            <a href="#/projects/instar">Instar</a>
+            <a href="#/projects/wingman">Kittech WingMan</a>
+            <a href="#/projects/dell-seton-ops">Dell Seton Ops</a>
           </div>
         </div>
         <div class="footer-col">
           <h2 class="footer-col-head">The Lab</h2>
           <div class="footer-links">
             <a href="#/projects">All projects</a>
-            <a href="#/consulting">Consulting</a>
-            <a href="#/studio">Standards</a>
-            <a href="#/studio">Roadmap</a>
             <a href="#/about">About Andy</a>
             <a href="#/learn">Lectures & learning</a>
-            <a href="#/workflows">Skills & workflows</a>
             <a href="#/how-i-build">How I build</a>
           </div>
         </div>

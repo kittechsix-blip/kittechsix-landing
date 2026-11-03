@@ -14,9 +14,8 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: 'Projects', ordinal: '01', overlayLabel: 'All projects', route: '/projects' },
   { label: 'Learn', ordinal: '02', overlayLabel: 'Lectures & learning', route: '/learn' },
-  { label: 'Workflows', ordinal: '03', overlayLabel: 'Skills & workflows', route: '/workflows' },
-  { label: 'How I build', ordinal: '04', overlayLabel: 'How I build', route: '/how-i-build' },
-  { label: 'About', ordinal: '05', overlayLabel: 'About Andy', route: '/about' },
+  { label: 'How I build', ordinal: '03', overlayLabel: 'How I build', route: '/how-i-build' },
+  { label: 'About', ordinal: '04', overlayLabel: 'About Andy', route: '/about' },
 ];
 
 /** Clinical legacy detail routes still belong to Projects. */
@@ -145,7 +144,7 @@ export function renderNav(parent: HTMLElement): void {
     overlay.setAttribute('aria-hidden', String(!isOpen));
     document.body.style.overflow = isOpen ? 'hidden' : '';
     if (isOpen) {
-      parent.querySelectorAll<HTMLElement>(':scope > section, :scope > footer, :scope > header, :scope > .studio-page').forEach(el => { el.inert = true; el.dataset.menuInert = ''; });
+      parent.querySelectorAll<HTMLElement>(':scope > section, :scope > footer, :scope > header').forEach(el => { el.inert = true; el.dataset.menuInert = ''; });
       overlay.querySelector<HTMLAnchorElement>('a')?.focus();
     } else closeMenu();
   });

@@ -6,13 +6,6 @@
 // nothing else. Flip `forSale: true` + set `checkoutUrl` (Polar hosted
 // checkout link) and the primary CTA becomes a Buy button.
 
-import type { UITourConfig } from '../components/ui-tour.js';
-import { mkTour } from './ui-tour/mymedkitt-tour.js';
-import { rxTour } from './ui-tour/antibiotic-rx-tour.js';
-import { vtTour } from './ui-tour/my-vertigo-app-tour.js';
-import { abTour } from './ui-tour/acidbase-tour.js';
-import { skTour } from './ui-tour/mystroke-kitt-tour.js';
-
 /** Per-app identity color (drawn from the app icon) used to theme its page. */
 export interface AppAccent {
   /** mid-tone — check glyphs, active tab fill */
@@ -44,7 +37,7 @@ export interface AppListing {
 export interface WorkApp extends AppListing {
   /** Live apps always have a URL — narrowed from AppListing. */
   liveUrl: string;
-  /** Editorial chapter number, '01'–'08'. */
+  /** Editorial chapter number, '01'–'07'. */
   chapter: string;
   /** Short discipline label, e.g. 'Reasoning engine'. Doubles as the index category. */
   discipline: string;
@@ -64,29 +57,16 @@ export interface WorkApp extends AppListing {
   metricLabel: string;
   status: 'In Development' | 'Coming Soon' | 'Live';
   iconSrc: string;
-  /** The app's UI tour, when one has been built. Read through getTourFor(). */
-  tour?: UITourConfig;
-  /**
-   * Tour-tab subtitle. Deliberately NOT a restatement of `description`: on
-   * /work/:id both sit on the same page, so this one only says what the walk
-   * itself covers.
-   */
-  tourSubtitle?: string;
-  /** Renders the interactive consult demo as a third tab. */
-  hasDemo?: boolean;
 }
 
 /** Display order of the /work index and the chapter numbering. */
 export const WORK_ORDER = [
   'mymedkitt',
-  'antibiotic-rx',
   'myvertigoapp',
   'acidbase',
   'mystroke-kitt',
   'electrokitt',
-  'myventkitt',
   'endocrinekitt',
-  'acute-vision-loss',
   'echokitt',
 ] as const;
 
@@ -119,47 +99,12 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     price: null,
     forSale: false,
     accent: { base: '#2E9E5B', soft: '#E4F3EA', deep: '#1F6B3D' },
-    tour: mkTour,
-    tourSubtitle:
-      'Six screens, one real DKA resuscitation — dashboard to decision tree to a dosed insulin drip, then a Steps Summary and the Visual overlay.',
-    hasDemo: true,
-  },
-
-  'antibiotic-rx': {
-    id: 'antibiotic-rx',
-    name: 'Antibiotic Rx',
-    chapter: '02',
-    discipline: 'Adaptive prescribing',
-    statement: 'Guideline-backed regimens that rewrite themselves around the patient.',
-    proof: '~130 syndromes · local antibiogram · renal dosing',
-    eyebrow: 'For empiric & culture-directed therapy',
-    domain: 'clinical',
-    description:
-      'Guideline-backed antibiotic guidance for ~130 infection syndromes. Toggle the patient in front of you — allergies, pregnancy, renal function, MDR risk — and the regimen rewrites itself, with local antibiogram data and weight-based dose calculators built in.',
-    features: [
-      { icon: '🦠', text: '~130 infections across 20 categories, empiric + culture-directed' },
-      { icon: '⚙️', text: 'Patient parameters recompute the regimen live' },
-      { icon: '📊', text: 'Local antibiogram susceptibilities overlaid on recommendations' },
-      { icon: '🧮', text: 'Pediatric weight-based + renal dose calculators' },
-    ],
-    metric: '~130',
-    metricLabel: 'infection syndromes with adaptive regimens',
-    status: 'Live',
-    iconSrc: 'assets/icons/antibiotic-rx.png',
-    liveUrl: 'https://antibiotic-rx.vercel.app',
-    checkoutUrl: null,
-    price: null,
-    forSale: false,
-    accent: { base: '#7C5CBF', soft: '#EEE9F8', deep: '#5A3E96' },
-    tour: rxTour,
-    tourSubtitle:
-      'Seven screens, one community-acquired pneumonia: clinician gate, syndrome picker, the recommendation card, patient toggles, the antibiogram overlay, and the dose math.',
   },
 
   myvertigoapp: {
     id: 'myvertigoapp',
     name: 'my-vertigo-app',
-    chapter: '03',
+    chapter: '02',
     discipline: 'Focused clinical workflow',
     statement: 'A clearer path through the dizzy patient, from exam to disposition.',
     proof: 'HINTS+ · all three canals · 29 citations',
@@ -182,15 +127,12 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     price: null,
     forSale: false,
     accent: { base: '#8A3324', soft: '#FAF4EB', deep: '#5E2418' },
-    tour: vtTour,
-    tourSubtitle:
-      'Watch HINTS → Lateralize: choose the fast-beat direction and see the moving eyes and affected ear. Then explore the current safety layouts.',
   },
 
   acidbase: {
     id: 'acidbase',
     name: 'AcidBase',
-    chapter: '04',
+    chapter: '03',
     discipline: 'Reasoning engine',
     statement: 'From one blood gas to the disorder, the why, and what comes next.',
     proof: 'Mixed disorders · differential · treatment',
@@ -213,15 +155,12 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     price: null,
     forSale: false,
     accent: { base: '#3D7EA6', soft: '#E5EFF6', deep: '#2A5A79' },
-    tour: abTour,
-    tourSubtitle:
-      'Six screens, one gas — entry, the named diagnosis, the shown work, the differential with dosed treatment, the calculator dock, and the formula reference.',
   },
 
   'mystroke-kitt': {
     id: 'mystroke-kitt',
     name: 'myStroke-Kitt',
-    chapter: '05',
+    chapter: '04',
     discipline: 'Time-critical decision support',
     statement: 'Code-stroke decisions organized for the minutes that change outcomes.',
     proof: 'NIHSS · TNK dosing · hard-stop logic',
@@ -244,15 +183,12 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     price: null,
     forSale: false,
     accent: { base: '#C8452C', soft: '#F9E8E3', deep: '#99321F' },
-    tour: skTour,
-    tourSubtitle:
-      'Seven screens, one code stroke — initial actions, live NIHSS, the CT fork, the thrombolysis hard stop, real TNK dosing, and the ICH reversal branch.',
   },
 
   electrokitt: {
     id: 'electrokitt',
     name: 'ElectroKitt',
-    chapter: '06',
+    chapter: '05',
     discipline: 'Electrolyte reasoning engine',
     statement: 'Five electrolytes, one coupled bedside engine.',
     proof: 'Na · K · Ca · Mg · PO₄',
@@ -277,38 +213,10 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
   },
 
-  myventkitt: {
-    id: 'myventkitt',
-    name: 'myVentKitt',
-    chapter: '07',
-    discipline: 'Ventilator strategy simulator',
-    statement: 'Two ventilator strategies, four dials, and the machine you can practice on.',
-    proof: 'Claude Code build · PB980 simulator · 9 tools',
-    eyebrow: 'For emergency ventilator management',
-    domain: 'clinical',
-    description:
-      'An interactive PB980 ventilator simulator that teaches obstruction and lung-protection strategies through the same controls clinicians use at the bedside. Set the patient, turn the four dials, run pause maneuvers, respond to alarms, and practice scenarios with guided debriefs.',
-    features: [
-      { icon: '🫁', text: 'Obstruction and lung-protection strategies' },
-      { icon: '🎛️', text: 'Four ventilator dials, each tied to one clinical job' },
-      { icon: '📈', text: 'PB980 simulator with pause maneuvers and an alarm engine' },
-      { icon: '🎓', text: 'Nine bedside tools plus scenarios with guided debriefs' },
-    ],
-    metric: '2',
-    metricLabel: 'ventilator strategies, one mental model',
-    status: 'In Development',
-    iconSrc: 'assets/icons/myventkitt.png',
-    liveUrl: 'https://myventkitt-cc.vercel.app',
-    checkoutUrl: null,
-    price: null,
-    forSale: false,
-    accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
-  },
-
   endocrinekitt: {
     id: 'endocrinekitt',
     name: 'EndocrineKitt',
-    chapter: '08',
+    chapter: '06',
     discipline: 'Ordered endocrine emergency care',
     statement: 'Endocrine emergencies organized around the steps that must never be swapped.',
     proof: '5 axes · prerequisite locks · private review',
@@ -333,38 +241,10 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
   },
 
-  'acute-vision-loss': {
-    id: 'acute-vision-loss',
-    name: 'Acute Vision Loss',
-    chapter: '09',
-    discipline: 'Acute eye workup',
-    statement: 'Four questions, the eye vital signs, and the pathway that cannot wait.',
-    proof: '8 modules · bedside exam tools · cited pathways',
-    eyebrow: 'For the acute eye complaint',
-    domain: 'clinical',
-    description:
-      'A bedside workup for sudden vision loss. Start with monocular versus binocular, split painful from painless, run the eye vital signs, and move through the retinal, optic-nerve, and neurologic pathways with urgent actions surfaced when time matters.',
-    features: [
-      { icon: '👁️', text: 'Monocular versus binocular triage in four questions' },
-      { icon: '🔦', text: 'Acuity, RAPD, pressure, slit lamp, fundus, and ocular ultrasound tools' },
-      { icon: '🚨', text: 'Time-critical CRAO, retinal detachment, GCA, and angle-closure pathways' },
-      { icon: '📚', text: 'Cited teaching content with quick and full detail modes' },
-    ],
-    metric: '8',
-    metricLabel: 'clinical modules from triage to disposition',
-    status: 'Live',
-    iconSrc: 'assets/icons/acute-vision-loss.png',
-    liveUrl: 'https://acute-vision-loss.vercel.app',
-    checkoutUrl: null,
-    price: null,
-    forSale: false,
-    accent: { base: '#8A3324', soft: '#F4EBE6', deep: '#5E2418' },
-  },
-
   echokitt: {
     id: 'echokitt',
     name: 'EchoKitt',
-    chapter: '10',
+    chapter: '07',
     discipline: 'Bedside ultrasound learning',
     statement: 'Learn to scan by seeing it: every view, every finding, in motion.',
     proof: '24 cardiac & lung topics · looping clips · private study',
@@ -392,15 +272,6 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
 
 /** Apps that are not (yet) shipped — listed for commerce/accent lookups only. */
 const UNSHIPPED: Record<string, AppListing> = {
-  mytravelmedkitt: {
-    id: 'mytravelmedkitt',
-    name: 'MyTravelMedKitt',
-    liveUrl: null,
-    checkoutUrl: null,
-    price: null,
-    forSale: false,
-    accent: { base: '#C4822E', soft: '#F8EEDC', deep: '#8F5C19' },
-  },
   powerkitt: {
     id: 'powerkitt',
     name: 'PowerKitt',
@@ -424,27 +295,4 @@ export function getWorkApp(id: string): WorkApp | null {
   return Object.prototype.hasOwnProperty.call(WORK_APPS, id)
     ? WORK_APPS[id as WorkAppId]
     : null;
-}
-
-/**
- * The ONLY way a tour config reaches renderUITour.
- *
- * Tour authors set their own `appId`/`appName`/`liveUrl`/`subtitle`, and at
- * least one of them has drifted from the route id (the vertigo tour still
- * calls itself 'my-vertigo-app' while the route and registry key are
- * 'myvertigoapp'). renderUITour derives its DOM id from `appId`, so a drifted
- * id would silently produce a section that nothing else on the page can
- * address. Normalizing here makes the registry key authoritative, so the
- * mismatch cannot leak into the DOM no matter what a tour file says.
- */
-export function getTourFor(app: WorkApp): UITourConfig | null {
-  if (!app.tour || !app.tourSubtitle) return null;
-
-  return {
-    ...app.tour,
-    appId: app.id,
-    appName: app.name,
-    liveUrl: app.liveUrl,
-    subtitle: app.tourSubtitle,
-  };
 }

@@ -3,38 +3,19 @@ import { mountVertigoShowcase } from './vertigo-showcase.js';
 //
 // Andy's own copper logo powers up at the centre of a dark, framed stage
 // (the milled frame lives in index.html), then: the two flagship tools, every
-// other live tool and lecture, the Build Room (live idea board + Educator
-// Circle), and the physician. Styles: styles/home.css (all classes kx-).
+// other live tool and lecture, the Educator Circle signup, and the physician. Styles: styles/home.css (all classes kx-).
 
-import { PROJECTS, type Project } from '../data/studio-catalog.js';
+import { PROJECTS, FEATURED_CLINICAL_TOOL_IDS, FEATURED_LEARNING_IDS, type Project } from '../data/studio-catalog.js';
 import { WORK_APPS } from '../data/app-registry.js';
 import { SOCIAL_ICONS } from './footer.js';
-import { supabaseFetch, supabaseInsert, supabaseRpc } from '../utils/supabase.js';
-import { storageGet, storageSet } from '../utils/storage.js';
+import { supabaseInsert } from '../utils/supabase.js';
 
 const MYMEDKITT_URL = WORK_APPS.mymedkitt.liveUrl;
 const VERTIGO_URL = WORK_APPS.myvertigoapp.liveUrl;
 
-// Everything else that is live and worth a click. Spin to Win is deliberately
-// absent until Andy says the course is ready.
-const MORE_TOOLS = ['antibiotic-rx', 'acidbase', 'mystroke-kitt', 'acute-vision-loss', 'chest-tube'];
-const LECTURES = ['usgiv-academy', 'vision-loss-lecture', 'cardiac-toxicology', 'ai-eng-learn'];
-
-// Must match the landing_suggestions category CHECK constraint.
-const IDEA_CATEGORIES = ['General', 'myMedKitt', 'my-vertigo-app', 'AcidBase', 'Antibiotic Rx', 'myStroke-Kitt', 'PowerKitt'];
-
-const VOTED_KEY = 'kittechsix-voted-suggestions'; // shared with the collection's feedback board
-
-interface Idea {
-  id: string;
-  title: string;
-  category: string;
-  votes: number;
-  status?: 'open' | 'building' | 'built';
-  built_url?: string | null;
-}
-
-const STATUS_LABEL = { open: 'Open', building: 'Building', built: 'Built' } as const;
+// Featured clinical tools and lectures, in display order.
+const MORE_TOOLS = FEATURED_CLINICAL_TOOL_IDS;
+const LECTURES = FEATURED_LEARNING_IDS;
 
 function esc(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
@@ -51,7 +32,7 @@ function socials(): string {
     `<a class="kx-soc" href="${url}" target="_blank" rel="noopener" aria-label="Andy on ${label}">${SOCIAL_ICONS[key]}</a>`).join('');
 }
 
-function shelf(ids: string[]): string {
+function shelf(ids: readonly string[]): string {
   return ids
     .map((id) => PROJECTS.find((p) => p.id === id))
     .filter((p): p is Project => Boolean(p && p.url))
@@ -82,7 +63,7 @@ export function renderHome(parent: HTMLElement): void {
     <nav class="kx-nav" aria-label="Primary">
       <button type="button" data-kx-scroll="kx-tools">Tools</button>
       <button type="button" data-kx-scroll="kx-lab">Lectures</button>
-      <button type="button" data-kx-scroll="kx-build">Build with me</button>
+      <button type="button" data-kx-scroll="kx-build">Join the circle</button>
       <a href="#/projects">All projects</a>
     </nav>
     <a class="kx-btn kx-btn-cu" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt</a>
@@ -109,7 +90,7 @@ export function renderHome(parent: HTMLElement): void {
     </div>
     <div class="kx-apps">
       <article class="kx-app">
-        <div class="kx-phone"><video src="assets/screens/mymedkitt-burn-tbsa.mp4" poster="assets/screens/mymedkitt-burn-tbsa.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="myMedKitt burn TBSA calculator: burned skin is painted onto a body diagram, the percent of body surface area updates as you paint, and the Fluids tool then calculates the resuscitation fluid from that TBSA and the patient's weight."></video></div>
+        <div class="kx-phone"><video src="assets/screens/mymedkitt-burn-tbsa.mp4" poster="assets/screens/mymedkitt-burn-tbsa.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="myMedKitt burn calculator demo: the anterior neck and chest and both surfaces of the right arm fill to 19% TBSA, followed by Parkland and Dell Seton results for an 80 kg example."></video></div>
         <div class="kx-meta"><h3><img src="assets/icons/mymedkitt.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
       </article>
       <article class="kx-app">
@@ -124,39 +105,20 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-head">
       <span class="kx-kick">MORE FROM THE LAB</span>
       <h2 id="kx-lab-h">Every tool and lecture, one tap away.</h2>
-      <p>More clinical tools, and the lectures I teach from. Each opens straight into the real thing.</p>
+      <p>The featured clinical tools and lectures I teach from, in the order I want them seen. Everything else is explained in Browse every project.</p>
     </div>
     <div class="kx-shelves">
       <div class="kx-shelf"><h3>CLINICAL TOOLS</h3><ul>${shelf(MORE_TOOLS)}</ul></div>
       <div class="kx-shelf"><h3>LECTURES &amp; COURSES</h3><ul>${shelf(LECTURES)}</ul></div>
     </div>
-    <div class="kx-all"><a class="kx-go" href="#/projects">Browse every project →</a><a class="kx-go" href="#/learn">All lectures &amp; learning →</a><a class="kx-go" href="#/workflows">AI workflow guides →</a></div>
+    <div class="kx-all"><a class="kx-go" href="#/projects">Browse every project →</a><a class="kx-go" href="#/learn">All lectures &amp; learning →</a></div>
   </section>
 
   <section class="kx-band kx-room" id="kx-build" aria-labelledby="kx-build-h">
     <div class="kx-head">
-      <span class="kx-kick">THE BUILD ROOM</span>
-      <h2 id="kx-build-h">Build it with me.</h2>
-      <p>Almost every tool here started as a question from a colleague on shift. Post the tool you wish existed, vote for the ones you need, and watch them get built.</p>
-    </div>
-    <div class="kx-room-grid">
-      <div class="kx-board" aria-labelledby="kx-board-h">
-        <div class="kx-board-top"><h3 id="kx-board-h">Top ideas from the community</h3><span class="kx-legend" aria-hidden="true"><i class="kx-st open">Open</i><i class="kx-st building">Building</i><i class="kx-st built">Built</i></span></div>
-        <ol class="kx-ideas" id="kx-ideas" aria-live="polite"><li class="kx-empty">Loading the board…</li></ol>
-      </div>
-      <div class="kx-door">
-        <h3>Send me a build idea</h3>
-        <p>The tool you wish existed. The workflow that wastes your shift. The topic you can’t find a good way to teach.</p>
-        <form id="kx-idea" novalidate>
-          <label>Your idea, in a line<input type="text" name="title" required maxlength="100" placeholder="A tool that…"></label>
-          <label>What problem would it solve? <span class="kx-fine">(optional)</span><textarea name="description" maxlength="500"></textarea></label>
-          <label>Which tool is it for?<select name="category">${IDEA_CATEGORIES.map((c) => `<option>${c}</option>`).join('')}</select></label>
-          <input class="kx-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <p class="kx-fine">No patient information, please: no names, dates of birth, record numbers or case details. Ideas appear once reviewed.</p>
-          <button class="kx-btn kx-btn-cu" type="submit">Post the idea</button>
-          <p class="kx-status" role="status"></p>
-        </form>
-      </div>
+      <span class="kx-kick">EDUCATOR CIRCLE</span>
+      <h2 id="kx-build-h">Stay in the loop.</h2>
+      <p>Almost every tool here started as a question from a colleague on shift. Join the circle to hear when something ships.</p>
     </div>
     <div class="kx-circle">
       <div><h3>Join the Educator Circle</h3><p>For residents, attendings and educators who teach with technology. One email when something ships, early access, and first say on what gets built next. Nothing else.</p></div>
@@ -184,7 +146,7 @@ export function renderHome(parent: HTMLElement): void {
   <footer class="kx-foot">
     <a class="kx-brand" href="#/"><img src="assets/kittech-logo-sm.webp" alt="" width="200" height="169"><span>KITTECHSIX</span></a>
     <span>Andy Kitlowski, MD · Austin, Texas · © 2026 Kittech-Six LLC</span>
-    <nav aria-label="Footer"><a href="#/projects">Projects</a><a href="#/learn">Learn</a><a href="#/workflows">AI guides</a><a href="#/legal">Legal &amp; privacy</a></nav>
+    <nav aria-label="Footer"><a href="#/projects">Projects</a><a href="#/learn">Learn</a><a href="#/legal">Legal &amp; privacy</a></nav>
     <div class="kx-socials">${socials()}</div>
   </footer>`;
   parent.appendChild(root);
@@ -201,8 +163,6 @@ export function renderHome(parent: HTMLElement): void {
     btn.addEventListener('click', () => document.getElementById(btn.dataset.kxScroll ?? '')?.scrollIntoView({ behavior: 'smooth' }));
   });
 
-  mountBoard(root);
-  mountIdeaForm(root);
   mountCircleForm(root);
 }
 
@@ -211,88 +171,13 @@ export function leaveHome(): void {
   document.body.classList.remove('kx-body');
 }
 
-// ---- The Build Room -------------------------------------------------------
-
-async function loadIdeas(): Promise<Idea[] | null> {
-  const order = '&order=votes.desc,created_at.desc&limit=8';
-  // status / built_url arrive with scripts/sql/2026-09-28-idea-status.sql; until
-  // that migration runs, fall back to the original columns and show every idea as Open.
-  const full = await supabaseFetch<Idea[]>('landing_suggestions', `select=id,title,category,votes,status,built_url${order}`);
-  if (full.data) return full.data;
-  const basic = await supabaseFetch<Idea[]>('landing_suggestions', `select=id,title,category,votes${order}`);
-  return basic.data;
-}
-
-function mountBoard(root: HTMLElement): void {
-  const list = root.querySelector<HTMLOListElement>('#kx-ideas');
-  if (!list) return;
-  const voted = new Set<string>(storageGet<string[]>(VOTED_KEY, []));
-
-  loadIdeas().then((ideas) => {
-    if (!ideas) { list.innerHTML = '<li class="kx-empty">The board couldn’t load just now. Please try again later.</li>'; return; }
-    if (!ideas.length) { list.innerHTML = '<li class="kx-empty">No ideas yet. Be the first.</li>'; return; }
-    list.innerHTML = ideas.map((idea) => {
-      const st = idea.status ?? 'open';
-      const link = st === 'built' && idea.built_url && /^https:\/\//.test(idea.built_url)
-        ? ` · <a href="${esc(idea.built_url)}" target="_blank" rel="noopener">Open it →</a>` : '';
-      const done = voted.has(idea.id);
-      return `<li><button class="kx-vote" type="button" data-id="${esc(idea.id)}" aria-label="Upvote: ${esc(idea.title)}"${done ? ' disabled' : ''}>
-          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2l5 7H1z"/></svg><span>${Number(idea.votes) || 0}</span></button>
-        <div><div class="kx-idea-t">${esc(idea.title)}</div>
-        <div class="kx-idea-m"><i class="kx-st ${esc(st)}">${STATUS_LABEL[st] ?? 'Open'}</i><span>${esc(idea.category)}</span>${link}</div></div></li>`;
-    }).join('');
-  });
-
-  list.addEventListener('click', async (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.kx-vote');
-    if (!btn || btn.disabled) return;
-    const id = btn.dataset.id ?? '';
-    const count = btn.querySelector('span');
-    btn.disabled = true;
-    const result = await supabaseRpc<void>('increment_suggestion_vote', { suggestion_id: id });
-    if (!result.error) {
-      if (count) count.textContent = String(Number(count.textContent) + 1);
-      voted.add(id);
-      storageSet(VOTED_KEY, [...voted]);
-    } else {
-      btn.disabled = false;
-    }
-  });
-}
+// ---- Educator Circle ------------------------------------------------------
 
 function setStatus(form: HTMLFormElement, text: string, ok: boolean): void {
   const el = form.querySelector<HTMLElement>('.kx-status');
   if (!el) return;
   el.textContent = text;
   el.classList.toggle('ok', ok);
-}
-
-function mountIdeaForm(root: HTMLElement): void {
-  const form = root.querySelector<HTMLFormElement>('#kx-idea');
-  if (!form) return;
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    if (String(data.get('website') ?? '')) return; // honeypot: bots fill it, people never see it
-    const btn = form.querySelector<HTMLButtonElement>('button[type=submit]');
-    if (btn) btn.disabled = true;
-    const description = String(data.get('description') ?? '').trim();
-    const result = await supabaseInsert('landing_suggestions', {
-      title: String(data.get('title') ?? '').trim(),
-      description: description || null,
-      category: String(data.get('category') ?? 'General'),
-    });
-    if (btn) btn.disabled = false;
-    if (!result.error) {
-      form.reset();
-      setStatus(form, 'Thank you. Your idea will appear on the board once it has been reviewed.', true);
-    } else if (result.status === 429) {
-      setStatus(form, 'Too many submissions in a row. Please wait a moment and try again.', false);
-    } else {
-      setStatus(form, 'That didn’t go through. Please try again.', false);
-    }
-  });
 }
 
 function mountCircleForm(root: HTMLElement): void {

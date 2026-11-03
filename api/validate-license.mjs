@@ -17,10 +17,8 @@ const ALLOWED_ORIGINS = new Set([
   'https://kittech-six.org',
   'https://kittechsix-blip.github.io',
   'https://mystroke-kitt.vercel.app',
-  'https://antibiotic-rx.vercel.app',
   'https://my-vertigo-app.vercel.app',
   'https://acidbase.vercel.app',
-  'https://fck-cancer.vercel.app',
   'https://kittechsix-landing.vercel.app',
 ]);
 

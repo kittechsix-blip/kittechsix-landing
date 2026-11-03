@@ -125,7 +125,7 @@ body.kx-body { background: #0C0B0A; }
 .kx-shelf .kx-arrow { color: var(--kx-cu-hi); font-size: 18px; }
 .kx-all { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
 
-/* the build room */
+/* educator circle band */
 .kx-room { position: relative; overflow: hidden; isolation: isolate; }
 .kx-room::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 60% at 50% 0%, rgba(201, 132, 76, .14), transparent 70%); }
 .kx-room-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 28px; max-width: 1080px; margin: 64px auto 0; align-items: start; }

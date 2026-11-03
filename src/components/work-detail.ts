@@ -1,15 +1,11 @@
 // /work/:id — one template for every portfolio app.
 //
 // Every app-specific value comes from APP_REGISTRY. The Overview body reuses
-// renderProductShowcase and the Tour body reuses renderUITour — this file only
-// assembles the page around them, and adds the Demo tab for the one app that
-// has one.
+// renderProductShowcase; this file only assembles the page around it.
 
-import { getTourFor, getWorkApp, type WorkApp } from '../data/app-registry.js';
+import { getWorkApp, type WorkApp } from '../data/app-registry.js';
 import { renderAppTabs, type AppTabDef } from './app-tabs.js';
 import { renderProductShowcase } from './product-showcase.js';
-import { renderUITour } from './ui-tour.js';
-import { renderAfibDemo } from './demo-afib.js';
 
 function escapeHtml(value: string): string {
   return value
@@ -101,12 +97,6 @@ export function renderWorkDetail(parent: HTMLElement, appId: string): void {
   // the tour clones both reach for live DOM by id.
   parent.appendChild(section);
 
-  const secondaryCta = app.hasDemo
-    ? { label: 'Try a consult', action: () => activate('demo') }
-    : app.tour
-      ? { label: 'Tour the UI', action: () => activate('tour') }
-      : undefined;
-
   const tabs: AppTabDef[] = [
     {
       key: 'overview',
@@ -127,32 +117,10 @@ export function renderWorkDetail(parent: HTMLElement, appId: string): void {
             label: action.label,
             action: () => window.open(action.href, '_blank', 'noopener'),
           },
-          ctaSecondary: secondaryCta,
           suppressHeadline: true,
         }),
     },
   ];
-
-  const tour = getTourFor(app);
-  if (tour) {
-    tabs.push({
-      key: 'tour',
-      label: 'Tour the UI',
-      // getTourFor normalizes appId/appName/liveUrl/subtitle against the registry.
-      render: (panel) => renderUITour(panel, tour),
-    });
-  }
-
-  if (app.hasDemo) {
-    tabs.push({ key: 'demo', label: 'Try a consult', render: renderAfibDemo });
-  }
-
-  const keys = tabs.map((t) => t.key);
-  const activate = (key: string): void => {
-    if (!keys.includes(key)) return;
-    const btn = section.querySelector<HTMLButtonElement>(`.app-tabs-btn[data-tab-key="${key}"]`);
-    btn?.click();
-  };
 
   renderAppTabs(body, {
     id: app.id,

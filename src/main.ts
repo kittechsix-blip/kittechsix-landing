@@ -7,12 +7,9 @@ import { startUsageCounting } from './utils/usage.js';
 import { renderHome, leaveHome } from './components/home.js';
 import { renderNav } from './components/nav.js';
 import { renderFooter } from './components/footer.js';
-import { renderHub, renderDirectory, renderProject, renderLearning, renderWorkflows, renderProcess, renderProfile } from './components/hub.js';
+import { renderHub, renderDirectory, renderProject, renderLearning, renderProcess, renderProfile } from './components/hub.js';
 import { renderWorkDetail } from './components/work-detail.js';
-import { renderConsulting } from './components/consulting.js';
-import { renderStudio } from './components/studio.js';
 import { renderLegalPage } from './components/legal-page.js';
-import { renderSpinToWin } from './components/spin-to-win.js';
 import { setupScrollAnimations } from './utils/intersection.js';
 import { mountFrameSheen } from './components/frame.js';
 
@@ -48,17 +45,11 @@ router.on('/projects/category/:category', p => page(app => renderDirectory(app, 
 router.on('/projects/search/:query', p => page(app => renderDirectory(app, 'All projects', p['query'])));
 router.on('/projects/:id', p => page(app => renderProject(app, p['id'])));
 router.on('/learn', () => page(renderLearning));
-router.on('/workflows', () => page(renderWorkflows));
-router.on('/workflows/:id', p => page(app => renderWorkflows(app, p['id'])));
 router.on('/how-i-build', () => page(renderProcess));
 router.on('/about', () => page(renderProfile));
 router.on('/work', () => page(renderDirectory));
 router.on('/work/:id', (params) => page((app) => renderWorkDetail(app, params['id'] ?? '')));
-router.on('/consulting', () => page(renderConsulting));
-router.on('/studio', () => page(renderStudio));
 router.on('/legal', () => page(renderLegalPage));
-router.on('/spin-to-win', () => page(renderSpinToWin));
-router.on('/spin-to-win/:ep', p => page(app => renderSpinToWin(app, p['ep'])));
 
 // Unknown hash → the work index, with the address corrected so the URL never lies
 // about what is on screen. Guarded against a redirect loop.

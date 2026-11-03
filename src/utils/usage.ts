@@ -15,7 +15,7 @@ const telemetry = createTelemetry({
   anonKey: SUPABASE_ANON_KEY,
 });
 
-const FIXED_SCREENS = new Set(['collection', 'learn', 'how-i-build', 'about', 'consulting', 'studio', 'legal']);
+const FIXED_SCREENS = new Set(['collection', 'learn', 'how-i-build', 'about', 'legal']);
 
 /** Maps a hash path to a fixed screen id. Raw path text is never returned, only whitelisted ids. */
 export function screenFor(path: string): string {
@@ -27,8 +27,6 @@ export function screenFor(path: string): string {
     return Object.prototype.hasOwnProperty.call(WORK_APPS, id) ? `work/${id}` : 'work';
   }
   if (p.startsWith('/projects')) return 'projects';
-  if (p.startsWith('/workflows')) return 'workflows';
-  if (p.startsWith('/spin-to-win')) return 'spin-to-win';
   if (p.startsWith('/') && FIXED_SCREENS.has(p.slice(1))) return p.slice(1);
   return 'other';
 }
