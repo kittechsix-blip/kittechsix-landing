@@ -3,7 +3,8 @@
 export const SUPABASE_URL = 'https://kzzqloklnxlqbccxbxgr.supabase.co';
 export const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6enFsb2tsbnhscWJjY3hieGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0NzA4MDMsImV4cCI6MjA4ODA0NjgwM30.lCqD2KymgqQf3h8xUHIht7PeBcmvPVSXxvqsL45Mrko';
 
-const ALLOWED_TABLES = new Set(['landing_suggestions', 'landing_emails']);
+// landing_suggestions retired 2026-11-03 (server lockdown: scripts/sql/2026-11-03-lock-landing-suggestions.sql).
+const ALLOWED_TABLES = new Set(['landing_emails']);
 
 export interface SupabaseResponse<T> {
   data: T | null;
@@ -80,31 +81,6 @@ export async function supabaseInsert<T>(
       return { data: null, error: res.status === 409 ? 'duplicate' : `Request failed: ${res.status}`, status: res.status };
     }
     return { data: null, error: null, status: res.status };
-  } catch {
-    return { data: null, error: 'Network error.', status: 0 };
-  }
-}
-
-export async function supabaseRpc<T>(
-  fn: string,
-  params: Record<string, unknown>,
-): Promise<SupabaseResponse<T>> {
-  if (isRateLimited()) {
-    return { data: null, error: 'Too many requests.', status: 429 };
-  }
-
-  try {
-    const url = `${SUPABASE_URL}/rest/v1/rpc/${fn}`;
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: headers(),
-      body: JSON.stringify(params),
-    });
-    if (!res.ok) {
-      return { data: null, error: `Request failed: ${res.status}`, status: res.status };
-    }
-    const data = await res.json() as T;
-    return { data, error: null, status: res.status };
   } catch {
     return { data: null, error: 'Network error.', status: 0 };
   }
