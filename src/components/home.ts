@@ -150,7 +150,7 @@ export function renderHome(parent: HTMLElement): void {
 
   <section class="kx-band" id="kx-about" aria-labelledby="kx-about-h">
     <div class="kx-about">
-      <div class="kx-pic"><img src="assets/andy-kitlowski-physician-crop.jpg" alt="Dr. Andy Kitlowski, emergency physician, in a white coat and copper tie." width="304" height="380" loading="lazy"></div>
+      <div class="kx-pic"><img src="assets/andy-kitlowski-profile-20261103.png" alt="Dr. Andy Kitlowski, emergency physician in black scrubs." width="304" height="380" loading="lazy"></div>
       <div>
         <span class="kx-kick">THE PHYSICIAN</span>
         <h2 id="kx-about-h">Andy Kitlowski, MD</h2>

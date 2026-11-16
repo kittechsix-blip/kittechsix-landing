@@ -2,14 +2,13 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v63-focused-surface';
+const CACHE_NAME = 'kittechsix-v64-brain-fireworks';
 
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/assets/andy-kitlowski-profile-20260909.jpg',
-  '/assets/andy-kitlowski-physician-crop.jpg',
+  '/assets/andy-kitlowski-profile-20261103.png',
   '/styles/fonts.css',
   '/styles/tokens.css',
   '/styles/global.css',
