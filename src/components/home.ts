@@ -43,13 +43,30 @@ function shelf(ids: readonly string[]): string {
     .join('');
 }
 
+const heartbeatApps = [...FEATURED_CLINICAL_TOOL_IDS, ...FEATURED_LEARNING_IDS]
+  .map((id) => PROJECTS.find((project) => project.id === id))
+  .filter((project): project is Project => Boolean(project?.icon));
+
+const fireworkColors: Record<string, string> = {
+  mymedkitt: '#39d786', myvertigoapp: '#55dae0', 'mystroke-kitt': '#ff725c',
+  'obgyn-kitt': '#ff62bb', electrokitt: '#64d8ff', acidbase: '#62c7ff',
+  'burn-kitt': '#ffad69', powerkitt: '#b8ddff', echokitt: '#ffb987',
+};
+
 const logoLayers = `
+  <img class="kx-wordmark" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
+  <div class="kx-brain">
   <img class="kx-dim" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
   <img class="kx-lit" src="assets/kittech-logo.webp" alt="" width="1120" height="948" fetchpriority="high">
   <img class="kx-front" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
   <div class="kx-ignite"></div>
   <div class="kx-sweep"></div>
-  <div class="kx-shimmer"></div>`;
+  <div class="kx-shimmer"></div>
+  ${heartbeatApps.map((app, index) => `<span class="kx-heart-icon" style="--icon-index:${index}; --icon-count:${heartbeatApps.length}; --spark-color:${fireworkColors[app.id]}"><img src="${esc(app.icon!)}" alt="" width="121" height="121"></span>`).join('')}
+  </div>
+  ${heartbeatApps.map((app, index) => `<div class="kx-firework ${['kx-firework-up', 'kx-firework-right', 'kx-firework-left'][index % 3]}" aria-hidden="true" style="--icon-index:${index}; --icon-count:${heartbeatApps.length}; --spark-color:${fireworkColors[app.id]}">
+    <span class="kx-rocket"></span><span class="kx-burst">${Array.from({ length: 32 }, (_, ray) => `<i style="--ray:${ray}; --distance:${48 + (ray % 5) * 13}px; --spark-delay:${(ray % 4) * .035}s"></i>`).join('')}</span><span class="kx-firework-name">${esc(app.name)}</span>
+  </div>`).join('')}`;
 
 const plus = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 0h3v4.5H12v3H7.5V12h-3V7.5H0v-3h4.5z" fill="currentColor"/></svg>';
 
@@ -91,7 +108,7 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-apps">
       <article class="kx-app">
         <div class="kx-phone"><video src="assets/screens/mymedkitt-burn-tbsa.mp4" poster="assets/screens/mymedkitt-burn-tbsa.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="myMedKitt burn calculator demo: the anterior neck and chest and both surfaces of the right arm fill to 19% TBSA, followed by Parkland and Dell Seton results for an 80 kg example."></video></div>
-        <div class="kx-meta"><h3><img src="assets/icons/mymedkitt.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
+        <div class="kx-meta"><h3><img src="assets/icons/mymedkitt-current.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
       </article>
       <article class="kx-app">
         <div class="kx-vt-showcase" data-vertigo-showcase></div>

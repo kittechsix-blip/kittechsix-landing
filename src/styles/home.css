@@ -50,6 +50,29 @@ body.kx-body { background: #0C0B0A; }
    flashes → one sweep of light crosses the metal. */
 .kx-logo { position: relative; width: min(560px, 86vw, 62vh); aspect-ratio: 1120 / 948; filter: drop-shadow(0 34px 60px rgba(0, 0, 0, .6)); }
 .kx-logo > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.kx-wordmark { clip-path: inset(68% 0 0); }
+.kx-brain { transform-origin: 49% 30%; animation: kx-heartbeat 4.2s ease-in-out 11.9s infinite; }
+.kx-brain > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.kx-brain > img:not(.kx-heart-icon) { clip-path: inset(0 0 31%); }
+ .kx-brain .kx-heart-icon { inset: auto; left: 43.7%; top: 23.4%; width: 10.8%; height: auto; aspect-ratio: 1; border-radius: 15%; opacity: 0; overflow: hidden; background: #171c20; box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), 0 0 18px var(--spark-color), 0 5px 15px #000; animation: kx-app-flash calc(4.2s * var(--icon-count)) linear calc(11.9s + 4.2s * var(--icon-index)) infinite; }
+.kx-heart-icon img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.45) brightness(1.2) contrast(1.08); }
+.kx-heart-icon::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1px solid rgba(255,255,255,.55); background: linear-gradient(145deg, rgba(255,255,255,.5), transparent 36%, transparent 70%, rgba(255,255,255,.14)); box-shadow: inset 0 3px 5px rgba(255,255,255,.4), inset 0 -5px 8px rgba(0,0,0,.5); }
+/* The rocket starts at the chip; its burst remains at the destination. */
+.kx-logo .kx-firework { inset: auto; width: 1px; height: 1px; pointer-events: none; opacity: 0; animation: kx-firework-visible calc(4.2s * var(--icon-count)) linear calc(11.9s + 4.2s * var(--icon-index)) infinite; }
+.kx-logo .kx-firework-up { left: 49%; top: -7%; --launch-x: 0px; --launch-y: calc(.313 * min(560px, 86vw, 62vh)); }
+.kx-logo .kx-firework-right { left: 105%; top: 30%; --launch-x: calc(-.56 * min(560px, 86vw, 62vh)); --launch-y: 0px; }
+.kx-logo .kx-firework-left { left: -7%; top: 30%; --launch-x: calc(.56 * min(560px, 86vw, 62vh)); --launch-y: 0px; }
+.kx-rocket { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #fff; box-shadow: 0 0 9px 4px var(--spark-color), 0 0 24px 8px var(--spark-color); animation: kx-rocket calc(4.2s * var(--icon-count)) ease-out calc(11.9s + 4.2s * var(--icon-index)) infinite; }
+.kx-burst { position: absolute; inset: 0; }
+.kx-burst i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff; box-shadow: 0 0 5px 2px #fff, 0 0 11px 4px var(--spark-color), 0 0 24px 7px var(--spark-color); opacity: 0; transform: rotate(calc(var(--ray) * 11.25deg)) translateX(0); animation: kx-spark calc(4.2s * var(--icon-count)) ease-out calc(11.9s + 4.2s * var(--icon-index) + var(--spark-delay)) infinite; }
+.kx-burst i::after { content: ""; position: absolute; width: 16px; height: 2px; right: 1px; top: 1px; background: linear-gradient(90deg, transparent, var(--spark-color), #fff); filter: blur(.5px); }
+.kx-firework-name { position: absolute; left: 0; top: 24px; transform: translateX(-50%); width: max-content; max-width: 180px; color: #fff; font-size: clamp(12px, 2vw, 18px); font-weight: 700; letter-spacing: .04em; text-shadow: 0 0 8px var(--spark-color), 0 0 20px var(--spark-color), 0 2px 5px #000; opacity: 0; animation: kx-firework-label calc(4.2s * var(--icon-count)) ease-out calc(11.9s + 4.2s * var(--icon-index)) infinite; }
+@keyframes kx-firework-visible { 0%, 11%, 100% { opacity: 0; } .1%, 9% { opacity: 1; } }
+@keyframes kx-rocket { 0% { opacity: 0; transform: translate(var(--launch-x), var(--launch-y)) scale(.5); } .2% { opacity: 1; } 1.5% { opacity: 1; transform: translate(0, 0) scale(1); } 1.8%, 100% { opacity: 0; transform: translate(0, 0); } }
+@keyframes kx-spark { 0%, 1.4% { opacity: 0; transform: rotate(calc(var(--ray) * 11.25deg)) translateX(0) scale(1.4); } 1.8% { opacity: 1; } 5% { opacity: .95; } 7.5% { opacity: .45; } 10.5%, 100% { opacity: 0; transform: rotate(calc(var(--ray) * 11.25deg)) translateX(var(--distance)) scale(.2); } }
+@keyframes kx-firework-label { 0%, 1.5% { opacity: 0; transform: translate(-50%, 5px) scale(.9); } 2.5%, 7% { opacity: 1; transform: translate(-50%, 0) scale(1); } 10%, 100% { opacity: 0; transform: translate(-50%, -5px) scale(1); } }
+@keyframes kx-heartbeat { 0%, 15%, 32%, 100% { transform: scale(1); } 5% { transform: scale(1.055); } 21% { transform: scale(1.035); } }
+@keyframes kx-app-flash { 0%, .3% { opacity: 0; } 1%, 7% { opacity: 1; } 9%, 100% { opacity: 0; } }
 .kx-logo .kx-dim { filter: brightness(.22) saturate(.6); opacity: .9; }
 .kx-logo .kx-lit { --kx-r: 0%;
   -webkit-mask-image: radial-gradient(circle at 49% 29.9%, #000 var(--kx-r), transparent calc(var(--kx-r) + 7%));
@@ -65,7 +88,7 @@ body.kx-body { background: #0C0B0A; }
   animation: kx-sweep 2.4s cubic-bezier(.45, 0, .25, 1) 2.6s forwards; }
 .kx-logo .kx-shimmer { background: linear-gradient(112deg, transparent 46.5%, rgba(255, 238, 214, .35) 48.5%, rgba(255, 246, 232, .62) 50%, rgba(255, 238, 214, .35) 51.5%, transparent 53.5%) no-repeat; background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen; opacity: 0;
   -webkit-mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat; mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat;
-  animation: kx-shimmer 6.5s ease-in-out 5.4s infinite; }
+  animation: kx-shimmer 6.5s ease-in-out 5.4s 1 forwards; }
 @keyframes kx-shimmer { 0% { background-position: 150% 0; opacity: 0; } 12% { opacity: 1; } 70% { opacity: 1; } 78%, 100% { background-position: -50% 0; opacity: 0; } }
 @keyframes kx-power { to { --kx-r: 130%; } }
 @keyframes kx-gone { to { opacity: 0; } }
@@ -204,6 +227,8 @@ body.kx-body { background: #0C0B0A; }
 }
 @media (prefers-reduced-motion: reduce) {
   .kx-logo .kx-dim, .kx-logo .kx-front, .kx-logo .kx-ignite, .kx-logo .kx-sweep, .kx-logo .kx-shimmer { display: none; }
+  .kx-brain { animation: none; }
+  .kx-logo .kx-heart-icon, .kx-logo .kx-firework { display: none; }
   .kx-logo .kx-lit { -webkit-mask-image: none; mask-image: none; animation: none; }
   .kx-rise { animation: none; opacity: 1; }
   .kx-phone, .kx-soc { transition: none; }
