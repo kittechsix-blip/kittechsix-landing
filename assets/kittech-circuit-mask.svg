@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 948">
+<g fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M490 239H452L371 158H343 M490 250H446L374 180H319 M490 260H440L389 209H299 M490 272H432L386 227H275 M490 283H428L389 246H264 M490 295H427L387 263H310L290 242H260 M490 307H429L389 347H325L299 319H246 M490 318H435L388 363H277 M490 329H448L390 389H311 M490 340H460L419 380"/>
+<path d="M610 239H655L729 164H765 M610 250H662L727 186H795 M610 262H676L727 214H817 M610 273H693L729 242H822 M610 284H795L814 263H843 M610 295H855 M610 307H738L754 321H804L827 299H855 M610 318H700L725 342H809L817 332H856 M610 329H702L747 373H851 M610 340H688L750 399H845"/>
+<path d="M513 223V176L458 121V108 M525 223V175L482 132V99 M537 223V166L505 135V94 M549 223V150L522 123 M562 223V151L581 131V92 M574 223V174L613 134V98 M587 223V177L636 127V105 M599 223V181L665 102 M441 188L424 170V115 M660 188L684 163V128"/>
+<path d="M510 344V392L464 435 M522 344V401L487 435V468 M535 344V405L510 430V466 M548 344V409L524 434V463 M564 344V406L592 435V462 M577 344V400L613 435 M590 344V391L643 421 M462 435L451 446V460 M653 374L682 402"/>
+</g>
+<g fill="white">
+<circle cx="343" cy="158" r="5"/><circle cx="319" cy="180" r="5"/><circle cx="299" cy="209" r="5"/><circle cx="275" cy="227" r="5"/><circle cx="264" cy="246" r="5"/><circle cx="260" cy="283" r="5"/><circle cx="246" cy="319" r="5"/><circle cx="261" cy="342" r="5"/><circle cx="277" cy="369" r="5"/><circle cx="311" cy="389" r="5"/>
+<circle cx="765" cy="164" r="5"/><circle cx="795" cy="186" r="5"/><circle cx="817" cy="214" r="5"/><circle cx="822" cy="242" r="5"/><circle cx="843" cy="263" r="5"/><circle cx="855" cy="295" r="5"/><circle cx="856" cy="330" r="5"/><circle cx="851" cy="369" r="5"/><circle cx="845" cy="398" r="5"/>
+<circle cx="424" cy="115" r="5"/><circle cx="441" cy="188" r="5"/><circle cx="458" cy="108" r="5"/><circle cx="482" cy="99" r="5"/><circle cx="505" cy="94" r="5"/><circle cx="581" cy="92" r="5"/><circle cx="613" cy="98" r="5"/><circle cx="665" cy="102" r="4"/><circle cx="699" cy="122" r="5"/><circle cx="660" cy="188" r="5"/>
+<circle cx="451" cy="460" r="5"/><circle cx="464" cy="435" r="5"/><circle cx="487" cy="468" r="5"/><circle cx="510" cy="466" r="5"/><circle cx="524" cy="463" r="4"/><circle cx="592" cy="446" r="4"/><circle cx="613" cy="435" r="5"/><circle cx="643" cy="421" r="5"/><circle cx="682" cy="402" r="4"/>
+</g></svg>

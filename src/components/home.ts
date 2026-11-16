@@ -43,13 +43,45 @@ function shelf(ids: readonly string[]): string {
     .join('');
 }
 
+const heartbeatApps = [...FEATURED_CLINICAL_TOOL_IDS, ...FEATURED_LEARNING_IDS]
+  .map((id) => PROJECTS.find((project) => project.id === id))
+  .filter((project): project is Project => Boolean(project?.icon));
+
+const fireworkColors: Record<string, string> = {
+  mymedkitt: '#39d786', myvertigoapp: '#55dae0', 'mystroke-kitt': '#ff725c',
+  'obgyn-kitt': '#ff62bb', electrokitt: '#64d8ff', acidbase: '#62c7ff',
+  'burn-kitt': '#ffad69', powerkitt: '#b8ddff', echokitt: '#ffb987',
+};
+
 const logoLayers = `
+  <img class="kx-wordmark" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
+  <div class="kx-brain">
   <img class="kx-dim" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
   <img class="kx-lit" src="assets/kittech-logo.webp" alt="" width="1120" height="948" fetchpriority="high">
   <img class="kx-front" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
   <div class="kx-ignite"></div>
   <div class="kx-sweep"></div>
-  <div class="kx-shimmer"></div>`;
+  <div class="kx-shimmer"></div>
+  ${heartbeatApps.map((app, index) => `<div class="kx-circuit-pulse" aria-hidden="true" style="--icon-index:${index}; --spark-color:${fireworkColors[app.id]}"></div>`).join('')}
+  ${heartbeatApps.map((app, index) => `<span class="kx-heart-icon" style="--icon-index:${index}; --icon-count:${heartbeatApps.length}; --spark-color:${fireworkColors[app.id]}"><img src="${esc(app.icon!)}" alt="" width="121" height="121"></span>`).join('')}
+  </div>
+  ${heartbeatApps.map((app, index) => `<div class="kx-firework ${['kx-firework-up', 'kx-firework-right', 'kx-firework-left'][index % 3]}" aria-hidden="true" style="--icon-index:${index}; --icon-count:${heartbeatApps.length}; --spark-color:${fireworkColors[app.id]}">
+    <span class="kx-rocket"></span><span class="kx-burst">${Array.from({ length: 32 }, (_, ray) => `<i style="--ray:${ray}; --distance:${48 + (ray % 5) * 13}px; --spark-delay:${(ray % 4) * .035}s"></i>`).join('')}</span><span class="kx-firework-name">${esc(app.name)}</span>
+  </div>`).join('')}
+  ${heartbeatApps.map((app, index) => {
+    const angle = (index / heartbeatApps.length * Math.PI * 2) - Math.PI / 2;
+    const x = 49 + Math.cos(angle) * 53;
+    const y = 30 + Math.sin(angle) * 41;
+    return `<div class="kx-finale-firework" aria-hidden="true" style="--x:${x}%; --y:${y}%; --dx:${(49 - x) / 100}; --dy:${(30 - y) / 100}; --spark-color:${fireworkColors[app.id]}">
+      <span class="kx-finale-rocket"></span><span class="kx-finale-burst">${Array.from({ length: 64 }, (_, ray) => `<i style="--ray:${ray}; --distance:${70 + (ray % 8) * 17}px"></i>`).join('')}</span>
+    </div>`;
+  }).join('')}
+  <div class="kx-finale-wordmark" aria-hidden="true">${Array.from({ length: 960 }, (_, index) => {
+    const fountain = index % 60;
+    const angle = fountain * Math.PI * 2 / 60;
+    const spread = ((index * 137) % 71) - 35;
+    return `<i style="--x:${50 + Math.cos(angle) * 41}%; --y:${83 + Math.sin(angle) * 10}%; --angle:${fountain * 6 + spread}deg; --reach:${55 + (index * 37) % 140}px; --twinkle-delay:${(Math.floor(index / 60) % 12) * .16}s; --size:${3 + index % 3}px"></i>`;
+  }).join('')}</div>`;
 
 const plus = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 0h3v4.5H12v3H7.5V12h-3V7.5H0v-3h4.5z" fill="currentColor"/></svg>';
 
@@ -70,11 +102,11 @@ export function renderHome(parent: HTMLElement): void {
   </header>
 
   <section class="kx-hero" aria-labelledby="kx-claim">
-    <div class="kx-logo" role="img" aria-label="KittechSix: a copper brain made of circuit traces around a chip with a medical cross">${logoLayers}</div>
+    <div class="kx-logo kx-show" style="--icon-count:${heartbeatApps.length}; --show-delay:11.9s" role="img" aria-label="KittechSix: a copper brain made of circuit traces around a chip with a medical cross">${logoLayers}</div>
     <div class="kx-rule kx-rise" style="animation-delay:2.2s" aria-hidden="true"><i></i>${plus}<i></i></div>
     <p class="kx-byline kx-rise" style="animation-delay:2.3s">ANDY KITLOWSKI, MD · EMERGENCY MEDICINE</p>
     <h1 class="kx-claim kx-rise" id="kx-claim" style="animation-delay:2.45s">Clinical judgment, amplified.</h1>
-    <p class="kx-sub kx-rise" style="animation-delay:2.55s">Emergency physician. Fifteen years teaching. I build the tools I wish I’d had on shift.</p>
+    <p class="kx-sub kx-rise" style="animation-delay:2.55s">Emergency physician. Twenty-five years teaching. I build the tools I wish I’d had on shift.</p>
     <div class="kx-actions kx-rise" style="animation-delay:2.65s">
       <a class="kx-btn kx-btn-cu" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt</a>
       <a class="kx-btn kx-btn-ghost" href="${VERTIGO_URL}" target="_blank" rel="noopener">Open my-vertigo-app</a>
@@ -91,7 +123,7 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-apps">
       <article class="kx-app">
         <div class="kx-phone"><video src="assets/screens/mymedkitt-burn-tbsa.mp4" poster="assets/screens/mymedkitt-burn-tbsa.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="myMedKitt burn calculator demo: the anterior neck and chest and both surfaces of the right arm fill to 19% TBSA, followed by Parkland and Dell Seton results for an 80 kg example."></video></div>
-        <div class="kx-meta"><h3><img src="assets/icons/mymedkitt.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
+        <div class="kx-meta"><h3><img src="assets/icons/mymedkitt-current.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
       </article>
       <article class="kx-app">
         <div class="kx-vt-showcase" data-vertigo-showcase></div>
@@ -133,7 +165,7 @@ export function renderHome(parent: HTMLElement): void {
 
   <section class="kx-band" id="kx-about" aria-labelledby="kx-about-h">
     <div class="kx-about">
-      <div class="kx-pic"><img src="assets/andy-kitlowski-physician-crop.jpg" alt="Dr. Andy Kitlowski, emergency physician, in a white coat and copper tie." width="304" height="380" loading="lazy"></div>
+      <div class="kx-pic"><img src="assets/andy-kitlowski-profile-20261103.png" alt="Dr. Andy Kitlowski, emergency physician in black scrubs." width="304" height="380" loading="lazy"></div>
       <div>
         <span class="kx-kick">THE PHYSICIAN</span>
         <h2 id="kx-about-h">Andy Kitlowski, MD</h2>
@@ -150,6 +182,19 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-socials">${socials()}</div>
   </footer>`;
   parent.appendChild(root);
+  const logo = root.querySelector<HTMLElement>('.kx-logo');
+  if (logo && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const showDuration = heartbeatApps.length * 4200 + 9000 + 10000;
+    const repeatShow = () => {
+      if (!logo.isConnected) return;
+      logo.classList.remove('kx-show');
+      logo.style.setProperty('--show-delay', '0s');
+      void logo.offsetWidth; // Restart the coordinated CSS animations together.
+      logo.classList.add('kx-show');
+      window.setTimeout(repeatShow, showDuration);
+    };
+    window.setTimeout(repeatShow, 11900 + showDuration);
+  }
   const vertigoShowcase = root.querySelector<HTMLElement>('[data-vertigo-showcase]');
   if (vertigoShowcase) mountVertigoShowcase(vertigoShowcase);
 
