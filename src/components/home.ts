@@ -60,7 +60,6 @@ const logoLayers = `
   <img class="kx-lit" src="assets/kittech-logo.webp" alt="" width="1120" height="948" fetchpriority="high">
   <img class="kx-front" src="assets/kittech-logo.webp" alt="" width="1120" height="948">
   <div class="kx-ignite"></div>
-  <div class="kx-sweep"></div>
   <div class="kx-shimmer"></div>
   ${heartbeatApps.map((app, index) => `<div class="kx-circuit-pulse" aria-hidden="true" style="--icon-index:${index}; --spark-color:${fireworkColors[app.id]}"></div>`).join('')}
   ${heartbeatApps.map((app, index) => `<span class="kx-heart-icon" style="--icon-index:${index}; --icon-count:${heartbeatApps.length}; --spark-color:${fireworkColors[app.id]}"><img src="${esc(app.icon!)}" alt="" width="121" height="121"></span>`).join('')}
@@ -102,7 +101,7 @@ export function renderHome(parent: HTMLElement): void {
   </header>
 
   <section class="kx-hero" aria-labelledby="kx-claim">
-    <div class="kx-logo kx-show" style="--icon-count:${heartbeatApps.length}; --show-delay:6s" role="img" aria-label="KittechSix: a copper brain made of circuit traces around a chip with a medical cross">${logoLayers}</div>
+    <div class="kx-logo kx-show" style="--icon-count:${heartbeatApps.length}; --show-delay:6.5s" role="img" aria-label="KittechSix: a copper brain made of circuit traces around a chip with a medical cross">${logoLayers}</div>
     <div class="kx-rule kx-rise" style="animation-delay:2.2s" aria-hidden="true"><i></i>${plus}<i></i></div>
     <p class="kx-byline kx-rise" style="animation-delay:2.3s">ANDY KITLOWSKI, MD · EMERGENCY MEDICINE</p>
     <h1 class="kx-claim kx-rise" id="kx-claim" style="animation-delay:2.45s">Clinical judgment, amplified.</h1>
@@ -193,7 +192,7 @@ export function renderHome(parent: HTMLElement): void {
       logo.classList.add('kx-show');
       window.setTimeout(repeatShow, showDuration);
     };
-    window.setTimeout(repeatShow, 6000 + showDuration);
+    window.setTimeout(repeatShow, 6500 + showDuration);
   }
   const vertigoShowcase = root.querySelector<HTMLElement>('[data-vertigo-showcase]');
   if (vertigoShowcase) mountVertigoShowcase(vertigoShowcase);

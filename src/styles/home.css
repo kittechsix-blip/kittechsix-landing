@@ -108,18 +108,14 @@ body.kx-body { background: #0C0B0A; }
   mask-image: radial-gradient(circle at 49% 29.9%, transparent calc(var(--kx-r) - 3%), #000 var(--kx-r), transparent calc(var(--kx-r) + 4%));
   animation: kx-power 1.6s cubic-bezier(.45, .05, .3, 1) .3s forwards, kx-gone .3s ease 1.8s forwards; }
 .kx-logo .kx-ignite { background: radial-gradient(circle at 49% 29.9%, rgba(255, 236, 210, .95), rgba(243, 199, 155, .5) 3%, transparent 9%); mix-blend-mode: screen; opacity: 0; animation: kx-ignite .8s ease .1s forwards, kx-flash .8s ease 1.8s; }
-.kx-logo .kx-sweep { background: linear-gradient(115deg, transparent 38%, rgba(255, 244, 230, .9) 50%, transparent 62%) no-repeat; background-size: 260% 100%; background-position: 130% 0; mix-blend-mode: screen;
-  -webkit-mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat; mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat;
-  animation: kx-sweep 1.6s cubic-bezier(.45, 0, .25, 1) 2s forwards; }
 .kx-logo .kx-shimmer { background: linear-gradient(112deg, transparent 46.5%, rgba(255, 238, 214, .35) 48.5%, rgba(255, 246, 232, .62) 50%, rgba(255, 238, 214, .35) 51.5%, transparent 53.5%) no-repeat; background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen; opacity: 0;
   -webkit-mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat; mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat;
-  animation: kx-shimmer 2.8s ease-in-out 3.2s 1 forwards; }
-@keyframes kx-shimmer { 0% { background-position: 150% 0; opacity: 0; } 12% { opacity: 1; } 70% { opacity: 1; } 78%, 100% { background-position: -50% 0; opacity: 0; } }
+  animation: kx-shimmer 6s linear .4s 1 forwards; }
+@keyframes kx-shimmer { 0% { background-position: 150% 0; opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { background-position: -50% 0; opacity: 0; } }
 @keyframes kx-power { to { --kx-r: 130%; } }
 @keyframes kx-gone { to { opacity: 0; } }
 @keyframes kx-ignite { 0% { opacity: 0; } 40% { opacity: 1; } 100% { opacity: .55; } }
 @keyframes kx-flash { 0% { opacity: .55; } 30% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes kx-sweep { to { background-position: -30% 0; } }
 
 .kx-rule { display: flex; align-items: center; gap: 14px; margin: 14px auto 0; width: min(420px, 80vw); color: var(--kx-cu); }
 .kx-rule i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201, 132, 76, .7)); }
