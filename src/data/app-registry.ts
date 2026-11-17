@@ -93,7 +93,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metric: '353',
     metricLabel: 'evidence-based ER consults',
     status: 'Live',
-    iconSrc: 'assets/icons/mymedkitt.png',
+    iconSrc: 'assets/icons/mymedkitt-current.png',
     liveUrl: 'https://kittechsix-blip.github.io/mymedkitt/app.html',
     checkoutUrl: null,
     price: null,

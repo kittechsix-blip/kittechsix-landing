@@ -123,7 +123,7 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-apps">
       <article class="kx-app">
         <div class="kx-phone"><video src="assets/screens/mymedkitt-burn-tbsa.mp4" poster="assets/screens/mymedkitt-burn-tbsa.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="myMedKitt burn calculator demo: the anterior neck and chest and both surfaces of the right arm fill to 19% TBSA, followed by Parkland and Dell Seton results for an 80 kg example."></video></div>
-        <div class="kx-meta"><h3><img src="assets/icons/mymedkitt-current.png" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
+        <div class="kx-meta"><h3><img src="${esc(WORK_APPS.mymedkitt.iconSrc)}" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
       </article>
       <article class="kx-app">
         <div class="kx-vt-showcase" data-vertigo-showcase></div>

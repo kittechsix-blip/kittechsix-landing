@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v63-focused-surface';
+const CACHE_NAME = 'kittechsix-v64-mymedkitt-icon';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -72,7 +72,7 @@ const ASSETS_TO_CACHE = [
   '/assets/fonts/IBMPlexMono-400.woff2',
   '/assets/fonts/IBMPlexMono-500.woff2',
   '/assets/icons/kittech-brain.png',
-  '/assets/icons/mymedkitt.png',
+  '/assets/icons/mymedkitt-current.png',
   '/assets/icons/mystroke-kitt.png',
   '/assets/icons/acidbase.png',
   '/assets/icons/electrokitt.png',
