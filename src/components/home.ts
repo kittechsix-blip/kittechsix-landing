@@ -102,7 +102,7 @@ export function renderHome(parent: HTMLElement): void {
   </header>
 
   <section class="kx-hero" aria-labelledby="kx-claim">
-    <div class="kx-logo kx-show" style="--icon-count:${heartbeatApps.length}; --show-delay:1.2s" role="img" aria-label="KittechSix: a copper brain made of circuit traces around a chip with a medical cross">${logoLayers}</div>
+    <div class="kx-logo kx-show" style="--icon-count:${heartbeatApps.length}; --show-delay:6s" role="img" aria-label="KittechSix: a copper brain made of circuit traces around a chip with a medical cross">${logoLayers}</div>
     <div class="kx-rule kx-rise" style="animation-delay:2.2s" aria-hidden="true"><i></i>${plus}<i></i></div>
     <p class="kx-byline kx-rise" style="animation-delay:2.3s">ANDY KITLOWSKI, MD · EMERGENCY MEDICINE</p>
     <h1 class="kx-claim kx-rise" id="kx-claim" style="animation-delay:2.45s">Clinical judgment, amplified.</h1>
@@ -193,7 +193,7 @@ export function renderHome(parent: HTMLElement): void {
       logo.classList.add('kx-show');
       window.setTimeout(repeatShow, showDuration);
     };
-    window.setTimeout(repeatShow, 1200 + showDuration);
+    window.setTimeout(repeatShow, 6000 + showDuration);
   }
   const vertigoShowcase = root.querySelector<HTMLElement>('[data-vertigo-showcase]');
   if (vertigoShowcase) mountVertigoShowcase(vertigoShowcase);
