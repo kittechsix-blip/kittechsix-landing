@@ -99,16 +99,16 @@ body.kx-body { background: #0C0B0A; }
 @keyframes kx-heartbeat { 0%, 15%, 32%, 100% { transform: scale(1); } 5% { transform: scale(1.055); } 21% { transform: scale(1.035); } }
 @keyframes kx-app-flash { 0%, .3% { opacity: 0; } 1%, 7% { opacity: 1; } 9%, 100% { opacity: 0; } }
 .kx-logo .kx-dim { filter: brightness(.22) saturate(.6); opacity: .9; }
-.kx-logo .kx-lit { --kx-r: 0%;
+.kx-logo.kx-show .kx-lit { --kx-r: 0%;
   -webkit-mask-image: radial-gradient(circle at 49% 29.9%, #000 var(--kx-r), transparent calc(var(--kx-r) + 7%));
   mask-image: radial-gradient(circle at 49% 29.9%, #000 var(--kx-r), transparent calc(var(--kx-r) + 7%));
   animation: kx-power 1.6s cubic-bezier(.45, .05, .3, 1) .3s forwards; }
-.kx-logo .kx-front { --kx-r: 0%; filter: brightness(1.9) saturate(1.2);
+.kx-logo.kx-show .kx-front { --kx-r: 0%; filter: brightness(1.9) saturate(1.2);
   -webkit-mask-image: radial-gradient(circle at 49% 29.9%, transparent calc(var(--kx-r) - 3%), #000 var(--kx-r), transparent calc(var(--kx-r) + 4%));
   mask-image: radial-gradient(circle at 49% 29.9%, transparent calc(var(--kx-r) - 3%), #000 var(--kx-r), transparent calc(var(--kx-r) + 4%));
   animation: kx-power 1.6s cubic-bezier(.45, .05, .3, 1) .3s forwards, kx-gone .3s ease 1.8s forwards; }
-.kx-logo .kx-ignite { background: radial-gradient(circle at 49% 29.9%, rgba(255, 236, 210, .95), rgba(243, 199, 155, .5) 3%, transparent 9%); mix-blend-mode: screen; opacity: 0; animation: kx-ignite .8s ease .1s forwards, kx-flash .8s ease 1.8s; }
-.kx-logo .kx-shimmer { background: linear-gradient(112deg, transparent 46.5%, rgba(255, 238, 214, .35) 48.5%, rgba(255, 246, 232, .62) 50%, rgba(255, 238, 214, .35) 51.5%, transparent 53.5%) no-repeat; background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen; opacity: 0;
+.kx-logo.kx-show .kx-ignite { background: radial-gradient(circle at 49% 29.9%, rgba(255, 236, 210, .95), rgba(243, 199, 155, .5) 3%, transparent 9%); mix-blend-mode: screen; opacity: 0; animation: kx-ignite .8s ease .1s forwards, kx-flash .8s ease 1.8s; }
+.kx-logo.kx-show .kx-shimmer { background: linear-gradient(112deg, transparent 46.5%, rgba(255, 238, 214, .35) 48.5%, rgba(255, 246, 232, .62) 50%, rgba(255, 238, 214, .35) 51.5%, transparent 53.5%) no-repeat; background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen; opacity: 0;
   -webkit-mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat; mask: url('../assets/kittech-logo.webp') center / 100% 100% no-repeat;
   animation: kx-shimmer 6s linear .4s 1 forwards; }
 @keyframes kx-shimmer { 0% { background-position: 150% 0; opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { background-position: -50% 0; opacity: 0; } }
@@ -250,7 +250,7 @@ body.kx-body { background: #0C0B0A; }
   .kx-logo .kx-dim, .kx-logo .kx-front, .kx-logo .kx-ignite, .kx-logo .kx-sweep, .kx-logo .kx-shimmer { display: none; }
   .kx-show .kx-brain { animation: none; }
   .kx-logo .kx-heart-icon, .kx-logo .kx-circuit-pulse, .kx-logo.kx-show .kx-firework, .kx-logo .kx-finale-firework, .kx-logo .kx-finale-wordmark { display: none; }
-  .kx-logo .kx-lit { -webkit-mask-image: none; mask-image: none; animation: none; }
+  .kx-logo.kx-show .kx-lit { -webkit-mask-image: none; mask-image: none; animation: none; }
   .kx-rise { animation: none; opacity: 1; }
   .kx-phone, .kx-soc { transition: none; }
 }

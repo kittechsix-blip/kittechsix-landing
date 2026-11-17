@@ -187,10 +187,10 @@ export function renderHome(parent: HTMLElement): void {
     const repeatShow = () => {
       if (!logo.isConnected) return;
       logo.classList.remove('kx-show');
-      logo.style.setProperty('--show-delay', '0s');
+      logo.style.setProperty('--show-delay', '6.5s');
       void logo.offsetWidth; // Restart the coordinated CSS animations together.
       logo.classList.add('kx-show');
-      window.setTimeout(repeatShow, showDuration);
+      window.setTimeout(repeatShow, 6500 + showDuration);
     };
     window.setTimeout(repeatShow, 6500 + showDuration);
   }
