@@ -1,7 +1,8 @@
 // Shared collection navigation. Active state follows the current route.
 
 import { router } from '../utils/router.js';
-import { APP_REGISTRY } from '../data/app-registry.js';
+import { releaseUrl, previewHref } from '../data/release.js';
+
 
 interface NavItem {
   label: string;
@@ -25,8 +26,8 @@ function isActive(route: string, path: string): boolean {
 
 /** myMedKitt CTA target — verified against the registry, never hardcoded here. */
 function mymedkittHref(): { href: string; external: boolean } {
-  const live = APP_REGISTRY['mymedkitt']?.liveUrl;
-  return live ? { href: live, external: true } : { href: '#/work/mymedkitt', external: false };
+  const live = releaseUrl('mymedkitt');
+  return live ? { href: live, external: true } : { href: previewHref('mymedkitt'), external: false };
 }
 
 function ctaAttrs(): string {
@@ -107,7 +108,7 @@ export function renderNav(parent: HTMLElement): void {
         ${links}
       </div>
 
-      <a class="nav-product-cta" ${ctaAttrs()}>Open myMedKitt <span aria-hidden="true">↗</span></a>
+      <a class="nav-product-cta" ${ctaAttrs()}>${releaseUrl('mymedkitt') ? 'Open' : 'Preview'} myMedKitt <span aria-hidden="true">${releaseUrl('mymedkitt') ? '↗' : '→'}</span></a>
 
       <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
         <span></span><span></span>
@@ -130,7 +131,7 @@ export function renderNav(parent: HTMLElement): void {
   overlay.innerHTML = `
     <div class="nav-overlay-meta">Explore Kittech-Six</div>
     ${overlayLinks}
-    <a class="nav-overlay-primary" ${ctaAttrs()}>Open myMedKitt ↗</a>
+    <a class="nav-overlay-primary" ${ctaAttrs()}>${releaseUrl('mymedkitt') ? 'Open myMedKitt ↗' : 'Preview myMedKitt →'}</a>
   `;
   parent.appendChild(overlay);
 

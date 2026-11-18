@@ -1,8 +1,8 @@
 // Actual production captures, 2026-10-20. Keep the homepage and guided tour in sync.
 export const VERTIGO_SCREENS = [
-  { id: 'lateralize', label: 'Lateralize', image: 'assets/screens/vertigo-v4-lateralize.png', alt: 'Current myVertigo lateralization screen with raised umber stage navigation, framed ear selection and a left-ear teaching example.', caption: 'Choose the test and side. Explore the eye-movement teaching tool.', url: 'https://my-vertigo-app.vercel.app/workup?node=lat-start' },
-  { id: 'body-map', label: 'Body map', image: 'assets/screens/vertigo-v4-body-map.png', alt: 'Current myVertigo safety body map with selectable anatomical regions inside an umber frame.', caption: 'Explore safety findings by body region.', url: 'https://my-vertigo-app.vercel.app/workup?node=deadly-ds' },
-  { id: 'exam-walk', label: 'Exam walk', image: 'assets/screens/vertigo-v4-exam-walk.png', alt: 'Current myVertigo exam-walk layout with four layout choices, paper cards, framed sections and the clinical toolbar.', caption: 'Choose your layout. Work through the examination one region at a time.', url: 'https://my-vertigo-app.vercel.app/workup?node=deadly-ds' },
+  { id: 'lateralize', label: 'Lateralize', image: 'assets/screens/vertigo-v4-lateralize.png', alt: 'Current myVertigo lateralization screen with raised umber stage navigation, framed ear selection and a left-ear teaching example.', caption: 'Choose the test and side. Explore the eye-movement teaching tool.', url: '#/projects/myvertigoapp' },
+  { id: 'body-map', label: 'Body map', image: 'assets/screens/vertigo-v4-body-map.png', alt: 'Current myVertigo safety body map with selectable anatomical regions inside an umber frame.', caption: 'Explore safety findings by body region.', url: '#/projects/myvertigoapp' },
+  { id: 'exam-walk', label: 'Exam walk', image: 'assets/screens/vertigo-v4-exam-walk.png', alt: 'Current myVertigo exam-walk layout with four layout choices, paper cards, framed sections and the clinical toolbar.', caption: 'Choose your layout. Work through the examination one region at a time.', url: '#/projects/myvertigoapp' },
 ];
 
 export function renderVertigoDemo(): HTMLVideoElement {
@@ -24,7 +24,7 @@ export function mountVertigoShowcase(host: HTMLElement): void {
   host.innerHTML = `<div class="kx-phone" id="vt-current-screen"><img data-vt-preview hidden src="${first.image}" alt="${first.alt}" width="390" height="844" loading="lazy"></div>
     <div class="kx-vt-controls" role="group" aria-label="Explore the current myVertigo interface"><button type="button" data-vt-demo aria-pressed="true" aria-controls="vt-current-screen">Watch demo</button>${VERTIGO_SCREENS.map((s,i)=>`<button type="button" data-vt-screen="${i}" aria-pressed="false" aria-controls="vt-current-screen">${s.label}</button>`).join('')}</div>
     <p class="kx-vt-caption" aria-live="polite">${demoCaption}</p>
-    <a class="kx-go" data-vt-open href="https://my-vertigo-app.vercel.app/workup?node=hints-start" target="_blank" rel="noopener">Try this in myVertigo ↗</a>
+    <a class="kx-go" data-vt-open href="#/projects/myvertigoapp">See the myVertigo preview →</a>
     <small class="kx-vt-note">Recorded in the current app · Pause or replay anytime</small>`;
   const img = host.querySelector<HTMLImageElement>('[data-vt-preview]')!;
   const video = renderVertigoDemo();
@@ -45,7 +45,7 @@ export function mountVertigoShowcase(host: HTMLElement): void {
     img.hidden = true; video.hidden = false; video.currentTime = 0;
     void video.play().catch(() => { /* Native controls remain available if autoplay is blocked. */ });
     caption.textContent = demoCaption;
-    link.href = 'https://my-vertigo-app.vercel.app/workup?node=hints-start';
+    link.href = '#/projects/myvertigoapp';
     buttons.forEach(b => b.setAttribute('aria-pressed','false'));
     demo.setAttribute('aria-pressed','true');
   });

@@ -7,11 +7,15 @@ import { mountVertigoShowcase } from './vertigo-showcase.js';
 
 import { PROJECTS, FEATURED_CLINICAL_TOOL_IDS, FEATURED_LEARNING_IDS, type Project } from '../data/studio-catalog.js';
 import { WORK_APPS } from '../data/app-registry.js';
+import { releaseUrl, previewHref } from '../data/release.js';
 import { SOCIAL_ICONS } from './footer.js';
 import { supabaseInsert } from '../utils/supabase.js';
 
-const MYMEDKITT_URL = WORK_APPS.mymedkitt.liveUrl;
-const VERTIGO_URL = WORK_APPS.myvertigoapp.liveUrl;
+// Flagship links go to the on-site preview until each app launches (data/release.ts).
+const MYMEDKITT_URL = releaseUrl('mymedkitt') ?? previewHref('mymedkitt');
+const VERTIGO_URL = releaseUrl('myvertigoapp') ?? previewHref('myvertigoapp');
+const linkAttrs = (href: string): string => href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
+const verb = (id: string): string => releaseUrl(id) ? 'Open' : 'Preview';
 
 // Featured clinical tools and lectures, in display order.
 const MORE_TOOLS = FEATURED_CLINICAL_TOOL_IDS;
@@ -35,8 +39,8 @@ function socials(): string {
 function shelf(ids: readonly string[]): string {
   return ids
     .map((id) => PROJECTS.find((p) => p.id === id))
-    .filter((p): p is Project => Boolean(p && p.url))
-    .map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">
+    .filter((p): p is Project => Boolean(p))
+    .map((p) => `<li><a href="${esc(p.url || previewHref(p.id))}"${linkAttrs(p.url)}>
         <img src="${esc(p.icon ?? 'assets/icons/kittech-brain.png')}" alt="" width="44" height="44" loading="lazy">
         <span><b>${esc(p.name)}</b><small>${esc(p.summary)}</small></span>
         <span class="kx-arrow" aria-hidden="true">↗</span></a></li>`)
@@ -97,7 +101,7 @@ export function renderHome(parent: HTMLElement): void {
       <button type="button" data-kx-scroll="kx-build">Join the circle</button>
       <a href="#/projects">All projects</a>
     </nav>
-    <a class="kx-btn kx-btn-cu" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt</a>
+    <a class="kx-btn kx-btn-cu" href="${MYMEDKITT_URL}"${linkAttrs(MYMEDKITT_URL)}>${verb('mymedkitt')} myMedKitt</a>
   </header>
 
   <section class="kx-hero" aria-labelledby="kx-claim">
@@ -107,8 +111,8 @@ export function renderHome(parent: HTMLElement): void {
     <h1 class="kx-claim kx-rise" id="kx-claim" style="animation-delay:2.45s">Clinical judgment, amplified.</h1>
     <p class="kx-sub kx-rise" style="animation-delay:2.55s">Emergency physician. Twenty-five years teaching. I build the tools I wish I’d had on shift.</p>
     <div class="kx-actions kx-rise" style="animation-delay:2.65s">
-      <a class="kx-btn kx-btn-cu" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt</a>
-      <a class="kx-btn kx-btn-ghost" href="${VERTIGO_URL}" target="_blank" rel="noopener">Open my-vertigo-app</a>
+      <a class="kx-btn kx-btn-cu" href="${MYMEDKITT_URL}"${linkAttrs(MYMEDKITT_URL)}>${verb('mymedkitt')} myMedKitt</a>
+      <a class="kx-btn kx-btn-ghost" href="${VERTIGO_URL}"${linkAttrs(VERTIGO_URL)}>${verb('myvertigoapp')} my-vertigo-app</a>
     </div>
     <div class="kx-socials kx-rise" style="animation-delay:2.75s">${socials()}</div>
   </section>
@@ -122,11 +126,11 @@ export function renderHome(parent: HTMLElement): void {
     <div class="kx-apps">
       <article class="kx-app">
         <div class="kx-phone"><video src="assets/screens/mymedkitt-burn-tbsa.mp4" poster="assets/screens/mymedkitt-burn-tbsa.jpg" width="390" height="844" autoplay muted loop playsinline preload="metadata" aria-label="myMedKitt burn calculator demo: the anterior neck and chest and both surfaces of the right arm fill to 19% TBSA, followed by Parkland and Dell Seton results for an 80 kg example."></video></div>
-        <div class="kx-meta"><h3><img src="${esc(WORK_APPS.mymedkitt.iconSrc)}" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}" target="_blank" rel="noopener">Open myMedKitt →</a></div>
+        <div class="kx-meta"><h3><img src="${esc(WORK_APPS.mymedkitt.iconSrc)}" alt="" width="30" height="30">myMedKitt</h3><p>350+ emergency consults as step-by-step decision trees. Paint the burn, get the TBSA, then the resuscitation fluid.</p><a class="kx-go" href="${MYMEDKITT_URL}"${linkAttrs(MYMEDKITT_URL)}>${verb('mymedkitt')} myMedKitt →</a></div>
       </article>
       <article class="kx-app">
         <div class="kx-vt-showcase" data-vertigo-showcase></div>
-        <div class="kx-meta"><h3><img src="assets/icons/myvertigoapp.png" alt="" width="30" height="30">my-vertigo-app</h3><p>The dizzy patient, from bedside exam to disposition. Explore the redesigned safety layouts and visual nystagmus teaching tools.</p><a class="kx-go" href="${VERTIGO_URL}" target="_blank" rel="noopener">Open my-vertigo-app →</a></div>
+        <div class="kx-meta"><h3><img src="assets/icons/myvertigoapp.png" alt="" width="30" height="30">my-vertigo-app</h3><p>The dizzy patient, from bedside exam to disposition. Explore the redesigned safety layouts and visual nystagmus teaching tools.</p><a class="kx-go" href="${VERTIGO_URL}"${linkAttrs(VERTIGO_URL)}>${verb('myvertigoapp')} my-vertigo-app →</a></div>
       </article>
     </div>
     <p class="kx-note">Educational decision support for licensed clinicians. Not FDA cleared. Not a substitute for clinical judgment.</p>

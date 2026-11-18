@@ -1,15 +1,21 @@
-import { PROJECTS, CATEGORIES, FEATURED_CLINICAL_TOOL_IDS, FEATURED_LEARNING_IDS, isOpenableProject, orderFeaturedProjects, type Project } from '../data/studio-catalog.js';
+import { PROJECTS, CATEGORIES, FEATURED_CLINICAL_TOOL_IDS, FEATURED_LEARNING_IDS, isOpenableProject, isPreview, orderFeaturedProjects, type Project } from '../data/studio-catalog.js';
+import { RELEASE_BANNER, RELEASE_SUB, previewHref } from '../data/release.js';
+import { PREVIEWS } from '../data/previews.js';
+import { renderEmailSignup } from './email-signup.js';
 
 const esc = (s: string): string => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const arrow = '<span aria-hidden="true">↗</span>';
 function openLink(url: string, label: string): string {
   return `<a class="hub-link" href="${esc(url)}"${url.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(label)} ${arrow}</a>`;
 }
+const previewLink = (id: string): string => `<a class="hub-link" href="${esc(previewHref(id))}">See the preview →</a>`;
 const reviewLink = '<a class="hub-link" href="mailto:kittechsix@gmail.com?subject=Application%20review%20request">Email kittechsix@gmail.com to request an application review →</a>';
 function card(p: Project): string {
-  const openAction = isOpenableProject(p) && p.url
-    ? openLink(p.url, p.status === 'Available' ? 'Open' : 'Request access')
-    : reviewLink;
+  const openAction = isPreview(p.id)
+    ? previewLink(p.id)
+    : isOpenableProject(p) && p.url
+      ? openLink(p.url, p.status === 'Available' ? 'Open' : 'Request access')
+      : reviewLink;
   return `<article class="hub-card"><div class="hub-card-top"><span class="hub-kicker">${esc(p.category)}</span><span class="hub-status">${esc(p.status)}</span></div><a class="hub-card-title" href="#/projects/${esc(p.id)}">${p.icon ? `<img src="${esc(p.icon)}" alt="" width="42" height="42" loading="lazy">` : ''}<h3>${esc(p.name)}</h3><span aria-hidden="true">↗</span></a><p>${esc(p.summary)}</p><details class="hub-more"><summary>What is this? <span class="hub-more-plus" aria-hidden="true">+</span></summary><p>${esc(p.description)}</p></details><div class="hub-card-bottom"><a href="#/projects/${esc(p.id)}">View explanation <span aria-hidden="true">→</span></a>${openAction}</div></article>`;
 }
 function section(parent: HTMLElement, content: string, extra = ''): HTMLElement {
@@ -32,7 +38,7 @@ export function renderHub(parent: HTMLElement): void {
 }
 export function renderDirectory(parent: HTMLElement, category = 'All projects', initial = ''): void {
   document.title = 'Projects — Kittech-Six';
-  const el = section(parent, header('The complete collection', 'Find something useful.', 'Clinical tools, everyday experiments, teaching projects, and the systems that connect them. Explore the work or open a featured app.') + `
+  const el = section(parent, header('The complete collection', 'Find something useful.', 'Clinical tools, everyday experiments, teaching projects, and the systems that connect them. Explore the work or preview a featured app.') + `
     <div class="hub-controls"><label for="project-search">Search projects</label><input id="project-search" type="search" placeholder="Search by name, problem, or topic" value="${esc(initial === 'all' ? '' : initial)}"><div class="hub-filters" role="group" aria-label="Project categories">${CATEGORIES.map(c => `<button type="button" data-category="${esc(c)}" aria-pressed="${c === category}">${esc(c)}</button>`).join('')}</div><div class="hub-resultbar"><span id="result-count" role="status" aria-live="polite"></span><label class="hub-checkbox"><input type="checkbox" id="available-only"> Available to open</label></div></div><div class="hub-grid" id="project-results"></div><p class="hub-note">Clinical projects are for clinician education and decision support. Development and access labels describe availability, not clinical validation.</p><p class="hub-note hub-access-note">Clinical tools shown in this section are the featured set. Other apps and projects remain available in Browse every project as explanations only. ${reviewLink}</p>`);
   let selected = CATEGORIES.includes(category) ? category : 'All projects';
   const search = el.querySelector<HTMLInputElement>('#project-search')!;
@@ -56,8 +62,13 @@ export function renderProject(parent: HTMLElement, id: string): void {
   if (!p) { section(parent, header('Project not found', 'Let’s get you back to the collection.', 'That link may have changed.') + '<a class="hub-primary" href="#/projects">Explore projects →</a>'); return; }
   document.title = `${p.name} — Kittech-Six`;
   const peers = PROJECTS.filter(x => x.category === p.category && x.id !== p.id).slice(0,3);
-  const projectAction = isOpenableProject(p) && p.url ? openLink(p.url, p.status === 'Available' ? 'Open '+p.name : 'Request access') : `<p class="hub-note">This project is shown as an explanation only. ${reviewLink}</p>`;
-  section(parent, `<a class="hub-back" href="#/projects">← All projects</a>` + header(esc(p.category) + ' / ' + esc(p.status), esc(p.name), esc(p.summary)) + `<div class="hub-project-body"><div><h2>What it is</h2><p>${esc(p.description)}</p><div class="hub-actions">${projectAction}${p.detail ? openLink(p.detail, 'Overview & interactive tour') : ''}</div>${p.category === 'Clinical tools' ? '<p class="hub-note">For clinician education and decision support. Use professional judgment and consult the source material. A project listing is not a clinical validation claim.</p>' : ''}</div><aside><span class="hub-kicker">In the collection</span><dl><dt>Area</dt><dd>${esc(p.category)}</dd><dt>Availability</dt><dd>${esc(p.status)}</dd><dt>Catalog reviewed</dt><dd>October 26, 2026</dd></dl></aside></div><div class="hub-section-label"><h2>Keep exploring</h2></div><div class="hub-grid">${peers.map(card).join('')}</div>`);
+  const preview = isPreview(p.id);
+  const shots = PREVIEWS[p.id] ?? [];
+  const previewBlock = preview ? `<div class="pv-banner" role="status"><span class="pv-dot" aria-hidden="true"></span><div><strong>${RELEASE_BANNER}</strong><span>${RELEASE_SUB}</span></div></div>` + (shots.length ? `<div class="hub-section-label pv-label"><h2>A look inside</h2><span>${shots.length} screens · swipe</span></div><div class="pv-gallery" role="region" aria-label="Screens from ${esc(p.name)}" tabindex="0">${shots.map(s => `<figure class="pv-shot"><img src="${esc(s.src)}" alt="${esc(p.name)}: ${esc(s.caption)}" width="390" height="844" loading="lazy" decoding="async"><figcaption>${esc(s.caption)}</figcaption></figure>`).join('')}</div>` : '') : '';
+  const projectAction = preview ? `<div class="pv-notify"><h3>Tell me when it launches</h3><p>One email when ${esc(p.name)} is released. Nothing else.</p><div data-pv-signup></div></div>` : isOpenableProject(p) && p.url ? openLink(p.url, p.status === 'Available' ? 'Open '+p.name : 'Request access') : `<p class="hub-note">This project is shown as an explanation only. ${reviewLink}</p>`;
+  const page = section(parent, `<a class="hub-back" href="#/projects">← All projects</a>` + header(esc(p.category) + ' / ' + esc(p.status), esc(p.name), esc(p.summary)) + previewBlock + `<div class="hub-project-body"><div><h2>What it is</h2><p>${esc(p.description)}</p><div class="hub-actions">${projectAction}${p.detail ? openLink(p.detail, 'Overview & interactive tour') : ''}</div>${p.category === 'Clinical tools' ? '<p class="hub-note">For clinician education and decision support. Use professional judgment and consult the source material. A project listing is not a clinical validation claim.</p>' : ''}</div><aside><span class="hub-kicker">In the collection</span><dl><dt>Area</dt><dd>${esc(p.category)}</dd><dt>Availability</dt><dd>${esc(p.status)}</dd><dt>Catalog reviewed</dt><dd>October 26, 2026</dd></dl></aside></div><div class="hub-section-label"><h2>Keep exploring</h2></div><div class="hub-grid">${peers.map(card).join('')}</div>`);
+  const signup = page.querySelector<HTMLElement>('[data-pv-signup]');
+  if (signup) renderEmailSignup(signup, 'launch-' + p.id);
 }
 export function renderLearning(parent: HTMLElement): void {
   document.title = 'Lectures & Learning — Kittech-Six';

@@ -1,0 +1,30 @@
+[
+  {
+    "file": "01-launcher.jpg",
+    "caption": "The dizzy patient workup, one tap to begin"
+  },
+  {
+    "file": "02-epley-maneuver-drawing.jpg",
+    "caption": "Epley maneuver drawn step by step for the affected ear"
+  },
+  {
+    "file": "03-inner-ear-3d.jpg",
+    "caption": "Rotatable 3D inner ear with labeled structures"
+  },
+  {
+    "file": "04-hints-nystagmus-step.jpg",
+    "caption": "HINTS exam step: what nystagmus pattern did you see?"
+  },
+  {
+    "file": "05-lateralize-sick-ear.jpg",
+    "caption": "Pick the findings to see which ear is affected"
+  },
+  {
+    "file": "06-ask-the-workup.jpg",
+    "caption": "Ask a bedside question and jump to the right step"
+  },
+  {
+    "file": "07-vertigo-map.jpg",
+    "caption": "Workup map with safety gates and a checklist"
+  }
+]

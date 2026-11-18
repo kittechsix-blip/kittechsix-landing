@@ -6,6 +6,7 @@
 import { getWorkApp, type WorkApp } from '../data/app-registry.js';
 import { renderAppTabs, type AppTabDef } from './app-tabs.js';
 import { renderProductShowcase } from './product-showcase.js';
+import { releaseUrl, previewHref } from '../data/release.js';
 
 function escapeHtml(value: string): string {
   return value
@@ -23,7 +24,8 @@ function primaryAction(app: WorkApp): { label: string; href: string } {
       href: app.checkoutUrl,
     };
   }
-  return { label: 'Open the app', href: app.liveUrl };
+  const released = releaseUrl(app.id);
+  return released ? { label: 'Open the app', href: released } : { label: 'See the preview', href: previewHref(app.id) };
 }
 
 function renderNotFound(parent: HTMLElement, appId: string): void {
@@ -57,8 +59,9 @@ export function renderWorkDetail(parent: HTMLElement, appId: string): void {
   section.style.setProperty('--app-accent-soft', app.accent.soft);
   section.style.setProperty('--app-accent-deep', app.accent.deep);
 
+  const status = releaseUrl(app.id) ? app.status : 'Coming Soon';
   const tagVariant =
-    app.status === 'Live' ? 'tag--live' : app.status === 'Coming Soon' ? 'tag--soon' : 'tag--clinical';
+    status === 'Live' ? 'tag--live' : status === 'Coming Soon' ? 'tag--soon' : 'tag--clinical';
   const action = primaryAction(app);
   const external = action.href.startsWith('http');
 
@@ -77,7 +80,7 @@ export function renderWorkDetail(parent: HTMLElement, appId: string): void {
         <h1 class="work-detail-name">${escapeHtml(app.name)}</h1>
         <span class="work-detail-discipline">${escapeHtml(app.discipline)}</span>
       </div>
-      <p class="work-detail-status tag ${tagVariant}">${escapeHtml(app.status)}</p>
+      <p class="work-detail-status tag ${tagVariant}">${escapeHtml(status)}</p>
     </div>
     <p class="work-detail-statement">${escapeHtml(app.statement)}</p>
     <div class="work-detail-actions">
@@ -110,12 +113,12 @@ export function renderWorkDetail(parent: HTMLElement, appId: string): void {
           description: app.description,
           iconSrc: app.iconSrc,
           features: app.features,
-          status: app.status,
+          status,
           metric: app.metric,
           metricLabel: app.metricLabel,
           ctaPrimary: {
             label: action.label,
-            action: () => window.open(action.href, '_blank', 'noopener'),
+            action: () => { if (external) window.open(action.href, '_blank', 'noopener'); else location.hash = action.href.slice(1); },
           },
           suppressHeadline: true,
         }),

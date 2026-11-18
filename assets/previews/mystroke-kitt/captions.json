@@ -1,0 +1,30 @@
+[
+  {
+    "file": "01-home-code-stroke.jpg",
+    "caption": "Code stroke start screen with the five-step spine"
+  },
+  {
+    "file": "02-initial-actions.jpg",
+    "caption": "One decision per screen, starting with immediate actions"
+  },
+  {
+    "file": "03-nihss-calculator.jpg",
+    "caption": "NIHSS calculator with a running score and severity"
+  },
+  {
+    "file": "04-syndrome-calculator.jpg",
+    "caption": "Syndrome calculator suggests a vascular territory"
+  },
+  {
+    "file": "05-ich-reversal-agents.jpg",
+    "caption": "Hemorrhage pathway: reversal by anticoagulant"
+  },
+  {
+    "file": "06-pathway-overview.jpg",
+    "caption": "Whole stroke pathway map with safety gates"
+  },
+  {
+    "file": "07-ask-the-consult.jpg",
+    "caption": "Search by question: reversal agents and drug cards"
+  }
+]

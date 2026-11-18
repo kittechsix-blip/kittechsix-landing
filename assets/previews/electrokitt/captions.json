@@ -1,0 +1,30 @@
+[
+ {
+  "file": "01-ranked-differential.jpg",
+  "caption": "Ranked differential with the reasoning behind each cause"
+ },
+ {
+  "file": "02-interaction-alerts.jpg",
+  "caption": "Cross-electrolyte interaction alerts with cited sources"
+ },
+ {
+  "file": "03-management-tree.jpg",
+  "caption": "Step-by-step management branches on the ECG and exam"
+ },
+ {
+  "file": "04-show-your-work.jpg",
+  "caption": "Corrected sodium and osmolality with the math on demand"
+ },
+ {
+  "file": "05-calcium-phosphate-alerts.jpg",
+  "caption": "Calcium and phosphate warnings that fire as you enter labs"
+ },
+ {
+  "file": "06-teaching-case.jpg",
+  "caption": "Teaching cases: work the lab first, then reveal the point"
+ },
+ {
+  "file": "07-pathway-picker.jpg",
+  "caption": "Pick an electrolyte pathway or open a teaching case"
+ }
+]

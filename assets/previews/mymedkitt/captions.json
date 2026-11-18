@@ -1,0 +1,30 @@
+[
+  {
+    "file": "01-home-specialties.jpg",
+    "caption": "Search plus specialty launcher with consult counts"
+  },
+  {
+    "file": "02-search-results.jpg",
+    "caption": "Search across consults, info cards and decision nodes"
+  },
+  {
+    "file": "03-differential-choices.jpg",
+    "caption": "Chest pain hub: choose the diagnosis you are working up"
+  },
+  {
+    "file": "04-tree-ecg-first.jpg",
+    "caption": "Decision-tree step with a critical safety point"
+  },
+  {
+    "file": "05-tree-heart-pathway.jpg",
+    "caption": "Color-coded branches from HEART score to disposition"
+  },
+  {
+    "file": "06-calculator-result.jpg",
+    "caption": "Medical calculator with live score and risk estimate"
+  },
+  {
+    "file": "07-drug-card.jpg",
+    "caption": "Drug reference card with indications and dosing"
+  }
+]

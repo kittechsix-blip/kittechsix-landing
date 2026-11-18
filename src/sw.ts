@@ -2,7 +2,7 @@
 
 // Bump this whenever the shell or navigation changes so returning visitors
 // receive the current site instead of a stale service-worker cache.
-const CACHE_NAME = 'kittechsix-v68-shimmer-loop';
+const CACHE_NAME = 'kittechsix-v69-app-previews';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -54,6 +54,8 @@ const ASSETS_TO_CACHE = [
   '/components/nav.js',
   '/components/product-showcase.js',
   '/data/app-registry.js',
+  '/data/release.js',
+  '/data/previews.js',
   '/utils/intersection.js',
   '/utils/router.js',
   '/utils/storage.js',

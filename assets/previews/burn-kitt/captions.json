@@ -1,0 +1,26 @@
+[
+  {
+    "file": "01-tbsa-body-map.jpg",
+    "caption": "Paint burned areas on a body map for a live TBSA total"
+  },
+  {
+    "file": "02-parkland-fluids.jpg",
+    "caption": "Enter weight and TBSA to see a fluid rate with the math"
+  },
+  {
+    "file": "03-tbsa-triage.jpg",
+    "caption": "Pick a TBSA range to choose the next resuscitation step"
+  },
+  {
+    "file": "04-lund-browder-peds.jpg",
+    "caption": "Pediatric body map that adjusts by age group"
+  },
+  {
+    "file": "05-chemical-agent-guide.jpg",
+    "caption": "Agent-specific chemical burn guide with a treatment ladder"
+  },
+  {
+    "file": "06-escharotomy-technique.jpg",
+    "caption": "Step-by-step escharotomy technique, ready at the bedside"
+  }
+]

@@ -155,3 +155,25 @@
  .hub-profile img { max-width: 170px; }
 }
 @media (prefers-reduced-motion: reduce) { .hub * { scroll-behavior: auto; transition: none; } }
+
+/* App previews: every app is screenshots + "Full release coming soon" until it launches (data/release.ts). */
+.pv-banner { display: flex; align-items: center; gap: 16px; margin: 32px 0 8px; padding: 18px 22px; border: 1px solid var(--copper-300); border-radius: var(--radius-lg); background: var(--copper-50); }
+.pv-banner strong { display: block; font: 600 clamp(1.25rem, 2.2vw, 1.6rem)/1.2 var(--font-display); letter-spacing: -.01em; color: var(--ink); }
+.pv-banner span:not(.pv-dot) { display: block; margin-top: 4px; font: 400 .8rem/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--copper-700); }
+.pv-dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--copper-500); box-shadow: 0 0 0 0 var(--copper-300); animation: pv-pulse 2.4s ease-out infinite; }
+@keyframes pv-pulse { 0% { box-shadow: 0 0 0 0 rgba(184,115,62,.45); } 70%, 100% { box-shadow: 0 0 0 12px rgba(184,115,62,0); } }
+.pv-label { margin-top: 36px; }
+.pv-gallery { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 4px 22px; margin: 0 -4px 24px; scrollbar-width: thin; overscroll-behavior-x: contain; }
+.pv-gallery:focus-visible { outline: 2px solid var(--accent-press); outline-offset: 4px; }
+.pv-shot { flex: 0 0 240px; margin: 0; scroll-snap-align: start; }
+.pv-shot img { display: block; width: 100%; height: auto; aspect-ratio: 390 / 844; object-fit: cover; border-radius: 28px; border: 6px solid var(--ink); background: var(--paper); box-shadow: var(--shadow-lift); }
+.pv-shot figcaption { margin-top: 12px; font: 400 .9rem/1.45 var(--font-text); color: var(--ink-2); }
+.pv-notify { margin-top: 22px; padding: 22px; border: 1px solid var(--border-soft); border-radius: var(--radius-lg); background: var(--paper); }
+.pv-notify h3 { font-size: 1.25rem; }
+.pv-notify p { margin-top: 6px; color: var(--ink-3); font-size: .95rem; }
+.pv-notify .email-signup { margin-top: 14px; }
+@media (max-width: 720px) {
+  .pv-shot { flex-basis: 68vw; }
+  .pv-banner { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .pv-dot { animation: none; } }

@@ -6,6 +6,7 @@ import { createTelemetry } from './telemetry.js';
 import { router } from './router.js';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './supabase.js';
 import { WORK_APPS } from '../data/app-registry.js';
+import { RELEASED } from '../data/release.js';
 
 const telemetry = createTelemetry({
   app: 'kittech-six',
@@ -47,8 +48,8 @@ export function startUsageCounting(): void {
   window.addEventListener('hashchange', screen);
 
   const appUrls = new Map<string, string>();
-  for (const [id, app] of Object.entries(WORK_APPS)) {
-    const key = app.liveUrl ? normalizeUrl(app.liveUrl) : null;
+  for (const [id, url] of Object.entries(RELEASED)) {
+    const key = normalizeUrl(url);
     if (key) appUrls.set(key, id);
   }
 

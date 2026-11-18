@@ -1,5 +1,6 @@
 // Public editorial inventory. Never auto-import private brain files into this module.
 import { listWorkApps } from './app-registry.js';
+import { releaseUrl } from './release.js';
 export interface Project { id: string; name: string; category: string; summary: string; status: string; url: string; description: string; icon?: string; detail?: string }
 export const CATEGORIES = ['All projects', 'Clinical tools', 'Lectures & learning', 'AI & automation', 'Everyday tools', 'Systems & experiments'];
 
@@ -16,6 +17,10 @@ export const OPEN_PROJECT_IDS = new Set<string>([
   ...FEATURED_LEARNING_IDS,
 ]);
 
+/** Featured app that has not launched yet: shown as a screenshot preview. */
+export function isPreview(id: string): boolean {
+  return OPEN_PROJECT_IDS.has(id) && releaseUrl(id) === null;
+}
 export function isOpenableProject(project: Project): boolean {
   return OPEN_PROJECT_IDS.has(project.id);
 }
@@ -61,7 +66,7 @@ const additional: Project[] = [
     "category": "Clinical tools",
     "summary": "A bedside guide for working up sudden weakness.",
     "status": "In development",
-    "url": "https://powerkitt.vercel.app",
+    "url": "",
     "description": "Helps a clinician tell apart the different possible causes of new weakness, with built-in checkpoints for the causes that can't be missed.",
     "icon": "assets/icons/powerkitt.png"
   },
@@ -71,7 +76,7 @@ const additional: Project[] = [
     "category": "Clinical tools",
     "summary": "Every OB/GYN emergency, searchable, with visual step-by-step maneuvers.",
     "status": "Available",
-    "url": "https://obgyn-kitt.vercel.app",
+    "url": "",
     "description": "A bedside OB/GYN emergency guide: 88 consults, illustrated rapid steps for shoulder dystocia, breech, cord prolapse, PPH and maternal arrest, and calculators that remember gestational age and maternal age for the current patient.",
     "icon": "assets/icons/obgyn-kitt.png"
   },
@@ -81,7 +86,7 @@ const additional: Project[] = [
     "category": "Clinical tools",
     "summary": "Explore an interactive burn-assessment workspace.",
     "status": "In development",
-    "url": "https://burn-kitt.vercel.app",
+    "url": "",
     "description": "A burn-management project with body-surface-area visualization and clinical workflow tools.",
     "icon": "assets/icons/burn-kitt.png"
   }
@@ -92,6 +97,6 @@ export const PROJECTS: Project[] = [...listWorkApps().map(app => ({
  category: app.id === 'echokitt' ? 'Lectures & learning' : 'Clinical tools',
  summary: app.statement,
  status: app.status === 'Live' ? 'Available' : 'In development',
- url: app.id === 'echokitt' ? 'https://kittech-six.org/echo-course' : app.liveUrl,
+ url: releaseUrl(app.id) ?? '',
  description: app.description, icon: app.iconSrc, detail: '#/work/' + app.id,
-})), ...additional];
+})), ...additional].map(p => isPreview(p.id) ? { ...p, status: 'Coming soon', url: '' } : { ...p, url: releaseUrl(p.id) ?? p.url });

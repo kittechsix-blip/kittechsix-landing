@@ -35,8 +35,6 @@ export interface AppListing {
  * been built.
  */
 export interface WorkApp extends AppListing {
-  /** Live apps always have a URL — narrowed from AppListing. */
-  liveUrl: string;
   /** Editorial chapter number, '01'–'07'. */
   chapter: string;
   /** Short discipline label, e.g. 'Reasoning engine'. Doubles as the index category. */
@@ -94,7 +92,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metricLabel: 'evidence-based ER consults',
     status: 'Live',
     iconSrc: 'assets/icons/mymedkitt-current.png',
-    liveUrl: 'https://kittechsix-blip.github.io/mymedkitt/app.html',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
@@ -122,7 +120,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metricLabel: 'exam to maneuver to disposition',
     status: 'Live',
     iconSrc: 'assets/icons/myvertigoapp.png',
-    liveUrl: 'https://my-vertigo-app.vercel.app',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
@@ -150,7 +148,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metricLabel: 'disorder, reasoning, workup, treatment',
     status: 'Live',
     iconSrc: 'assets/icons/acidbase.png',
-    liveUrl: 'https://acidbase.vercel.app',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
@@ -178,7 +176,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metricLabel: 'code-stroke tools in one workflow',
     status: 'Live',
     iconSrc: 'assets/icons/mystroke-kitt.png',
-    liveUrl: 'https://mystroke-kitt.vercel.app',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
@@ -206,7 +204,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metricLabel: 'electrolyte systems in one coupled panel',
     status: 'In Development',
     iconSrc: 'assets/icons/electrokitt.png',
-    liveUrl: 'https://electrokitt.vercel.app',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
@@ -234,7 +232,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metricLabel: 'endocrine axes with ordered management',
     status: 'In Development',
     iconSrc: 'assets/icons/endocrinekitt.png',
-    liveUrl: 'https://endocrinekitt.vercel.app',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
@@ -262,7 +260,7 @@ export const WORK_APPS: Record<WorkAppId, WorkApp> = {
     metricLabel: 'cardiac and lung ultrasound topics',
     status: 'In Development',
     iconSrc: 'assets/icons/echokitt.png',
-    liveUrl: 'https://echokitt-andy-kitlowskis-projects.vercel.app',
+    liveUrl: null,
     checkoutUrl: null,
     price: null,
     forSale: false,
